@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="/themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="/themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/themes/yingge/foot.css">
+<link href="/themes/yingge/user/index.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<SCRIPT type=text/javascript src="/themes/yingge/js/jquery.min.js"></SCRIPT>
+<script type="text/javascript">
+$(document).ready(function(){
+	//回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+});
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+</script>
+</head>
+<body>
+{include file="user/library/baby_page_header.lbi"}
+{include file="user/library/page_header2.lbi"}
+<div class="block box top_nav">
+ <div id="ur_here">
+ {include file="user/library/ur_here.lbi"}
+ </div>
+</div>
+ {include file="user/library/user_info.lbi"}
+<div class="blank9"></div>
+<div class="usermain">
+<div class="usermenu left">
+{include file="user/library/user_menu.lbi"}
+</div>
+<div class="userorder left">
+<h3>我的订单&nbsp;&nbsp;&nbsp;<font><a href="user.php?act=order_list" class="blue f12">&lt;&lt;返回订单列表</a></font></h3>
+<div id="orderinfo">
+<ul class="order_sn"><li>订单号：{$order.order_sn}</li><li>状态：<font style="color:#ed5d0f;">{$order.order_status}</font></li><li style="float:right;<!-- {if $order.paytype eq 2} -->width: 234px;<!--{/if}-->margin: 4px 16px 0;">{$order.handler}</li></ul>
+<div class="pay_path">
+<!-- {if $order.paytype eq 2} -->
+	<div class="online_path">
+		<div class="opathimg_{$order.pay_step}"></div>
+		<dl>
+			<dd><p class="f16 b org">下单</p><p>{$order.add_time}</p></dd>
+			<dd><p class="f16 b org">付款</p><p>{$order.pay_time}</p></dd>
+			<dd><p class="f16 b org">配货</p><p>{$order.shipping_time}</p></dd>
+			<dd><p class="f16 b org">出库</p><p>{$order.outbound_time}</p></dd>
+			<dd><p class="f16 b org">交易成功</p><p>{$order.deal_time}</p></dd>
+		</dl>
+	</div>
+<!-- {/if} -->
+<!-- {if $order.paytype eq 1} -->
+<div class="unline_path">
+		<div class="upathimg_{$order.pay_step}"></div>
+		<dl>
+			<dd><p class="f16 b org">下单</p><p>{$order.add_time}</p></dd>
+			<dd><p class="f16 b org">配货</p><p>{$order.shipping_time}</p></dd>
+			<dd><p class="f16 b org">出库</p><p>{$order.outbound_time}</p></dd>
+			<dd><p class="f16 b org">交易成功</p><p>{$order.deal_time}</p></dd>
+		</dl>
+</div>
+<!-- {/if} -->
+<!-- {if $order.paytype eq 3} -->
+<div class="cancel_path">
+	<div class="cancelimg_1"></div>
+	<dl>
+		<dd><p class="f16 b org">下单</p><p>{$order.add_time}</p></dd>
+		<dd><p class="f16 b org">交易取消</p><p>{$order.cancel_time}</p></dd>
+	</dl>
+</div>
+<!-- {/if} -->
+<div class="blank9"></div>
+</div>
+<div class="blank9"></div>
+<div class="wuliuinfo">
+<h4>物流信息</h4>
+<div class='wuliu_info'>
+<p>物流公司：<!-- { if $order.outbound_time eq ''} --><span style="padding-left:15px;color:#666;">商品还未发货</span><!-- {else} --><span style="padding-left:15px;">{$order.shipping_name}</span><!-- {/if} --></p>
+<p>运单编号：<!-- { if $order.outbound_time eq ''} --><span style="padding-left:15px;color:#666;">商品还未发货</span><!-- {else} --><span style="padding-left:15px;">{$order.invoice_no}</span><!-- {/if} --></p>
+<p>物流跟踪：<span style="padding-left:15px;"><a href="<!-- {if $order.shipping_id > 0} -->http://www.kuaidi100.com<!-- {/if} -->#" target="_blank">点击查询</a></span><!-- {if $order.shipping_id <= 0} --><span class="org" style="padding-left:15px;">[婴格配送不提供物流跟踪]</span><!-- {/if} --></p>
+</div>
+<div class="wuliu_sm">
+<p class="org">发货说明：</p>
+<p>婴格配送订单发货时间：<font class="org">[注：快递订单付款后每天下午17：00点统一发货]</font></p>
+<p>昨日18点至当天12点订单于当天下午送达，当天12点至当天18点订单于次日上午送达</p>
+</div>
+</div>
+<div class="blank9"></div>
+<div class="addressinfo">
+<h4>收货地址</h4>
+<p>姓名：<span style="padding-left:40px;">{$order.consignee}</span></p>
+<p>地址：<span style="padding-left:40px;">{$province}-{$city}-{$district}-{$order.address}</span></p>
+<p>联系电话：<span style="padding-left:15px;">{$order.mobile}</span></p>
+</div>
+<div class="blank9"></div>
+<div class="goodsinfo">
+<h4 class="f14">商品清单</h4>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table">
+		<tbody>
+          <tr>
+          	<td align="left" valign="middle" class="td_top" width="8%" >&nbsp;&nbsp;&nbsp;商品</td>
+          	<td align="left" valign="middle" class="td_top" width="37%"></td>
+            <td align="center" valign="middle" class="td_top" width="15%"><!-- {if $is_exchange_goods eq 1} -->积分<!-- {else} -->单价<!-- {/if} --></td>
+            <td align="center" valign="middle" class="td_top" width="15%">数量</td>
+            <td align="center" valign="middle" class="td_top" width="15%">小计</td>
+            <td align="center" valign="middle" class="td_top" width="10%">评价</td>
+          </tr>
+           <!-- {foreach from=$goods_list item=goods} -->
+          <tr>
+          	<td align="left" valign="middle" class="td" style="padding:16px 0 16px 16px;"><img src="{$goods.goods_thumb}" border width="59" height="59" /></td>
+          	<td align="left" valign="middle" class="td" style="vertical-align: middle;">&nbsp;&nbsp;<a href="goods.php?id={$goods.goods_id}" target="_blank" class="f6">{$goods.goods_name}</a></td>
+          	<td align="center" valign="middle" class="td" style="vertical-align: middle;"><!-- {if $is_exchange_goods eq 1} -->{$order.integral}<!-- {else} -->{$goods.goods_price}<!-- {/if} --></td>
+          	<td align="center" valign="middle" class="td" style="vertical-align: middle;">{$goods.goods_number}</td>
+          	<td align="center" valign="middle" class="td red" style="vertical-align: middle;">{$goods.subtotal}</td>
+          	<td align="center" valign="middle" class="td" style="vertical-align: middle;"><!-- {if $goods.comment_num eq 0 } --><font class="red">未评论</font><!-- {else} -->已评论<!-- {/if} --></td>
+          </tr>
+          <!-- {/foreach} -->
+        </tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="ECS_ORDERTOTAL">
+<div class="fl fp_box">
+<div id="flow_invoice_table"></div>
+</div>
+<ul class="right cart_sum" style="padding-right:0;" id="now_pay_money">
+<!-- {if $is_exchange_goods eq 1} --><li>花费积分：<b>{$order.integral}</b></li><!-- {/if} -->
+<li>商品金额：<b>{$order.formated_goods_amount}</b></li>
+<li>运费：<b>￥0.00元</b></li>
+<li><!-- {if $order.discount gt 0} 折扣 -->
+              - {$lang.discount}: {$order.formated_discount}<br />
+              <!-- {/if} -->
+              <!-- {if $order.tax gt 0} -->
+              + {$lang.tax}: {$order.formated_tax}<br />
+              <!-- {/if} -->
+              <!-- {if $order.shipping_fee > 0} -->
+              + {$lang.shipping_fee}: {$order.formated_shipping_fee}<br />
+              <!-- {/if} -->
+              <!-- {if $order.insure_fee > 0} -->
+              + {$lang.insure_fee}: {$order.formated_insure_fee}<br />
+              <!-- {/if} -->
+              <!-- {if $order.pay_fee > 0} -->
+              + {$lang.pay_fee}: {$order.formated_pay_fee}<br />
+              <!-- {/if} -->
+              <!-- {if $order.pack_fee > 0} -->
+              + {$lang.pack_fee}: {$order.formated_pack_fee}<br />
+              <!-- {/if} -->
+              <!-- {if $order.card_fee > 0} -->
+              + {$lang.card_fee}: {$order.formated_card_fee}<br />
+              <!-- {/if} --></li>
+<li><!-- {if $order.money_paid > 0} -->
+              - {$lang.order_money_paid}: {$order.formated_money_paid}<br />
+              <!-- {/if} -->
+              <!-- {if $order.surplus > 0} -->
+              - {$lang.use_surplus}: {$order.formated_surplus}<br />
+              <!-- {/if} -->
+              <!-- {if $order.integral_money > 0} -->
+              - {$lang.use_integral}: {$order.formated_integral_money}<br />
+              <!-- {/if} -->
+              <!-- {if $order.bonus > 0} -->
+              - {$lang.use_bonus}: {$order.formated_bonus}<br />
+              <!-- {/if} -->
+</li>
+
+<li><font class="sum_num"><strong>{$order.formated_order_amount}</strong></font></li>
+
+<li><!-- 
+   
+    <p>您将获得124积分</p>
+
+--></li>
+</ul>
+</div>
+</div>
+{include file="user/library/baby_page_footer2.lbi"}
+</body>
+</html>

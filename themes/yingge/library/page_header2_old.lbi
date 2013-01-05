@@ -1,0 +1,249 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="themes/yingge/page_header2.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<style type="text/css" media="screen">
+		.QQPanel { list-style: none; }
+		.QQPanel li { float: left; margin-right: 10px; }
+		.QQPanel a { display: block; height: 34px; width: 34px; background: url('themes/yingge/images/QQStatus.gif') no-repeat; }
+		/* QQ不在线(默认)状态CSS */
+		.QQPanel a.qq2 { background-position: -35px 0; }
+		.QQPanel a.qq3 { background-position: -69px 0; }
+		.QQPanel a.qq4 { background-position: -103px 0; }
+		/* QQ在线状态CSS */
+		.QQPanel .online a.qq1 { background-position: 0 -34px; }
+		.QQPanel .online a.qq2 { background-position: -35px -34px; }
+		.QQPanel .online a.qq3 { background-position: -69px -34px; }
+		.QQPanel .online a.qq4 { background-position: -103px -35px; }
+		/* QQ在线状态鼠标移入时CSS */
+		.QQPanel .online a.qq1:hover { background-position: 0 bottom; }
+		.QQPanel .online a.qq2:hover { background-position: -35px bottom; }
+		.QQPanel .online a.qq3:hover { background-position: -69px bottom; }
+		.QQPanel .online a.qq4:hover { background-position: -103px bottom; }
+</style>
+<div id="yg-nav" class="w970">
+	<div class="left nav_jylist" id="nav_jylist">
+    	<p id="jy_vois" class="jy_ti"><span class="fl2">全部商品分类</span></p>
+        <ol style="display:none;" id="jy_list" class="nav_jyc">
+			<!--{foreach from=$categories name=categories item=cat}-->
+			<li class="top">
+            <h2><u class="n{$smarty.foreach.categories.index}"><a href="{$cat.url}">{$cat.name|escape:html}</a></u></h2>
+            <em></em>
+            <dl class="submenu" style="display: none;">
+                <dt>
+                    <strong>选择分类</strong>
+                    <p class="walink">
+                    <!--{foreach from=$cat.cat_id item=child}-->
+                                <a href="{$child.url}">{$child.name|escape:html} </a>
+                    <!--{/foreach}--> 
+                    </p>
+                </dt>
+                <dt>
+                    <strong>推荐产品</strong>
+                    <p class="walink">
+                                <a href="#">配方奶粉 </a>
+                                <a href="#">早产奶粉 </a>
+                                <a href="#">羊奶粉 </a>
+                                <a href="#">特殊奶粉 </a>
+                                <a href="#">孕妇奶粉 </a>
+                    </p>
+                </dt>
+            </dl>
+            </li>
+           <!--{/foreach}-->  
+            <li class="bom">
+                <u class="n80"><a href="map.php">全部交易分类&gt;&gt;</a></u>
+            </li>
+    </ol>
+    </div>
+    <div class="right" id="nav_indx">
+    	<div class="right gz">
+		<!--<a href=""><img src="images/weix.gif" border="0" /></a><a href=""><img src="images/weix.gif" border="0" /></a><a href=""><img src="images/weix.gif" border="0" /></a>-->
+		<ul class="QQPanel" id="QQPanel"><li><a href="#" class="qq1"></a></li><li><a href="#" class="qq2"></a></li><li><a href="#" class="qq3"></a></li><li><a href="#" class="qq4"></a></li></ul>
+	<script type="text/javascript">
+	//<![CDATA[
+		var online = [];
+		function QQPanel(id, data){
+			if((this.id = this.get(id)) == null)return false;
+			this.url = 'http://webpresence.qq.com/getonline?Type=1&';
+			this.header = document.getElementsByTagName('head');
+			this.items = this.id.childNodes;
+			this.lens  = this.items.length;
+			this.index = 0;
+			this.data  = data;
+			this.start();
+		}
+		QQPanel.prototype = {
+			get: function(id){return document.getElementById(id);},
+			start: function(){
+				if(this.index >= this.lens)return this.running=false;
+				this.running = true;
+				var script  = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src  = this.url + this.data[this.index] +':&'+(+new Date());
+				this.header[0].appendChild(script);
+				script.onload = script.onreadystatechange = (function(script){
+					var _this = this;
+					return (function(){
+						if(script.readyState){
+							if(script.readyState.match(/loaded|complete/i)){
+								_this.show(script)
+								_this = script = null;
+							}
+						}else{
+							_this.show()
+							_this = script = null;
+						}
+					});
+				}).call(this, script);
+			},
+			show: function(s){
+				this.items[this.index].className = '';
+				this.items[this.index].title = '我不在线,有事请留言.';
+				if(online[0] == 1){
+					this.items[this.index].className = 'online';
+					this.items[this.index].title = '我在线,有事您招呼.';
+				}
+				this.items[this.index].firstChild.href = 'tencent://message/?uin='+this.data[this.index++]+'&Site=婴格母婴商城&Menu=yes';
+				this.start();
+			},
+			reload: function(){
+				if(this.running)return false;
+				this.index = 0;
+				this.start();
+			}
+		}
+		var QQOnline = new QQPanel('QQPanel', [736409677, 410244935, 2372119635, 125750492]);
+		setInterval(function(){//每隔10秒检测一次在线状态
+			QQOnline.reload();
+		}, 10000);
+	//]]>
+	</script>
+		</div>
+        <div class="right ud_nav_today">
+        	<a id="nav_today_up" class="ud_up" href="#"></a>
+			<a id="nav_today_down" class="ud_down" href="#"></a>
+        </div>
+        <div id="nav_today" class="right nav_gonggao">
+        	{$shop_notice}
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<script type="Text/Javascript" language="JavaScript">
+
+{literal}
+$(document).ready(function(){
+$("#nav_jylist").hover(
+				function () {
+				$(".nav_jyc").css("display","block");
+				},
+				function () {
+				$(".nav_jyc").css("display","none");
+				}
+);
+});
+/*导行滚动，上下，今日，本月*/
+(function(){
+var nav_today=$("#nav_today"),
+nav_today_up=$("#nav_today_up"),
+nav_today_down=$("#nav_today_down"),
+ul=nav_today.find("ul");
+ul_h=nav_today.height();
+nav_today.append(ul.clone());
+var n=0;
+var ul_size=ul.size();
+function start()
+{
+scrollUp();
+if(n==ul_size)
+{
+nav_today.scrollTop(0);
+n=0;
+}
+}
+var timer=window.setInterval(function(){
+start();
+},2000);
+function stop()
+{
+clearInterval(timer);
+}
+function restart()
+{
+timer=window.setInterval(function(){
+start();
+},2000);
+}
+//向上卷动一个ul
+function scrollUp(){
+if(nav_today.is(":animated")){return false;}
+nav_today.animate({scrollTop:nav_today.scrollTop()+ul_h},"normal",function(){
+n++;
+if(n==ul_size){
+nav_today.scrollTop(0);
+n=0;
+}
+}
+);
+}
+//向下卷动一个ul
+function scrollDown(){
+if(nav_today.is(":animated")){return false;}
+nav_today.animate({scrollTop:nav_today.scrollTop()-ul_h},"normal",function(){
+n--;
+if(n==0){
+n=ul_size;
+nav_today.scrollTop(ul_h*ul_size);
+};
+}
+);
+}
+nav_today.mouseover(function(){
+stop();
+}).mouseout(function(){
+restart();
+})
+nav_today_up.click(function(){
+if(n==0){
+n=ul_size;
+nav_today.scrollTop(ul_h*ul_size);
+}
+scrollDown();
+return false;
+});
+nav_today_down.click(function(){
+if(n==ul_size)
+{
+n=0;
+nav_today.scrollTop(0);
+}
+scrollUp();
+return false;
+});
+})();
+
+/*下拉分类*/
+(function() {
+var jy_v=$("#jy_vois");
+var jy_b=$("#jy_vois b");
+var jy_c=$("#jy_list");
+var jy_li=$("#jy_list li");
+var jy_dl=$("#jy_list li dl");
+jy_c.hide();
+jy_b.addClass("ja");
+jy_v.hover(function(){
+jy_v.addClass("jy_ti_hover");
+},function(){
+jy_v.removeClass("jy_ti_hover");
+})
+jy_li.hover(function(){
+var lis=jy_li.index(this);
+jy_li.eq(lis).addClass("select");
+jy_dl.eq(lis).show();
+},function(){
+$(this).removeClass("select");
+jy_dl.hide();
+});
+})();
+{/literal} 
+
+</script>

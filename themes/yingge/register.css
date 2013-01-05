@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* CSS Document */
+
+.usBox{ border: 1px solid #E5E5E5; padding: 12px 10px;width:980px; margin:0 auto; font-size:14px; color:#404040; line-height:30px; letter-spacing:1px; font-size:12px; margin-top:30px;}
+.td_1 {padding-right:10px;color:#666;font-size:14px;}
+.usBox input.inputBg,.register_step2  input.inputBg{  float:left;border: 1px solid #C7C7C7;
+    color: #333333;
+    height: 16px;
+    padding: 6px 8px 4px;
+    width: 210px;
+    background: url("images/area_bg.png") no-repeat scroll 0 0 #FFFFFF;}
+.register_step2  select{  color: #808080;
+    height: 30px;
+    line-height: 20px;
+    padding: 2px 5px;}
+.usBox table tr{ height:50px;border:0px solid red;} 
+.clearfix{ width:980px; margin:0 auto; }
+
+.register_step2{
+	font-weight:bold; color:#404040; line-height:30px; letter-spacing:1px; font-size:12px; margin-top:30px;
+	}
+.register_step2 tr{ height:50px;}	
+
+.register_menu{ background:url(images/register_menu_btn.gif) repeat-x; height:49px; position:relative;}
+
+.register_menu h1{ font-size:18px; color:#FFF; width:800px; height:49px; line-height:49px; margin:0 auto;}
+.boxCenterList{ position:relative; }
+.registerphone{ width:327px; height:203px; position:relative; top:260px; margin:0 auto; background:url(../../html/images/registerphone_bg.gif) no-repeat; z-index:11;}
+.registerphone .reg_1{ padding:45px 20px 2px;}
+.registerphone .reg_2{ padding:15px 0 3px 90px;}
+.registerphone .reg_2 input{ border:0; width:100px; height:24px;}
+.registerphone .reg_2 a{ padding-left:10px; color:#419FC7;}
+.registerphone .reg_3{ padding:10px 40px 2px 40px;}
+.registerphone .reg_3 a.yes{ color:#FFF; font-weight:bold; width:103px; height:30px; background:url(/html/images/reg_yes.gif); display:block; text-align:center; line-height:30px; float:left;}
+.registerphone .reg_3 a.no{color:#FFF; font-weight:bold; width:125px; height:30px; background:url(/html/images/reg_no.gif); display:block; text-align:center; line-height:30px; float:right;}
+.registerphone .reg_4{ clear:both; padding:20px 50px 0 50px; *padding:8px 50px 0 50px;  _padding:10px 50px 0 50px; }
+.registerphone .reg_4 a{ color:#419FC7;} 
+.registerphone .reg2_0{ height:60px;}
+.registerphone .reg2_1{  padding:10px 0 10px 0; margin-left:20px; font-size:16px; font-weight:bold; line-height:30px; background:#FFF; width:300px;}
+.registerphone .reg2_1 img{ float:left;}
+.registerphone .reg2_2{ padding:20px 0 0 80px;}
+
+.reg_succ1{ height:55px; background:url(/html/images/reg_succ1.gif) no-repeat; padding: 60px 300px 0 300px}
+.reg_succ1 a{ color:#ed771d;}
+.reg_succ2{ padding:10px 0 0 300px; color:#ed771d;}
+.reg_succ3{ padding:10px 0 0 300px; color:#666666; line-height:30px;}
+.reg_succ4{ padding:10px 0 0 300px;color:#666666;line-height:30px;}
+
+.have_count {
+    border-left: 1px dashed #DDDDDD;
+    float: right;
+    padding: 0 30px 10px;
+    width: 220px;
+}
+
+img {border:none;}
+.have_count h3 {font-weight: 800;font-size:16px;}
+.have_count .t {
+    color: #999999;
+    font-size: 12px;
+}
+.have_count dt {
+    color: green;
+    font-weight: 800;
+}
+.have_count dd {
+    margin-bottom: 10px;
+}
+.orange1 {
+    color: #FF5A00;
+}
+.log_tips {background: #DAF1FF;
+    display: block;
+    float: right;
+    height: 30px;
+    width: 254px;}
+.log_tips2 {background: #FFF5F5;
+    display: block;
+    float: right;
+    height: 30px;
+    width: 254px;}
+.at_but {
+    background: url("./images/pic.png") no-repeat scroll right center transparent;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 25px 0 0;
+    text-decoration: none;
+}
+.b_1_g {
+    background-position: right -553px;
+    color: #666666;
+}
+.at_but {
+    padding-right: 29px;
+    vertical-align: middle;
+}
+.at_but u {
+    width: 29px;
+    background: url("./images/pic.png") no-repeat scroll 0 0 transparent;
+    background-position: 0 -586px;
+    border: 0 none;
+    float: left;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 25px;
+}
+.shouji {float: left;
+    padding: 0 0 0 170px;
+    width: 215px;}
+.code {margin:0px 0px 0px 40px;}
+.shouji_right {_padding-left:60px;width:460px;float:left;color:#666;}
+.ptext {margin:50px 0px 0px 0px;}
+.ptext p {line-height:180%;}
+.info_p {font-size:14px;color:#666;}
+.code_btn {width:128px;height:34px;background:url(./images/code_btn.gif) no-repeat;border:none;margin:10px 0px 0px 50px;}
+.com_btn {width:94px;height:28px;background:url(./images/com_btn.gif) no-repeat ;border:none;}
+.radio{ margin: 6px;}
+.inputkey{border: 1px solid #C7C7C7;
+    color: #333333;
+    height: 16px;
+    padding: 6px 8px 4px;
+    width: 80px;}
+.keyinfo{ font-size:12px; color:#EF8936;}

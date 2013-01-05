@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+.fb{font-weight:bold;}
+.f12{font-size:12px; font-weight:100;}
+.f16{font-size:16px;}
+.red{color:#a10000;}
+.blue{color:#0088cc}
+.org{color:#f58020}
+.b{font-weight:bold;}
+.block{display:block}
+.top_nav{width:972px; margin:0 auto;}
+.user_info{background:#f7f7f7;border:1px solid #ccc; margin:7px auto; width:946px; overflow:hidden;padding:16px 12px;}
+.left{float:left;}
+.userface{border:1px solid #ccc;}
+.userinfo{margin-left:7px; line-height:22px;}
+.username{font-size:14px; color:#808080; font-weight:bold;}
+.usermobile a{color:#0088cc;}
+.userone{background:url("images/userinfo_line.jpg") 270px 0 no-repeat; width:300px;}
+.usertwo{background:url("images/userinfo_line.jpg") 420px 0 no-repeat; width:450px;}
+.userthree h3{border-bottom:1px dashed #ccc;font-size:14px; line-height:20px; width:190px;}
+.userthree p{line-height:20px;}
+.userthree p a{color:#0088cc;}
+.usermain{width:972px; margin:5px auto; overflow:hidden; line-height:22px;}
+.usermenu dl{border:solid #ccc; border-width:0 1px 1px; width:192px;}
+.menu_t{background:url("images/usermenubg.jpg") repeat-x; height:35px;line-height:35px; padding-left:12px; border-bottom:1px solid #ccc;border-top:1px solid #ccc;}
+.usermenu dd{padding-left:24px; line-height:30px;}
+.userbody{width:762px;*margin-left:5px;margin-left:14px;border:solid #ccc; border-width:0 1px 1px;}
+.hot_t{background:url("images/usermenubg.jpg") repeat-x; height:35px;line-height:35px; padding-left:12px; border-bottom:1px solid #ccc;border-top:1px solid #ccc;}
+.hotgoods dd{float:left; width:110px; *margin:0 3px; margin:7px 8px;}
+.hotmore{padding-right:8px; font-weight:100;}
+.hotmore a{color:#0088cc;}
+.hotprice{color:#999;}
+
+.userorder{width:762px;*margin-left:5px;margin-left:14px;}
+.userorder h3{font-size:18px; width:762px; border-bottom:1px solid #dfdfdf; color:#666;line-height:26px;}
+.userorder ul{border:1px solid #ffe2a6; width:760px; height:42px;background:#fffceb; margin:7px 0;}
+.userorder ul li{float:left; *margin:10xp 8px 0;margin:8px 16px 0; padding:1px 8px; }
+.userorder ul li a{color:#666;}
+.userorder ul li.cur{border:1px solid #ffe2a6; background:#fff;}
+.userorder ul li.cur a{color:#0088cc;}
+
+.inputBg{border:1px solid #ccc;background-color:#f6f6f6;width:300px;height:30px; margin-bottom:7px; line-height:30px;}
+.input_Bg{border:1px solid #ccc;background-color:#f6f6f6;height:30px; margin-bottom:7px; line-height:30px;font-size:14px;}
+.resetpasswordbtn{ width:165px;height:45px;cursor:pointer;}
+
+.table {  border:1px solid #e2e2e2; border-bottom:none; color:#666666; height:auto; }
+        .table font { color:#cc0000; font-size:12px;}
+        .table p { line-height:18px; }
+        .td_top {border-bottom:1px solid #e2e2e2; background-color:#f3f3f3; line-height:28px; height:28px;}
+        .td {border-bottom:1px solid #e2e2e2;line-height:43px; height:43px;}
+        .td_form {line-height:40px;}
+
+.page_box {
+    height: 24px;
+    line-height: 23px;
+    padding-bottom: 18px;
+    padding-top: 15px;
+    text-align: right;
+	padding-right:15px;
+	border-top: 1px solid #EEE;
+}
+.page_box a {
+    display: inline-block;
+    height: 23px;
+    padding: 0 9px;
+}
+.page_box span {
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 23px;
+    margin: 0 3px;
+}
+.page_box font {
+    font-size: 12px;
+    padding: 0 5px;
+}
+.page_box b {
+    color: #CC0809;
+    font-weight: normal;
+}
+#page_on {
+    background-color: #FFF9EB;
+    border: 1px solid #CA0809;
+    color: #CA0809;
+    padding: 0 9px;
+}
+#orderinfo ul.order_sn{height: 40px;}
+.order_sn li{font-size:14px; font-weight:bold;color:#999;}
+.pay_path{ margin-top:10px;}
+.online_path .opathimg_1{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -10px no-repeat;}
+.online_path .opathimg_2{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -52px no-repeat;}
+.online_path .opathimg_3{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -96px no-repeat;}
+.online_path .opathimg_4{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -140px no-repeat;}
+.online_path .opathimg_5{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -182px no-repeat;}
+.unline_path .upathimg_1{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -278px no-repeat;}
+.unline_path .upathimg_2{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -323px no-repeat;}
+.unline_path .upathimg_3{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -364px no-repeat;}
+.unline_path .upathimg_4{width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -408px no-repeat;}
+.online_path dl,.unline_path dl,.cancel_path dl{padding-left:5px;margin-top:12px;}
+.online_path dd,.unline_path dd,.cancel_path dd{float:left; width:80px; text-align:center; padding-right:70px;}
+.cancel_path .cancelimg_1{
+width:662px; height:30px; display:block; background:url("images/paypath.jpg") 9px -485px no-repeat;
+}
+.wuliuinfo{margin:10px 0;}
+.wuliuinfo h4{font-size:14px; border-bottom:1px solid #ccc; line-height:30px; }
+.wuliu_info{ width:280px;float:left; background:url(images/userinfo_line.jpg) 260px 0 no-repeat;}
+.wuliu_sm{float:left;}
+.addressinfo{margin:10px 0;}
+.addressinfo h4{font-size:14px; border-bottom:1px solid #ccc; line-height:30px; }
+.fp_box {
+padding: 0px 15px 5px 0px;
+width: 460px;
+margin-top: 5px;
+}
+.cart_sum {
+line-height: 24px;
+text-align: right;
+font-family: Arial, Helvetica, sans-serif;
+padding: 10px 20px 10px 0;
+}
+.cart_sum span {
+padding-right: 50px;
+}
+.cart_sum b {
+color: 
+#CA0809;
+width: 72px;
+display: inline-block;
+}
+.cart_sum p {
+color: 
+#FE8301;
+}
+.cart_sum font {
+color: 
+#CA0809;
+font-size: 27px;
+font-weight: bold;
+}
+.cart_sum font span{
+	padding-right:0px;
+	font-size:20px;
+}
+.sum_num {
+padding-left: 90px;
+background: url(images/bg_new.gif) no-repeat -270px -302px;
+height: 20px;
+display: inline-block;
+border-top: 1px solid 
+#EAEAEA;
+padding-top: 10px;
+margin-top: 7px;
+margin-bottom: 3px;
+}
+.onlinebuy_btn{
+	background: url(images/bg_new.gif) -124px -169px no-repeat;
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	cursor: pointer;
+	border: none;
+	width: 124px;
+	height: 32px;
+}
+.user_pay{
+	float: left;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/arc_list.css" rel="stylesheet" type="text/css" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script>
+<!--
+$(document).ready(function(){
+
+	
+	//文章页导航滑动事件
+	$mainNav2 = $("#channel-tab");
+    
+    if ($mainNav2.length > 0)
+    {
+        $mainNav2.append("<li id='magic-line'></li>");
+        
+        var $magicLineTwo = $("#magic-line");
+        
+        $magicLineTwo
+            .width($(".current_page_item").width())
+            .height($mainNav2.height())
+            .css("left", $(".current_page_item a").position().left)
+            .data("origLeft", $(".current_page_item a").position().left)
+            .data("origID", $(".current_page_item").attr("id"))
+            .data("origWidth", $magicLineTwo.width())
+            .data("origColor", $(".current_page_item a").attr("rel"));
+          
+        $('.resource-pics a').hover(
+        function()
+        {
+            $(this).animate({opacity:0.7},250);
+        },
+        function()
+        {
+            $(this).animate({opacity:0.9},150);
+        });
+        
+        $("#channel-tab a").hover(function() {
+            $el = $(this);
+            
+            if ($el.parent().attr('class') == 'current_page_item')
+            {
+                $el.parent().attr('locked','true');
+                return;
+            }
+            
+            leftPos = $el.position().left;
+            newWidth = $el.parent().width();
+            $magicLineTwo.stop().animate({
+                left: leftPos,
+                width: newWidth
+            }, 400, function(){
+                $el.parent().attr('class','current_page_item');
+                $el.css('color','#fff');
+            });
+            
+            $(".current_page_item a").css('color','#ED771D'); 
+            $(".current_page_item").attr('class',''); 
+            
+        }, function() {
+            $el = $(this);
+            
+            if ($el.parent().attr('locked') == 'true')
+            {
+                $el.parent().attr('locked','');
+                return;
+            }
+            
+            $magicLineTwo.stop().animate({
+                left: $magicLineTwo.data("origLeft"),
+                width: $magicLineTwo.data("origWidth")
+            }, 400, function(){
+                $('#'+$magicLineTwo.data("origID")).attr('class','current_page_item');
+                $(".current_page_item a").css('color','#fff'); 
+            });
+            $(".current_page_item a").css('color','#ED771D'); 
+            $(".current_page_item").attr('class',''); 
+            
+        });
+        
+        $("#channel-tab a").click(function(){
+            if (last_channel == $(".current_page_item").attr('channel')) return;
+            $('#posts_'+last_channel).hide();
+            $(".current_page_item a").css('color','#ED771D'); 
+            $(".current_page_item").attr('class','');
+            $(this).parent().attr('class','current_page_item');
+            
+            $(".current_page_item a").css('color','#fff'); 
+            $magicLineTwo
+                .width($(".current_page_item").width())
+                .height($mainNav2.height())
+                .css("left", $(".current_page_item a").position().left)
+                .data("origLeft", $(".current_page_item a").position().left)
+                .data("origID", $(".current_page_item").attr("id"))
+                .data("origWidth", $magicLineTwo.width())
+                .data("origColor", $(".current_page_item a").attr("rel"));
+                
+        });
+    }
+});
+/* Kick IE into gear */
+    $(".current_page_item a").mouseenter();
+	
+
+-->
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div id="global_body" class="w990" style=" background:none">
+	<div class="left w646">
+    <div class="title">
+			 <!-- #BeginLibraryItem "/library/article_category_tree.lbi" --><!-- #EndLibraryItem -->
+    </div>
+        <ul id="posts_2" class="list-posts" style="display: block; ">
+      <!-- {foreach from=$artciles_list item=article} -->
+        	<li>
+            	<div class="img-box"><a href="{$article.url}" title="{$article.title|escape:html}"><img src="{$article.litpic}"></a></div>
+                <div class="content-box"><a href="{$article.url}" title="{$article.title|escape:html}">
+                    <p class="title">{$article.short_title}<span class="date">{$article.add_time}</span></p>
+                    <p class="content">{$article.description}……</p></a>
+                </div>
+                </a>
+                <div class="clear"></div>
+            </li>
+      <!-- {/foreach} -->                  
+         </ul>
+    <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+    </div>
+    <div class="right w304">
+    	<div class="title">
+        	<h1><!-- JiaThis Button BEGIN -->
+<div id="jiathis_style_32x32">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END --> </h1>
+        </div>
+        {insert name='ads' id=2 num=1}
+        {insert name='ads' id=3 num=1} 
+        {insert name='ads' id=9 num=1}         
+    </div>
+</div>
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<SCRIPT type=text/javascript src="themes/yingge/js/agestate.js"></SCRIPT>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".list-posts").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+}); 
+</script> 
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!-- $Id: goods_type.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+
+<form method="post" action="" name="listForm">
+
+<div class="list-div" id="listDiv">
+{/if}
+
+<table width="100%" cellpadding="3" cellspacing="1" id="listTable">
+  <tr>
+    <th>主题编号</th>
+    <th>活动时间</th>
+    
+    <th>操作</th>
+  </tr>
+  {foreach from=$baby_ia_list item=baby_ia}
+  <tr>
+    <td class="first-cell">{$baby_ia.ia_id}</td>
+    <td>{$baby_ia.btime}</td>
+    
+    <td align="center">
+      <a href="baby_ia.php?act=edit&cat_id={$baby_ia.ia_id}" title="{$lang.edit}">{$lang.edit}</a> |
+      <a href="javascript:confirm_redirect('{$lang.remove_confirm}', 'baby_ia.php?act=remove&id={$baby_ia.ia_id}')" title="{$lang.remove}">{$lang.remove}</a>
+    </td>
+  </tr>
+  {foreachelse}
+  <tr><td class="no-records" colspan="3">{$lang.no_records}</td></tr>
+  {/foreach}
+  <tr>
+     <td align="right" nowrap="true" colspan="3">
+     {include file="page.htm"}
+  	 </td>
+  </tr>
+</table>
+
+{if $full_page}
+</div>
+
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+  listTable.recordCount = {$record_count};
+  listTable.pageCount = {$page_count};
+
+  {foreach from=$filter item=item key=key}
+  listTable.filter.{$key} = '{$item}';
+  {/foreach}
+ 
+  {literal}
+  onload = function()
+  {
+    // 开始检查订单
+    startCheckOrder();
+  }
+
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}
+{/if}

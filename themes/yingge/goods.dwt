@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/goods.css">
+<link href="themes/yingge/images/startpic/startcss.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.js" type="text/javascript"></script>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,transport.js'}
+
+<script src="themes/yingge/js/jqzoom.js" type="text/javascript"></script>
+<script src="themes/yingge/js/divpop.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.pic_index').find('li').hover(function(){
+        $(this).addClass('pic_on').siblings().removeClass('pic_on');                                      
+        $('#pic_box').find('div').eq($('.pic_index').find('li').index(this)).show().siblings().hide();  
+    }, function(){          
+    });
+    // 关闭弹出层    
+    $(".close").live("click", function(){
+    $("#popbg").fadeOut();
+    $(this).parent().parent().parent().fadeOut();
+    }); 
+    $(".jqzoom").jqueryzoom({xzoom:286,yzoom:286,offset:15,position:"right",preload:0,lens:1});
+    
+    //回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+	//updateEndTime();
+});
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header2.lbi" --><!-- #EndLibraryItem -->
+<div id="pro_body" class="w973">
+	<div class="AllWrapInside clearfix">
+        <div class="Navigation">
+        <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+        </div> 
+    </div>
+    <!--商品详情start-->
+    <form method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+    <div class="pro_main">
+    	<div class="pro_title"><div class="pro_name">{$goods.goods_style_name}</div><div class="pro_more"><a href="category-{$goods.cat_id}-b0.html">{$goods.cat_name}>></a></div></div>
+        <div class="blank9"></div>
+		<div class="left pro_bigpic box" id="box">
+			<!--相册 START-->
+			<!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+			<!--相册 END-->
+			
+		</div>
+		
+		<div class="right pro_info">
+			<dl>
+				<dd><div class="marktprice">市场价格：<span>{$goods.market_price}</span></div><div class="yao"><a href="user.php">邀请好友注册获赠10元电子券</a></div></dd>
+                <div class="blank9"></div>
+                <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+                <dd><div class="left">促&nbsp;&nbsp;销价：<span class='red' id="ECS_GOODS_AMOUNT">{$goods.promote_price}</span>（{$goods.zhekou}折&nbsp;为您节省{$goods.jiesheng}）</div><div class="yingge_price">婴格原价:{$goods.shop_price_formated}</div></dd>
+                <!--{else}-->
+				<dd>婴&nbsp;&nbsp;格价：<span class='red' id="ECS_GOODS_AMOUNT">{$goods.shop_price_formated}</span>（{$goods.zhekou}折&nbsp;为您节省{$goods.jiesheng}）</dd>
+                <!--{/if}-->
+                <div class="blank9"></div>
+				<dd><!-- {if $cfg.show_goodssn} 显示商品货号--><div class="left">货&nbsp;&nbsp;&nbsp;&nbsp;号：{$goods.goods_sn}（搜索货号也可查询商品）</div><!-- {/if} -->
+                <!--{if $goods.is_promote and $goods.gmt_end_time } 促销--><!--{/if}--></dd>
+				<dd><div class="fukuan">付款方式：货到付款（免运费）</div>
+                <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+                <div class="jifen">限时促销商品不参与<a href="activity.php">满百赠品</a>，可获购物积分</div>
+                <!--{else}-->
+                <div class="jifen">每次订货均能享受<a href="activity.php">满百赠品</a>，获得购物积分</div>
+                <!--{/if}-->
+                </dd>
+                <div class="blank9"></div>
+			</dl>
+			
+			<div class="blank5"></div>
+			<div class="pro_sx">
+			<ul>
+			<!-- {* 开始循环所有可选属性 *} -->
+			<!-- {foreach from=$specification item=spec key=spec_key} -->
+				<li class="padd loop">					
+				<div class="catt">
+				<span>{$spec.name}:</span>
+				<!-- {if $spec.attr_type eq 1} -->
+                    <!-- {if $cfg.goodsattr_style eq 1} -->
+                        <!-- {foreach from=$spec.values item=value key=key} -->
+                        <a onclick="changeAtt(this)" class="{if $key eq 0}cattsel{/if}" href="javascript:;" name="{$value.id}" title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]">{$value.label}<input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" {if $key eq 0}checked{/if} onclick="changePrice()" value="{$value.id}" ></a>
+                        <!-- {/foreach} -->
+                        <input type="hidden" name="spec_list" value="{$key}" />
+                     <!-- {/if} -->
+				<!-- {else} -->
+                	<!-- {if $cfg.goodsattr_style eq 1} -->
+                	<!-- {foreach from=$spec.values item=value key=key} -->
+                    <a onclick="changeAtt(this)" class="{if $key eq 0}cattsel{/if}" href="javascript:;" name="{$value.id}" title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]">{$value.label}<input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" {if $key eq 0}checked{/if} onclick="changePrice()" value="{$value.id}" ></a>
+                    <!-- {/foreach} -->
+                    <!-- {/if} -->
+                    <input type="hidden" name="spec_list" value="{$key}" />
+				<!-- {/if} -->
+				</div>
+				</li>
+			<!-- {/foreach} -->
+			<!-- {* 结束循环可选属性 *} -->
+ 
+				<li class="padd loop">
+					<span>购买数量：</span>
+					<input name="number" type="text" id="number" value="1" size="4" onblur="changePrice()" style="border:1px solid #ccc; "/>
+					<!-- {if $goods.goods_number neq "" and $cfg.show_goodsnumber} 商品库存-->
+					<!-- {if $goods.goods_number eq 0} -->
+					（库存：<font color='red'>{$lang.stock_up}</font> ）
+					<!-- {else} -->
+					
+					<!-- {/if} -->
+					<!-- {/if} -->
+
+				</li>
+				<li class="padd buy_btn">
+					<div class="bnt_cat">
+					<!-- {if $goods.goods_number neq "" and $cfg.show_goodsnumber} 商品库存-->
+					<!-- {if $goods.goods_number le 0} -->
+					<a href="javascript:addToCart({$goods.goods_id},1)"><img src="images/unbuy.png" /></a>
+					<!-- {else} -->
+					<a href="javascript:addToCart({$goods.goods_id},1)"><img src="images/bnt_cat.gif" /></a>
+					<!-- {/if} -->
+					<!-- {/if} -->
+					</div>
+                    
+					<div class="bnt_colles">
+                    <!--{if $collect eq 0}-->
+					<a href="javascript:collect({$goods.goods_id})"><img src="images/bnt_colles.gif" /></a>
+                    <!--{else}-->
+                    <img src="images/bnt_colles_over.jpg" />
+                    <!--{/if}-->
+					</div>
+                    
+				</li>
+			</ul>
+     <div class="pop_out" id="cat_pop1" style="">
+      <div class="pop_in" style="width:281px; top:-1px;*top:-1px !important;*top:-1px;">
+        <div class="pop_top" style="border-bottom:1px solid #fff;">
+          <div class="close" style=" line-height:13px;*line-height:12px !important;*line-height:14px;">关闭</div>
+        </div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+          <tbody><tr>
+            <td style="background-color:#fff;" height="50" colspan="2" align="center" valign="middle"><span class="pop_inf" style="color:#000;font-size:14px;">商品已成功添加到购物车</span></td>
+          </tr>
+          <tr style="background-color:#fff;">
+            <td style="background-color:#fff;" width="70%" height="30" align="right" valign="middle"><a class="pop_btn" href="flow.php"></a></td>
+            <td style="background-color:#fff;" width="30%" align="left" valign="middle"><a class="info_a" style="cursor:pointer;" onclick="$('.close').click();">继续逛&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td style="background-color:#fff;" height="20" colspan="2" align="center" valign="middle"></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+			</div>
+			
+			<div class="blank5"></div>
+			<div class="pro_baozhang"><img src="images/baozhang.gif" /></div>
+			
+			<div class="blank5"></div>
+			<div class="fenxiang"><strong><img src="images/fenxiang.jpg"></strong>
+			<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+        <a class="bds_qzone"></a>
+        <a class="bds_tsina"></a>
+        <a class="bds_tqq"></a>
+        <a class="bds_tqf"></a>
+        <a class="bds_kaixin001"></a>
+        <a class="bds_renren"></a>
+        <a class="bds_douban"></a>
+        <a class="bds_baidu"></a>
+        <a class="bds_taobao"></a>
+        
+        <a class="bds_ty"></a>
+        <a class="bds_zx"></a>
+    </div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=19961" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+			</div>
+		</div>
+    </div>
+	</form>
+    <div class="blank9"></div>
+	<div class="pro_ms">
+		<div class="left p_i">
+        	<!-- #BeginLibraryItem "/library/packaing_goods_list.lbi" --><!-- #EndLibraryItem -->
+            
+			<div class="pro_xx">
+				<ul class="tab" id="gallerybar">
+					<li rel='v'>商品详情<span></span></li>
+					<li rel='h' class="h2bg">客户评价<span></span></li>
+					<li rel="g" class="h2bg">商品咨询<span></span></li>
+					<li rel="k" class="h2bg">婴格承诺<span></span></li>
+					<p class="h3bg"><font class='red'>{$goods.shop_price_formated}</font>
+					<!-- {if $goods.goods_number neq "" and $cfg.show_goodsnumber} 商品库存-->
+					<!-- {if $goods.goods_number le 2} -->
+					<a href="javascript:addToCart({$goods.goods_id},1)" ><img src="images/goods_nowbuy.gif" border="0" /></a>
+					<!-- {else} -->
+					<a href="javascript:addToCart({$goods.goods_id},1)"><img src="images/goods_nowbuy.gif"  border="0" /></a>
+					<!-- {/if} -->
+					<!-- {/if} -->
+					</p>
+				</ul>
+				<div class="mc" id="com_v">
+					{$goods.goods_desc}
+					<div style="margin:20px 0">
+					<!-- #BeginLibraryItem "/library/yingge_chengno.lbi" --><!-- #EndLibraryItem -->
+					</div>
+					<div style="margin:0 0 20px 0">
+					<!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+					</div>
+				</div>
+                
+				<div class="mc hide" id="com_h">
+                	<!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+				</div>
+                
+                <div class="mc hide" id="com_g">
+                	商品咨询功能正在开发，敬请期待……
+				</div>
+				
+				<div class="mc hide" id="com_k">
+                <!-- #BeginLibraryItem "/library/yingge_chengno.lbi" --><!-- #EndLibraryItem -->
+				</div>
+			</div>		
+		</div>
+		<div class="right p_o">
+			<!-- #BeginLibraryItem "/library/bought_goods.lbi" --><!-- #EndLibraryItem -->
+            
+			<div class="blank9"></div>
+            
+            <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+			
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer2.lbi" --><!-- #EndLibraryItem -->
+</body>
+<SCRIPT type=text/javascript>
+
+function Fix_block(elem, standard_elem){
+
+    var elem = document.getElementById(elem);
+
+    var scrolltop = parseInt(document.documentElement.scrollTop) || parseInt(window.pageYOffset);
+
+    var getTop = function(el){
+
+        var top = 0;
+
+        var e = document.getElementById(el);
+
+        while(e){
+
+            top += e.offsetTop;
+
+            e = e.offsetParent;
+
+        }
+
+        return top;
+
+    }
+
+    var title_top = parseInt(getTop(standard_elem));
+
+    if(scrolltop >= title_top + 760){
+
+        elem.style.cssText = window.ActiveXObject && !window.XMLHttpRequest ? 'position:absolute;left:0px;z-index:2000;top:'+ (scrolltop - 150) +'px' : 'position:fixed;top:13px;z-index:99';        
+
+    }else{
+
+        elem.style.cssText = '';
+
+    } 
+
+}
+
+
+
+window.onscroll = function(){
+
+    return Fix_block('gallerybar','container');
+
+}
+
+</SCRIPT>
+<script type="text/javascript">
+var goods_id = {$goods_id};
+var goodsattr_style = {$cfg.goodsattr_style|default:1};
+var gmt_end_time = {$promote_end_time|default:0};
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var goodsId = {$goods_id};
+var now_time = {$now_time};
+
+<!-- {literal} -->
+onload = function(){
+  changePrice();
+  fixpng();
+  try { onload_leftTime(); }
+  catch (e) {}
+  $('.tab li').click( function () {
+	   $('.tab li').addClass('h2bg');
+	   $(this).removeClass();
+	   $(".mc").addClass('hide');
+	   $("#com_"+$(this).attr("rel")).removeClass('hide');
+	});
+}
+
+function changeAtt(t) {
+	t.lastChild.checked='checked';
+	for (var i = 0; i<t.parentNode.childNodes.length;i++) {
+	 
+			if (t.parentNode.childNodes[i].className == 'cattsel') {
+			   t.parentNode.childNodes[i].className = '';
+			}
+		}
+	t.className = "cattsel";
+	changePrice();
+}
+/**
+ * 点选可选属性或改变数量时修改商品价格的函数
+ */
+function changePrice()
+{
+  var attr = getSelectedAttributes(document.forms['ECS_FORMBUY']);
+  var qty = $("#number").val();
+  //Ajax.call('goods.php', 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty, changePriceResponse, 'GET', 'JSON');
+  $.ajax({
+   type: "GET",
+   url: "goods.php",
+   data: 'act=price&id=' + goodsId + '&attr=' + attr + '&number=' + qty,
+   dataType: 'json',
+   success:  function(data){
+	   changePriceResponse(data);
+   }
+   });
+}
+
+/**
+ * 接收返回的信息
+ */
+function changePriceResponse(res)
+{
+  if (res.err_msg.length > 0)
+  {
+    alert(res.err_msg);
+  }
+  else
+  {
+    document.forms['ECS_FORMBUY'].elements['number'].value = res.qty;
+	
+    /*
+	if (document.getElementById('ECS_GOODS_AMOUNT'))
+      document.getElementById('ECS_GOODS_AMOUNT').innerHTML = res.result;
+	  */
+  }
+}
+
+function closezuhe_ts()
+{
+	$('.zuhe_ts').css("display","none");
+}
+
+/* 勾选组合商品时的操作
+*/
+function checkGift(A,B)
+{
+  var giftidArr = document.forms['packaging_'+A].elements['packaging_goods_id'+A+'[]'];
+  var giftpriceArr = document.forms['packaging_'+A].elements['packaging_goods_price'+A+'[]'];
+  var giftshoppriceArr = document.forms['packaging_'+A].elements['packaging_current_price'+A+'[]'];
+  var mainGoodsprice = document.forms['packaging_'+A].elements['main_goods_price'].value;
+  var j = 0;
+  var k = 0;
+  for (i = 0; i < giftidArr.length; i++){
+    if(giftidArr[i].checked){
+        j += Number(giftpriceArr[i].value);
+        k += Number(giftshoppriceArr[i].value);
+    }
+  }
+  if(k == 0){
+    alert('请至少保留一件组合购买商品');
+    B.checked = true;
+  }else{
+    k += Number(mainGoodsprice);
+    k = formatnumber(k,2);
+    j += Number(mainGoodsprice);
+    j = formatnumber(j,2);
+    
+    $('#equ'+A).find('b').eq(0).html('¥'+k);
+    $('#equ'+A).find('span').eq(0).html('¥'+j);
+  }
+}
+
+/* 获取指定小数位数的数字
+*/
+function formatnumber(value,num)
+{
+    var a,b,c,i
+    a = value.toString();
+    b = a.indexOf('.');
+    c = a.length;
+    if (num==0)
+    {
+			if (b!=-1)
+			a = a.substring(0,b);
+	}
+	else
+	{
+		if (b==-1)
+		{
+			a = a + ".";
+			for (i=1;i<=num;i++)
+			a = a + "0";
+		}
+    	else
+		{
+			a = a.substring(0,b+num+1);
+			for (i=c;i<=b+num;i++)
+			a = a + "0";
+		}
+    }
+    return a
+}
+/* 检测 并 生成组合商品
+*/
+function checkPackaginggoods(A,B){
+    var giftidArr = document.forms['packaging_'+A].elements['packaging_goods_id'+A+'[]'];
+    var mainGoodsid = document.forms['packaging_'+A].elements['main_goods_id'].value;
+    var selected_goods_id = new Array();
+    var j = 0;
+    for (i = 0; i < giftidArr.length; i++){
+      if(giftidArr[i].checked){
+        selected_goods_id[j]=giftidArr[i].value;
+        j++;
+      }
+    }
+    selected_goods_id[selected_goods_id.length] = mainGoodsid;
+    var goods_id = selected_goods_id.join(',');
+    var id = document.forms['packaging_'+A].elements['packaging_act_id'+A].value;
+    var act_name = document.forms['packaging_'+A].elements['packaging_act_name'+A].value;
+    $.ajax({
+      type: "GET",
+      url:  "source/choseinx.php?act=check_packaging_goods&" + Math.random(),
+      data: 'id=' + id + '&goods_id=' + goods_id+ '&packaging_type=5',
+      success:function(msg){
+
+        var re = eval("(" + msg + ")");
+          if (0 == re.err_msg)
+          {
+            //inTooCartAction(re.result, act_name, 1, 0, 0,B);
+			postion=2;
+			goods_id=re.goods;
+			for($i=0;$i<re.count;$i++)
+			{
+				addToCart(goods_id[$i],postion);
+			}
+          }
+          else if (1 == re.err_msg)
+          {
+            alert(re.content);
+          }
+      }
+    })
+} 
+<!-- {/literal} -->
+</script>
+</html>

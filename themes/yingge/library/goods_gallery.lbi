@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="pic">
+  <div id="pic_box">
+    <!-- {foreach from=$pictures name=picture item=picture}-->     
+    <div class="jqzoom" style="border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial;<!--{if $smarty.foreach.picture.index eq 0}--> display: block;<!--{else}-->display: none; <!--{/if}--><!--{if $smarty.foreach.picture.index neq 0}-->$smarty.foreach.picture.index<!--{/if}-->"><img class="switch_item" src="{$picture.img_url}" jqimg="{$picture.img_url}" width="392" height="392" turnXml = '{$smarty.foreach.picture.index}'/></div>
+    <!--{/foreach}-->          
+  </div>
+  <!-- {if $pictures}-->
+  <ul class="pic_index">
+  <!-- {foreach from=$pictures name=picture_pic item=picture}-->
+      <li class="pic_li <!--{if $smarty.foreach.picture_pic.index eq 0}-->pic_on<!--{/if}-->" turnXml = '{$smarty.foreach.picture.index}'><img src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}" height="45" width="45"/></li>
+  <!--{/foreach}-->
+  </ul>
+  <!-- {/if}-->
+</div>

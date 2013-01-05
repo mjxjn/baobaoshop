@@ -1,0 +1,52 @@
+<!-- $Id: favourable_info.htm 14361 2008-04-07 09:26:17Z zhuwenyuan $ -->
+{include file="pageheader.htm"}
+{insert_scripts files="validator.js,../js/transport.js}
+<div class="main-div">
+<form method="post" action="setindex.php" name="theForm" enctype="multipart/form-data" >
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">类别</td>
+    <td>{$ad.ad_cats}</td>
+  </tr>
+  <tr>
+    <td class="label">类型</td>
+    <td>{$ad.ad_type}</td>
+  </tr>
+  <tr>
+    <td class="label">展示内容</td>
+    <td>
+		{if $ad.ad_type eq '文字'}
+		<textarea cols="45" rows="4" name="content">{$ad.content}</textarea>
+		{else}
+		<input name="content" type="text" value="{$ad.content}"><input type="file" name="pic1" size="35">
+		{/if}
+	</td>
+  </tr>
+  <tr>
+    <td class="label">广告链接</td>
+    <td><input name="url" type="text" value="{$ad.url}"></td>
+  </tr>
+  <tr>
+    <td class="label">是否显示</td>
+    <td><select name="ad_status">
+          <option value="0" selected="selected" {if $ad.ad_status eq 0}selected="selected"{/if}>隐藏</option>
+          <option value="1" {if $ad.ad_status eq 1}selected="selected"{/if}>显示</option>
+        </select>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">排序</td>
+    <td><input name="ad_sort" type="text" value="{$ad.ad_sort}"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" class="button" value="提交" />
+      <input type="reset" class="button" value="重置" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="aid" value="{$ad.aid}" />    </td>
+  </tr>
+</table>
+</form>
+</div>
+
+{include file="pagefooter.htm"}

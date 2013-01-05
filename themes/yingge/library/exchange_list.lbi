@@ -1,0 +1,32 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="exchange_body w973">
+		<div class="exchange_title">
+			<ul id="top_bar">
+   	       	<li <!--{if $goods_type_id eq 0 }--> class="top_bar top_baron" <!--{else}--> class="top_bar" <!--{/if}-->><a href="exchange.php">全部</a></li>
+            <!--{foreach from=$goods_type name=goods_type item=cat}-->
+      	      <li <!--{if $goods_type_id eq $cat.id}--> class="top_bar top_baron" <!--{else}--> class="top_bar" <!--{/if}-->><a href="exchange.php?cat_id={$cat.id}">{$cat.name|escape:html}</a></li>
+            <!--{/foreach}-->   
+           </ul>
+		</div>
+		<ul class="exchange_list">
+        <!--{foreach from=$goods_list item=goods}-->
+        <!-- {if $goods.goods_id} -->
+			<li><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" width="150" height="150" /></a><p><a href="{$goods.url}">
+            <!-- {if $goods.goods_style_name} -->
+              {$goods.goods_style_name}<br />
+            <!-- {else} -->
+              {$goods.goods_name}<br />
+            <!-- {/if} --></a>所需积分：<font>{$goods.exchange_integral}</font></p></li>
+		<!--{/if}-->
+        <!--{/foreach}-->
+		</ul>
+</div>
+<div class="blank9"></div>
+<script type="text/javascript">
+  window.onload = function()
+  {
+    Compare.init();
+    fixpng();
+  }
+  var button_compare = '';
+</script>

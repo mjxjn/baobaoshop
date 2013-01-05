@@ -1,0 +1,28 @@
+<!-- $Id: sms_charge_ui.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<div class="main-div" id="sms-charge">
+<form method="POST" action="sms.php?act=charge" name="sms-charge-form">
+<table >
+  <tr>
+    <td class="label">{$lang.register_charge}:</td>
+    <td><textarea name="register_charge" cols="75" rows="5">{$sms_site_info.register_charge}</textarea>{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.order_charge}:</td>
+    <td><textarea name="order_charge" cols="75" rows="5">{$sms_site_info.order_charge}</textarea>{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td class="label">{$lang.confirm_charge}:</td>
+    <td><textarea name="confirm_charge" cols="75" rows="5">{$sms_site_info.confirm_charge}</textarea>{$lang.require_field}</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" name="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+
+{include file="pagefooter.htm"}

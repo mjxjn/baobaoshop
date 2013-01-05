@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>优惠券兑换_积分商城积分商城_婴格母婴商城-云南最大的婴儿用品一站式购物网站,妈妈们的放心选择,云南母婴第一品牌!</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/integral/integral.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+{include file= "/library/page_header.lbi"}
+{include file= "/library/page_header2.lbi"}
+<div id="exchange_body" class="w973">
+	<!--当前位置 start-->
+	<div class="AllWrapInside clearfix">
+		<div class="Navigation">{include file= "/library/ur_here.lbi" }</div> 
+	</div>
+	<!--当前位置 end-->
+	<div class="w190 left">
+		{include file= "integral/library/integral_left.lbi" }
+	</div>
+	<div class="w770 left">
+		<div class="shiwu">
+			<div class="shiwu_title"><img src="/themes/yingge/images/integral/youhuiquan_title.jpg" width="770" height="39" /></div>
+			<div class="filter_pn">
+                  <div class="sort">
+                    	<div class="t">排序:</div>
+                        <div class="sort_btn_list">
+                        	<div class="btn"><a href="integral.php?act=coupon&page={$pager.page}&sort=type_id&order={$order}" <!--{if $sort eq 'type_id' or $sort eq ''}-->class="cur"<!--{/if}-->><span class="c">默认</span></a></div>
+                            <div class="btn"><a href="integral.php?act=coupon&page={$pager.page}&sort=pay_points&order={$order}" <!--{if $sort eq 'pay_points' }-->class="cur"<!--{/if}-->><span class="c">积分</span><i <!--{if $order eq 'DESC' and $sort eq 'pay_points' }-->class="down"<!-- {else} -->class="up"<!-- {/if} -->></i></a></div>
+                            <div class="btn"><a href="integral.php?act=coupon&page={$pager.page}&sort=type_money&order={$order}" <!--{if $sort eq 'type_money' }-->class="cur"<!--{/if}-->><span class="c">优惠券</span><i <!--{if $order eq 'DESC' and  $sort eq 'type_money' }-->class="down"<!-- {else} -->class="up"<!-- {/if} -->></i></a></div>
+                            <div class="btn " id="btn">
+                            	<a href="#"><span class="c">积分区间</span><em class="btn_ldrop"></em></a>
+                                <div id="price_range_select" class="shop_drop_box">
+	                                <div class="item"><a href="integral.php?act=coupon&page={$pager.page}&sort=pay_points&order={$order}&integral_max=500&integral_min=0">0-500</a></div>
+	                                <div class="item"><a href="integral.php?act=coupon&page={$pager.page}&sort=pay_points&order={$order}&integral_max=1500&integral_min=501">501-1500</a></div>
+	                                <div class="item"><a href="integral.php?act=coupon&page={$pager.page}&sort=pay_points&order={$order}&integral_max=3000&integral_min=1501">1501-3000</a></div>
+	                                <div class="item"><a href="integral.php?act=coupon&page={$pager.page}&sort=pay_points&order={$order}&integral_max=90000&integral_min=3001">3001以上</a></div>
+                                </div>
+                            </div>
+                       </div>
+                 </div>
+                 <div id="pagePN" class="page_pn">
+                    	<div class="page_btn_pn"><!-- {if $pager.page_prev} --><a href="{$pager.page_prev}"><b>&lt; 上一页</b></a><!-- {else} --><b>&lt; 上一页</b><!-- {/if} --><a href="{$pager.page_next}"> 下一页 &gt;</a></div>
+                    	<div class="page_num"> {$pager.page}/{$pager.page_count}</div>
+                 </div>
+          </div>
+			<div class="jingxuan_pn">
+				<div class="coupon_shop">
+		<div class="module_new module_new_ka_show">
+			<div class="bd">
+				<ul class="ka_list" id="ka_list" style="visibility: visible; ">
+				<!-- {foreach from=$bonus_list item=bonus} -->
+				<!-- {if $bonus.type_id} -->
+					<li tmp_id="yhq" qid="1005716" class=""><a href="javascript:getcoupon({$bonus.type_id},{$bonus.pay_points});return ;" target="_blank" class="pic"><img src="/data/bonus/{$bonus.img}" style="width:255px;height:140px" alt="{$bonus.type_name}"></a>
+						<div class="hr_line"></div>
+						<div class="first">
+							<p class="name">{$bonus.type_name}</p>
+							<p class="link_go"><a href="javascript:getcoupon({$bonus.type_id},{$bonus.pay_points});return false;" class="link_blue" >兑换积分:{$bonus.pay_points}<i class="icon_arrow_single"></i></a></p>
+						</div>
+						<div class="second">
+							<p class="row"><span class="tit">使用范围：</span><span class="txt" tag="range">{$bonus.coupon_type}</span></p>
+							<p class="row"><span class="tit">有效日期：</span><span class="txt" tag="valid">{$bonus.use_start_date}-{$bonus.use_end_date}</span></p>
+							<p class="row"><span class="tit">兑换限制：</span><span class="txt">此优惠券每人每天限兑一张</span></p>
+						</div>
+					</li>
+				<!--{/if}-->
+				<!--{/foreach}-->		
+				</ul>
+			</div>
+		</div>
+				</div>
+			</div>
+		</div>
+		{include file= "integral/library/pages.lbi" }
+	</div>
+</div>
+<div class="blank9"></div>
+{include file= "/library/page_footer.lbi" }
+<script type=text/javascript src="themes/yingge/js/agestate.js"></script>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".shiwu").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+$("#btn").hover(
+		  function () {
+			    $("#price_range_select").show();
+			  },
+			  function () {
+			    $("#price_range_select").hide();
+			  }
+	);
+$(".ka_list li").hover(
+		function(){
+			$(this).addClass("li_hover");
+		},
+		function(){
+			$(this).removeClass("li_hover");
+		}
+	);
+}); 
+function getcoupon(id,pay_points){
+	if(confirm("你确信要使用"+pay_points+"积分兑换此优惠卷")){
+		$.ajax({
+			   type: "POST",
+			   url: "integral.php",
+			   data: "act=getcoupon&bonus_id="+id,
+			   dataType: "html",
+			   success: function(msg){
+			     if(msg=="-1"){
+			     	alert("请登录后再领取积分");
+			     }else if(msg=="-2"){
+			     	alert("出现错误，请重新兑换");
+			     }else if(msg=="-3"){
+			    	 alert("没有此优惠券信息");
+			     }else if(msg=="-4"){
+			    	 alert("你的积分不足，不能兑换此优惠券");
+			     }else if(msg=='-5'){
+			    	 alert("您今天已经领取过此优惠券，不能重复领取");
+			     }else if(msg =='1'){
+			    	 alert("恭喜您兑换成功，请及时使用");
+			    	 $('#fweekcount').empty();
+			    	 $('#fweekcount').html({$fweekcount}-pay_points);
+			    	 $('#ubonus').empty();
+			    	 $('#ubonus').html({$info.bonus}+1);
+			    	 $('#user_integral').empty();
+			    	 $('#user_integral').html({$info.user_integral}-pay_points);
+			     }
+			   }
+		});
+	}
+}
+</script> 
+</body>
+</html>

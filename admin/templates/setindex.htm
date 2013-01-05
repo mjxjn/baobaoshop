@@ -1,0 +1,193 @@
+<!-- $Id: favourable_info.htm 14361 2008-04-07 09:26:17Z zhuwenyuan $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php?lang={$cfg_lang}"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="validator.js,../js/transport.js}
+<div class="main-div">
+<form method="post" action="setindex.php" name="theForm" enctype="multipart/form-data" >
+<table cellspacing="1" cellpadding="3" width="100%">
+  <tr>
+    <td class="label">商品列表</td>
+    <td>
+      <div id="gift-div" style="width:60%">
+      <table id="gift-table">
+      {if $setindex.gift}
+        <tr align="center"><td><strong>商品名</strong></td><td><strong>排序</strong></td></tr>
+        {foreach from=$setindex.gift item=goods key=key}
+        <tr><td><input type="checkbox" name="gift_id[{$key}]" value="{$goods.id}" checked="checked" />{$goods.name}</td>
+        <td align="right"><input name="gift_sort[{$key}]" type="text" value="{$goods.sort}" size="10" style="text-align:right" />
+        <input name="gift_name[{$key}]" type="hidden" value="{$goods.name}" />
+        <input name="gift_price[{$key}]" type="hidden" value="{$goods.price}" />
+        </td></tr>
+        {/foreach}
+      {/if}
+      </table>
+    </div></td>
+  </tr>
+  <tr id="type_search"{if $favourable.act_type neq 0} style="display:none"{/if}>
+    <td align="right">{$lang.label_search_and_add_gift}</td>
+    <td><input name="keyword1" type="text" id="keyword1" />
+      <input name="search1" type="button" id="search1" value="{$lang.button_search}" class="button" onclick="searchItem1()" />
+        <select name="result1" id="result1">
+                </select>
+        <input name="add_gift" type="button" class="button" id="add_gift" onclick="addGift()" value="+" />
+      </a></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" class="button" value="修改" />
+      <input type="reset" class="button" value="重置" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="set" value="{$set}" />
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+
+{literal}
+<script language="JavaScript">
+<!--
+/**
+ * 检查表单输入的数据
+ */
+
+function searchItem()
+{
+  var filter = new Object;
+  filter.keyword  = document.forms['theForm'].elements['keyword'].value;
+  filter.act_range = document.forms['theForm'].elements['act_range'].value;
+  if (filter.act_range == 0)
+  {
+    alert(all_need_not_search);
+    return;
+  }
+
+  Ajax.call('favourable.php?is_ajax=1&act=search', filter, searchResponse, 'GET', 'JSON');
+}
+
+function searchResponse(result)
+{
+  if (result.error == '1' && result.message != '')
+  {
+    alert(result.message);
+	return;
+  }
+
+  var sel = document.forms['theForm'].elements['result'];
+
+  sel.length = 0;
+
+  /* 创建 options */
+  var goods = result.content;
+  if (goods)
+  {
+    for (i = 0; i < goods.length; i++)
+    {
+      var opt = document.createElement("OPTION");
+      opt.value = goods[i].id;
+      opt.text  = goods[i].name;
+      sel.options.add(opt);
+    }
+  }
+
+  return;
+}
+
+/**
+ * 搜索赠品
+ */
+function searchItem1()
+{
+  var filter = new Object;
+  filter.keyword  = document.forms['theForm'].elements['keyword1'].value;
+  filter.act_range = 3;
+  Ajax.call('setindex.php?is_ajax=1&act=search', filter, searchResponse1, 'GET', 'JSON');
+}
+
+function searchResponse1(result)
+{
+  if (result.error == '1' && result.message != '')
+  {
+    alert(result.message);
+	return;
+  }
+
+  var sel = document.forms['theForm'].elements['result1'];
+
+  sel.length = 0;
+
+  /* 创建 options */
+  var goods = result.content;
+  if (goods)
+  {
+    for (i = 0; i < goods.length; i++)
+    {
+      var opt = document.createElement("OPTION");
+      opt.value = goods[i].id;
+      opt.text  = goods[i].name;
+      opt.id  = goods[i].price;
+      sel.options.add(opt);
+    }
+  }
+
+  return;
+}
+
+function addGift()
+{
+  
+  var selResult = document.getElementById('result1');
+  if (selResult.value == 0)
+  {
+    alert(pls_search);
+    return;
+  }
+  var id = selResult.options[selResult.selectedIndex].value;
+  var name = selResult.options[selResult.selectedIndex].text;
+  var price = selResult.options[selResult.selectedIndex].id;
+
+  // 检查是否已经存在
+  var exists = false;
+  var eles = document.forms['theForm'].elements;
+  for (var i = 0; i < eles.length; i++)
+  {
+    if (eles[i].type=="checkbox" && eles[i].name.substr(0, 7) == 'gift_id')
+    {
+      if (eles[i].value == id)
+      {
+        exists = true;
+        alert("已经存在");
+        break;
+      }
+    }
+  }
+
+  // 创建checkbox
+  if (!exists)
+  {
+    var table = document.getElementById('gift-table');
+    if (table.rows.length == 0)
+    {
+        var row = table.insertRow(-1);
+        var cell = row.insertCell(-1);
+        cell.align = 'center';
+        cell.innerHTML = '<strong>商品名称</strong>';
+        var cell = row.insertCell(-1);
+        cell.align = 'center';
+        cell.innerHTML = '<strong>排序</strong>';
+    }
+    var row = table.insertRow(-1);
+    var cell = row.insertCell(-1);
+    cell.innerHTML = '<input name="gift_id[]" type="checkbox" value="' + id + '" checked="checked" />' + name;
+    var cell = row.insertCell(-1);
+    cell.align = 'right';
+    cell.innerHTML = '<input name="gift_sort[]" type="text" value="0" size="10" style="text-align:right" />' +
+                     '<input name="gift_name[]" type="hidden" value="' + name + '" />'+
+                     '<input name="gift_price[]" type="hidden" value="' + price + '" />';
+  }
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

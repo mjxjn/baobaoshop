@@ -1,0 +1,298 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="ECS_COMMENT">
+<div class="scrip_box"><a name="comments"></a>
+     <div class="scrip_top"><span class="s_t2"></span></div>
+     <div class="clear"></div>
+     <div class="zixun_bar">
+           <div class="haoping">
+           <p style="color:#e26500; font-size:35px; font-weight:bold; padding-top:20px;">{$rank}%</p>
+           <p style="color:#e26500">好评度</p>
+           </div>
+           <div class="pingrules">
+           <p>参与评论发表好评就可获得5个积分。</p>
+           <p>前5名参与评论发表好评的会员还可额外获赠5个积分哦！</p>
+           <p>目前只有购买过此商品的注册会员才可评论哦~</p>
+           </div>
+           <div class="pingbtn">
+           <p>我购买过此商品</p>
+           <p>
+           <!-- {if $smarty.session.user_name} -->
+           <a href="javascript:void();" onclick="showping();"><img src="images/goods_pingbtn.gif" width="101" height="32" border="0" /></a>
+           <!--{else}-->
+           <a href="javascript:void();" onclick="showwarring();"><img src="images/goods_pingbtn.gif" width="101" height="32" border="0" /></a>
+           <!-- {/if} -->
+           </p>
+           <p style="color:#005aa0">查看全部评价</p>
+           </div>         
+     </div>
+<div id="goods_comments_list_box_body">
+<!-- {if $comments} -->
+<!-- {foreach from=$comments item=comment} -->
+<div class="pl_line ">
+  <ul class="pl_zone pl">
+    <li><strong>{$comment.username|escape:html}</strong>&nbsp;&nbsp;<span>发表于 {$comment.add_time}</span><div class="star s{$comment.rank}"></div></li>
+    <li class="pl_txt"> {$comment.content}</li>
+      </ul>
+  
+  <div class="clear"></div>
+</div>
+<!-- {/foreach} -->
+<!--{else}-->
+        {$lang.no_comments}
+<!--{/if}-->
+<div class="page_box" id="page_box_pl">
+<form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+ <span><font><a href="{$pager.page_first}">«首页</a></font></span><span><font><a href="{$pager.page_prev}">­上一页</a></font></span>
+ <!--{foreach from=$pager.page_number key=key item=item}-->
+  <!-- {if $pager.page eq $key} -->
+ <span id="page_on">{$key}</span>
+ <!-- {else} -->
+ <span><font><a href="{$item}">{$key}</a></font></span>
+ <!-- {/if} -->
+<!--{/foreach}-->
+ <span><font><a href="{$pager.page_next}">­下一页</a></font></span><span><font><a href="{$pager.page_last}">­尾页»</a></font></span><span><font>{$pager.page}/共{$pager.page_count}页</font></span> 
+ </form>
+ </div>
+ 
+</div>
+
+
+<!--评论表单 start-->
+      <div class="commentsList">
+      <div class="close_ping"><a herf="javascript:void();" onclick="hideping()"></a></div>
+      <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
+       <table id="ping_tab" class="ping_tab" width="452" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          
+          <td width="472" height="30">
+          	商品名称：{$goods_name}
+          <input name="username" type="hidden" value="{$smarty.session.user_name}" id="username" />
+          </td>
+        </tr>
+        <tr>
+          <td height="30">
+          <div id="z"></div><span id="rank_value" class="rank_value">10</span>
+          <input name="comment_rank" type="hidden" value="10" id="comment_rank" />
+          </td>
+        </tr>
+        <tr>
+          <td height="30">
+          <textarea name="content" class="inputBorder" style="height:150px; width:450px;"></textarea>
+          <input type="hidden" name="cmt_type" value="{$comment_type}" />
+          <input type="hidden" name="id" value="{$id}" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" height="30">
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <div style="padding-left:15px; text-align:left; float:left;">
+          {$lang.comment_captcha}：<input type="text" name="captcha"  class="inputBorder" style="width:50px; margin-left:5px;"/>
+          <img src="captcha.php?{$rand}" alt="captcha" onClick="this.src='captcha.php?'+Math.random()" class="captcha" style="margin-top: 8px; ">
+          </div>
+          <!-- {/if} -->
+          <input name="" type="submit"  value="" class="f_r" style="border:none; background:url(../images/commentsBnt.gif); width:75px; height:21px; cursor:pointer; margin-left:380px; margin-top:9px;">
+          </td>
+        </tr>
+      </table>
+      </form>
+      </div>
+      <!--评论表单 end-->
+</div>
+
+<script type="text/javascript"><!--
+//<![CDATA[
+{foreach from=$lang.cmt_lang item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{literal}
+function showping(){
+	$(".commentsList").show();
+}
+function hideping(){
+	$(".commentsList").hide();
+}
+function showwarring(){
+	alert("请登录后再发表评论！！！");
+}
+/**
+ * 提交评论信息
+*/
+function submitComment(frm)
+{
+  var cmt = new Object;
+
+  cmt.username        = frm.elements['username'].value;
+  //cmt.email           = frm.elements['email'].value;
+  cmt.content         = frm.elements['content'].value;
+  cmt.type            = frm.elements['cmt_type'].value;
+  cmt.id              = frm.elements['id'].value;
+  cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
+  cmt.captcha         = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+  cmt.rank            = frm.elements['comment_rank'].value;;
+
+
+  if (cmt.username.length == 0)
+  {
+     alert("对不起，请登录后评论");
+     return false;
+  }
+
+  /*if (cmt.email.length > 0)
+  {
+     if (!(Utils.isEmail(cmt.email)))
+     {
+        alert(cmt_error_email);
+        return false;
+      }
+   }
+   else
+   {
+        alert(cmt_empty_email);
+        return false;
+   }*/
+
+   if (cmt.content.length == 0)
+   {
+      alert(cmt_empty_content);
+      return false;
+   }
+	
+	var data_lg="{"
+ for (var a in cmt){
+	 data_lg += '"' ;
+	 data_lg += a ;
+	 data_lg += '"' ;
+	 data_lg += ':' ;
+	 
+	 
+	 data_lg += '"' ;
+	 data_lg += cmt[a] ;
+	 data_lg += '"' ;
+	  if(a != 'rank') data_lg += ',' ;
+	 }
+	 data_lg += '}' ;
+	 //alert(data_lg);
+	 Ajax.call('comment.php', 'cmt=' + data_lg, commentResponse, 'POST', 'JSON');
+   return false;
+
+   /*if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0 )
+   {
+      alert(captcha_not_null);
+      return false;
+   }
+
+   Ajax.call('comment.php', 'cmt=' + cmt.toJSONString(), commentResponse, 'POST', 'JSON');
+   return false;*/
+}
+
+/**
+ * 处理提交评论的反馈信息
+*/
+  function commentResponse(result)
+  {
+    if (result.message)
+    {
+      alert(result.message);
+    }
+
+    if (result.error == 0)
+    {
+      hideping();
+      var layer = document.getElementById('ECS_COMMENT');
+
+      if (layer)
+      {
+        layer.innerHTML = result.content;
+        reload_star();
+      }
+    }
+  }
+{/literal}
+//]]>
+</script>
+
+<script type="text/javascript">
+$.fn.studyplay_star=function(options,callback){
+	//默认设置
+	var settings ={
+		MaxStar      :20,
+		StarWidth    :23,
+		CurrentStar  :5,
+		Enabled      :true,
+		Half         :0
+		};	
+	if(options) { jQuery.extend(settings, options); };
+	var container = jQuery(this);
+	container.css({"position":"relative"})
+	.html('<ul class="studyplay_starBg"></ul>')	
+	.find('.studyplay_starBg').width(settings.MaxStar*settings.StarWidth)
+	.html('<li class="studyplay_starovering" style="width:'+settings.CurrentStar*settings.StarWidth+'px; z-index:0;" id="studyplay_current"></li>');
+	if(settings.Enabled)
+	{
+	var ListArray = "";	
+	if(settings.Half==0)
+	{
+	for(k=1;k<settings.MaxStar+1;k++)
+	{	
+		ListArray +='<li class="studyplay_starON" style="width:'+settings.StarWidth*k+'px;z-index:'+(settings.MaxStar-k+1)+';"></li>';
+	}
+	}
+	
+	if(settings.Half==1)
+	{
+	for(k=1;k<settings.MaxStar*2+1;k++)
+	{	
+		ListArray +='<li class="studyplay_starON" style="width:'+settings.StarWidth*k/2+'px;z-index:'+(settings.MaxStar*2-k+1)+';"></li>';
+	}
+	}
+	
+	container.find('.studyplay_starBg').append(ListArray)
+	container.find('.studyplay_starON').hover(function(){											  
+											  $(this).removeClass('studyplay_starON').addClass("studyplay_starovering");
+											  $("#studyplay_current").hide();
+											  },
+									  function(){
+										  $(this).removeClass('studyplay_starovering').addClass("studyplay_starON");
+										  $("#studyplay_current").show();
+										  })
+	.click(function(){
+					var studyplay_count = settings.MaxStar*2 - $(this).css("z-index")+1;
+					if(settings.Half==0)
+					$("#studyplay_current").width(studyplay_count*settings.StarWidth)
+					if(settings.Half==1)
+					$("#studyplay_current").width(studyplay_count*settings.StarWidth/2)
+					//回调函数
+					if (typeof callback == 'function') {
+					if(settings.Half==0)
+					callback(studyplay_count);
+					if(settings.Half==1)
+					callback(studyplay_count/2);
+					return ;
+					}
+					})
+ }	
+}	
+</script>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#z").studyplay_star(
+					{MaxStar:10,CurrentStar:10,Enabled:true,Half:1},
+					function(value){
+						$("#rank_value").empty();
+						$("#rank_value").html(value);
+						$("#comment_rank").val(value);
+					}
+			);
+		});
+		function reload_star(){
+			$("#z").studyplay_star(
+					{MaxStar:10,CurrentStar:10,Enabled:true,Half:1},
+					function(value){
+						$("#rank_value").empty();
+						$("#rank_value").html(value);
+						$("#comment_rank").val(value);
+					}
+			);
+		}
+</script>
+</div>

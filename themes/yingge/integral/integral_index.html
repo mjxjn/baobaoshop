@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/integral/integral.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+	var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+	var len = $("#focus ul li").length; //获取焦点图个数
+	var index = 0;
+	var picTimer;
+	
+	//以下代码添加数字按钮和按钮后的半透明条，还有上一页、下一页两个按钮
+	var btn = "<div class='btnBg'></div><div class='btn'>";
+
+		btn += "<span>如何获取积分？</span><span>婴格网站积分？</span><span>积分有什么用？</span>";
+
+	
+	$("#focus").append(btn);
+	$("#focus .btnBg").css("opacity",0.5);
+
+	//为小按钮添加鼠标滑入事件，以显示相应的内容
+	$("#focus .btn span").css("opacity",0.4).mouseenter(function() {
+		index = $("#focus .btn span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseenter");
+
+	//本例为左右滚动，即所有li元素都是在同一排向左浮动，所以这里需要计算出外围ul元素的宽度
+	$("#focus ul").css("width",sWidth * (len));
+	
+	//鼠标滑上焦点图时停止自动播放，滑出时开始自动播放
+	$("#focus").hover(function() {
+//		$(".if2").show();
+//		$(".if1").hide();
+		clearInterval(picTimer);
+	},function() {
+//		 $(".if1").show();
+//		$(".if2").hide();
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},4000); //此4000代表自动播放的间隔，单位：毫秒
+	}).trigger("mouseleave");
+	
+	//显示图片函数，根据接收的index值显示相应的内容
+	function showPics(index) { //普通切换
+		var nowLeft = -index*sWidth; //根据index值计算ul元素的left值
+		$("#focus ul").stop(true,false).animate({"left":nowLeft},300); //通过animate()调整ul元素滚动到计算出的position
+		//$("#focus .btn span").removeClass("on").eq(index).addClass("on"); //为当前的按钮切换到选中的效果
+		$("#focus .btn span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); //为当前的按钮切换到选中的效果
+	}
+	
+	$("#focus").hover(function () {
+		
+	  },
+	  function () {
+		   
+	  });
+});
+
+</script>
+</head>
+<body>
+{include file= "/library/page_header.lbi"}
+{include file= "/library/page_header2.lbi"}
+<div id="exchange_body" class="w973">
+	<!--当前位置 start-->
+	<div class="AllWrapInside clearfix">
+		<div class="Navigation">{include file= "/library/ur_here.lbi" }</div> 
+	</div>
+	<!--当前位置 end-->
+	<div class="w190 left">
+		{include file= "integral/library/integral_left.lbi" }
+	</div>
+	<div class="w770 left">
+		<div class="integral_flash" id="focus">
+		<ul>
+		
+			<li>
+				
+				<div class="if2" style="background:url('themes/yingge/integral/images/1_1.jpg') no-repeat;width:248px;height:71px;padding:70px 20px 0 500px;line-height:22px;">积分可以兑换优惠券、免费或加钱兑换特惠商品和抽奖等，更多积分活动将陆续推出。</div>
+			</li>
+			<li>
+
+				<div class="if2" style="background:url('themes/yingge/integral/images/2_1.jpg') no-repeat;width:248px;height:76px;padding:65px 20px 0 500px;line-height:22px;">网站积分是婴格母婴商城的虚拟奖励货币（不和卖场及电话订购积分共用），可参与兑换和抽奖等超值积分活动。</div>
+			</li>
+			<li>
+				
+				<div class="if2" style="background:url('themes/yingge/integral/images/3_1.jpg') no-repeat;width:248px;height:71px;padding:70px 20px 0 500px;line-height:22px;">积分可以兑换优惠券、免费或加钱兑换特惠商品和抽奖等，更多积分活动将陆续推出。</div>
+			</li>
+
+		</ul>
+		</div>
+		<div class="jingxuan">
+			<div class="jingxuan_title"><img src="/themes/yingge/images/integral/jingxuan_title.jpg" width="770" height="39" /></div>
+			<div class="jingxuan_pn">
+				<div class="jingxuan_shop">
+				<!-- {foreach from=$goods_list item=goods} -->
+				<!-- {if $goods.goods_id} -->
+					<div class="item_pn">
+						<div class="item_pic">
+							<a href="{$goods.url}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" width="150" height="150" /></a>
+							<div class="limit">
+								<div class="bg"></div>
+								<div class="con">
+                	            <span class="left"></span>
+                   				 <span class="right">剩余件数{$goods.goods_number}</span>
+                                </div>
+							</div>
+						</div>
+						<div class="item_name"><a href="{$goods.url}" title="{$goods.goods_name}" target="_blank">{$goods.goods_name}</a></div>
+						<div>
+							<span class="c_red">{$goods.exchange_integral}</span>积分
+						</div>
+					</div>
+				<!--{/if}-->
+				<!--{/foreach}-->	
+				</div>
+			</div>
+		</div>
+		<div class="jingxuan">
+			<div class="jingxuan_title"><img src="/themes/yingge/images/integral/zhekou_title.jpg" width="770" height="39" /></div>
+			<div class="youhuiquan_pn">
+				<div class="bd">
+				<ul class="ka_list" id="ka_list" style="visibility: visible; ">
+				<!-- {foreach from=$bonus_list item=bonus} -->
+				<!-- {if $bonus.type_id} -->
+					<li tmp_id="yhq" qid="1005716" class=""><a href="javascript:getcoupon({$bonus.type_id},{$bonus.pay_points});return ;" target="_blank" class="pic"><img src="/data/bonus/{$bonus.img}" style="width:255px;height:140px" alt="{$bonus.type_name}"></a>
+						<div class="hr_line"></div>
+						<div class="first">
+							<p class="name">{$bonus.type_name}</p>
+							<p class="link_go"><a href="javascript:getcoupon({$bonus.type_id},{$bonus.pay_points});return false;" class="link_blue" >兑换积分:{$bonus.pay_points}<i class="icon_arrow_single"></i></a></p>
+						</div>
+						<div class="second">
+							<p class="row"><span class="tit">使用范围：</span><span class="txt" tag="range">{$bonus.coupon_type}</span></p>
+							<p class="row"><span class="tit">有效日期：</span><span class="txt" tag="valid">{$bonus.use_start_date}-{$bonus.use_end_date}</span></p>
+							<p class="row"><span class="tit">兑换限制：</span><span class="txt">此优惠券每人每天限兑一张</span></p>
+						</div>
+					</li>
+				<!--{/if}-->
+				<!--{/foreach}-->		
+				</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="jingxuan">
+			<div class="choujiang_ad"><img src="/themes/yingge/images/integral/choujiang_ad.jpg" width="748" height="211" /></div>
+		</div>
+	</div>
+</div>
+<div class="blank9"></div>
+{include file= "/library/page_footer.lbi" }
+<script type=text/javascript src="themes/yingge/js/agestate.js"></script>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".exchange_body").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+$("#exchange_body").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+$("#btn").hover(
+		  function () {
+			    $("#price_range_select").show();
+			  },
+			  function () {
+			    $("#price_range_select").hide();
+			  }
+	);
+$(".ka_list li").hover(
+		function(){
+			$(this).addClass("li_hover");
+		},
+		function(){
+			$(this).removeClass("li_hover");
+		}
+	);
+}); 
+function getcoupon(id,pay_points){
+	if(confirm("你确信要使用"+pay_points+"积分兑换此优惠卷")){
+		$.ajax({
+			   type: "POST",
+			   url: "integral.php",
+			   data: "act=getcoupon&bonus_id="+id,
+			   dataType: "html",
+			   success: function(msg){
+			     if(msg=="-1"){
+			     	alert("请登录后再领取积分");
+			     }else if(msg=="-2"){
+			     	alert("出现错误，请重新兑换");
+			     }else if(msg=="-3"){
+			    	 alert("没有此优惠券信息");
+			     }else if(msg=="-4"){
+			    	 alert("你的积分不足，不能兑换此优惠券");
+			     }else if(msg=='-5'){
+			    	 alert("您今天已经领取过此优惠券，不能重复领取");
+			     }else if(msg =='1'){
+			    	 alert("恭喜您兑换成功，请及时使用");
+			    	 $('#fweekcount').empty();
+			    	 $('#fweekcount').html({$fweekcount}-pay_points);
+			    	 $('#ubonus').empty();
+			    	 $('#ubonus').html({$info.bonus}+1);
+			    	 $('#user_integral').empty();
+			    	 $('#user_integral').html({$info.user_integral}-pay_points);
+			     }
+			   }
+		});
+	}
+}
+</script> 
+</body>
+</html>

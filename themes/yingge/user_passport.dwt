@@ -1,0 +1,836 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="themes/yingge/head.css" rel="stylesheet" type="text/css" />
+<link href="themes/yingge/register.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.4.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#offkey').click(function(){
+	$(".inputkey").hide();
+})
+$("#onkey").click(function(){
+	$(".inputkey").show().focus();
+;
+
+})
+});
+</script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
+<script type="text/javascript" src="/js/transport.js"></script>
+
+</head>
+<body>
+{include file="/library/page_top.lbi"}
+<div id="head">
+	<div id="logo_head" class="w980">
+    	<div id="logo" class="left"><a href="index.php"><img src="images/logo.jpg" border="0" title="婴格母婴网" /></a></div>
+        <div id="search_head" class="right">
+            <div class="tel f12">订购电话：<font color="#EF8936">0871-3330777</font></div>
+        </div>
+    </div>
+</div>
+
+
+<!--当前位置 start-->
+<div id="ur_here" style='width:990px;margin:0px auto;margin-top: -30px;_margin-top:-5px; '>
+	<p style='float:left;padding-top: 22px; '>您的位置：<a href='/'>首页</a> > 会员中心</p>
+	<!--{if $action eq 'check_send_email'}-->
+	<!--{else}-->
+	 <!--{if $action eq 'register_address'}-->
+		<img style='float:right; ' src='./images/b_2.gif'/>
+	<!--{elseif $action eq 'register'}-->
+		<img style='float:right; ' src='./images/b_0.gif'/>
+	 <!--{else}-->
+	<img style='float:right; ' src='./images/b_1.gif'/>
+	 <!--{/if}-->
+	  <!--{/if}-->
+	<div style='clear:both;'></div>
+</div>
+
+<!--当前位置 end-->
+<div class="blank"></div>
+<!--#登录界面 start-->
+<!-- {if $action eq 'login'} -->
+<div class="usBox clearfix">
+  <div class="usBox_1 f_l">
+   <div class="logtitle"></div>
+   <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+        <table width="100%" border="0" align="left" cellpadding="3" cellspacing="5">
+          <tr>
+            <td width="15%" align="right">{$lang.label_username}</td>
+            <td width="85%"><input name="username" type="text" size="25" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td align="right">{$lang.label_password}</td>
+            <td>
+            <input name="password" type="password" size="15"  class="inputBg"/>
+            </td>
+          </tr>
+         
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <tr>
+            <td align="right">{$lang.comment_captcha}</td>
+            <td><input type="text" size="8" name="captcha" class="inputBg" />
+            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td colspan="2"><input type="checkbox" value="1" name="remember" id="remember" /><label for="remember">{$lang.remember}</label></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td align="left">
+            <input type="hidden" name="act" value="act_login" />
+            <input type="hidden" name="back_act" value="{$back_act}" />
+            <input type="submit" name="submit" value="" class="us_Submit" />
+            </td>
+          </tr>
+	  <tr><td></td><td><a href="user.php?act=qpassword_name" class="f3">{$lang.get_password_by_question}</a>&nbsp;&nbsp;&nbsp;<a href="user.php?act=get_password" class="f3">{$lang.get_password_by_mail}</a></td></tr>
+      </table>
+    </form>
+  </div>
+  <div class="usTxt">
+    <strong>{$lang.user_reg_info[0]}</strong>  <br />
+    <strong class="f4">{$lang.user_reg_info[1]}：</strong><br />
+    <!-- {if $car_off eq 1} -->
+    {$lang.user_reg_info[2]}<br />
+    <!--{/if}-->
+    <!-- {if $car_off eq 0} -->
+    {$lang.user_reg_info[8]}<br />
+    <!--{/if}-->
+    {$lang.user_reg_info[3]}：<br />
+    1. {$lang.user_reg_info[4]}<br />
+    2. {$lang.user_reg_info[5]}<br />
+    3. {$lang.user_reg_info[6]}<br />
+    4. {$lang.user_reg_info[7]}  <br />
+    <a href="user.php?act=register"><img src="images/bnt_ur_reg.gif" /></a>
+  </div>
+</div>
+<!--{/if}-->
+<!--#登录界面 end-->
+
+<!--*发送手机验证码 start-->
+<!-- {if $action eq 'ck_code'} -->
+ <div class="usBox" style='border: 1px solid #E5E5E5;padding: 12px 10px;'>
+  <div class="usBox_2 clearfix" style=''>
+   <div class="regtitle" style=' border-bottom: 1px solid #F0F0F0;margin-bottom: 28px;padding: 0 9px 12px;'>免费手机注册</div>
+    <div class='shouji'>
+    	<img src='themes/yingge/images/shouji.gif'/>
+    </div>
+    <div class='shouji_right'>
+    	<p class='info_p'>请查收您的手机，并将验证码填写到下面完成注册，此服务免费。</p>
+    	<ul class='code'>
+    		<form action='user.php' method='post' name="formUser2" onsubmit="return register2();">
+    		<li>手机号码：{$mobile}&nbsp;&nbsp;<input type="button" style="width: 131px;height: 22px;background: url(themes/yingge/images/sms.png) no-repeat;border: none;padding:0 0 0 20px; color:#fff;cursor: pointer;" name="Submit" onclick="send_sms()" value="发送手机验证码" /></li>
+    		<li>验证码：<input type='text' name='code' value=''/></li>
+    		<input class ='code_btn' type='submit' style="cursor: pointer;" value =''/>
+    		<input name="username" type="hidden" value="{$username}" />
+    		<input name="password" type="hidden" value="{$password}" />
+    		<input name="email" type="hidden" value="{$email}" />
+    		<input name="msn" type="hidden" value="{$msn}" />
+    		<input name="qq" type="hidden" value="{$qq}" />
+    		<input name="office_phone" type="hidden" value="{$office_phone}" />
+    		<input name="home_phone" type="hidden" value="{$home_phone}" />
+    		<input name="sel_question" type="hidden" value="{$sel_question}" />
+    		<input name="passwd_answer" type="hidden" value="{$passwd_answer}" />
+    		<input name="mobile" type="hidden" value="{$mobile}" />
+    		<input name="back_act" type="hidden" value="{$back_act}" />
+    		<input name="act" type="hidden" value="act_register_ok" />
+    		</form>
+			<form action='user.php' method='post' name="formUser3">
+			<input name="mobile" type="hidden" value="{$mobile}" />
+			<input name="act" type="hidden" value="act_send_sms" />
+			</form>
+    	</ul>
+<script language="javascript">
+//document.formUser2.Submit.disabled = true;
+var wait = 90; //停留时间*/
+function updateinfo(){
+	  if(wait == 0){
+		document.formUser2.Submit.value = "发送手机验证码";
+		document.formUser2.Submit.disabled = false;
+		wait = 90;
+	  }
+	  else{
+		document.formUser2.Submit.value = "发送中..."+wait;
+		wait--;
+		window.setTimeout("updateinfo()",1000);
+	  }
+}
+function send_sms()
+{
+	document.formUser2.Submit.disabled = true;
+	$.ajax({
+	   type: "POST",
+	   url: "user.php",
+	   data: "mobile="+{$mobile}+"&act=act_send_sms",
+	   /*success: function(msg){
+		 alert( "Data Saved: " + msg );
+	   }*/
+	});
+	
+	updateinfo();
+}
+$(document).ready(function(){
+	var wait = 90;
+	document.formUser2.Submit.disabled = true;
+	$.ajax({
+	   type: "POST",
+	   url: "user.php",
+	   data: "mobile="+{$mobile}+"&act=act_send_sms",
+	   /*success: function(msg){
+		 alert( "Data Saved: " + msg );
+	   }*/
+	});
+	updateinfo();
+})
+</script>
+    	<div class='ptext'>
+    		<p>如果您没有收到短信</p>
+    		<p>短信到达需要1-2分钟，若您长时间没有收到短信，建议您<a href='/user.php?act=register'/>重新注册</a></p>
+    		<p>每个手机24小时内最多只能申请3条验证码短信</p>
+    		<p>如果您的手机号码有误或者一直无法完成注册，建议您更换手机号码</p>
+
+    	</div>
+    </div>
+  </div>
+  <div style='clear:both;'></div>
+</div>
+<!--{/if}-->
+<!--*发送手机验证码 end-->
+
+ 
+<!--*会员注册界面 start-->
+    <!--{if $action eq 'register'}-->
+    <!-- {if $shop_reg_closed eq 1} -->
+      
+    <div class="usBox">
+      <div class="usBox_2 clearfix">
+        <div class="f1 f5" align="center">{$lang.shop_register_closed}</div>
+      </div>
+    </div>
+    <!-- {else} -->
+    {insert_scripts files='utils.js'}
+<div class="usBox" style='border: 1px solid #E5E5E5;padding: 12px 10px;'>
+  <div class="usBox_2 clearfix" style=''>
+   <div class="regtitle" style=' border-bottom: 1px solid #F0F0F0;margin-bottom: 28px;padding: 0 9px 12px;'>欢迎注册婴格母婴商城</div>
+  </div>
+  <div style='width:560px;margin:0px 0px 0px 40px;padding-top:10px;float:left'>
+    <form action="user.php" method="post" name="formUser" onsubmit="return register();">
+      <table width="660"  border="0" align="left" cellpadding="5" cellspacing="3" class='login_z' >
+        <tr>
+          <td width="17%" align="right" class='td_1'>手机号码：</td>
+          <td width="87%">
+          <input name="mobile" id='mobile' type="text" size="25" onfocus="show_mobile()" onblur="is_tel_registered(this.value);" class="inputBg"/>
+            <span id="tel_notice" style="color:red;padding-left: 20px;"> *</span>
+          </td>
+        </tr>
+        <!--<tr>
+          <td align="right">{$lang.label_email}:</td>
+          <td>
+          <input name="email" type="text" size="25" id="email" onblur="checkEmail(this.value);"  class="inputBg"/>
+            <span id="email_notice" style="color:#666"> *</span>
+          </td>
+        </tr>-->
+        <tr>
+          <td align="right" class='td_1'>设置密码：</td>
+          <td>
+          <input name="password" type="password" id="password1" onblur="check_password(this.value);" onfocus="show_password()" onkeyup="checkIntensity(this.value)" class="inputBg" />
+            <span style="color:red;padding-left: 20px;" id="password_notice"> *</span>
+          </td>
+        </tr>
+        <!--<tr>
+          <td align="right">{$lang.label_password_intensity}</td>
+          <td>
+            <table width="145" border="0" cellspacing="0" cellpadding="1">
+              <tr align="center">
+                <td width="33%" id="pwd_lower">{$lang.pwd_lower}</td>
+                <td width="33%" id="pwd_middle">{$lang.pwd_middle}</td>
+                <td width="33%" id="pwd_high">{$lang.pwd_high}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>-->
+        <tr>
+          <td align="right" class='td_1'>确认密码：</td>
+          <td>
+          <input name="confirm_password" type="password" id="conform_password" onfocus="show_confirm_password()" onblur="check_conform_password(this.value);"  class="inputBg" />
+            <span style="color:red;padding-left: 20px;" id="conform_password_notice"> *</span>
+          </td>
+        </tr>
+        <tr>
+          <td width="17%" align="right" class='td_1'>用 户 名：</td>
+          <td width="87%">
+          <input name="username" type="text" size="25" id="username" onfocus="show_username()" onblur="is_registered(this.value);" class="inputBg"/>
+            <span id="username_notice" style="color:red;padding-left: 20px;"> *</span>
+          </td>
+        </tr>
+         <tr>
+            <td align="right" class='td_1'>邮箱地址：</td>
+            <td>
+            <input name="email" type="text" size="30" class="inputBg" id='email' onfocus="show_email()" onblur="check_email(this.value);" />
+               <span id="email_notice" style="color:red;padding-left: 20px;"> *</span>
+            </td>
+          </tr>
+		  <tr>
+            <td align="right" class='td_1'>宝宝性别：</td>
+            <td>
+            <input name="baby" type="radio" size="30" checked="checked" value="1" class="radio" />男宝宝
+			<input name="baby" type="radio" size="30" value="2" class="radio" />女宝宝
+			<input name="baby" type="radio" size="30" value="3" class="radio" />预产期
+			<br />
+			<span class="keyinfo">请正确填写宝宝生日或预产期，婴格不会公开您的信息资料</span>
+            </td>
+          </tr>
+		  <tr>
+            <td align="right" class='td_1'>宝宝生日：</td>
+            <td>
+			{html_select_date prefix="StartDate" time="YYYY-MM-DD" start_year="-10" end_year="+2" display_days=true}
+            </td>
+          </tr>
+		  <tr>
+            <td colspan="2" align="left" class='td_1'>是否有婴格代金券：
+            <input name="is_key" type="radio" id="offkey" checked="checked" value="0" class="radio" />无
+			<input name="is_key" type="radio" id="onkey" value="1" class="radio" />有
+			<input name="keynumber" style="display:none;" type="text" size="10" class="inputkey" onfocus="JavaScript:this.value=''" value="输入代金券号" />
+			<span class="keyinfo">有婴格代金券请选择有并填入券号，否则选择无</span>
+            </td>
+          </tr>
+      <!-- 判断是否启用验证码{if $enabled_captcha} -->
+      <tr>
+      <td align="right">{$lang.comment_captcha}:</td>
+      <td><input type="text" size="8" name="captcha" class="inputBg" style="width:140px;" />
+      <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> </td>
+      </tr>
+      <!--{/if}-->
+        <tr>
+          <td colspan="2" style="padding-left:50px;"><label>
+            <input name="agreement" type="checkbox" value="1" checked="checked" />
+            {$lang.agreement}
+            <input name="act" type="hidden" value="act_register" />
+            <input type="hidden" name="back_act" value="{$back_act}" /><br />
+
+            <input name="Submit" type="image" value="" class="us_Submit_reg" src="/html/images/btn_register_step1.gif" />
+          </label></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <!--<tr>
+          <td>&nbsp;</td>
+          <td class="actionSub">
+          <a href="user.php?act=login">{$lang.want_login}</a><br />
+          <a href="user.php?act=get_password">{$lang.forgot_password}</a>
+          </td>
+        </tr>-->
+      </table>
+    </form>
+    <div style='clear:both;'></div>
+  </div>
+  <div class="have_count">
+		<h3 class="mb10">已有婴格商城帐号？</h3>
+        <a href="/user.php" >
+            <img style='margin-top:10px;' src='themes/yingge/images/login_bt.gif'/>
+        </a>
+		<p class="t">使用合作网站账号登陆婴格：</p>
+		<ul>
+			<li><a href='#'><img src='themes/yingge/images/login_sina.gif'/></a></li>
+			<li><a href='#'><img src='themes/yingge/images/login_139.gif'/></a></li>
+			<li><a href='#'><img src='themes/yingge/images/login_taobao.gif'/></a></li>
+			<li><a href='#'><img src='themes/yingge/images/login_douban.gif'/></a></li>
+			<li><a href='#'><img src='themes/yingge/images/login_zhifubao.gif'/></a></li>
+		</ul>
+  </div>
+  <div style='clear:both;'></div>
+</div>
+<!--{/if}-->
+<!--{/if}-->
+<!--#会员注册界面 end-->
+
+
+<!--#会员注册界面 start-->
+<!--{if $action eq 'register_address'} -->
+{insert_scripts files='region.js,utils.js'}
+<div class="usBox" style='border: 1px solid #E5E5E5;padding: 12px 10px;'>
+  <div class="usBox_2 clearfix" style=''>
+   <div class="regtitle" style=' border-bottom: 1px solid #F0F0F0;margin-bottom: 28px;padding: 0 9px 12px;'>欢迎注册婴格母婴商城</div>
+  </div>
+  <div style='width:960px;margin:0px 0px 0px 40px;padding-top:10px;'>
+    <form action="user.php" method="post" name="formUser" onsubmit="return register();">
+      <table width="900"  border="0" align="left" cellpadding="5" cellspacing="3" class='login_z' >
+	  
+        <tr>
+          <td width="17%" align="right" class='td_1'>收货人姓名：</td>
+          <td width="87%">
+		  
+          <input name="consignee" id='mobile' type="text" size="25" class="inputBg"/>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="right" class='td_1'>所在城市：</td>
+          <td>
+          <select name="country" id="selCountries" onchange="region.changed(this, 1, 'selProvinces')" class="fl">
+        <option value="0">请选择国家</option>
+        <!-- {foreach from=$country_list item=country} -->
+        <option value="{$country.region_id}">{$country.region_name}</option>
+        <!-- {/foreach} -->
+      	</select>
+		<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" class="fl">
+        <option value="0">请选择省</option>
+        <!-- {foreach from=$province_list item=province} -->
+        <option value="{$province.region_id}">{$province.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')" class="fl">
+        <option value="0">请选择市</option>
+        <!-- {foreach from=$city_list item=city} -->
+        <option value="{$city.region_id}">{$city.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  <select name="district" id="selDistricts" {if !$district_list}style="display:none"{/if} class="fl">
+        <option value="0">请选择区</option>
+        <!-- {foreach from=$district_list item=district} -->
+        <option value="{$district.region_id}" >{$district.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="right" class='td_1'>详细地址：</td>
+          <td>
+          <input name="address" type="text" id="conform_password" style="width:550px;" class="inputBg" />
+          </td>
+        </tr>
+        
+		<tr>
+          <td colspan="2"class='td_1'> 
+		  <div style="width:700px;margin-left:90px; padding:0 30px; font-size:12px; background-color:#ffffdd;border:1px solid #ffe2a6; " >
+		  提示：<br>
+		  1.请填写真实有效的收货信息，填写后购物时无需再次填写，也可以直接跳过填写直接完成注册。<br>
+		  2.每天12：0以前的订单将在当天处理发货，12：0-0：00的订单将在第二天处理发货。<br>
+3.婴格支持“开箱验货”和“7天退换货保障”，收货后请及时验货，如果发现商品损坏或不符，请及时拨打客服0871-8082828.<a href="/help-15.html" target="_blank">退换货政策</a><br>
+		  4.婴格商城所出售的食品、贴身用品、家电、车床无质量问题不能退换。 
+		  </div>
+		  </td>
+        </tr>
+    
+        <tr>
+          <td colspan="2" style="padding-left:140px;">
+           <input type="hidden" name="back_act" value="{$back_act}" /><br />
+           <input name="Submit" id="Submit0" type="image" value="" class="us_Submit_reg" src="images/reg_add.jpg" />
+			<input name="username" type="hidden" value="{$username}" />
+    		<input name="password" type="hidden" value="{$password}" />
+    		<input name="email" type="hidden" value="{$email}" />
+    		<input name="msn" type="hidden" value="{$msn}" />
+    		<input name="qq" type="hidden" value="{$qq}" />
+    		<input name="office_phone" type="hidden" value="{$office_phone}" />
+			<input name="baby" type="hidden" value="{$baby}" />
+    		<input name="babybirthday" type="hidden" value="{$babybirthday}" />
+    		<input name="keynumber" type="hidden" value="{$keynumber}" />
+    		<input name="home_phone" type="hidden" value="{$home_phone}" />
+    		<input name="sel_question" type="hidden" value="{$sel_question}" />
+    		<input name="passwd_answer" type="hidden" value="{$passwd_answer}" />
+    		<input name="mobile" type="hidden" value="{$mobile}" />
+    		<input name="act" type="hidden" value="act_register_ok" />
+
+			<a href="/user.php?act=act_register_pass&username={$username}&password={$password}&email={$email}&mobile={$mobile}&baby={$baby}&babybirthday={$babybirthday}&keynumber={$keynumber}"><img class="us_Submit_reg" style="margin-left:150px;" src="images/reg_over.jpg" /></a>
+			
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        
+      </table>
+	  </form>     
+    <div style='clear:both;'></div>
+  </div>
+  <div style='clear:both;'></div>
+</div>
+<!--{/if}-->
+<!--#会员注册界面2 end-->
+
+<!--*找回密码界面 -->
+    <!--{if $action eq 'get_password'} -->
+    {insert_scripts files='utils.js'}
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
+        <br />
+        <table width="100%" border="0" align="center">
+          <tr>
+            <td colspan="2" style='padding-left:190px;'><strong style='font-size:16px;' >请输入您注册时填写的手机号码</strong></td>
+          </tr>
+          <!--<tr>
+            <td class='td_1' width="29%" align="right">{$lang.username}：</td>
+            <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
+          </tr>-->
+          <tr>
+            <td class='td_1' align="right">手机号码：</td>
+            <td><input name="mobile_phone" type="text" size="30" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="send_pwd_email" />
+              <input class='com_btn' type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input class='com_btn' name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    	</td>
+          </tr>
+        </table>
+        <br />
+    </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!--*找回密码界面2 -->
+	<!--{if $action eq 'send_pwd_email'} -->
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+		   type: "POST",
+		   url: "user.php",
+		   data: "mobile="+{$mobile}+"&act=reset_send_sms",
+		   /*success: function(msg){
+			 alert( "Data Saved: " + msg );
+		   }*/
+		});
+	})
+	</script>
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+        <br />
+        <table width="100%" border="0" align="center">
+          <tr align="center">
+            <td style='text-align:center'><strong style='font-size:16px;' >已经将新密码发送到您的手机：{$mobile}</strong></td>
+          </tr>
+          <tr align="center">
+            <td>
+              <a class='com_btn' href="user.php" style="border:none;display: block;" class="bnt_blue_1">重新登录</a>
+	    	</td>
+          </tr>
+        </table>
+        <br />
+  </div>
+</div>
+<!--{/if}-->
+
+<!--*通过问题找回密码的确认找回账号界面 -->
+    <!--{if $action eq 'qpassword_name'} -->
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.get_question_username}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.username}</td>
+            <td width="61%"><input name="user_name" type="text" size="30" class="inputBg" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="get_passwd_question" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!--*根据输入账号显示密码问题界面 -->
+    <!--{if $action eq 'get_passwd_question'} -->
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.input_answer}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.passwd_question}：</td>
+            <td width="61%">{$passwd_question}</td>
+          </tr>
+          <tr>
+            <td align="right">{$lang.passwd_answer}：</td>
+            <td><input name="passwd_answer" type="text" size="20" class="inputBg" /></td>
+          </tr>
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <tr>
+            <td align="right">{$lang.comment_captcha}</td>
+            <td><input type="text" size="8" name="captcha" class="inputBg" />
+            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="check_answer" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="bnt_blue" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="bnt_blue_1" />
+	    </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+<!--{/if}-->
+
+<!-- {if $action eq 'reset_password'} -->
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+<div class="usBox">
+  <div class="usBox_2 clearfix">
+    <form action="user.php" method="post" name="getPassword2" onSubmit="return submitPwd()">
+      <br />
+      <table width="80%" border="0" align="center">
+        <tr>
+          <td>{$lang.new_password}</td>
+          <td><input name="new_password" type="password" size="25" class="inputBg" /></td>
+        </tr>
+        <tr>
+          <td>{$lang.confirm_password}:</td>
+          <td><input name="confirm_password" type="password" size="25"  class="inputBg"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="hidden" name="act" value="act_edit_password" />
+            <input type="hidden" name="uid" value="{$uid}" />
+            <input type="hidden" name="code" value="{$code}" />
+            <input type="submit" name="submit" value="{$lang.confirm_submit}" />
+          </td>
+        </tr>
+      </table>
+      <br />
+    </form>
+  </div>
+</div>
+<!--{/if}-->
+<!--#找回密码界面 end-->
+
+<!--{if $action eq 'check_send_email'}-->
+<div class="usBox" style='border: 1px solid #E5E5E5;padding: 12px 10px;'>
+	<div style="width:520px; margin:0 auto; font-size:14px; color:#666; font-weight:bold;">
+		<p>您的电子邮箱：{$email}</p><br />
+		<p>登录您的注册邮箱激活账户，我们已经给您的邮箱发送了一封激活信。<br />
+		请收到后按照提示操作，需在48小时内完成激活。</p>
+		<br />
+		<p><a href="http://{$emailurl}" target="_blank"><img src="images/email_btn.jpg" width='236' height='49' border="0"></a>&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="send_email()" style="font-size:12px; color:#333; font-weight:100;">没收到？再次发送!</a></p>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({
+	   type: "POST",
+	   url: "user.php",
+	   data: "act=send_hash_mail",
+	   dataType:"json",
+	   success: function(msg){
+		 //alert( "Data Saved: " + msg.message );
+	   }
+	});
+})
+function send_email()
+{
+	$.ajax({
+	   type: "POST",
+	   url: "user.php",
+	   data: "act=send_hash_mail",
+	   /*success: function(msg){
+		 alert( "Data Saved: " + msg );
+	   }*/
+	});
+}
+</script>
+<!--{/if}-->
+<div class="blank"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+
+function register()
+{
+  var frm  = document.forms['formUser'];
+  var username  = Utils.trim(frm.elements['username'].value);
+  var email  = frm.elements['email'].value;
+  var password  = Utils.trim(frm.elements['password'].value);
+  var confirm_password = Utils.trim(frm.elements['confirm_password'].value);
+  var checked_agreement = frm.elements['agreement'].checked;
+  var msn = frm.elements['extend_field1'] ? Utils.trim(frm.elements['extend_field1'].value) : '';
+  var qq = frm.elements['extend_field2'] ? Utils.trim(frm.elements['extend_field2'].value) : '';
+  var home_phone = frm.elements['extend_field4'] ? Utils.trim(frm.elements['extend_field4'].value) : '';
+  var office_phone = frm.elements['extend_field3'] ? Utils.trim(frm.elements['extend_field3'].value) : '';
+  var mobile_phone = frm.elements['mobile'] ? Utils.trim(frm.elements['mobile'].value) : '';
+  var passwd_answer = frm.elements['passwd_answer'] ? Utils.trim(frm.elements['passwd_answer'].value) : '';
+  var sel_question =  frm.elements['sel_question'] ? Utils.trim(frm.elements['sel_question'].value) : '';
+	
+  var msg = "";
+  // 检查输入
+  var msg = '';
+  
+  if (mobile_phone.length == 0)
+  {
+  	 msg += '手机号码不能为空 \n';
+  }
+  if (username.length == 0)
+  {
+    msg += username_empty + '\n';
+  }
+  else if (username.match(/^\s*$|^c:\\con\\con$|[%,\'\*\"\s\t\<\>\&\\]/))
+  {
+    msg += username_invalid + '\n';
+  }
+  else if (username.length < 3)
+  {
+    //msg += username_shorter + '\n';
+  }
+
+  if (email.length == 0)
+  {
+    msg += email_empty + '\n';
+  }
+  else
+  {
+    if ( ! (Utils.isEmail(email)))
+    {
+      msg += email_invalid + '\n';
+    }
+  }
+  if (password.length == 0)
+  {
+    msg += password_empty + '\n';
+  }
+  else if (password.length < 6)
+  {
+    msg += password_shorter + '\n';
+  }
+  if (/ /.test(password) == true)
+  {
+	msg += passwd_balnk + '\n';
+  }
+  if (confirm_password != password )
+  {
+    msg += confirm_password_invalid + '\n';
+  }
+  if(checked_agreement != true)
+  {
+    msg += agreement + '\n';
+  }
+
+  if (msn.length > 0 && (!Utils.isEmail(msn)))
+  {
+    msg += msn_invalid + '\n';
+  }
+
+  if (qq.length > 0 && (!Utils.isNumber(qq)))
+  {
+    msg += qq_invalid + '\n';
+  }
+
+  if (office_phone.length>0)
+  {
+    var reg = /^[\d|\-|\s]+$/;
+    if (!reg.test(office_phone))
+    {
+      msg += office_phone_invalid + '\n';
+    }
+  }
+  
+  if (home_phone.length>0)
+  {
+    var reg = /^[\d|\-|\s]+$/;
+
+    if (!reg.test(home_phone))
+    {
+      msg += home_phone_invalid + '\n';
+    }
+  }
+  if (mobile_phone.length>0)
+  {
+    var reg = /^[\d|\-|\s]+$/;
+    if (!reg.test(mobile_phone))
+    {
+      msg += mobile_phone_invalid + '\n';
+    }
+  }
+  if (passwd_answer.length > 0 && sel_question == 0 || document.getElementById('passwd_quesetion') && passwd_answer.length == 0)
+  {
+    msg += no_select_question + '\n';
+  }
+
+  for (i = 4; i < frm.elements.length - 4; i++)	// 从第五项开始循环检查是否为必填项
+  {
+	needinput = document.getElementById(frm.elements[i].name + 'i') ? document.getElementById(frm.elements[i].name + 'i') : '';
+
+	if (needinput != '' && frm.elements[i].value.length == 0)
+	{
+	  msg += '- ' + needinput.innerHTML + msg_blank + '\n';
+	}
+  }
+
+  if (msg.length > 0)
+  {
+    alert(msg);
+    return false;
+  }
+  else
+  {
+    return true;
+  }
+}
+
+function register2()
+{
+	var frm2  = document.forms['formUser2'];
+  	var code  = frm2.elements['code'] ? Utils.trim(frm2.elements['code'].value) : '';
+  	if (code.length < 6)
+  	{
+  		alert("验证码不合法");
+    	return false;
+  	}
+  	else
+	{
+		return true;
+	}
+}
+</script>
+</html>

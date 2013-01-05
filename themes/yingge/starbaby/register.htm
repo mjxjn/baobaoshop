@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="/themes/yingge/style.css" rel="stylesheet" rev="stylesheet"
+	type="text/css" />
+<link href="/themes/yingge/head.css" rel="stylesheet" rev="stylesheet"
+	type="text/css" />
+<link type="text/css" rel="stylesheet" href="/themes/yingge/foot.css" />
+<link href="/themes/yingge/starbaby/register.css" rel="stylesheet"
+	rev="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/themes/yingge/starbaby/jquery.Jcrop.css" type="text/css" />
+
+<SCRIPT type=text/javascript src="/themes/yingge/js/jquery.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/themes/yingge/js/ajaxupload.js"></SCRIPT>
+<script type="text/javascript" src="/themes/yingge/js/jquery.Jcrop.js"></script>
+<script type="text/javascript" src="/js/calendar.php?lang=zh_cn"></script>
+<link href="/js/calendar/calendar.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(document).ready(function(){
+	//回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+});
+$(document).ready(function(){
+	$("input[name='babyname']").focus(function(){
+		if($("input[name='babyname']").val()=="还没填写"){
+			$("input[name='babyname']").val('');
+		}
+	});
+	$("input[name='babytel']").focus(function(){
+		if($("input[name='babytel']").val()=="还没填写"){
+			$("input[name='babytel']").val('');
+		}
+	});
+	$("#subject").focus(function(){
+		if($("#subject").val()=="请输入您的宝宝参赛宣言！(50字内)"){
+			$("#subject").val('');
+		}
+	});
+});
+
+$(document).ready(function(){
+    var button1 = $('.upload_button1'),button2 = $('.upload_button2'),button3 = $('.upload_button3'),button4 = $('.upload_button4'), interval;   
+    var fileType = "pic",fileNum = "one";    
+    new AjaxUpload(button1,{   
+        action: '/starbaby/uploadpic.php',   
+        data:{  
+            //'buttoninfo':button.text()
+        },
+        name: 'userfile',   
+        onSubmit : function(file, ext){   
+            if(fileType == "pic")   
+            {   
+                if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){   
+                    this.setData({   
+                        'info': '文件类型为图片'  
+                    });   
+                } else {   
+                    //$('<li></li>').appendTo('#example .files').text('非图片类型文件，请重传'); 
+                    alert('非图片类型文件，请重传');  
+                    return false;                  
+                }   
+            }   
+                           
+           // button1.text('宝宝照片上传上传中');   
+               
+            //if(fileNum == 'one')   
+               // this.disable();   
+            
+            /*interval = window.setInterval(function(){   
+                var text = $(window.frames["upload_target"].document.body).text();   
+                if (text.length < 14){   
+                	$(window.frames["upload_target"].document.body).text(text + '.');                       
+                } else {   
+                	$(window.frames["upload_target"].document.body).text('宝宝照片上传上传中');                
+                }   
+            }, 200);*/
+			$('.pic_1').addClass('nowpic');
+            $(window.frames["upload_target"].document.body).empty();
+            $(window.frames["upload_target"].document.body).html('<img src="/themes/yingge/starbaby/images/loadinglit.gif" width="32" height="32" border="0" />上传中');
+            $("#upload_pic_iframe").show();
+        },   
+        onComplete: function(file, response){   
+            /*if(response != "success")   
+                alert(response);   */
+            $(".files_num").val($(".files_num").val()+1);
+                     
+            //button.text('宝宝照片上传');   
+                           
+            window.clearInterval(interval);   
+                           
+            this.enable();   
+            
+            /*if(response == "success");  */ 
+                //$('<li class="'+$(".files_num").val()+'"></li>').appendTo('#example .files').html("<img src='"+response+"' width='150' height='150' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:150px'>[<a href='javascript:void();' onclick=delpic('"+$('.files_num').val()+"')>删除</a>]</p>");                     
+
+				$(".pic_1").empty();
+				
+				$(".pic_1").html("<img src='"+response+"' width='184' height='170' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:184px'>[<a href='javascript:void();' onclick=delpic('pic_1')>删除</a>]</p>");
+         }   
+    });
+
+    new AjaxUpload(button2,{   
+        action: '/starbaby/uploadpic.php',   
+        /*data:{  
+            'buttoninfo':button.text()  
+        },*/
+        name: 'userfile',   
+        onSubmit : function(file, ext){   
+            if(fileType == "pic")   
+            {   
+                if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){   
+                    this.setData({   
+                        'info': '文件类型为图片'  
+                    });   
+                } else {   
+                    //$('<li></li>').appendTo('#example .files').text('非图片类型文件，请重传'); 
+                    alert('非图片类型文件，请重传');  
+                    return false;                  
+                }   
+            }   
+                           
+           // button2.text('宝宝照片上传上传中');   
+               
+            /*if(fileNum == 'one')   
+                this.disable();   
+               
+            interval = window.setInterval(function(){   
+                var text = button2.text();   
+                if (text.length < 14){   
+                    button2.text(text + '.');                       
+                } else {   
+                    button2.text('宝宝照片上传上传中');                
+                }   
+            }, 200);*/ 
+            $('.pic_11').addClass('nowpic');
+            $(window.frames["upload_target"].document.body).empty();
+            $(window.frames["upload_target"].document.body).html('<img src="/themes/yingge/starbaby/images/loadinglit.gif" width="32" height="32" border="0" />上传中');
+            $("#upload_pic_iframe").show();  
+        },   
+        onComplete: function(file, response){   
+            /*if(response != "success")   
+                alert(response);   */
+            $(".files_num").val($(".files_num").val()+1);
+                     
+            //button.text('宝宝照片上传');   
+                           
+            window.clearInterval(interval);   
+                           
+            this.enable();   
+            
+            /*if(response == "success");  */ 
+                //$('<li class="'+$(".files_num").val()+'"></li>').appendTo('#example .files').html("<img src='"+response+"' width='150' height='150' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:150px'>[<a href='javascript:void();' onclick=delpic('"+$('.files_num').val()+"')>删除</a>]</p>");                     
+
+				$(".pic_11").empty();
+				
+				$(".pic_11").html("<img src='"+response+"' width='184' height='170' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:184px'>[<a href='javascript:void();' onclick=delpic('pic_11')>删除</a>]</p>");
+
+    		
+         }   
+    }); 
+
+    new AjaxUpload(button3,{   
+        action: '/starbaby/uploadpic.php',   
+        /*data:{  
+            'buttoninfo':button.text()  
+        },*/
+        name: 'userfile',   
+        onSubmit : function(file, ext){   
+            if(fileType == "pic")   
+            {   
+                if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){   
+                    this.setData({   
+                        'info': '文件类型为图片'  
+                    });   
+                } else {   
+                    //$('<li></li>').appendTo('#example .files').text('非图片类型文件，请重传'); 
+                    alert('非图片类型文件，请重传');  
+                    return false;                  
+                }   
+            }   
+                           
+          //  button3.text('宝宝照片上传上传中');   
+               
+            /*if(fileNum == 'one')   
+                this.disable();   
+               
+            interval = window.setInterval(function(){   
+                var text = button3.text();   
+                if (text.length < 14){   
+                    button3.text(text + '.');                       
+                } else {   
+                    button3.text('宝宝照片上传上传中');                
+                }   
+            }, 200); */  
+            $('.pic_111').addClass('nowpic');
+            $(window.frames["upload_target"].document.body).empty();
+            $(window.frames["upload_target"].document.body).html('<img src="/themes/yingge/starbaby/images/loadinglit.gif" width="32" height="32" border="0" />上传中');
+            $("#upload_pic_iframe").show();
+        },   
+        onComplete: function(file, response){   
+            /*if(response != "success")   
+                alert(response);   */
+            $(".files_num").val($(".files_num").val()+1);
+                     
+            //button.text('宝宝照片上传');   
+                           
+            window.clearInterval(interval);   
+                           
+            this.enable();   
+            
+            /*if(response == "success");  */ 
+                //$('<li class="'+$(".files_num").val()+'"></li>').appendTo('#example .files').html("<img src='"+response+"' width='150' height='150' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:150px'>[<a href='javascript:void();' onclick=delpic('"+$('.files_num').val()+"')>删除</a>]</p>");                     
+
+				$(".pic_111").empty();
+				
+				$(".pic_111").html("<img src='"+response+"' width='184' height='170' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:184px'>[<a href='javascript:void();' onclick=delpic('pic_111')>删除</a>]</p>");
+
+    		
+         }   
+    }); 
+
+    new AjaxUpload(button4,{   
+        action: '/starbaby/uploadpic.php',   
+        /*data:{  
+            'buttoninfo':button.text()  
+        },*/
+        name: 'userfile',   
+        onSubmit : function(file, ext){   
+            if(fileType == "pic")   
+            {   
+                if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){   
+                    this.setData({   
+                        'info': '文件类型为图片'  
+                    });   
+                } else {   
+                    //$('<li></li>').appendTo('#example .files').text('非图片类型文件，请重传'); 
+                    alert('非图片类型文件，请重传');  
+                    return false;                  
+                }   
+            }   
+                           
+          //  button4.text('宝宝照片上传上传中');   
+               
+            /*if(fileNum == 'one')   
+                this.disable();   
+               
+            interval = window.setInterval(function(){   
+                var text = button4.text();   
+                if (text.length < 14){   
+                    button4.text(text + '.');                       
+                } else {   
+                    button4.text('宝宝照片上传上传中');                
+                }   
+            }, 200);   */
+            $('.pic_1111').addClass('nowpic');
+            $(window.frames["upload_target"].document.body).empty();
+            $(window.frames["upload_target"].document.body).html('<img src="/themes/yingge/starbaby/images/loadinglit.gif" width="32" height="32" border="0" />上传中');
+            $("#upload_pic_iframe").show();
+        },   
+        onComplete: function(file, response){   
+            /*if(response != "success")   
+                alert(response);   */
+            $(".files_num").val($(".files_num").val()+1);
+                     
+            //button.text('宝宝照片上传');   
+                           
+            window.clearInterval(interval);   
+                           
+            this.enable();   
+            
+            /*if(response == "success");  */ 
+                //$('<li class="'+$(".files_num").val()+'"></li>').appendTo('#example .files').html("<img src='"+response+"' width='150' height='150' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:150px'>[<a href='javascript:void();' onclick=delpic('"+$('.files_num').val()+"')>删除</a>]</p>");                     
+
+				$(".pic_1111").empty();
+				
+				$(".pic_1111").html("<img src='"+response+"' width='184' height='170' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:184px'>[<a href='javascript:void();' onclick=delpic('pic_1111')>删除</a>]</p>");
+
+    		
+         }   
+    }); 
+    
+});
+
+function delpic(pic_id){
+	if(pic_id=='pic_1'){
+		$("li."+pic_id).html("<a class='upload_button1'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>必传照片</p>");
+	}else if(pic_id=='pic_11')
+	{
+		$("li."+pic_id).html("<a class='upload_button2'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}
+	else if(pic_id=='pic_111')
+	{
+		$("li."+pic_id).html("<a class='upload_button3'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}else if(pic_id=='pic_1111')
+	{
+		$("li."+pic_id).html("<a class='upload_button4'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}
+	ss=$(".files_num").val();
+	$(".files_num").val(ss.substr(0,(ss.length-1)));
+}
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+
+/*$(function() { 
+	$("textarea").keyup(); 
+	});*/ 
+
+	function strLenCalc(obj, checklen, maxlen) { 
+	　　var v = obj.val(), charlen = 0, maxlen = !maxlen ? 200 : maxlen, curlen = maxlen, len = v.length; 
+	　　for(var i = 0; i < v.length; i++) { 
+	　　　　if(v.charCodeAt(i) < 0 || v.charCodeAt(i) > 255) { 
+	curlen -= 1; 
+	} 
+	} 
+	　　if(curlen >= len) { 
+	$("#"+checklen).html("(<strong>"+Math.floor((curlen-len)/2)+"</strong>/50)").css('color', ''); 
+	$("#subBtn").removeAttr("disabled"); 
+	} else { 
+	$("#"+checklen).html("(<strong>"+Math.ceil((len-curlen)/2)+"</strong>/50)").css('color', '#FF0000'); 
+	$("#subBtn").attr("disabled", "disabled"); 
+	} 
+	}
+ 
+</script>
+</head>
+<body>
+{include file="starbaby/library/baby_page_header.lbi"}
+<div id="register_body">
+<div class="register_title">填写宝宝参赛信息</div>
+<div class="register_zy">上传宝宝参赛照片
+每个宝宝可上传1~4张照片参赛，照片上传后不可修改，建议尺寸大于380X380像素，支持png、jpg、jpeg格式。</div>
+<div class="register_form">
+<form name="form1" id="form1" action="/starbaby/register.php"
+	method="post">
+<dl>
+	<dd>
+	<ul>
+		<li class="upload_showpic pic_1"><a class="upload_button1"
+			href="javascript:void();" ><img
+			src="/themes/yingge/starbaby/images/upload_btn.gif" border="0" /></a>
+		<p style="width: 184px; text-align: center; margin-top: 10px">必传照片</p>
+		</li>
+		
+		<li class="upload_showpic pic_11"><a class="upload_button2"
+			href="javascript:void();"><img
+			src="/themes/yingge/starbaby/images/upload_btn.gif" border="0" /></a>
+		<p style="width: 184px; text-align: center; margin-top: 10px">可选传</p>
+		</li>
+		
+		<li class="upload_showpic pic_111"><a class="upload_button3"
+			href="javascript:void();" onclick="ajax_upload('pic_111')"><img
+			src="/themes/yingge/starbaby/images/upload_btn.gif" border="0" /></a>
+		<p style="width: 184px; text-align: center; margin-top: 10px">可选传</p>
+		</li>
+		
+		<li class="upload_showpic pic_1111"><a class="upload_button4"
+			href="javascript:void();" onclick="ajax_upload('pic_1111')"><img
+			src="/themes/yingge/starbaby/images/upload_btn.gif" border="0" /></a>
+		<p style="width: 184px; text-align: center; margin-top: 10px">可选传</p>
+		</li>
+		<input type="hidden" value="pic_" class="files_num" name="files_num" />
+	</ul>
+	<div class="upload_pic_iframe" id="upload_pic_iframe" style="display:none;">
+		<iframe src="about:blank" width="900" height="600" scrolling="no" style="background-color:#fff;" name="upload_target" id="upload_target">
+		
+		</iframe>
+		</div>
+		<script type="text/javascript">
+		  function buildAvatarEditor(pic_src,pic_name){
+			    alert('保存成功');
+				$('.nowpic').empty();
+				var s=Math.random();
+				$(".nowpic").html("<img src='/themes/yingge/starbaby/images/loading.jpg' id='np' width='184' height='184' border='0' alt= '看不清楚?请点击刷新' style='cursor : pointer;' onclick='this.src=\""+pic_src+pic_name+"_s.jpg\"' /><input type='hidden' value='"+pic_src+pic_name+"_s.jpg' name='pic[]'>");
+				
+				//window.location.href = '/profile.do';
+				$('.upload_showpic').removeClass('nowpic');
+				
+		  }
+		  function hideLoading()
+		  {
+			  $(window.frames["upload_target"].document).find(".rel").empty();
+			  $('#upload_pic_iframe').hide();
+			    
+		  }
+		</script>
+	</dd>
+	<dd>宝宝昵称：<em>*</em><input type="text" name="babyname" value="还没填写"
+		class="inputtxt"></dd>
+	<dd>宝宝性别：<em>*</em><select name="babysex">
+		<option value="1" selected>男</option>
+		<option value="2">女</option>
+	</select></dd>
+	<dd>宝宝生日：<em>*</em><input name="babybirthday" type="text"
+		id="babybirthday" class="inputtxt" value="{$todaydate}"
+		readonly="readonly"><input name="selbtn1" type="button"
+		id="selbtn1"
+		onclick="return showCalendar('babybirthday', '%Y-%m-%d', '24', false, 'selbtn1');"
+		value="选择" class="button"></dd>
+	<dd>所在省份：<em>&nbsp;</em>本次活动仅限云南省用户参与</dd>
+	<dd class="tel">联系电话：<em>&nbsp;</em><input type="text"
+		name="babytel" value="还没填写" class="inputtxt"><br />
+	<br />
+	<span>您的联系方式仅作为我们联系获奖事宜使用，不在前台展示，亦不会向其他人员或机构透露，请放心填写。</span></dd>
+	<dd class="xy">参赛宣言：<em>*</em><textarea rows="5" cols="50"
+		onkeyup="strLenCalc($(this), 'checklen', 100);" class="px inputarea"
+		name="babycontent" id="subject">请输入您的宝宝参赛宣言！(50字内)</textarea><span
+		id="checklen">(<strong>0</strong>/50)</span></dd>
+	<dd><input type="submit" value="" id="subBtn" class="inputbtn"><input
+		type="hidden" value="insert" name="act"></dd>
+	<dd><input type="hidden" name="userid" value="{$user_id}"></dd>
+</dl>
+</form>
+</div>
+</div>
+{include file="starbaby/library/baby_page_footer2.lbi"}
+</body>
+</html>

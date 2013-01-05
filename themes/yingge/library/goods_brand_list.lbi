@@ -1,0 +1,56 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">     
+    <div class="brand_body w973">
+		
+		<div class="list_title">
+          <div>排序：</div>
+          <dl class="sel_opt">
+            <dt> <span id="sales" title="销量：从高到低" class="bynew <!--{if $sort eq 'sales'}-->sorted<!--{/if}-->">畅销</span> <span id="goods_id" title="按时间排序" class="bynew  <!--{if $sort eq 'goods_id' or $sort eq ''}-->sorted<!--{/if}-->">最新</span> <span id="goods_price_down" title="价格：由高到低" class="byup <!--{if $sort eq 'shop_price' and $order eq 'DESC'}-->sorted<!--{/if}-->">价格由高到低</span> <span id="goods_price_up" title="价格：由低到高" class="byup <!--{if $sort eq 'shop_price' and $order eq 'ASC'}-->sorted<!--{/if}-->">价格由低到高</span></dt>
+            <dd> <span>共{$count}个商品，当前在 {$pager.page}/{$pager.page_count} 页</span> <!-- {if $pager.page_prev} --><a href="{$pager.page_prev}"><span class="prep">&nbsp;</span></a><!-- {else} --><span class="prep">&nbsp;</span></a><!-- {/if} --> <span class="nextp"><a href="{$pager.page_next}">下一页</a></span></dd>
+          </dl>
+        </div>       
+	  
+	  
+		<ul class="brand_list">
+        <!--{foreach name=goods_list from=$goods_list item=goods}-->
+        <!-- {if $goods.goods_id} -->
+			<li class="goods_pic"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" width="150" height="150" /></a><p><b style='color:#ccc;'>[ {$brand_name} ]</b></p><p><a title="{$goods.goods_name}" href="{$goods.url}">{$goods.goods_name}</a></p><p><span style='color:#ccc;text-decoration:line-through;'>{$goods.market_price}</span>&nbsp;&nbsp; <span style='color:#C90809;'><!-- {if $goods.promote_price eq ''} -->{$goods.shop_price}<!-- {else} -->{$goods.promote_price}<!-- {/if} --></span></p></li>
+        <!-- {/if} -->
+		<!--{/foreach}-->
+		</ul>
+	</div>
+<form method="post" name="listform" style="display:none;" id="page_list_sort_form">
+  <input type="hidden" id="page_list_order" name="order" value="{$pager.order}">
+  <input type="hidden" id="page_list_sort" name="sort" value="{$pager.sort}">
+  <input type="hidden" name="brand" value="{$brand_id}">
+  <input type="hidden" name="step" value="catogry_type">
+  <input type="hidden" id="page_list_totalrecord" name="totalrecord" value="{$count}">
+  <input type="hidden" id="page_list_page" name="page" value="{$pager.page}">
+</form>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<script type="text/javascript">
+window.onload = function()
+{
+  fixpng();
+}
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+<div class="blank9"></div>

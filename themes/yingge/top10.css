@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+.red{ color:red;}
+.blue{color:blue;}
+.top_top{ background:url("images/order_top.jpg") no-repeat; height:121px; width:971px;}
+
+.top10{ width:969px; border:1px solid #d7d7d7; border-width:0 1px; overflow:hidden;}
+.top_menu{ width:181px;}
+	.top_menu_title{ height:39px; background-color:#ed771d; font-size:14px; font-weight:bold; line-height:39px; color:#fff; padding-left:15px;}
+	.top_menu ul{ padding-left:15px; font-size:14px; font-weight:bold; line-height:35px;} 
+	.top_menu ul li{list-style:none outside none; padding-left:10px;}
+	.top_menu a{color:#ed771d; font-size:14px;}
+	.top_menu a:hover{ color:#505050;}
+	.top_menu ul li.on{ background:url("images/ico_top.jpg") no-repeat 0 center;}
+	.top_menu ul li.on a{color:#505050; font-size:14px;}
+	.top_menu ul li.on a:hover{ color:#505050;}
+.top_pro{ width:788px;}
+	.top_pro_title{ height:39px; background-color:#505050; font-size:14px; font-weight:bold; line-height:39px; color:#fff; padding-left:15px;}
+	.top_pro ul{ background:url("images/top_bg.gif") no-repeat; height:1881px;}
+	.top_pro ul li{ height:188px;}
+	.top_prolic{ width:131px; height:131px; float:left; padding:29px 0 0 97px;}
+	.top_proinfo{ float:left; padding:39px 0 0 35px; line-height:24px;}
+	.top_proinfo .pro_title a{ font-weight:bold; color:#505050;}
+	.top_proinfo .pro_title a:hover{ color:#ed771d;}
+	.top_proinfo .pro_marketprice span{ text-decoration:line-through;}
+	.top_proinfo .pro_shopprice span{ font-size:16px; font-weight:bold;}
+	.top_probtn{ float:right; padding:72px 15px 0 0;}
+	.top_probtn a{display:block;}
+	

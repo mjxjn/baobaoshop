@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>实物兑换_积分商城积分商城_婴格母婴商城-云南最大的婴儿用品一站式购物网站,妈妈们的放心选择,云南母婴第一品牌!</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/integral/integral.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+{include file= "/library/page_header.lbi"}
+{include file= "/library/page_header2.lbi"}
+<div id="exchange_body" class="w973">
+	<!--当前位置 start-->
+	<div class="AllWrapInside clearfix">
+		<div class="Navigation">{include file= "/library/ur_here.lbi" }</div> 
+	</div>
+	<!--当前位置 end-->
+	<div class="w190 left">
+		{include file= "integral/library/integral_left.lbi" }
+	</div>
+	<div class="w770 left">
+		<div class="shiwu">
+			<div class="shiwu_title"><img src="/themes/yingge/images/integral/shiwu_title.jpg" width="770" height="39" /></div>
+			<div class="filter_pn">
+                  <div class="sort">
+                    	<div class="t">排序:</div>
+                        <div class="sort_btn_list">
+                        	<div class="btn"><a href="integral.php?act=goods&page={$pager.page}&sort=goods_id&order={$order}" <!--{if $sort eq 'goods_id' or $sort eq ''}-->class="cur"<!--{/if}-->><span class="c">默认</span></a></div>
+                            <div class="btn"><a href="integral.php?act=goods&page={$pager.page}&sort=exchange_integral&order={$order}" <!--{if $sort eq 'exchange_integral' }-->class="cur"<!--{/if}-->><span class="c">积分</span><i <!--{if $order eq 'DESC' and $sort eq 'exchange_integral' }-->class="down"<!-- {else} -->class="up"<!-- {/if} -->></i></a></div>
+                            <div class="btn"><a href="integral.php?act=goods&page={$pager.page}&sort=shop_price&order={$order}" <!--{if $sort eq 'shop_price' }-->class="cur"<!--{/if}-->><span class="c">价格</span><i <!--{if $order eq 'DESC' and  $sort eq 'shop_price' }-->class="down"<!-- {else} -->class="up"<!-- {/if} --> ></i></a></div>
+                            <div class="btn " id="btn">
+                            	<a href="#"><span class="c">积分区间</span><em class="btn_ldrop"></em></a>
+                                <div id="price_range_select" class="shop_drop_box">
+	                                <div class="item"><a href="integral.php?act=goods&page={$pager.page}&sort=exchange_integral&order={$order}&integral_max=500&integral_min=0">0-500</a></div>
+	                                <div class="item"><a href="integral.php?act=goods&page={$pager.page}&sort=exchange_integral&order={$order}&integral_max=1500&integral_min=501">501-1500</a></div>
+	                                <div class="item"><a href="integral.php?act=goods&page={$pager.page}&sort=exchange_integral&order={$order}&integral_max=3000&integral_min=1501">1501-3000</a></div>
+	                                <div class="item"><a href="integral.php?act=goods&page={$pager.page}&sort=exchange_integral&order={$order}&integral_max=90000&integral_min=3001">3001以上</a></div>
+                                </div>
+                            </div>
+                       </div>
+                 </div>
+                 <div id="pagePN" class="page_pn">
+                    	<div class="page_btn_pn"><!-- {if $pager.page_prev} --><a href="{$pager.page_prev}"><b>&lt; 上一页</b></a><!-- {else} --><b>&lt; 上一页</b><!-- {/if} --><a href="{$pager.page_next}"> 下一页 &gt;</a></div>
+                    	<div class="page_num"> {$pager.page}/{$pager.page_count}</div>
+                 </div>
+          </div>
+			<div class="jingxuan_pn">
+				<div class="jingxuan_shop">
+				<!-- {foreach from=$goods_list item=goods} -->
+				<!-- {if $goods.goods_id} -->
+					<div class="item_pn">
+						<div class="item_pic">
+							<a href="{$goods.url}" target="_blank"><img src="{$goods.goods_thumb}" width="150" height="150" /></a>
+							<div class="limit">
+								<div class="bg"></div>
+								<div class="con">
+                	            <span class="left"></span>
+                   				 <span class="right">剩余件数{$goods.goods_number}</span>
+                                </div>
+							</div>
+						</div>
+						<div class="item_name"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name}">{$goods.goods_name}</a></div>
+						<div>
+							<span class="c_red">{$goods.exchange_integral}</span>积分
+						</div>
+					</div>
+				<!--{/if}-->
+				<!--{/foreach}-->		
+				</div>
+			</div>
+		</div>
+		{include file= "integral/library/pages.lbi" }
+		
+	</div>
+</div>
+<div class="blank9"></div>
+{include file= "/library/page_footer.lbi" }
+<script type=text/javascript src="themes/yingge/js/agestate.js"></script>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".shiwu").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+$("#btn").hover(
+		  function () {
+			    $("#price_range_select").show();
+			  },
+			  function () {
+			    $("#price_range_select").hide();
+			  }
+	);
+}); 
+</script> 
+</body>
+</html>

@@ -1,0 +1,131 @@
+#global_body{height:auto; overflow:hidden;background:url("images/arc_pro_bg.png") repeat-y right 0;}
+
+div.title {
+height: 45px;
+background: url('images/title_bg.png') repeat-x #fff;
+margin-bottom: 15px;
+margin-top: 15px;
+padding: 3px 0;
+}
+.right div.title {
+height: 45px;
+background: url('images/title_bg.png') repeat-x 0 15px #fff;
+margin-bottom: 0px;
+margin-top: 0px;
+padding: 15px 0 6px 0;
+}
+div.title h1 {
+text-align: center;
+font-size: 14px;
+color: #DD466A;
+padding-top: 3px;
+}
+div.topic-big {
+width: 304px;
+height: 213px;
+position: relative;
+margin-bottom: 10px;
+}
+div.topic-big .topic-title {
+position: absolute;
+z-index: 99;
+background: #DD466A;
+opacity: 0.8;
+filter: alpha(opacity=80);
+color: white;
+font-size: 16px;
+padding: 5px 10px;
+left: 0;
+bottom: 20px;
+width: 284px;
+}
+div.topic-small {
+margin-top: 15px;
+position: relative;
+}
+div.topic-small .topic-title {
+position: absolute;
+z-index: 99;
+background: #DD466A;
+opacity: 0.8;
+filter: alpha(opacity=80);
+color: white;
+font-size: 16px;
+padding: 5px 10px;
+left: 0;
+bottom: 1px;
+width: 284px;
+}
+.w646{
+	width:646px;
+	margin-right: 39px;
+}
+.w304{
+	width:301px;
+}
+#channel-tab {list-style: none;position: relative;width:540px;float:left;margin:7px 0 0 10px;}
+#channel-tab li {display: inline-block;float:left;}
+#channel-tab li a {position: relative;z-index: 20;color: #ED771D;font-size: 14px;display: block;float: left;padding: 8px 20px 4px;text-decoration: none; font-weight:bold; text-align:center;}
+#channel-tab #magic-line {position: absolute;top: 0;left: 0;width: 100px;background: #F7AB75;z-index: 10;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;}
+#channel-tab li.current_page_item a{color:#fff;}
+.ie6 #channel-tab li, .ie7 #channel-tab li {display: inline;}
+
+.channel-title{height:30px;width:86px;background:url('images/channel_title_box.png') no-repeat;color:#fff;font-size:14px;float:left;font-weight:bold; padding:15px 0 0 10px;}
+div.title h2{ font-size:14px; line-height:36px; padding-left:10px;float:left;}
+.channel-list{height:32px;width:119px;background:url('images/channel_list_box.png') no-repeat;float:right; text-indent: -999999px;margin:5px 0 0 10px;}
+.channel-list a{ display:block;height:32px;width:119px;}
+
+ul.list-posts{display:none;}
+ul.list-posts li{border-bottom:1px dashed #d6d6d6;padding:0 0 10px;margin-bottom:15px;}
+ul.list-posts .img-box{width:124px;height:134px;background:url('images/img_shadow.png') no-repeat bottom right;float:left;margin-right:20px;}
+ul.list-posts .img-box img{width:120px;border:1px solid #e1e1e1;height:120px;padding:1px;}
+ul.list-posts .content-box{float:left;width:500px;cursor:pointer;}
+ul.list-posts .content-box .title{font-size:14px;padding:15px 0;color:#ED771D; float:left; width:500px;}
+ul.list-posts .content-box .title .date{font-size:12px;color:#555;padding-left:10px; float:right;}
+ul.list-posts a{color:#707070;}
+ul.list-posts .content-box .content{ line-height:19px;}
+
+.arc_content{ font-size:12px; color:#333;}
+.arc_content .diescription{border:1px dashed #d6d6d6; color:#666; height:30px; line-height:30px; text-align:center; width:97%; margin:0 auto;}
+.arc_content .arc_body{margin-top:15px; line-height:20px;}
+
+.proudct{width:301px; }
+.proudct .pro_title{color:#ED771D; font-size:14px; font-weight:bold; line-height:35px; padding-left:15px; border-bottom:2px #ED771D solid;}
+.proudct ul li{ border-bottom:1px solid #eee; margin:18px 3px 0px 15px; padding-bottom:10px;clear:both; overflow:hidden;}
+.proudct ul li a{display:block;}
+.proudct ul li img{float:left; margin-right:18px;}
+.proudct ul li p{line-height:19px; padding-top:15px;}
+.proudct ul li div.price{font-weight:bold; color:#EE5E80; font-size:14px; line-height:22px;}
+
+.page_box {
+    height: 24px;
+    line-height: 23px;
+    padding-bottom: 4px;
+    text-align: right;
+	padding-right:15px;
+}
+.page_box a {
+    display: inline-block;
+    height: 23px;
+    padding: 0 9px;
+}
+.page_box span {
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 23px;
+    margin: 0 3px;
+}
+.page_box font {
+    font-size: 12px;
+    padding: 0 5px;
+}
+.page_box b {
+    color: #CC0809;
+    font-weight: normal;
+}
+#page_on {
+    background-color: #FFF9EB;
+    border: 1px solid #CA0809;
+    color: #CA0809;
+    padding: 0 9px;
+}

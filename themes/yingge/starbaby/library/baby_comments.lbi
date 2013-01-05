@@ -1,0 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<SCRIPT type=text/javascript src="/js/transport.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/js/utils.js"></SCRIPT>
+ {* ECSHOP 提醒您：动态载入baby_comments_list.lbi，显示评论列表和评论表单 *}{insert name='baby_comments' type=$ia_id id=$baby_id }

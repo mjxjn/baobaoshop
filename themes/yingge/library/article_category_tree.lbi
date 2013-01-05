@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $article_categories} -->
+<div class="channel-title">育儿资讯</div>
+                        <ul class="group" id="channel-tab">
+                        <!--{foreach from=$article_categories name=article_categories item=cat}-->
+                        <li id="btn_channel_{$smarty.foreach.article_categories.index}" channel="{$smarty.foreach.article_categories.index}" class="<!-- {if $cat.id eq $cat_id } --> current_page_item <!-- {/if} -->" <!-- {if $cat.id eq $cat_id } --> locked=""<!-- {/if} -->><a href="{$cat.url}" title="{$cat.name|escape:html}频道" style="<!-- {if $cat.id eq $cat_id } --> color: color: rgb(255, 255, 255); <!-- {else} --> color: #ED771D; <!-- {/if} --> ">{$cat.name|escape:html}</a></li>
+                        <!--{/foreach}-->
+                        </ul>
+                        <div class="clear"></div>
+<!-- {/if} -->

@@ -1,0 +1,142 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">@import url("/js/suggest/SuggestFramework.css");</style>
+<script src="/js/suggest/SuggestFramework.js" type=text/javascript /></script>
+<script type="text/javascript">window.onload = initializeSuggestFramework;</script>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+<div id="top" class="topdiv">
+	<div class="w990 line26">
+    	<div class="left f12">欢迎来到婴格母婴商城&nbsp;|&nbsp;<strong>配送范围：</strong>昆明&nbsp;|&nbsp;<strong>服务时间：</strong>9:30-17:30(节假日除外)</div>
+        <div class="right f12">
+        	<ul> 
+            	<li class="li1">
+					{insert name='baby_member_info'}
+                </li> 
+                <li class="li2">
+                	<div class="TreeList">  
+                    	<div class="cat0"><a href="/user.php">我的婴格</a></div> 
+                        <div class="cat1"><a href="/user.php?act=order_list">我的订单</a></div> 
+                        <div class="cat1"><a href="/user.php?act=comment_list">我的评论</a></div> 
+                        <div class="cat1"><a href="/user.php?act=collection_list">我的收藏</a></div> 
+                        <div class="cat1"><a href="/user.php?act=bonus">我的优惠券</a></div> 
+                     </div>
+                </li> 
+                <li class="li3"><div class="ShopCartWrap">&nbsp;&nbsp;<a href="/flow.php">购物车中有<b class="cart-number" id="ECS_CARTINFO"> {insert name='cart_info'} </b>件商品</a> &nbsp;<a class="cart-container" href="/flow.php">去结算</a> </div> 
+                </li>
+            </ul>
+        </div>
+        <div class="blank9"></div>
+    </div>
+</div>
+{insert name='ads' id=10 num=1}
+<div id="head">
+	<div id="logo_head" class="w980">
+    	<div id="logo" class="left"><a href="/index.php"><img src="/themes/yingge/images/LOGO.jpg" width="124" height="60" border="0" title="婴格母婴网" /></a></div>
+        <div id="search_head" class="right">
+        	<script src="/js/CalendarData.js" type=text/javascript /></script>
+            <div class="tel f12"><iframe src="http://m.weather.com.cn/m/pn6/weather.htm?id=101290101T " width="140" height="20" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
+			<script type="text/javascript">
+			{literal}
+			
+			$(".topdiv ul li.li2").hover(
+				function () {
+				$(this).addClass("li2H");
+				},
+				function () {
+				$(this).removeClass("li2H");
+				}
+			);
+			$(document).ready(function(){
+				$("#mq").click(
+					function(){
+						$(this).css("visibility","hidden");
+						$("#keywords").focus();
+					}
+				)
+				$("#keywords").focus(
+					function(){
+						$("#mq").css("visibility","hidden");
+					}
+				)
+				$("#keywords").blur(
+					function(){
+						if($(this).val()==""){
+							$("#mq").css("visibility","visible");
+						}
+					}
+				);
+			});
+			function checkSearchForm()
+			{
+				if(document.getElementById('keyword').value)
+				{
+					return true;
+				}
+				else
+				{
+					alert("输入您要的商品名称/关键词/货号");
+					return false;
+				}
+			}
+			
+			{/literal}
+			</script>
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr class="m_search">
+                    <td class="searchs"> 
+                        <form class="SearchBar" id="searchForm" name="searchForm" method="get" action="/search.php" onSubmit="return checkSearchForm()"> 
+                        <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <td class="search_label"><label id="mq" style="visibility: visible; color: #ccc; ">输入您要的商品名称/关键词/货号</label>
+								<input class="inputstyle keywords" size="10" name="keywords" id="keywords" type="text" action="sug.php" columns="1" capture="1"> </td>
+                                <td><input type="hidden" name="category" value="0"><input type="submit" class="btn_search" value="搜索"> </td>
+                                <td></td>
+                            </tr>
+                         </tbody>
+                         </table> 
+                         </form> 
+                    </td>
+                    <td class="search_word" rowspan="2">
+                        <a target="_blank" href="">新手上路</a> 
+                        <a target="_blank" href="/user/service.html">在线客服</a>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                        <div class="sleft">
+                        {if $searchkeywords}
+                        {foreach from=$searchkeywords item=val name=searchkeywords}
+                           <a href="/search.php?keywords={$val|escape:url}" target="_blank">{$val}</a>
+                           {if $smarty.foreach.searchkeywords.last}
+                           {else}
+                           <font size="-0">|</font>
+                           {/if}
+                        {/foreach}
+                        {/if}
+                        </div>
+                        <div class="sright">全场正品 7天无条件退换 昆明地区 货到付款!</div>
+                     </td> 
+                  </tr>
+                </tbody>
+             </table>
+        </div>
+    </div>
+    <div class="blank9"></div>
+</div>
+<div id="menu">
+    <div class=" w990 menu_main f14">
+    	<ul>
+        	<li><a href="/index.php">首页</a></li>
+			<!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+				<li><a href="/{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a></li>
+			<!-- {/foreach} -->
+
+            <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+            <li class="menu_h"><a href="<!-- {if $nav.url neq 'http://bbs.3330777.com/'} -->/{$nav.url}<!-- {else} -->{$nav.url}<!-- {/if} -->" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a></li>
+			<!-- {/foreach} -->
+        </ul>
+    </div>
+</div>

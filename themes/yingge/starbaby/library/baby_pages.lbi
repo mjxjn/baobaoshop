@@ -1,0 +1,62 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $pager.page_count neq 1} -->
+<!--翻页 start-->
+<form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+<div class="ft baby-paginator">         
+			<div class="dpl-paginator">
+                 <!-- {if $pager.page_prev} -->
+                 <a class="dpl-paginator-pre" href="{$pager.page_prev}" hidefocus="true">上一页<span class="dpl-paginator-arrow-left"></span></a>
+                 <!-- {else} -->
+                 <span class="page-prev">            
+                 <span>上一页</span>
+                 </span>
+                 <!-- {/if} -->
+                 
+	        	 <!--{foreach from=$pager.page_number key=key item=item}-->
+	             <!-- {if $pager.page eq $key} -->
+	             <span class="dpl-paginator-break">{$key}</span>
+	             <!-- {else} -->
+                 <a href="{$item}">{$key}</a>
+                 <!-- {/if} -->
+                 <!--{/foreach}-->
+                 
+                 <!-- {if $pager.page_next} -->
+                 <a href="{$pager.page_next}" class="dpl-paginator-next">下一页<span class="dpl-paginator-arrow-right"></span></a>
+        		 <!-- {else} -->
+        		 <span class="page-next"><span>下一页</span></span>
+        		 <!-- {/if} -->
+        		 <span class="dpl-paginator-skip">共{$pager.page_count}页&nbsp;到第</span>
+		 		 
+				     <!-- 输入框 -->
+				     <input class="J_Dpl_Paginator_JumpTo" maxlength="8" name="page" size="6" type="text" value="1">
+				     <span>页</span>
+				     <!-- 这里输入表单隐藏域 -->
+					 <input type="hidden" name="xz" value="{$xz}">
+					 <input type="hidden" name="sx" value="{$sx}">
+					 <input type="hidden" name="sort1" value="{$sort1}">
+					 <input type="hidden" name="sort2" value="{$sort2}">
+					 <button type="submit">确定</button>
+				 
+    		</div>
+</div>
+<!-- {if $pager.page_kbd} -->
+    <!--{foreach from=$pager.search key=key item=item}-->
+      {if $key eq 'keywords'}
+          <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+        {else}
+          <input type="hidden" name="{$key}" value="{$item}" />
+      {/if}
+    <!--{/foreach}-->
+<!-- {/if} -->
+</form>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<!-- {/if} -->

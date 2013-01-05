@@ -1,0 +1,228 @@
+<!-- $Id: user_info.htm 16854 2009-12-07 06:20:09Z sxc_shop $ -->
+{include file="pageheader.htm"}
+<link rel="stylesheet" href="/themes/yingge/starbaby/jquery.Jcrop.css" type="text/css" />
+
+<SCRIPT type=text/javascript src="/themes/yingge/js/jquery.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/themes/yingge/js/ajaxupload.js"></SCRIPT>
+<script type="text/javascript" src="/themes/yingge/js/jquery.Jcrop.js"></script>
+<div class="main-div">
+<form method="post" action="baby.php" name="theForm" onsubmit="return validate()">
+<table width="100%" >
+  <tr>
+    <td class="label">宝宝昵称:</td>
+    <td>{if $form_action eq "update"}{$user.baby_name}<input type="hidden" name="baby_name" value="{$user.baby_name}" />{else}<input type="text" name="baby_name" maxlength="60" value="{$user.baby_name}" />{$lang.require_field}{/if}</td>
+  </tr>
+
+  <tr>
+    <td class="label">宝宝性别:</td>
+    <td>{$user.baby_sex} </td>
+  </tr>
+  <tr>
+    <td class="label">宝宝生日:</td>
+    <td>{$user.baby_birthday}</td>
+  </tr>
+  
+  <tr>
+    <td class="label">宝宝图片:</td>
+    <td>
+    {foreach from=$baby_pic_list item=baby_pic}
+    {if $baby_pic neq ''}
+    <img src="/starbaby/{$baby_pic}" width="100" height="100" /><input type="text" name="pic[]" value="{$baby_pic}" size="40" />(删除图片请清空此图片地址)<br />
+    {/if}
+    {/foreach}
+    <div class="pic"></div>
+    <br>
+          <a class="upload_button"	href="javascript:void();" >上传宝宝图片</a>
+    </td>
+  </tr>
+        <div class="upload_pic_iframe" id="upload_pic_iframe" style="display:none;">
+		<iframe src="about:blank" width="900" height="600" scrolling="no" style="background-color:#fff;" name="upload_target" id="upload_target">
+		
+		</iframe>
+		</div>
+		<script type="text/javascript">
+		$(document).ready(function(){
+		    var button1 = $('.upload_button'), interval;   
+		    var fileType = "pic",fileNum = "one";    
+		    new AjaxUpload(button1,{   
+		        action: '/starbaby/uploadpic.php',   
+		        data:{  
+		            //'buttoninfo':button.text()
+		        },
+		        name: 'userfile',   
+		        onSubmit : function(file, ext){   
+		            if(fileType == "pic")   
+		            {   
+		                if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){   
+		                    this.setData({   
+		                        'info': '文件类型为图片'  
+		                    });   
+		                } else {   
+		                    //$('<li></li>').appendTo('#example .files').text('非图片类型文件，请重传'); 
+		                    alert('非图片类型文件，请重传');  
+		                    return false;                  
+		                }   
+		            }   
+		                           
+		           // button1.text('宝宝照片上传上传中');   
+		               
+		            //if(fileNum == 'one')   
+		               // this.disable();   
+		            
+		            /*interval = window.setInterval(function(){   
+		                var text = $(window.frames["upload_target"].document.body).text();   
+		                if (text.length < 14){   
+		                	$(window.frames["upload_target"].document.body).text(text + '.');                       
+		                } else {   
+		                	$(window.frames["upload_target"].document.body).text('宝宝照片上传上传中');                
+		                }   
+		            }, 200);*/
+					$('.pic').addClass('nowpic');
+		            $(window.frames["upload_target"].document.body).empty();
+		            $(window.frames["upload_target"].document.body).html('<img src="/themes/yingge/starbaby/images/loadinglit.gif" width="32" height="32" border="0" />上传中');
+		            $("#upload_pic_iframe").show();
+		        },   
+		        onComplete: function(file, response){   
+		            /*if(response != "success")   
+		                alert(response);   */
+		            //$(".files_num").val($(".files_num").val()+1);
+		                     
+		            //button.text('宝宝照片上传');   
+		                           
+		            window.clearInterval(interval);   
+		                           
+		            this.enable();   
+		            
+		            /*if(response == "success");  */ 
+		                //$('<li class="'+$(".files_num").val()+'"></li>').appendTo('#example .files').html("<img src='"+response+"' width='150' height='150' border='0' /><input type='hidden' value='"+response+"' name='pic[]'><p style='text-align:center; width:150px'>[<a href='javascript:void();' onclick=delpic('"+$('.files_num').val()+"')>删除</a>]</p>");                     
+
+						$(".pic").empty();
+						
+						$(".pic").html("<img src='/starbaby/"+response+"' width='100' height='100' border='0' /><input type='hidden' value='"+response+"' name='pic[]'>");
+		         }   
+		    });
+		});
+		  function buildAvatarEditor(pic_src,pic_name){
+			    alert('保存成功');
+				$('.nowpic').empty();
+				var s=Math.random();
+				$(".nowpic").before("<img src='/themes/yingge/starbaby/images/loading.jpg' id='np' width='100' height='100' border='0' alt= '看不清楚?请点击刷新' style='cursor : pointer;' onclick='this.src=\"\/starbaby\/"+pic_src+pic_name+"_s.jpg\"' /><input type='text' value='"+pic_src+pic_name+"_s.jpg' name='pic[]' size='40'><br />");
+				
+				//window.location.href = '/profile.do';
+				$('.pic').removeClass('nowpic');
+				
+		  }
+		  function hideLoading()
+		  {
+			  $(window.frames["upload_target"].document).find(".rel").empty();
+			  $('#upload_pic_iframe').hide();
+			    
+		  }
+		</script>
+  <tr>
+    <td class="label">上传会员:</td>
+    <td><a href="users.php?act=edit&id={$user.user_id}" target="_blank">{$user.user_name}</a></td>
+  </tr>
+  <tr>
+    <td class="label">联系电话:</td>
+    <td>{$user.baby_tel}</td>
+  </tr>
+  
+  <tr>
+    <td class="label">上传时间:</td>
+    <td>{$user.baby_time}</td>
+  </tr>
+  <tr>
+    <td class="label">宝宝宣言:</td>
+    <td><textarea name="baby_content">{$user.baby_content}</textarea></td>
+  </tr>
+  <tr>
+    <td class="label">宝宝印象:</td>
+    <td>  
+    <input type="text" name="baby_yin" value="{$user.baby_yin}" size="40" />(用英文逗号","分割)
+    </td>
+  </tr>
+  <tr>
+    <td class="label">投票数:</td>
+    <td><input type="text" name="baby_number" value="{$user.baby_number}" size="20" /></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" align="center">
+      <input type="submit" value="{$lang.button_submit}" class="button" />
+      <input type="reset" value="{$lang.button_reset}" class="button" />
+      <input type="hidden" name="act" value="{$form_action}" />
+      <input type="hidden" name="baby_id" value="{$user.baby_id}" />    </td>
+  </tr>
+</table>
+
+</form>
+</div>
+{insert_scripts files="../js/utils.js,validator.js"}
+{literal}
+<script language="JavaScript">
+<!--
+
+if (document.forms['theForm'].elements['act'].value == "insert")
+{
+  document.forms['theForm'].elements['username'].focus();
+}
+else
+{
+  //document.forms['theForm'].elements['email'].focus();
+}
+
+onload = function()
+{
+    // 开始检查订单
+    startCheckOrder();
+}
+
+/**
+ * 检查表单输入的数据
+ */
+function validate()
+{
+    validator = new Validator("theForm");
+    //validator.isEmail("email", invalid_email, true);
+
+    if (document.forms['theForm'].elements['act'].value == "insert")
+    {
+        validator.required("username",  no_username);
+        validator.required("password", no_password);
+        validator.required("confirm_password", no_confirm_password);
+        validator.eqaul("password", "confirm_password", password_not_same);
+
+        var password_value = document.forms['theForm'].elements['password'].value;
+        if (password_value.length < 6)
+        {
+          validator.addErrorMsg(less_password);
+        }
+        if (/ /.test(password_value) == true)
+        {
+          validator.addErrorMsg(passwd_balnk);
+        }
+    }
+    else if (document.forms['theForm'].elements['act'].value == "update")
+    {
+        var newpass = document.forms['theForm'].elements['password'];
+        var confirm_password = document.forms['theForm'].elements['confirm_password'];
+        if(newpass.value.length > 0 || confirm_password.value.length)
+        {
+          if(newpass.value.length >= 6 || confirm_password.value.length >= 6)
+          {
+            validator.eqaul("password", "confirm_password", password_not_same);
+          }
+          else
+          {
+            validator.addErrorMsg(password_len_err);
+          }
+        }
+    }
+
+    return validator.passed();
+}
+//-->
+</script>
+{/literal}
+{include file="pagefooter.htm"}

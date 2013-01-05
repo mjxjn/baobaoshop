@@ -1,0 +1,42 @@
+<!-- $Id: favourable_list.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<form method="post" action="setindex.php" name="listForm">
+<!-- start favourable list -->
+<div class="list-div" id="listDiv">
+{/if}
+
+  <table cellpadding="3" cellspacing="1">
+    <tr>
+      <th>
+        <a href="javascript:listTable.sort('id'); ">编号</a>{$sort_act_id}</th>
+      <th><a href="javascript:listTable.sort('ad_cats'); ">类别</a>{$sort_act_name}</th>
+      <th>展示类型</th>
+      <th>是否显示</th>
+      <th><a href="javascript:listTable.sort('ad_sort'); ">排序</a>{$sort_sort_order}</th>
+      <th>操作</th>
+    </tr>
+
+    {foreach from=$index_ad_list item=index_ad}
+    <tr>
+      <td>{$index_ad.aid}</td>
+      <td>{$index_ad.ad_cats}</td>
+      <td align="center">{$index_ad.ad_type}</td>
+      <td align="center"><img src="images/{if $index_ad.ad_status}yes{else}no{/if}.gif" onclick="listTable.toggle(this, 'toggle_status', {$index_ad.aid})" /></td>
+      <td align="center"><span onclick="listTable.edit(this, 'edit_sort', {$index_ad.aid})">{$index_ad.ad_sort}</span></td>
+      <td align="center">
+        <a href="setindex.php?act=edit_ad&amp;id={$index_ad.aid}" title="编辑"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+
+{if $full_page}
+</div>
+<!-- end favourable list -->
+</form>
+
+{include file="pagefooter.htm"}
+{/if}

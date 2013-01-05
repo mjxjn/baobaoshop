@@ -1,0 +1,193 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="scrip_box"><a name="comments"></a>
+                  <div class="scrip_top"><span class="s_t2"></span></div>
+                  <div class="clear"></div>
+                  <div class="zixun_bar">
+                    <ul>
+                      <li id="pl1" class="zixun_li zixun_on">查看所有评论(<font id="comment_count">{$pager.record_count}</font>)</li>
+                    </ul>
+                  </div>
+<div id="goods_comments_list_box_body">
+<!-- {if $comments} -->
+<!-- {foreach from=$comments item=comment} -->
+<div class="pl_line ">
+  <ul class="pl_zone pl">
+    <li><strong>{$comment.username|escape:html}</strong>&nbsp;&nbsp;<span>发表于 {$comment.add_time}</span></li>
+    <li class="pl_txt"> {$comment.content}</li>
+      </ul>
+  <ul class="star_zone">
+    <li>评分&nbsp;&nbsp;<div class="star s{$comment.rank}"></div></li>
+  </ul>
+  <div class="clear"></div>
+</div>
+<!-- {/foreach} -->
+<!--{else}-->
+        {$lang.no_comments}
+<!--{/if}-->
+<div class="page_box" id="page_box_pl">
+<form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+ <span><font><a href="{$pager.page_first}">«首页</a></font></span><span><font><a href="{$pager.page_prev}">­上一页</a></font></span>
+ <!--{foreach from=$pager.page_number key=key item=item}-->
+  <!-- {if $pager.page eq $key} -->
+ <span id="page_on">{$key}</span>
+ <!-- {else} -->
+ <span><font><a href="{$item}">{$key}</a></font></span>
+ <!-- {/if} -->
+<!--{/foreach}-->
+ <span><font><a href="{$pager.page_next}">­下一页</a></font></span><span><font><a href="{$pager.page_last}">­尾页»</a></font></span><span><font>{$pager.page}/共{$pager.page_count}页</font></span> 
+ </form>
+ </div>
+ 
+</div>
+
+
+<!--评论表单 start-->
+      <div class="commentsList">
+      <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
+       <table width="652" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="60" height="30" align="right">{$lang.username}：</td>
+          <td width="552" height="30" {if !$enabled_captcha}{/if}><!--{if $smarty.session.user_name}-->{$smarty.session.user_name}<!--{else}-->{$lang.anonymous}<!--{/if}--><input name="username" type="hidden" value="{$smarty.session.user_name}" id="username" /></td>
+        </tr>
+        <tr>
+          <td align="right" height="30">{$lang.comment_rank}：</td>
+          <td height="30">
+          <input name="comment_rank" type="radio" value="1" id="comment_rank1" /> <img src="../images/1star.jpg" />
+          <input name="comment_rank" type="radio" value="2" id="comment_rank2" /> <img src="../images/2star.jpg" />
+          <input name="comment_rank" type="radio" value="3" id="comment_rank3" /> <img src="../images/3star.jpg" />
+          <input name="comment_rank" type="radio" value="4" id="comment_rank4" /> <img src="../images/4star.jpg" />
+          <input name="comment_rank" type="radio" value="5" checked="checked" id="comment_rank5" /> <img src="../images/5star.jpg" />
+          </td>
+        </tr>
+        <tr>
+          <td align="right" height="30" valign="top">{$lang.comment_content}：</td>
+          <td height="30">
+          <textarea name="content" class="inputBorder" style="height:50px; width:420px;"></textarea>
+          <input type="hidden" name="cmt_type" value="{$comment_type}" />
+          <input type="hidden" name="id" value="{$id}" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" height="30">
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <div style="padding-left:15px; text-align:left; float:left;">
+          {$lang.comment_captcha}：<input type="text" name="captcha"  class="inputBorder" style="width:50px; margin-left:5px;"/>
+          <img src="captcha.php?{$rand}" alt="captcha" onClick="this.src='captcha.php?'+Math.random()" class="captcha" style="margin-top: 8px; ">
+          </div>
+          <!-- {/if} -->
+          <input name="" type="submit"  value="" class="f_r" style="border:none; background:url(../images/commentsBnt.gif); width:75px; height:21px; margin-left:8px; margin-top:9px;">
+          </td>
+        </tr>
+      </table>
+      </form>
+      </div>
+      <!--评论表单 end-->
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+{foreach from=$lang.cmt_lang item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{literal}
+/**
+ * 提交评论信息
+*/
+function submitComment(frm)
+{
+  var cmt = new Object;
+
+  cmt.username        = frm.elements['username'].value;
+  //cmt.email           = frm.elements['email'].value;
+  cmt.content         = frm.elements['content'].value;
+  cmt.type            = frm.elements['cmt_type'].value;
+  cmt.id              = frm.elements['id'].value;
+  cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
+  cmt.captcha         = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+  cmt.rank            = 0;
+
+  for (i = 0; i < frm.elements['comment_rank'].length; i++)
+  {
+    if (frm.elements['comment_rank'][i].checked)
+    {
+       cmt.rank = frm.elements['comment_rank'][i].value;
+     }
+  }
+
+  if (cmt.username.length == 0)
+  {
+     alert("对不起，请登录后评论");
+     return false;
+  }
+
+  /*if (cmt.email.length > 0)
+  {
+     if (!(Utils.isEmail(cmt.email)))
+     {
+        alert(cmt_error_email);
+        return false;
+      }
+   }
+   else
+   {
+        alert(cmt_empty_email);
+        return false;
+   }*/
+
+   if (cmt.content.length == 0)
+   {
+      alert(cmt_empty_content);
+      return false;
+   }
+	
+	var data_lg="{"
+ for (var a in cmt){
+	 data_lg += '"' ;
+	 data_lg += a ;
+	 data_lg += '"' ;
+	 data_lg += ':' ;
+	 
+	 
+	 data_lg += '"' ;
+	 data_lg += cmt[a] ;
+	 data_lg += '"' ;
+	  if(a != 'rank') data_lg += ',' ;
+	 }
+	 data_lg += '}' ;
+	 //alert(data_lg);
+	 Ajax.call('comment.php', 'cmt=' + data_lg, commentResponse, 'POST', 'JSON');
+   return false;
+
+   /*if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0 )
+   {
+      alert(captcha_not_null);
+      return false;
+   }
+
+   Ajax.call('comment.php', 'cmt=' + cmt.toJSONString(), commentResponse, 'POST', 'JSON');
+   return false;*/
+}
+
+/**
+ * 处理提交评论的反馈信息
+*/
+  function commentResponse(result)
+  {
+    if (result.message)
+    {
+      alert(result.message);
+    }
+
+    if (result.error == 0)
+    {
+      var layer = document.getElementById('ECS_COMMENT');
+
+      if (layer)
+      {
+        layer.innerHTML = result.content;
+      }
+    }
+  }
+{/literal}
+//]]>
+</script>

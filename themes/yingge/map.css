@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+.map_body{ background-color:#fafafa; overflow:hidden; border:1px solid #ebebeb; height:auto;}
+.map_title{ font-size:14px; font-weight:bold; background:url("images/map-ico.jpg") no-repeat; height:35px; line-height:35px; padding-left:44px; margin:15px 0 0 25px;}
+.map_body ul li{ float:left;}
+
+.map_body ul li.ml{ width:323px; height:145px; *height:170px;}
+
+.map_body ul li.ml ul{ width:260px; margin-left:58px; overflow:hidden;}
+.map_body ul li.tl{ padding:0 10px;_width:110px;*width:110px;}
+.map_body ul li.tl a{ color:#505050; line-height:22px;}
+.map_body ul li.tl a:hover{ color:#ed771d; line-height:22px;}
+
+.map_line{ background:url("images/map_bg.jpg") no-repeat center center; height:28px; width:970px;}
+
+

@@ -1,0 +1,619 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    overflow-x: hidden;
+}
+a {
+    color: #006DD2;
+}
+a:hover {
+    text-decoration: underline;
+}
+textarea {
+    font-size: 12px;
+    overflow: auto;
+}
+.at_text input {
+    background: url("http://s.zbjimg.com/p/zhuquan/img/area_bg.png") no-repeat scroll 0 0 #FFFFFF;
+}
+.login_page {
+    margin: 0 auto 20px;
+    padding-top: 15px;
+    width: 960px;
+}
+.l_tmenu {
+    color: #CCCCCC;
+    float: right;
+    padding-right: 18px;
+    text-align: right;
+}
+.at_cis {
+    position: relative;
+    top: 10px;
+}
+.l_tmenu a {
+    color: #333333;
+}
+.l_pic {
+    background: url("images/login_bg.png") no-repeat scroll 70% bottom transparent;
+    clear: both;
+    float: left;
+    height: 294px;
+    margin: 13px 0 77px;
+    position: relative;
+    width: 513px;
+}
+.l_pic .bug {
+    background: url("images/login_box1.png") no-repeat scroll 0 0 transparent;
+    bottom: 24px;
+    display: block;
+    height: 25px;
+    overflow: hidden;
+    position: absolute;
+    right: 40px;
+    text-indent: -1000px;
+    width: 112px;
+}
+.l_pic .bug:hover {
+    background-position: -112px 0;
+}
+.l_box {
+    background: url("images/login_box1.png") repeat-y scroll -881px 0 transparent;
+    float: left;
+    margin-top: 120px;
+	margin-left:20px;
+    width: 328px;
+}
+.l_box form {
+    background: url("images/login_box1.png") no-repeat scroll -553px bottom transparent;
+    display: block;
+    width: 328px;
+}
+.l_box dl {
+    background: url("images/login_box1.png") no-repeat scroll -225px 0 transparent;
+    display: block;
+    padding: 15px 22px;
+    width: 284px;
+}
+.l_box .tit {
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+.l_box .lab {
+    display: inline-block;
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 5px;
+    width: 48px;
+}
+.auto_login {
+    margin: 0;
+    padding: 0;
+}
+.reg_form .auto_login {
+    vertical-align: -3px;
+}
+.l_box .tips {
+    clear: both;
+    height: 36px;
+    padding-left: 53px;
+    position: relative;
+}
+.l_box .tips .auto_login {
+    display: inline-block;
+    float: left;
+    height: 16px;
+    overflow: hidden;
+    padding: 2px 1px;
+    position: relative;
+    z-index: 9;
+}
+.l_box .tips .auto_login input {
+    position: relative;
+    top: -2px;
+}
+.l_box .tips_on .auto_login {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #C7C7C7 #C7C7C7 -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    padding: 1px 0;
+}
+.l_box .tips .safe {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C7C7C7;
+    display: none;
+    left: 6px;
+    line-height: normal;
+    padding: 3px;
+    position: absolute;
+    top: 18px;
+    white-space: nowrap;
+    z-index: 8;
+}
+.l_box .tips_on .safe {
+    display: block;
+}
+.l_box iframe {
+    margin-left: 53px;
+}
+.error_box {
+    background: none repeat scroll 0 0 #FFE6C6;
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+}
+.error_box dl {
+    background: none repeat scroll 0 0 #FFFCE4;
+    border: 1px solid #FFC67C;
+    left: -1px;
+    padding: 10px 15px 0;
+    position: relative;
+    top: -1px;
+    z-index: 7;
+}
+.error_box dt i, .l_box .error p i {
+    background: url("http://s.zbjimg.com/img/pic.gif") no-repeat scroll -256px -1069px transparent;
+    display: inline-block;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: -3px;
+    width: 16px;
+}
+.error_box dt strong {
+    color: #BF3A00;
+    font-size: 14px;
+}
+.error_box dd {
+    margin-bottom: 18px;
+}
+.error_box dd a {
+    text-decoration: underline;
+}
+.error_box .arrow {
+    background: url("images/error_ico.png") no-repeat scroll 0 1px transparent;
+    display: block;
+    height: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 11px;
+    z-index: 9;
+
+}
+.error_box .arrow:hover {
+    background-position: 0 -9px;
+}
+.error_box .arrow1 {
+    background: url("images/error_ico.png") no-repeat scroll 0 -20px transparent;
+    display: block;
+    height: 29px;
+    margin-top: -15px;
+    position: absolute;
+    right: -13px;
+    top: 50%;
+    width: 15px;
+    z-index: 8;
+}
+.l_box .error {
+    display: none;
+}
+.l_box .error p {
+    background: none repeat scroll 0 0 #FFF2F2;
+    border: 1px solid #FF7751;
+    line-height: 24px;
+    padding: 0 5px;
+}
+.l_box .error p i {
+    background-position: -222px -1069px;
+    float: left;
+    margin-top: 4px;
+}
+.at_text {
+    float: left;
+}
+.l_box .at_text, .l_box .at_text input, .l_box .at_text em {
+    height: 26px;
+}
+.l_box .at_text input {
+    color: #C1C1C1;
+    height: 20px;
+    line-height: 20px;
+    padding: 2px 5px;
+    width: 162px;
+}
+body.firefox.v3-5 .l_box .at_text input {
+    height: 18px;
+    padding: 6px 5px 0;
+}
+.l_box .at_text input.focus {
+    color: #333333;
+}
+.l_box .yzm .at_text input {
+    width: 45px;
+}
+.l_box .at_text em {
+    padding-top: 3px;
+}
+.l_box .yzm {
+    margin-top: 12px;
+}
+#l_sub {
+    padding-right: 12px;
+    text-align: center;
+    width: 70px;
+}
+#l_sub u {
+    width: 12px;
+}
+.l_sub_hover {
+    background-position: right -91px;
+}
+.l_sub_hover u {
+    background-position: 0 -124px;
+}
+.at_but {
+    padding-right: 29px;
+    vertical-align: middle;
+}
+.at_but u {
+    width: 29px;
+}
+.at_but:hover {
+    text-decoration: none;
+}
+.no_accout {
+    padding: 15px 0;
+    text-align: center;
+}
+.l_footer {
+    overflow: hidden;
+}
+.l_footer .l_nav {
+    color: #CCCCCC;
+    padding-top: 20px;
+    text-align: center;
+}
+.new_idea {
+    background: url("http://s.zbjimg.com/p/zhuquan/img/new_idea.gif") no-repeat scroll 0 0 transparent;
+    border-bottom: 1px solid #E9E9E9;
+    margin-top: 14px;
+    padding: 0 0 3px 20px;
+}
+.footer .reView {
+    border-bottom: 1px solid #E9E9E9;
+    color: #999999;
+    height: 27px;
+    margin: 20px 0;
+    text-align: left;
+}
+.footer .reView s {
+    background: url("http://s.zbjimg.com/p/zhuquan/img/new_idea.gif") no-repeat scroll 0 4px #FFFFFF;
+    display: inline-block;
+    height: 21px;
+    margin-right: 3px;
+    vertical-align: -5px;
+    width: 18px;
+}
+.at_loc {
+    float: right;
+}
+.crumb {
+    padding-top: 18px;
+}
+.reg_box {
+    border: 1px solid #E5E5E5;
+    padding: 12px 10px;
+}
+.reg_box .tit {
+    border-bottom: 1px solid #F0F0F0;
+    margin-bottom: 28px;
+    padding: 0 9px 12px;
+}
+.reg_box .tit b {
+    font-size: 14px;
+}
+.reg_box .tit a {
+    margin: 0 5px;
+}
+.reg_form {
+    margin-left: 52px;
+}
+.reg_form dd {
+    height: 32px;
+    margin-bottom: 18px;
+    overflow: visible;
+}
+.reg_form .lab {
+    color: #666666;
+    display: inline-block;
+    float: left;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    width: 73px;
+}
+.reg_form .at_text {
+    height: auto;
+    overflow: visible;
+    position: relative;
+    width: 505px;
+}
+.reg_form .at_text input {
+    width: 210px;
+}
+.reg_form .at_text em {
+    height: auto;
+    margin-left: 16px;
+    min-height: 18px;
+    overflow: visible;
+    padding: 7px 5px;
+    position: absolute;
+    right: 0;
+    width: 250px;
+}
+.at_text em.g {
+    background: none repeat scroll 0 0 #E9FFDC;
+}
+.at_text em.on {
+    background: none repeat scroll 0 0 #DAF1FF;
+}
+.at_text em.orr {
+    background: none repeat scroll 0 0 #FFF5F5;
+}
+.at_text em.ld {
+    background: none repeat scroll 0 0 #FEFEDA;
+}
+.at_text em u {
+    margin-top: 1px;
+}
+.rm_nav span {
+    color: #8D8D8D;
+}
+.rm_regAll {
+    border: 1px solid #E5E5E5;
+}
+.rm_regAll li {
+    border-right: 1px solid #E5E5E5;
+    float: left;
+    height: 146px;
+    padding: 40px 10px 40px 40px;
+    width: 268px;
+}
+.rm_regAll li.select {
+    background: url("images/r_bgm.png") repeat-x scroll 0 0 #FFFFFF;
+}
+.rm_regAll li.last {
+    border-right: medium none;
+    width: 270px;
+}
+.rm_regAll li p.rm_reg {
+    color: #666666;
+    height: 70px;
+}
+.rm_regAll li p.rm_reg s {
+    background: url("images/r_picm.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    float: left;
+    height: 70px;
+    margin-right: 10px;
+    width: 65px;
+}
+.rm_regAll li p.rm_reg strong {
+    color: #333333;
+    display: block;
+    font-size: 16px;
+    padding-top: 10px;
+}
+.rm_regAll li p.rm_reg em {
+    color: #FF4E00;
+    font-size: 12px;
+}
+.rm_regAll li p.mail s {
+    background-position: -65px 0;
+    width: 70px;
+}
+.rm_regAll li p.mobile s {
+    background-position: -140px 0;
+    width: 40px;
+}
+.rm_regAll li p.regBtn {
+    padding: 50px 0 0 60px;
+}
+.mail_reg {
+    color: #666666;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 42px 0 0 192px;
+}
+.mail_reg .reg_ico {
+    background: url("images/r_picm.png") no-repeat scroll 0 -110px transparent;
+    float: left;
+    height: 180px;
+    padding-right: 45px;
+    width: 105px;
+}
+.mail_reg .tit {
+    background: url("images/r_picm.png") repeat scroll 0 -80px transparent;
+    border: medium none;
+    display: block;
+    height: 28px;
+    margin-bottom: 10px;
+    padding: 0;
+    width: 289px;
+}
+.mail_reg .t {
+    font-size: 12px;
+    margin: 60px 0 40px;
+}
+.mail_reg .mail_box {
+    float: left;
+    overflow: hidden;
+    width: 540px;
+}
+.mail_box .at_but {
+    margin-top: 10px;
+    padding-right: 12px;
+}
+.mail_box .at_but u {
+    width: 12px;
+}
+.mail_box em.orange1 {
+    color: #FF4200;
+    font-weight: bold;
+}
+.at_trace_b .at_but {
+    padding-right: 10px;
+}
+.at_trace_b .at_but u {
+    width: 10px;
+}
+.phone_yz {
+    margin: 20px 0 0 40px;
+}
+.phone_yz th {
+    font-weight: 400;
+    height: 33px;
+    text-align: right;
+    white-space: nowrap;
+    width: 80px;
+}
+.phone_reg {
+    margin-left: 150px;
+}
+.phone_reg .reg_ico {
+    background: url("images/phone_r.png") no-repeat scroll 0 0 transparent;
+    height: 295px;
+    position: relative;
+    width: 156px;
+}
+.phone_reg .reg_ico .msg {
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 70px 20px 30px;
+}
+.phone_reg .reg_ico .at_but {
+    bottom: 58px;
+    left: 21px;
+    padding-right: 26px;
+    position: absolute;
+}
+.phone_reg .reg_ico .at_but u {
+    width: 26px;
+}
+.loc_jh span {
+    width: 155px;
+}
+.phone_jh {
+    padding: 30px 0 30px 150px;
+}
+.phone_jh dd s {
+    font-size: 14px;
+}
+.phone_jh .at_text {
+    float: none;
+    vertical-align: middle;
+}
+.phone_jh .at_text input {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.phone_jh dt {
+    padding: 20px 0 20px 146px;
+}
+.read_box {
+    clear: both;
+    display: none;
+    overflow: hidden;
+    padding-left: 73px;
+    width: 730px;
+}
+.read_box textarea {
+    float: left;
+    margin: 0;
+}
+#kf_icon {
+    left: 90% !important;
+}
+.reg_form #reg_box {
+    float: left;
+    width: 600px;
+}
+.have_count {
+    border-left: 1px dashed #DDDDDD;
+    float: right;
+    padding: 0 30px 10px;
+    width: 220px;
+}
+.have_count h3 {
+    font-size: 14px;
+    font-weight: 800;
+}
+.have_count .t {
+    font-size: 14px;
+    margin: 20px 0 10px;
+}
+.have_count dt {
+    color: green;
+    font-weight: 800;
+}
+.have_count dd {
+    margin-bottom: 10px;
+}
+.have_count dd a {
+    text-decoration: underline;
+}
+.reg_success .s_tip {
+    background: none repeat scroll 0 0 #FFFEE1;
+    border: 1px solid #FFBE84;
+    padding: 17px 30px;
+}
+.reg_success .s_tip .at_msg {
+    margin-right: 17px;
+}
+.reg_success .s_tip h3 {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
+.reg_success .what_doing {
+    border: 1px solid #E5E5E5;
+    padding: 30px 0 30px 1px;
+}
+.reg_success .what_doing .tit {
+    background: url("images/what_doing.gif") no-repeat scroll 3px 3px transparent;
+    height: 31px;
+    margin-bottom: 30px;
+}
+.reg_success .what_doing dl.b {
+    border-right: 1px solid #E5E5E5;
+    float: left;
+    margin-right: -1px;
+    padding: 0 30px 0 40px;
+    width: 249px;
+}
+.reg_success .what_doing dl.b .t {
+    margin-bottom: 17px;
+}
+.reg_success .what_doing dl.b .bt {
+    margin-bottom: 17px;
+    text-align: center;
+}
+.reg_success .what_doing dl.b .t h4 {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.reg_success .what_doing dl.b .c ul {
+    line-height: 1.8;
+}

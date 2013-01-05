@@ -1,0 +1,30 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!-- {if $bought_goods} --> 
+    <div class="tuijian">
+				<div class="r_title">
+					购买过本商品的人还购买过......
+				</div>
+				<ul class="r_list">
+                <!--{foreach from=$bought_goods item=bought_goods_data}-->
+					<li>
+						<div class="r_pic"><a href="{$bought_goods_data.url}"><img src="{$bought_goods_data.goods_thumb}" alt="{$bought_goods_data.goods_name}" width="83" height="83"/></a></div>
+						<div class="r_infos">
+							<div class="r_name">
+								<a href="{$releated_goods_data.url}" title="{$bought_goods_data.goods_name}">{$bought_goods_data.short_name}</a>
+							</div>
+							<div class="r_price">
+                            <!-- {if $releated_goods_data.promote_price neq 0} -->
+                            婴格价：<span class=red12>{$bought_goods_data.formated_promote_price}</span>
+                            <!-- {else} -->
+                            婴格价：<span class=red12>{$bought_goods_data.shop_price}</span>
+                            <!-- {/if} -->
+							</div>
+							<div class="r_btn">
+								<a href="javascript:addToCart({$bought_goods_data.goods_id})"><img src="images/r_btn.jpg" /></a>
+							</div>
+						</div>
+					</li>
+                <!--{/foreach}-->    
+				</ul>
+</div>
+<!-- {/if} -->

@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $helps}-->
+<!-- {foreach from=$helps item=help_cat} -->
+<div class="fArt"><div class="TreeList"> <div class="cat1 catfirst"><a href="{$help_cat.cat_id}">{$help_cat.cat_name}</a></div> 
+<!-- {foreach from=$help_cat.article item=item} -->
+ <div class="cat2">&middot;<a href="{$item.url}">{$item.short_title}</a></div> 
+ <!-- {/foreach} -->
+ </div></div> 
+<!-- {/foreach} -->
+<!--{/if}-->

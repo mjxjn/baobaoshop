@@ -1,0 +1,602 @@
+@charset "utf-8";
+/* CSS Document */
+
+.top_nav {
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    position: relative;
+}
+.top_nav a {
+    padding: 0 2px;
+}
+.top_nav span {
+    color: #C90809;
+    padding-left: 2px;
+}
+.allmore {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#right {
+    float: right;
+    height: auto;
+    width: 740px;
+}
+.sline {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") repeat-x scroll 0 -203px transparent;
+    font-size: 0;
+    height: 5px;
+    line-height: 0;
+    margin-bottom: 15px;
+}
+.flash_box {
+    margin-bottom: 15px;
+}
+#cflash {
+    float: right;
+    position: relative;
+    width: 320px;
+}
+#cflash_box {
+    font-size: 0;
+    height: 428px;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+#cflash_box li {
+    display: block;
+    left: 0;
+    overflow: hidden;
+    top: 0;
+}
+#cflash_index {
+    bottom: 8px;
+    color: #AAAAAA;
+    float: right;
+    height: 17px;
+    position: absolute;
+    right: 10px;
+    z-index: 99;
+}
+.cflash_li {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 15px;
+    line-height: 14px;
+    margin-left: 1px;
+    text-align: center;
+    width: 20px;
+}
+.cflash_on {
+    background-color: #CA0808;
+    border-left: 1px solid #CA0808;
+    color: #FFFFFF;
+}
+.cad_box {
+    float: left;
+    width: 401px;
+}
+.cad_box dt {
+    clear: left;
+    height: 170px;
+}
+.cad_box dd {
+    padding-bottom: 19px;
+}
+.cad1 {
+    text-align: left;
+    width: 181px;
+}
+.cad2 {
+    text-align: right;
+}
+.xinpin {
+    height: 227px;
+    padding-bottom: 20px;
+}
+.xinpin dt {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll 0 -208px #F2F2F2;
+    float: left;
+    height: 227px;
+    width: 58px;
+}
+.xinpin dd {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #EAEAEA #EAEAEA #EAEAEA -moz-use-text-color;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px medium;
+    float: left;
+    height: 225px;
+    width: 681px;
+}
+.xinpin dd ul {
+    margin-top: 20px;
+}
+.new_ul {
+    display: block;
+    float: left;
+    height: auto;
+    margin-left: -1px;
+    padding: 0 20px;
+    text-align: center;
+    width: 131px;
+}
+.new_ul li {
+    text-align: left;
+    width: 130px;
+}
+.new_ul span {
+    color: #C90809;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    line-height: 22px;
+}
+.new_ul li a {
+    line-height: 18px;
+}
+.new_img {
+    padding-bottom: 6px;
+    position: relative;
+}
+.new_tip {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/a3.png") no-repeat scroll 0 0 transparent;
+    height: 47px;
+    line-height: 18px;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 47px;
+}
+* html .new_tip {
+    background: none repeat scroll 0 0 transparent;
+}
+.nt202 {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/a202.png") no-repeat scroll 0 0 transparent;
+}
+* html .nt202 {
+    background: none repeat scroll 0 0 transparent;
+}
+.nt201 {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/a201.png") no-repeat scroll 0 0 transparent;
+}
+* html .nt201 {
+    background: none repeat scroll 0 0 transparent;
+}
+.dis_num {
+    color: #FFFFFF;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    font-weight: bold;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    width: 47px;
+}
+.new_tip img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.cat {
+    height: 370px;
+    margin-bottom: 15px;
+    padding-top: 5px;
+}
+.cat dt {
+    border-bottom: 1px solid #EAEAEA;
+    height: 31px;
+    line-height: 31px;
+}
+.ct_title {
+    display: block;
+    float: left;
+    padding-top: 4px;
+    width: 270px;
+}
+.cat dt a {
+    color: #999999;
+}
+.cat dt a:link {
+    color: #999999;
+}
+.cat dt a:visited {
+    color: #999999;
+}
+.cat dt a:hover {
+    color: #C90809;
+}
+.ct_tag {
+    height: 24px;
+    overflow: hidden;
+    width: 430px;
+}
+.cat dt span {
+    width: 40px;
+}
+.cat dd {
+    height: auto;
+    padding: 20px 0;
+}
+.cat_left {
+    width: 249px;
+}
+.cat_right {
+    width: 491px;
+}
+.cat_ul {
+    display: block;
+    float: left;
+    height: 210px;
+    padding: 0 20px;
+    text-align: center;
+    width: 140px;
+}
+.cat_ul li {
+    text-align: left;
+    width: 140px;
+}
+.cat_ul span {
+    color: #C90809;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 22px;
+}
+.cat_ul li a {
+    line-height: 18px;
+}
+.cat_img {
+    padding-bottom: 6px;
+    position: relative;
+}
+.cat_list {
+    height: 209px;
+}
+.ad4 {
+    height: 110px;
+    padding-left: 20px;
+    width: 471px;
+}
+.hot_review {
+    border: 1px solid #EAEAEA;
+    height: auto;
+    margin: 15px 0;
+}
+.hot_review dt {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll 20px -170px transparent;
+    height: 32px;
+}
+.hot_review dd {
+    height: 300px;
+    padding-top: 18px;
+}
+.hot_review dd ul {
+    padding: 0 22px;
+    width: 141px;
+}
+.hot_review dd li {
+    width: 141px;
+}
+.hot_pinglun {
+    border-top: 1px solid #EAEAEA;
+    color: #999999;
+    margin-right: 0;
+    padding-top: 5px;
+}
+.hot_pinglun a {
+    color: #999999;
+}
+.hot_pinglun a:link {
+    color: #999999;
+}
+.hot_pinglun a:visited {
+    color: #999999;
+}
+.hot_pinglun a:hover {
+    color: #C90809;
+}
+.more {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll -177px -36px transparent;
+    color: #999999;
+    padding-right: 10px;
+}
+a.more:link {
+    color: #999999;
+}
+a.more:visited {
+    color: #999999;
+}
+a.more:hover {
+    color: #C90809;
+}
+.star {
+    background-image: url("http://i1.quwan.com/themes/default/imgs/global/star.gif");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 15px;
+    margin: 0 5px 2px 0;
+    width: 79px;
+}
+.s0 {
+    background-position: 0 1px;
+}
+.s0-5 {
+    background-position: 0 -73px;
+}
+.s1 {
+    background-position: 0 -148px;
+}
+.s1-5 {
+    background-position: 0 -58px;
+}
+.s2 {
+    background-position: 0 -134px;
+}
+.s2-5 {
+    background-position: 0 -44px;
+}
+.s3 {
+    background-position: 0 -119px;
+}
+.s3-5 {
+    background-position: 0 -29px;
+}
+.s4 {
+    background-position: 0 -104px;
+}
+.s4-5 {
+    background-position: 0 -15px;
+}
+.s5 {
+    background-position: 0 -89px;
+}
+.page_box {
+    height: 24px;
+    line-height: 23px;
+    padding-bottom: 18px;
+    padding-top: 15px;
+    text-align: center;
+}
+.page_box a {
+    display: inline-block;
+    height: 23px;
+    padding: 0 9px;
+}
+.page_box span {
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 23px;
+    margin: 0 3px;
+}
+.page_box font {
+    font-size: 12px;
+    padding: 0 5px;
+}
+.page_box b {
+    color: #CC0809;
+    font-weight: normal;
+}
+#page_on {
+    background-color: #FFF9EB;
+    border: 1px solid #CA0809;
+    color: #CA0809;
+    padding: 0 9px;
+}
+#left {
+    float: left;
+    height: auto;
+    width: 200px;
+}
+.listbox_top {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: url("http://i1.quwan.com/themes/default/imgs/catogry/cat_title.gif");
+    background-repeat: no-repeat;
+    border-color: #EAEAEA #EAEAEA -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    height: 38px;
+}
+.cat_1101 {
+    background-position: 13px 0;
+}
+.cat_1102 {
+    background-position: 13px -38px;
+}
+.cat_1103 {
+    background-position: 13px -76px;
+}
+.cat_1104 {
+    background-position: 13px -114px;
+}
+.cat_1105 {
+    background-position: 13px -152px;
+}
+.cat_1106 {
+    background-position: 13px -190px;
+}
+.cat_1107 {
+    background-position: 13px -228px;
+}
+.listbox {
+    border: 1px solid #EAEAEA;
+    height: auto;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    width: 208px;
+}
+.list {
+    border-top: 1px solid #EAEAEA;
+    height: auto;
+    line-height: 24px;
+    margin: 0 15px 5px;
+    padding-top: 10px;
+}
+.list dt {
+    color: #676767;
+}
+.list dt a {
+
+}
+.list dt span {
+    background-image: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif");
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    float: right;
+    height: 11px;
+    line-height: 0;
+    margin-right: 5px;
+    margin-top: 6px;
+    width: 11px;
+}
+.son {
+    background-position: -153px -22px;
+}
+.soff {
+    background-position: -164px -22px;
+}
+.list dd {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll -200px 11px transparent;
+    padding-left: 16px;
+	display:block;
+}
+#list_on {
+    background-position: -200px -3px;
+}
+a.red_on:link {
+    color: #C90809;
+}
+a.red_on:visited {
+}
+a.red_on:hover {
+    color: #C90809;
+}
+.list_off dd {
+    display: none;
+}
+.left_hot {
+    padding-bottom: 15px;
+}
+.left_hot dt {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll 7px -44px transparent;
+    border-color: #C90809 #EAEAEA #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    border-style: solid;
+    border-width: 2px 1px 1px;
+    height: 28px;
+}
+.left_hot dd {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color #EAEAEA #EAEAEA;
+    border-right: 1px solid #EAEAEA;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    height: 78px;
+}
+.left_hoton {
+    background-color: #FAF6F3;
+}
+.rank_on {
+    overflow: hidden;
+    padding: 7px 7px 7px 8px;
+}
+.rank_img {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+}
+.rank_span {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll -135px -22px transparent;
+    color: #666666;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 14px;
+    line-height: 14px;
+    position: absolute;
+    text-align: center;
+    width: 18px;
+}
+.rank_spanon {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll -117px -22px transparent;
+    color: #FFFFFF;
+}
+.rank_on font {
+    color: #C90809;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+.rankon_name {
+    padding-bottom: 5px;
+}
+.electbrand {
+    border: 1px solid #EAEAEA;
+    height: auto;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+.electbrand dt {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll 14px -72px #F8F8F8;
+    border-bottom: 1px solid #EAEAEA;
+    height: 34px;
+    margin-bottom: 20px;
+}
+.electbrand dd {
+    line-height: 22px;
+}
+.history dt {
+    background: url("http://i1.quwan.com/themes/default/imgs/catogry/newchannel_bg.gif") no-repeat scroll 14px -106px #F8F8F8;
+}
+.history dd {
+    background-color: #FFFFFF;
+    padding-left: 15px;
+}
+.history img {
+    float: left;
+    height: 50px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    width: 50px;
+}
+.zhuanti_top {
+    height: auto;
+    margin-bottom: 15px;
+}
+.zhuanti_ul {
+    width: 153px;
+}
+.zhuanti_split {
+    background-color: #666666;
+    font-size: 0;
+    height: 4px;
+    line-height: 0;
+    margin-bottom: 15px;
+}

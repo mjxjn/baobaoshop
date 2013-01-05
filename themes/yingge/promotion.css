@@ -1,0 +1,40 @@
+@charset "utf-8";
+.w973{ width:970px; padding:0 13px; overflow:hidden;}
+#cx_body{ position:relative;}
+.promotion{width:971px; margin:0 auto;padding:0;}
+.pro_top{background:url(images/pro_top.gif) no-repeat; width:971px; height:10px;}
+.pro_body{background:url(images/pro_body.gif) repeat-y; width:941px; height:auto;padding:20px 15px 10px 15px; overflow:hidden;}
+.pro_menu{background:url(images/pro_menubg.gif) repeat-x;border:1px solid #ccc; width:927px; margin:0 auto;height:29px; line-height:29px;}
+.pro_menu a{padding:0 6px;}
+.pro_cur{color:#B22222;}
+.pro_title{background:url(images/pro_ico.gif) 12px 10px no-repeat;line-height:30px; font-size:18px;padding:0 0 0 24px; color:#B22222; font-family:'SimHei';border-bottom:1px solid #ccc;margin: 10px 7px 20px 7px;}
+
+.pro_goods{margin: 0 7px;}
+.goodinfo{float:left; width:290px; margin: 0 9px 14px 10px; *margin: 0 9px 14px 10px; _margin: 0 4px 14px 5px;  }
+.good_top{background:url(images/good_top.gif) no-repeat; height:43px; line-height:53px; padding:10px 0 0 46px;}
+.good_top a{color:#000080;}
+.good_body{background:url(images/good_body.gif) repeat-y; margin:0 auto;width:290px;}
+.good_body a{display:block;margin:0 auto;width:274px;}
+.scrollLoading{margin:0 auto; border:1px solid #ddd; padding:2px;}
+.good_btm{background:url(images/good_btm.gif) no-repeat; height:6px;}
+.ty {
+background: url(images/ty.gif) 0 5px no-repeat;
+height: 37px;
+width: 236px;
+line-height: 36px;
+color: 
+#ED771D;
+margin: 0px auto;
+padding: 0px 7px;}
+.ty  a{color:#ED771D;text-decoration: underline;display:inline;}
+.buy{margin: 0 auto;width: 274px;}
+.price{float:left;font-size:28px;color:red;font-family:'SimHei';}
+.buy_btn{float:right;width: 114px;}
+
+.pro_btm{background:url(images/pro_btm.gif) no-repeat; height:45px; width:971px;}
+.pro_btm a{line-height: 45px;
+font-size: 16px;
+width: 949px;
+display: block;
+text-align: center;
+font-weight: bold;}

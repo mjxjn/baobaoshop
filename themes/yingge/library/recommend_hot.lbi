@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+<div class="proudct">
+			<div class="pro_title">热卖商品</div>
+			<ul>
+            <!--{foreach from=$hot_goods item=goods}-->
+				<li><a href="{$goods.url}" title="{$goods.name|escape:html}">
+				<img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="85" height="85" />
+				<p>{$goods.short_style_name}</p><div class="price">
+                <!-- {if $goods.promote_price neq ""} -->
+                  {$goods.promote_price}
+                  <!-- {else}-->
+                  {$goods.shop_price}
+                  <!--{/if}--></div>
+				</a></li>
+            <!--{/foreach}-->
+			</ul>
+</div>
+<!-- {/if} -->

@@ -1,0 +1,150 @@
+#brand_body{
+	overflow:hidden;
+}
+#brand_body .brand_top{
+	margin:7px 0;
+	overflow:hidden;
+}
+#brand_body ul.brand_list{
+	width:970px;
+	margin:20px 0px 20px 20px;
+	_margin:20px 0px 20px 12px;
+	float:left;
+	*padding-bottom:40px;
+}
+
+#brand_body ul li{
+	border: 0 solid red;
+    float: left;
+    height: 225px;
+    padding: 0;
+    width: 192px;
+}
+#brand_body ul li a{
+	display:block;
+}
+.goods_pic a img {
+border: 1px solid white;
+background-color: white;
+padding: 4px;
+}
+.goods_pic a:hover img {
+border: 1px solid #FFE2A6;
+background-color: #FFF9EB;
+}
+
+#brand_body ul li p{
+	width:160px;
+	text-align: center;
+	line-height: 17px;
+}
+#brand_body ul li p a:hover{
+	color:#ED771C;
+}
+#brand_body ul li p font{
+	font-size:12px;
+	color:#92413E;
+}
+.page_box {
+    height: 24px;
+    line-height: 23px;
+    padding-bottom: 18px;
+    padding-top: 15px;
+    text-align: right;
+	padding-right:15px;
+	border-top: 1px solid #EEE;
+	clear: both;
+}
+.page_box a {
+    display: inline-block;
+    height: 23px;
+    padding: 0 9px;
+}
+.page_box span {
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 23px;
+    margin: 0 3px;
+}
+.page_box font {
+    font-size: 12px;
+    padding: 0 5px;
+}
+.page_box b {
+    color: #CC0809;
+    font-weight: normal;
+}
+#page_on {
+    background-color: #FFF9EB;
+    border: 1px solid #CA0809;
+    color: #CA0809;
+    padding: 0 9px;
+}
+.list_title {
+height: 21px;
+border: 1px solid #EAEAEA;
+z-index: 1;
+padding: 10px 15px;
+}
+.list_title div {
+float: left;
+width: 45px;
+height: 14px;
+font-weight: bold;
+color: #666;
+margin-top: 4px;
+}
+.sel_opt {
+float: left;
+text-align: right;
+width: 888px;
+}
+.sel_opt dt {
+float: left;
+}
+.sel_opt span {
+height: 22px;
+display: inline-block;
+line-height: 20px;
+}
+.bynew {
+width: 46px;
+background: url(images/newchannel_bg.gif) no-repeat -56px 0px;
+cursor: pointer;
+text-align: center;
+margin-right: 5px;
+}
+.sorted {
+color: #F60;
+}
+.bynew {
+width: 46px;
+background: url(images/newchannel_bg.gif) no-repeat -56px 0px;
+cursor: pointer;
+text-align: center;
+margin-right: 5px;
+}
+.byup {
+width: 95px;
+background: url(images/newchannel_bg.gif) no-repeat -102px 0px;
+cursor: pointer;
+text-align: center;
+margin-right: 5px;
+}
+.sel_opt dd {
+float: right;
+}
+.prep {
+width: 22px;
+background: url(images/newchannel_bg.gif) no-repeat 0 -22px;
+cursor: pointer;
+text-align: center;
+margin: 0 5px;
+}
+.nextp {
+width: 61px;
+height: 22px;
+background: url(images/newchannel_bg.gif) no-repeat -22px -22px;
+cursor: pointer;
+text-align: center;
+}

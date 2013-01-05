@@ -1,0 +1,66 @@
+#exchange_body{
+	overflow:hidden;
+}
+#exchange_body .exchange_top{
+	margin:7px 0;
+	overflow:hidden;
+}
+#exchange_body .exchange_title{
+	height: 35px;
+	background: url(images/exchange_title.jpg) no-repeat;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+#exchange_body ul.exchange_list{
+	width:928px;
+	margin:20px 0px 20px 44px;
+}
+#exchange_body ul.exchange_list li{
+	float:left;
+	width:178px;
+	margin:0 54px 20px 0;
+}
+#exchange_body ul.exchange_list li a{
+	display:block;
+}
+#exchange_body ul.exchange_list li img{
+	border:1px solid #ddd;
+}
+#exchange_body ul.exchange_list li p{
+	width:178px;
+	text-align: center;
+	line-height: 24px;
+}
+#exchange_body ul.exchange_list li p a:hover{
+	color:#ED771C;
+}
+#exchange_body ul.exchange_list li p font{
+	font-size:12px;
+	color:#92413E;
+}
+#top_bar {
+	position: absolute;
+	padding-left: 100px;
+}
+.top_bar {
+	height: 27px;
+	margin-top: 7px;
+	border: none;
+	width: 69px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 27px;
+	cursor: pointer;
+	float: left;
+}
+.top_baron {
+	border: 1px solid #E2E2E2;
+	border-bottom: 1px solid #fff;
+	background-color: white;
+	color: #DA0A0A;
+	border-top: 2px solid #C00;
+	height: 26px;
+	line-height: 26px;
+}

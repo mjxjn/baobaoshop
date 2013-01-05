@@ -1,0 +1,83 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='utils.js,transport.js'}
+<form action="flow.php" method="post" id="AddNewConsignee" onsubmit="return checkConsignee(this)">
+      <div class="addr_div">
+        <ul>
+          <li class="addr_tdiv">收货人姓名：</li>
+          <li>
+            <input name="consignee" type="text" class="info_input" id="consignee" size="20" maxlength="30" value="" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">所在城市：</li>
+          <li>
+          <select name="country" id="selCountries" onchange="region.changed(this, 1, 'selProvinces')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+        <!-- {foreach from=$country_list item=country} -->
+        <option value="{$country.region_id}" >{$country.region_name}</option>
+        <!-- {/foreach} -->
+      	</select>
+          </li>
+     		<li>
+		  <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+        <!-- {foreach from=$province_list.$sn item=province} -->
+        <option value="{$province.region_id}" >{$province.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+      <li>
+		  <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+        <!-- {foreach from=$city_list.$sn item=city} -->
+        <option value="{$city.region_id}" >{$city.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+      <li>
+		   <select name="district" id="selDistricts" {if !$district_list.$sn}style="display:none"{/if} class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+        <!-- {foreach from=$district_list.$sn item=district} -->
+        <option value="{$district.region_id}" >{$district.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">详细地址：</li>
+          <li>
+            <input name="address" type="text" class="info_input"  id="address" size="78" maxlength="100" value="" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">手机号码：</li>
+          <li>
+            <input name="mobile" type="text" class="info_input"  id="mobile" size="20" maxlength="11"  value="" />
+          </li>
+          <li><span style="line-height:27px;">邮编：</span> </li>
+          <li>
+            <input name="zipcode" type="text" class="info_input"  id="zipcode" size="20" maxlength="20" value="" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul id="addr_btnul">
+          <li class="addr_tdiv">&nbsp;</li>
+          <li><input type="submit"  class="cbtn addr_btn" id="new_addr_btn" value="确认收货人信息" />
+          </li>
+          <li style="padding-top:2px;"></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <input type="hidden" name="step" value="consignee" />
+      <input type="hidden" name="act" value="checkout" />
+      <input name="address_id" type="hidden" value="" />
+</form>

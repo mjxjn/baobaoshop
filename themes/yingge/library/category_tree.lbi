@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="listbox_top cat_1101">{$channel_name}</div>
+    <div class="listbox">
+    	<!--{foreach from=$categories name=categories item=cat}-->
+           <dl class="list" <!--{if $smarty.foreach.categories.index eq 0 } --> style="border-top:none;" <!--{/if}-->>
+            	<dt><a href="{$cat.url}"><b>{$cat.name|escape:html}</b></a>
+                        <span class="son <!--{if $cat.id eq $category or $parent_id eq $cat.id}-->soff<!--{/if}-->"></span>        
+                </dt>
+                <div id="clear"></div>
+              <!--{foreach from=$cat.cat_id item=child}-->
+                <dd <!--{if $cat.id neq $category and $parent_id neq $cat.id}-->style="display:none;"<!--{/if}-->><a href="{$child.url}">{$child.name|escape:html}</a></dd>
+                <!--{foreach from=$child.cat_id item=childer}-->
+                <dd>&nbsp;&nbsp;<a href="{$childer.url}">{$childer.name|escape:html}</a></dd>
+       			<!--{/foreach}-->
+              <!--{/foreach}-->                  
+           
+          </dl>
+          <!--{/foreach}-->
+      </div>	 
+      <div class="clear"></div>	 
+      {insert name='ads' id=8 num=1}
+</div> 
+<div class="blank9"></div>

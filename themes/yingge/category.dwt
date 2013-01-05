@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+
+<link href="themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/channel.css">
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+      setSearchAicon('goods_id','desc');
+    //列表页左侧列表弹出操作事件
+  $('.son').click( function(){
+  	if($(this).hasClass('soff'))
+  	{   
+  		//alert('打开的');
+  		$(this).removeClass("soff");
+  	　　 $(this).parent().parent().find('dd').hide();
+  		
+  	}
+  	else
+  	{
+  		if(!$(this).hasClass('soff'))
+  		{
+  			//alert('关闭的');		
+  			$(this).addClass("soff");
+  			$(this).parent().parent().find('dd').show();
+  		}	
+  			
+  	}
+    }
+);
+    
+    //列表页右侧上方品牌栏展开收起操作
+    $(".fold").toggle(function () {
+    	$(this).addClass('unfold'); 
+    	$('#pinpai').removeClass('pinpai');
+    	$('#pinpai').slideDown();
+    },
+    function () {
+    	$(this).removeClass('unfold'); 	  
+    	$('#pinpai').addClass('pinpai');
+    }); 
+  });
+  
+
+var Tools = new Object();
+Tools.isNumber = function(B) {
+    var A = /^[\d|\.|,]+$/;
+    return A.test(B)
+};
+/* 列表页的价格区间提交 */
+function priceSearchAicon(type) {
+    var A = $("#searchPriceMin")[0].value;
+    var B = $("#searchPriceMax")[0].value;
+    if(type == 1){
+       if(!Tools.isNumber(A))
+       {
+            $("#searchPriceMin")[0].value = '';
+            return false;
+       }
+    }else if(type == 2){
+      if(!Tools.isNumber(B))
+       {
+          $("#searchPriceMax")[0].value = '';
+            return false;
+       }
+    }else{
+      $("#page_list_totalrecord")[0].value = '';
+      $("#page_list_page")[0].value = 1;
+      $("#page_list_price_code")[0].value = Number(-1);
+      $("#page_list_price_min")[0].value = A;
+      $("#page_list_price_max")[0].value = B;
+      $("#page_list_sort_form").submit()
+    }
+   
+}
+
+function setSearchAicon(C, A) {
+    C = C.toLowerCase();
+    A = A.toLowerCase();
+    var B = "";
+    var D = "";
+    var E = "";
+    var F = "";
+    var G = "";
+    var H = "";
+//alert(C);
+//if (C =="goods_id"){
+//    if (A == "desc") {
+//        B = "asc"
+//    } else {
+//        B = "desc"
+//    }
+//}
+    D = "shop_price";
+    E = "goods_price_up";
+    F = "goods_price_down";
+    G = "goods_id";
+    H = "sales";
+
+    $("#" + H).click(function() {
+        
+        $("#page_list_sort")[0].value = H;
+        $("#page_list_order")[0].value = "DESC";
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + G).click(function() {
+        
+        $("#page_list_sort")[0].value = G;
+        $("#page_list_order")[0].value = 'DESC';
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + E).click(function() {
+        
+        $("#page_list_sort")[0].value = D;
+        $("#page_list_order")[0].value = "ASC";
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + F).click(function() {
+        
+        $("#page_list_sort")[0].value = D;
+        $("#page_list_order")[0].value = "DESC";
+        $("#page_list_sort_form").submit()
+    });
+
+}
+</script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!--当前位置 start-->
+<!-- #BeginLibraryItem "/library/page_header2.lbi" --><!-- #EndLibraryItem -->
+
+<div class="AllWrapInside clearfix">
+{insert name='ads' id=1 num=1}
+ <div class="Navigation">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+ </div>
+
+<!--当前位置 end-->
+
+<!-- TemplateBeginEditable name="右边区域" -->
+<div class="mainColumn pageMain"> 
+
+    <!-- #BeginLibraryItem "/library/recommend_best.lbi" -->
+	 <!-- #EndLibraryItem -->
+     <div class="GoodsSearchWrap"> 
+    <!--组合搜索 开始-->
+	<!--{if $brands.1 || $price_grade.1 || $filter_attr_list}-->
+    <div class="clear"></div>
+    <div class="elect_box">
+      <!--{if $brands.1}-->
+          <dl style="border:none;">
+        	<dt><strong>品牌：</strong></dt>
+            <dd id="pinpai" class="pinpai">
+            	<ul>
+                <!--{foreach from=$brands item=brand}-->
+					<!-- {if $brand.selected} -->
+            	              	  <li>
+            	                  <span class="elect_on">{$brand.brand_name}</span>
+                                  </li>
+                    <!-- {else} -->
+                            	  <li>
+            	                  <span><a href="{$brand.url}" title="{$brand.brand_name}">{$brand.brand_name}</a></span>
+                                  </li>
+                    <!-- {/if} -->
+				<!--{/foreach}-->
+                              </ul>
+              <span class="fold"></span>
+            </dd>            
+        </dl> 
+         <div class="clear"></div> 
+        <!--{/if}--> 
+        <!--{if $price_grade.1}-->     
+            <dl>
+        	<dt><strong>价格：</strong></dt>
+            <dd>
+            	<ul>
+                <!--{foreach from=$price_grade item=grade}-->
+				<!-- {if $grade.selected} -->
+            	                  <li>
+                                    <span class="elect_on">{$grade.price_range}</span>
+                                  </li>
+                <!-- {else} -->
+                               <li>
+                                    <span><a href="{$grade.url}" title="{$grade.price_range}">{$grade.price_range}</a></span>
+                                  </li>
+                <!-- {/if} -->
+				<!--{/foreach}-->
+              	<!--{if $price_code eq -1}-->
+                		<li>
+                                    <span class="elect_on">{$price_min} - {$price_max}</span>
+                        </li>
+                <!--{/if}-->
+					<li id="price_line"><span><input id="searchPriceMin" type="text" size="4" class="price_zone" onkeyup="priceSearchAicon(1)">&nbsp;-&nbsp;<input id="searchPriceMax" type="text" size="4" class="price_zone" onkeyup="priceSearchAicon(2)">&nbsp;元</span><input name="确定" type="button" onclick="priceSearchAicon();" value="" class="sel_btn"></li>
+                </ul>
+            </dd>            
+        </dl>
+        <div class="clear"></div>
+        <!--{/if}-->
+      </div>
+       <!--{/if}--> 
+      <!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem --> 
+	  <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+
+    
+</div>
+
+</div>
+<!-- TemplateEndEditable -->
+
+
+<!-- TemplateBeginEditable name="左边区域" -->
+<div class="sideColumn pageSide">
+<!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+<!-- #EndLibraryItem -->
+</div>
+<!-- TemplateEndEditable -->
+
+   
+</div>
+<SCRIPT type=text/javascript>
+
+function Fix_block(elem, standard_elem){
+
+    var elem = document.getElementById(elem);
+
+    var scrolltop = parseInt(document.documentElement.scrollTop) || parseInt(window.pageYOffset);
+
+    var getTop = function(el){
+
+        var top = 0;
+
+        var e = document.getElementById(el);
+
+        while(e){
+
+            top += e.offsetTop;
+
+            e = e.offsetParent;
+
+        }
+
+        return top;
+
+    }
+
+    var title_top = parseInt(getTop(standard_elem));
+
+    if(scrolltop >= title_top + 480){
+
+        elem.style.cssText = window.ActiveXObject && !window.XMLHttpRequest ? 'position:absolute;left:0px;z-index:2000;top:'+ (scrolltop - 150) +'px' : 'position:fixed;top:29px;z-index:99';        
+
+    }else{
+
+        elem.style.cssText = '';
+
+    } 
+
+}
+
+
+
+window.onscroll = function(){
+
+    return Fix_block('gallerybar','pro_body');
+
+}
+
+</SCRIPT>
+
+
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<SCRIPT type=text/javascript src="themes/yingge/js/agestate.js"></SCRIPT>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".goods_grid").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+}); 
+</script> 
+</body>
+</html>

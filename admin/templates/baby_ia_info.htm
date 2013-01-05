@@ -1,0 +1,141 @@
+<!-- $Id: goods_type_info.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,selectzone.js,validator.js,ubbeditor/ubbEditor.js"}
+
+<div class="main-div">
+  <form action="" method="post" name="theForm" onsubmit="return validate();">
+    <table cellspacing="1" cellpadding="3" width="100%">
+      <tr>
+        <td>本期主题:</td>
+        <td><textarea id="title" name="title" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.title|escape}</textarea></td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_title = new ubbEditor('title');
+		nEditor_title.tLang = 'zh-cn';
+		nEditor_title.tToolbar = 'simple';
+		nEditor_title.tInit('nEditor_title', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>活动时间:</td>
+        <td>
+          <textarea id="btime" name="btime" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.btime|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_btime = new ubbEditor('btime');
+		nEditor_btime.tLang = 'zh-cn';
+		nEditor_btime.tToolbar = 'simple';
+		nEditor_btime.tInit('nEditor_btime', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>活动内容:</td>
+        <td>
+         <textarea id="bcontent" name="bcontent" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.bcontent|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_bcontent = new ubbEditor('bcontent');
+		nEditor_bcontent.tLang = 'zh-cn';
+		nEditor_bcontent.tToolbar = 'simple';
+		nEditor_bcontent.tInit('nEditor_bcontent', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>作品要求:</td>
+        <td>
+          <textarea id="bqurie" name="bqurie" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.bqurie|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_bqurie = new ubbEditor('bqurie');
+		nEditor_bqurie.tLang = 'zh-cn';
+		nEditor_bqurie.tToolbar = 'simple';
+		nEditor_bqurie.tInit('nEditor_bqurie', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>活动对象:</td>
+        <td>
+          <textarea id="bage" name="bage" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.bage|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_bage = new ubbEditor('bage');
+		nEditor_bage.tLang = 'zh-cn';
+		nEditor_bage.tToolbar = 'simple';
+		nEditor_bage.tInit('nEditor_bage', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>活动规则:</td>
+        <td>
+          <textarea id="rules" name="rules" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.rules|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_rules = new ubbEditor('rules');
+		nEditor_rules.tLang = 'zh-cn';
+		nEditor_rules.tToolbar = 'simple';
+		nEditor_rules.tInit('nEditor_rules', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>冠军奖品:</td>
+        <td>
+          <textarea id="agoods" name="agoods" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.agoods|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_agoods = new ubbEditor('agoods');
+		nEditor_agoods.tLang = 'zh-cn';
+		nEditor_agoods.tToolbar = 'simple';
+		nEditor_agoods.tInit('nEditor_agoods', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>其他奖品:</td>
+        <td>
+          <textarea id="aothergoods" name="aothergoods" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.aothergoods|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_aothergoods = new ubbEditor('aothergoods');
+		nEditor_aothergoods.tLang = 'zh-cn';
+		nEditor_aothergoods.tToolbar = 'simple';
+		nEditor_aothergoods.tInit('nEditor_aothergoods', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>奖品详情:</td>
+        <td>
+          <textarea id="acontent" name="acontent" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.acontent|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_acontent = new ubbEditor('acontent');
+		nEditor_acontent.tLang = 'zh-cn';
+		nEditor_acontent.tToolbar = 'simple';
+		nEditor_acontent.tInit('nEditor_acontent', 'js/ubbeditor/');
+		</script>
+      <tr>
+        <td>活动公告:</td>
+        <td>
+          <textarea id="announcement" name="announcement" style="WIDTH: 600px; HEIGHT: 300px" rows="5" cols="40">{$baby_ia.announcement|escape}</textarea>
+        </td>
+      </tr>
+      <script type="text/javascript">
+		var nEditor_announcement = new ubbEditor('announcement');
+		nEditor_announcement.tLang = 'zh-cn';
+		nEditor_announcement.tToolbar = 'default';
+		nEditor_announcement.tInit('nEditor_announcement', 'js/ubbeditor/');
+		</script>
+      <tr align="center">
+        <td colspan="2">
+          <input type="hidden" name="ia_id" value="{$baby_ia.ia_id}" />
+          <input type="submit" value="{$lang.button_submit}" class="button" />
+          <input type="reset" value="{$lang.button_reset}" class="button" />
+          <input type="hidden" name="act" value="{$form_act}" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+
+
+{include file="pagefooter.htm"}

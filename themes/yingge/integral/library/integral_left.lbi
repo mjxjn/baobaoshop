@@ -1,0 +1,98 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<div class="user_info">
+			<!--{if $is_login eq 1}-->
+			<p class="face_info">
+			<a href="user.php"><img src="<!--{if $info.sex eq '1'}-->/themes/yingge/user/images/boy.jpg<!--{/if}--><!--{if $info.sex eq '2'}-->/themes/yingge/user/images/gril.jpg<!--{/if}--><!--{if $info.sex eq '0'}-->/themes/yingge/user/images/tavatar.gif<!--{/if}-->" width="56" height="56" class="user_face" border=0 /></a>
+			<span class="right user_name">{$info.username}</span>
+			<span class="right user_integral">积分：<span id="user_integral">{$info.user_integral}</span></span>
+			<span class="right user_mx"><a href="user.php?act=integration" target="_blank">积分明细</a></span>
+			</p>
+			<p class="clear user_ico"><img src="/themes/yingge/images/integral/user_line.gif" width="166" height="6" /></p>
+			<p class="user_integralinfo">本周获取：<span id="weekcount">{$weekcount}</span> 使用：<span id="fweekcount">{$fweekcount}</span> <br />可用优惠券：<span id="ubonus">{$info.bonus}</span></p>
+			<!--{else}-->
+			<p class="user_login">欢迎您来到婴格积分商城</p>
+			<p class="user_loginbtn"><a href="user.php"><img src="/themes/yingge/integral/images/user_login.jpg" width="142" height="30" /></a></p>
+			<p class="clear user_ico"><img src="/themes/yingge/images/integral/user_line.gif" width="166" height="6" /></p>
+			<p class="user_integralinfo">本周获取：0 使用：0 <br />可用优惠券：0</p>
+			<!--{/if}-->
+		</div>
+		<ul class="integral_menu">
+			<li <!--{if $act eq 'index'}-->class="menu_on"<!--{/if}-->><a href="/integral.php">积分首页</a></li>
+			<li <!--{if $act eq 'goods'}-->class="menu_on"<!--{/if}-->><a href="/integral.php?act=goods">实物兑换</a></li>
+			<li <!--{if $act eq 'coupon'}-->class="menu_on"<!--{/if}-->><a href="/integral.php?act=coupon">优惠券兑换</a></li>
+			<li <!--{if $act eq 'exchange'}-->class="menu_on"<!--{/if}-->><a href="###" onclick="alert('稍后开通，敬请期待');">积分抽奖</a></li>
+			<!--<li><a href="/integral.php?act=exchange">积分抽奖</a></li>-->
+		</ul>
+		<div class="today_dao">
+			<p class="today_title">签到送2积分</p>
+			<p class="today_tip">天天签天天送</p>
+			<!--{if $is_account eq 1}-->
+			<a href="javascript:geteverydayexchange()" class="today_btn">
+			<div >
+					<div class="day left">{$day}</div>
+					<div class="month-day right">
+						<p>{$month}月</p>
+						<p>{$day}日</p>
+					</div>	
+			</div>
+			</a>
+			<!--{else}-->
+			<div class="untoday_btn"><img src="/themes/yingge/integral/images/today_undao.jpg" width="153" height="41"/></div>
+			<!--{/if}-->
+		</div>
+		<div class="tuijian_goods">
+			<p class="tj_title">获取积分</p>
+			<p class="tj_tip">购买婴格商城商品获取积分</p>
+			<ul class="tj_ul">
+			<!--{foreach from=$promotion_goods item=goods}-->
+				<li>
+					<a href="{$goods.url}" title="{$goods.name|escape:html}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="74" height="74" class="tj_img" /></a>
+					<p class="tj_price">
+					<!-- {if $goods.promote_price neq ""} -->
+	                  {$goods.promote_price}
+	                  <!-- {else}-->
+	                  {$goods.shop_price}
+	                  <!--{/if}--></p>
+					<p><del>{$goods.market_price}</del></p>
+					<p><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+				</li>
+			<!--{/foreach}-->
+			</ul>
+		</div>
+
+<script type="text/javascript">
+//<![CDATA[
+{literal}
+$(document).ready(function(){
+	
+});
+function geteverydayexchange(){
+	$.ajax({
+	   type: "POST",
+	   url: "integral.php",
+	   data: "act=geteverydayexchange",
+	   dataType: "html",
+	   success: function(msg){
+	     if(msg=="-1"){
+	     	alert("请登录后再领取积分");
+	     }else if(msg=="-2"){
+	     	alert("出现错误，请重新签到");
+	     }else if(msg=="2"){
+	     	alert("今天您已经签到成功，不能重复签到");
+		     $(".today_btn").empty();
+		     $(".today_btn").html('<div class="untoday_btn"><img src="/themes/yingge/integral/images/today_undao.jpg" width="153" height="41"/></div>');
+	     }else{
+	     	alert("恭喜您签到成功，获得2积分");
+		     $(".today_btn").empty();
+		     $(".today_btn").html('<div class="untoday_btn"><img src="/themes/yingge/integral/images/today_undao.jpg" width="153" height="41"/></div>');
+		     $("#user_integral").empty();
+		     $("#user_integral").html(msg);
+		     $("#weekcount").empty();
+		     $("#weekcount").html({$weekcount}+2);
+	     }
+	   }
+	});
+}
+{/literal}
+//]]>
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/top10.css">
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,transport.js,shopping_flow.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header2.lbi" --><!-- #EndLibraryItem -->
+<!--当前位置 start-->
+<div class="clear10"></div>
+<div id="top_body" class="w973">
+    <div class="top_top"></div>
+    <div class="blank9"></div>
+    <div class="top10">
+        <div class="left top_menu">
+        	<div class="top_menu_title">热榜分类</div>
+            	<!-- #BeginLibraryItem "/library/top10_tree.lbi" --><!-- #EndLibraryItem -->
+        </div>
+        <div class="right top_pro">
+        	<div class="top_pro_title">全部商品热榜</div>
+            <ul>
+            <!-- {foreach from=$goods_top10_data item=list name=val} -->
+            	<li>
+                <div class="top_prolic"><a href="goods.php?id={$list.goods_id}"><img src="{$list.goods_thumb}" width="131" height="131" /></a></div>
+                <div class="top_proinfo">
+                	<div class="pro_title"><a href="goods.php?id={$list.goods_id}">{$list.goods_name}</a></div>
+                    <div class="pro_marketprice">市场价格：<span>{$list.market_price}元</span></div>
+                    <div class="pro_shopprice">婴&nbsp;&nbsp;格价：<span class="red">
+                    <!--{if $list.promote_price neq ""}-->
+                    {$list.promote_price}
+                    <!--{else}-->
+                    {$list.shop_price}
+                    <!--{/if}-->
+                    </span>&nbsp;&nbsp;（{$list.zhekou}折&nbsp;为您节省{$list.jiesheng}元）</div>
+                    <div class="pro_task">评&nbsp;&nbsp;&nbsp;&nbsp;价：
+                    <!--{if $list.wvera_rank > 80}-->
+                    <img src="themes/yingge/images/5star.jpg" />
+                    <!--{elseif $list.wvera_rank <= 80 and $list.wvera_rank > 60}-->
+                    <img src="themes/yingge/images/4star.jpg" />
+                    <!--{elseif $list.wvera_rank <= 60 and $list.wvera_rank > 40}-->
+                    <img src="themes/yingge/images/3star.jpg" />
+                    <!--{elseif $list.wvera_rank <= 40 and $list.wvera_rank > 20}-->
+                    <img src="themes/yingge/images/2star.jpg" />
+                    <!--{elseif $list.wvera_rank <= 20 and $list.wvera_rank >= 0}-->
+                    <img src="themes/yingge/images/1star.jpg" />
+                    <!--{/if}-->
+                    <span class="red">{$list.wvera_rank}%</span> 好评（<span class="blue">已有{$list.co_number}人评价</span>）</div>
+                    <div class="pro_56">付款方式：货到付款（免运费）</div>
+                </div>
+                <div class="top_probtn">
+                	<a href="javascript:addToCart({$list.goods_id},0)"><img src="themes/yingge/images/btn_top.gif" /></a>
+                </div>
+                </li>
+           <!-- {/foreach} -->    
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer2.lbi" --><!-- #EndLibraryItem -->
+<SCRIPT type=text/javascript src="themes/yingge/js/agestate.js"></SCRIPT>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$(".top_pro").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+}); 
+</script> 
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+</body>
+</html>

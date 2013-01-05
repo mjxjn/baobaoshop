@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="/themes/yingge/style.css" rel="stylesheet" rev="stylesheet"
+	type="text/css" />
+<link href="/themes/yingge/head.css" rel="stylesheet" rev="stylesheet"
+	type="text/css" />
+<link type="text/css" rel="stylesheet" href="/themes/yingge/foot.css" />
+<link href="/themes/yingge/starbaby/register.css" rel="stylesheet"
+	rev="stylesheet" type="text/css" />
+<SCRIPT type=text/javascript src="/themes/yingge/js/jquery.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/themes/yingge/js/ajaxupload.js"></SCRIPT>
+<script type="text/javascript" src="/js/calendar.php?lang=zh_cn"></script>
+<link href="/js/calendar/calendar.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+$(document).ready(function(){
+	//回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+});
+$(document).ready(function(){
+	$("input[name='babyname']").focus(function(){
+		if($("input[name='babyname']").val()=="还没填写"){
+			$("input[name='babyname']").val('');
+		}
+	});
+	$("input[name='babytel']").focus(function(){
+		if($("input[name='babytel']").val()=="还没填写"){
+			$("input[name='babytel']").val('');
+		}
+	});
+	$("#subject").focus(function(){
+		if($("#subject").val()=="请输入您的宝宝参赛宣言！(50字内)"){
+			$("#subject").val('');
+		}
+	});
+});
+
+function delpic(pic_id){
+	if(pic_id=='pic_1'){
+		$("li."+pic_id).html("<a class='upload_button1'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>必传照片</p>");
+	}else if(pic_id=='pic_11')
+	{
+		$("li."+pic_id).html("<a class='upload_button2'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}
+	else if(pic_id=='pic_111')
+	{
+		$("li."+pic_id).html("<a class='upload_button3'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}else if(pic_id=='pic_1111')
+	{
+		$("li."+pic_id).html("<a class='upload_button4'	href='javascript:void();'><img src='/themes/yingge/starbaby/images/upload_btn.gif' border='0' /></a><p style='width: 184px; text-align: center; margin-top: 10px'>可选传</p>");
+	}
+	ss=$(".files_num").val();
+	$(".files_num").val(ss.substr(0,(ss.length-1)));
+}
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+
+/*$(function() { 
+	$("textarea").keyup(); 
+	});*/ 
+
+	function strLenCalc(obj, checklen, maxlen) { 
+	　　var v = obj.val(), charlen = 0, maxlen = !maxlen ? 200 : maxlen, curlen = maxlen, len = v.length; 
+	　　for(var i = 0; i < v.length; i++) { 
+	　　　　if(v.charCodeAt(i) < 0 || v.charCodeAt(i) > 255) { 
+	curlen -= 1; 
+	} 
+	} 
+	　　if(curlen >= len) { 
+	$("#"+checklen).html("(<strong>"+Math.floor((curlen-len)/2)+"</strong>/50)").css('color', ''); 
+	$("#subBtn").removeAttr("disabled"); 
+	} else { 
+	$("#"+checklen).html("(<strong>"+Math.ceil((len-curlen)/2)+"</strong>/50)").css('color', '#FF0000'); 
+	$("#subBtn").attr("disabled", "disabled"); 
+	} 
+	}
+ 
+</script>
+</head>
+<body>
+{include file="starbaby/library/baby_page_header.lbi"}
+<div id="register_body">
+<div class="register_title">填写宝宝参赛信息</div>
+<div class="register_zy">上传宝宝参赛照片
+每个宝宝可上传1~4张照片参赛，照片上传后不可修改，建议尺寸大于380X380像素，支持png、jpg、jpeg格式。</div>
+<div class="register_form">
+<form name="form1" id="form1" action="/starbaby/register.php"
+	method="post">
+<dl>
+	<dd>
+	<ul>
+		<li class=" pic_1">
+			<a href="javascript:void(0);"><img src="/themes/yingge/starbaby/images/select_pic1.gif" width="137" height="43" border="0"></a>
+			<input type="button" value="" class="upload_pic1">
+		</li>
+		
+		<li class=" pic_11">
+			<img src="/themes/yingge/starbaby/images/select_pic2.gif" width="137" height="43" border="0">
+			<input type="button" value="" class="upload_pic2">
+		</li>
+		
+		<li class=" pic_111">
+			<img src="/themes/yingge/starbaby/images/select_pic3.gif" width="137" height="43" border="0">
+			<input type="button" value="" class="upload_pic2">
+		</li>
+		
+		<li class=" pic_1111">
+			<img src="/themes/yingge/starbaby/images/select_pic4.gif" width="137" height="43" border="0">
+			<input type="button" value="" class="upload_pic2">
+		</li>
+		<input type="hidden" value="pic_" class="files_num" name="files_num">
+	</ul>
+	</dd>
+	<dd>宝宝昵称：<em>*</em><input type="text" name="babyname" value="还没填写"
+		class="inputtxt"></dd>
+	<dd>宝宝性别：<em>*</em><select name="babysex">
+		<option value="1" selected>男</option>
+		<option value="2">女</option>
+	</select></dd>
+	<dd>宝宝生日：<em>*</em><input name="babybirthday" type="text"
+		id="babybirthday" class="inputtxt" value="{$todaydate}"
+		readonly="readonly"><input name="selbtn1" type="button"
+		id="selbtn1"
+		onclick="return showCalendar('babybirthday', '%Y-%m-%d', '24', false, 'selbtn1');"
+		value="选择" class="button"></dd>
+	<dd>所在省份：<em>&nbsp;</em>本次活动仅限云南省用户参与</dd>
+	<dd class="tel">联系电话：<em>&nbsp;</em><input type="text"
+		name="babytel" value="还没填写" class="inputtxt"><br />
+	<br />
+	<span>您的联系方式仅作为我们联系获奖事宜使用，不在前台展示，亦不会向其他人员或机构透露，请放心填写。</span></dd>
+	<dd class="xy">参赛宣言：<em>*</em><textarea rows="5" cols="50"
+		onkeyup="strLenCalc($(this), 'checklen', 100);" class="px inputarea"
+		name="babycontent" id="subject">请输入您的宝宝参赛宣言！(50字内)</textarea><span
+		id="checklen">(<strong>0</strong>/50)</span></dd>
+	<dd><input type="submit" value="" id="subBtn" class="inputbtn"><input
+		type="hidden" value="insert" name="act"></dd>
+	<dd><input type="hidden" name="userid" value="{$user_id}"></dd>
+</dl>
+</form>
+</div>
+</div>
+{include file="starbaby/library/baby_page_footer2.lbi"}
+</body>
+</html>

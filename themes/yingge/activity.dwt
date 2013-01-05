@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/activity.css">
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,transport.js'}
+<script src="js/jquery-1.4.3.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="themes/yingge/js/easySlider1.5.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){	
+			$("#slider0").easySlider({
+				prevId: "prevBtn0",
+				nextId: 'nextBtn0',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider1").easySlider({
+				prevId: "prevBtn1",
+				nextId: 'nextBtn1',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider2").easySlider({
+				prevId: "prevBtn2",
+				nextId: 'nextBtn2',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider3").easySlider({
+				prevId: "prevBtn3",
+				nextId: 'nextBtn3',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider4").easySlider({
+				prevId: "prevBtn4",
+				nextId: 'nextBtn4',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider5").easySlider({
+				prevId: "prevBtn5",
+				nextId: 'nextBtn5',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider6").easySlider({
+				prevId: "prevBtn6",
+				nextId: 'nextBtn6',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider7").easySlider({
+				prevId: "prevBtn7",
+				nextId: 'nextBtn7',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider8").easySlider({
+				prevId: "prevBtn8",
+				nextId: 'nextBtn8',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider9").easySlider({
+				prevId: "prevBtn9",
+				nextId: 'nextBtn9',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider10").easySlider({
+				prevId: "prevBtn10",
+				nextId: 'nextBtn10',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider11").easySlider({
+				prevId: "prevBtn11",
+				nextId: 'nextBtn11',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider12").easySlider({
+				prevId: "prevBtn12",
+				nextId: 'nextBtn12',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider13").easySlider({
+				prevId: "prevBtn13",
+				nextId: 'nextBtn13',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider14").easySlider({
+				prevId: "prevBtn14",
+				nextId: 'nextBtn14',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider15").easySlider({
+				prevId: "prevBtn15",
+				nextId: 'nextBtn15',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider16").easySlider({
+				prevId: "prevBtn16",
+				nextId: 'nextBtn16',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider17").easySlider({
+				prevId: "prevBtn17",
+				nextId: 'nextBtn17',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider18").easySlider({
+				prevId: "prevBtn18",
+				nextId: 'nextBtn18',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider19").easySlider({
+				prevId: "prevBtn19",
+				nextId: 'nextBtn19',
+				auto: false,
+				continuous: true 
+			});
+			$("#slider20").easySlider({
+				prevId: "prevBtn20",
+				nextId: 'nextBtn20',
+				auto: false,
+				continuous: true 
+			});
+		});	
+	</script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/page_header2.lbi" --><!-- #EndLibraryItem -->
+<!--当前位置 start-->
+<div class="clear10"></div>
+<div id="man_body" class="w973">
+    <div class="man_top">
+        <div class="left time_money">
+        <script language="javascript">
+        todayDate = new Date();
+        date = todayDate.getDate();
+        month= todayDate.getMonth() +1;
+        year= todayDate.getYear();
+        document.write("今天是：")
+        if(navigator.appName == "Netscape")
+        {
+         document.write(1900+year);
+         document.write("年");
+         document.write(month);
+         document.write("月");
+         document.write(date);
+         document.write("日")
+        }
+        if(navigator.appVersion.indexOf("MSIE") != -1)
+        {
+        document.write(year);
+        document.write("年");
+        document.write(month);
+        document.write("月");
+        document.write(date);
+        document.write("日")
+        }
+        </script>
+        &nbsp;&nbsp;&nbsp;
+        <!-- #BeginLibraryItem "/library/cart_activity.lbi" --> <!-- #EndLibraryItem -->
+        </div>
+        <div class="right man_help">
+        <a href="">什么是满百购物赠礼</a>
+        </div>
+    </div>
+    <div class="clear10"></div>
+    
+    <!-- {foreach from=$list item=val name=list} -->
+    <!--{if $val.act_type eq 0} -->
+    <form action="flow.php" method="post" id="favourable_{$val.act_id}">
+    <div class="man_100">
+        <div class="man_{$val.min_amount}l">
+        	<div class="man_sm">购物满{$val.min_amount}元赠品选购区</div>
+            <dl>
+            	<div class="man_paihang">本区兑换排行</div>
+                <!-- {foreach from=$val.gift item=goods name=gift} -->
+                <!-- {if $smarty.foreach.gift.index lt 6} -->
+                <dd><a href="goods-{$goods.id}.html">{$goods.short_name}</a></dd>
+                <!-- {/if} -->
+                <!-- {/foreach} -->
+            </dl>
+        </div>
+        <div class="man_100r" id="rollAd">
+            <div class="blk_18 slider0" id="slider<!--{$smarty.foreach.list.index}-->">
+                        <ul>
+                        	<!-- {foreach from=$val.gift item=goods name=gift} -->
+                             <input id="num_input" objnum="1" name="goods_number[{$goods.id}]" type="hidden" value="1">
+                        	<li>
+                            <div class="obbanimg ">
+                            	<!--{if $goods.m_off eq 1}-->
+                            	<div class="qh">
+                                    <img src="images/man_quehuo.gif" />
+                                </div>
+                                <!--{/if}-->
+                                 <div class="bannerImageDiv">
+                                 	<a href="goods-{$goods.id}.html" target="_blank" title=""><img src="{$goods.thumb}" alt="{$goods.name}" border="0" height="200" width="200"></a>
+                                 </div>
+                                 <div class="imgtext">
+                                     <p class="obtoptit">
+                                        <a href="goods-{$goods.id}.html"  title="{$goods.name}"  target="_blank">{$goods.name}</a>
+                                     </p>
+                                     <div class="rbut">
+                                     <!--{if $goods.m_off neq 1 && $goods.m_nosale neq 1}-->
+                                        <a href="javascript:add_favourable({$val.act_id},{$goods.id})"><img src="images/man_btn_on.jpg" border="0" height="33" width="116"></a>
+                                     <!--{else}-->
+                                     <img src="images/man_btn_off.jpg" border="0" height="33" width="116">
+                                     <!--{/if}-->
+                                     </div>
+                                     <div class="clearit"></div>
+                             	 </div>
+                        	</div>
+                            </li>
+                            
+                            <!-- {/foreach} -->
+                            <input type="hidden" value="" id="gift_id_{$val.act_id}" name="gift[]" />
+                            <input type="hidden" name="act_id" value="{$val.act_id}" />
+                            <input type="hidden" name="step" value="add_favourable" />
+						</ul>
+              </div>
+
+	</div>
+    </div>
+    </form>
+    <!--{/if}-->
+     <!-- {/foreach} -->
+    <div class="blank9"></div>
+<script type="text/javascript">
+function add_favourable(act_id,gift)
+{
+	$("#favourable_"+act_id+" #gift_id_"+act_id).attr('value',gift);
+	$('#favourable_'+act_id).submit();
+}
+</script>
+</div>
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

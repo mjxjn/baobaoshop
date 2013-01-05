@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+<link href="themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/channel.css">
+
+
+{* 包含脚本文件 *}
+{insert_scripts files='utils.js,common.js'}
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+      setSearchAicon('goods_id','desc');
+    //列表页左侧列表弹出操作事件
+  $('.son').click( function(){
+  	if($(this).hasClass('soff'))
+  	{   
+  		//alert('打开的');
+  		$(this).removeClass("soff");
+  	　　 $(this).parent().parent().find('dd').hide();
+  		
+  	}
+  	else
+  	{
+  		if(!$(this).hasClass('soff'))
+  		{
+  			//alert('关闭的');		
+  			$(this).addClass("soff");
+  			$(this).parent().parent().find('dd').show();
+  		}	
+  			
+  	}
+    }
+);
+    
+    //列表页右侧上方品牌栏展开收起操作
+    $(".fold").toggle(function () {
+    	$(this).addClass('unfold'); 
+    	$('#pinpai').removeClass('pinpai');
+    	$('#pinpai').slideDown();
+    },
+    function () {
+    	$(this).removeClass('unfold'); 	  
+    	$('#pinpai').addClass('pinpai');
+    }); 
+  });
+  
+
+/* 列表页的价格区间提交 */
+function priceSearchAicon(type) {
+    var A = $("#searchPriceMin")[0].value;
+    var B = $("#searchPriceMax")[0].value;
+    if(type == 1){
+       if(!Tools.isNumber(A))
+       {
+            $("#searchPriceMin")[0].value = '';
+            return false;
+       }
+    }else if(type == 2){
+      if(!Tools.isNumber(B))
+       {
+          $("#searchPriceMax")[0].value = '';
+            return false;
+       }
+    }else{
+      $("#page_list_totalrecord")[0].value = '';
+      $("#page_list_page")[0].value = 1;
+      $("#page_list_price_code")[0].value = Number(-1);
+      $("#page_list_price_min")[0].value = A;
+      $("#page_list_price_max")[0].value = B;
+      $("#page_list_sort_form").submit()
+    }
+   
+}
+
+function setSearchAicon(C, A) {
+    C = C.toLowerCase();
+    A = A.toLowerCase();
+    var B = "";
+    var D = "";
+    var E = "";
+    var F = "";
+    var G = "";
+    var H = "";
+//alert(C);
+//if (C =="goods_id"){
+//    if (A == "desc") {
+//        B = "asc"
+//    } else {
+//        B = "desc"
+//    }
+//}
+    D = "shop_price";
+    E = "goods_price_up";
+    F = "goods_price_down";
+    G = "goods_id";
+    H = "sales";
+
+    $("#" + H).click(function() {
+        $("#"+ G).find('a').eq(0).removeClass('sort');
+        $("#"+ E).find('a').eq(0).removeClass('sort');
+        $("#"+ F).find('a').eq(0).removeClass('sort');
+        $("#"+ H).find('a').eq(0).addClass('sort');
+        $("#page_list_sort")[0].value = H;
+        $("#page_list_order")[0].value = "desc";
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + G).click(function() {
+        $("#"+ G).find('a').eq(0).addClass('sort');
+        $("#"+ E).removeClass('sort');
+        $("#"+ F).removeClass('sort');
+        $("#"+ H).removeClass('sort');
+        $("#page_list_sort")[0].value = G;
+        $("#page_list_order")[0].value = 'desc';
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + E).click(function() {
+        $("#"+ G).find('a').eq(0).removeClass('sort');
+        $("#"+ E).find('a').eq(0).addClass('sort');
+        $("#"+ F).find('a').eq(0).removeClass('sort');
+        $("#"+ H).find('a').eq(0).removeClass('sort');
+        $("#page_list_sort")[0].value = D;
+        $("#page_list_order")[0].value = "asc";
+        $("#page_list_sort_form").submit()
+    });
+
+    $("#" + F).click(function() {
+        $("#"+ G).removeClass('sort');
+        $("#"+ E).removeClass('sort');
+        $("#"+ F).addClass('sort');
+        $("#"+ H).find('a').eq(0).removeClass('sort');
+        $("#page_list_sort")[0].value = D;
+        $("#page_list_order")[0].value = "desc";
+        $("#page_list_sort_form").submit()
+    });
+
+}
+</script>
+
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!--当前位置 start-->
+<!-- #BeginLibraryItem "/library/page_header2.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateBeginEditable name="商品列表页顶部广告（宽970px）" -->
+<!-- TemplateEndEditable -->
+
+<div class="AllWrapInside clearfix">
+ <div class="Navigation">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+ </div>
+
+<!--当前位置 end-->
+
+<!-- {if isset($goods_list)} -->
+<!-- TemplateBeginEditable name="右边区域" -->
+<div class="mainColumn pageMain"> 
+
+    <!-- #BeginLibraryItem "/library/recommend_best.lbi" -->
+	 <!-- #EndLibraryItem -->
+     <div class="GoodsSearchWrap"> 
+    
+     <div id="gallerybar" class="title " style="width: auto;"> 
+        <div class="list_title">
+          <div>排序：</div>
+          <dl class="sel_opt">
+            <dt> <span id="sales" title="销量：从高到低" class="bynew ">畅销</span> <span id="goods_id" title="按时间排序" class="bynew ">最新</span> <span id="goods_price_down" title="价格：由高到低" class="byup ">价格由高到低</span> <span id="goods_price_up" title="价格：由低到高" class="byup ">价格由低到高</span></dt>
+            <dd> <span>共{$count}个商品，当前在 {$pager.page}/{$pager.page_count} 页</span> <!-- {if $pager.page_prev} --><a href="{$pager.page_prev}"><span class="prep">&nbsp;</span></a><!-- {else} --><span class="prep">&nbsp;</span></a><!-- {/if} --> <span class="nextp"><a href="{$pager.page_next}">下一页</a></span></dd>
+          </dl>
+        </div>      
+	  </div> 
+	<div class="clear10"></div>
+	<div class="goods_grid">
+    	<dl>
+        <!--{foreach name=goods_list from=$goods_list item=goods}-->
+        <!-- {if $goods.goods_id} -->
+        	<dd>
+            	<div class="goodpic"> <a href="{$goods.url}" target="_blank"> <img alt="{$goods.name}" width="150" height="150" src="{$goods.goods_thumb}"> </a> </div>
+                <div> 
+                <h6><a class="entry-title" title="{$goods.name}" href="{$goods.url}">
+      	<!-- {if $goods.goods_style_name} -->
+        {$goods.goods_style_name}
+        <!-- {else} -->
+        {$goods.goods_name}
+        <!-- {/if} --></a></h6>
+        </div>
+                <div class="tdprice">
+                <!-- {if $show_marketprice} -->
+                  <span class="mktprice1">{$goods.market_price}</span>
+                   <!-- {/if} -->
+                <!--{if $goods.promote_price neq "" } -->
+                  <span class="price1">{$goods.promote_price}</span>
+                  <!--{else}-->
+                  <span class="price1">{$goods.shop_price}</span>
+                  <!-- {/if} --></div> 
+            </dd>
+            <!-- {/if} -->
+		<!--{/foreach}-->
+
+        </dl>
+    </div>
+<form method="GET" name="listform" style="display:none;" id="page_list_sort_form">
+  <input type="hidden" id="page_list_order" name="order" value="{$pager.order}">
+  <input type="hidden" id="page_list_sort" name="sort" value="{$pager.sort}">
+  <input type="hidden" name="brand" value="{$brand_id}">
+  <input type="hidden" id="page_list_price_min" name="price_min" value="{$price_min}">
+  <input type="hidden" id="page_list_price_max" name="price_max" value="{$price_max}">
+  <input type="hidden" name="id" value="{$category}">
+  <input type="hidden" name="step" value="catogry_type">
+  <input type="hidden" id="page_list_totalrecord" name="totalrecord" value="{$count}">
+  <input type="hidden" id="page_list_page" name="page" value="{$pager.page}">
+  <!--{foreach from=$pager.search key=key item=item}-->
+              {if $key neq "sort" and $key neq "order"}
+                {if $key eq 'keywords'}
+                  <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+                {else}
+                  <input type="hidden" name="{$key}" value="{$item}" />
+                {/if}
+              {/if}
+   <!--{/foreach}-->
+</form>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<script type="text/javascript">
+window.onload = function()
+{
+  fixpng();
+}
+{foreach from=$lang.compare_js item=item key=key}
+{if $key neq 'button_compare'}
+var {$key} = "{$item}";
+{else}
+var button_compare = '';
+{/if}
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+</script>
+	<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+
+    
+</div>
+
+</div>
+<!-- TemplateEndEditable -->
+
+
+<!-- TemplateBeginEditable name="左边区域" -->
+<div class="sideColumn pageSide">
+<!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+<!-- #EndLibraryItem -->
+</div>
+<!-- TemplateEndEditable -->
+<!--{/if}-->
+   
+</div>
+<SCRIPT type=text/javascript>
+
+function Fix_block(elem, standard_elem){
+
+    var elem = document.getElementById(elem);
+
+    var scrolltop = parseInt(document.documentElement.scrollTop) || parseInt(window.pageYOffset);
+
+    var getTop = function(el){
+
+        var top = 0;
+
+        var e = document.getElementById(el);
+
+        while(e){
+
+            top += e.offsetTop;
+
+            e = e.offsetParent;
+
+        }
+
+        return top;
+
+    }
+
+    var title_top = parseInt(getTop(standard_elem));
+
+    if(scrolltop >= title_top + 480){
+
+        elem.style.cssText = window.ActiveXObject && !window.XMLHttpRequest ? 'position:absolute;left:0px;z-index:2000;top:'+ (scrolltop - 150) +'px' : 'position:fixed;top:29px;z-index:99';        
+
+    }else{
+
+        elem.style.cssText = '';
+
+    } 
+
+}
+
+
+
+window.onscroll = function(){
+
+    return Fix_block('gallerybar','container');
+
+}
+
+</SCRIPT>
+
+
+<div class="blank9"></div>
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

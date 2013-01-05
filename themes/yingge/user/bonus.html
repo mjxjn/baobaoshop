@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="/themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="/themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="/themes/yingge/foot.css">
+<link href="/themes/yingge/user/index.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<SCRIPT type=text/javascript src="/themes/yingge/js/jquery.min.js"></SCRIPT>
+<script type="text/javascript">
+$(document).ready(function(){
+	//回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+});
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+</script>
+<script type="text/javascript">
+        {foreach from=$lang.profile_js item=item key=key}
+          var {$key} = "{$item}";
+        {/foreach}
+</script>
+</head>
+<body>
+{include file="user/library/baby_page_header.lbi"}
+{include file="user/library/page_header2.lbi"}
+<div class="block box top_nav">
+ <div id="ur_here">
+ {include file="user/library/ur_here.lbi"}
+ </div>
+</div>
+ {include file="user/library/user_info.lbi"}
+<div class="blank9"></div>
+<div class="usermain">
+<div class="usermenu left">
+{include file="user/library/user_menu.lbi"}
+</div>
+<div class="userorder left">
+<h3>我的优惠券</h3>
+<!--  <ul><li class="cur"><a href="">全部优惠券（{$record_count}）</a></li><li><a href="">待使用优惠券（0）</a></li><li><a href="">已使用优惠券（0）</a></li><li><a href="">已过期优惠券（0）</a></li></ul>-->
+<div id="orderlist">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table">
+          <tbody>
+          <tr>
+            <td align="center" valign="middle" class="td_top" width="10%">{$lang.bonus_sn}</td>
+            <td align="center" valign="middle" class="td_top" width="25%">{$lang.bonus_name}</td>
+            <td align="center" valign="middle" class="td_top" width="10%">{$lang.bonus_amount}</td>
+            <td align="center" valign="middle" class="td_top" width="10%">{$lang.min_goods_amount}</td>
+            <td align="center" valign="middle" class="td_top" width="10%">{$lang.bonus_end_date}</td>
+            <td align="center" valign="middle" class="td_top" width="15%">{$lang.bonus_status}</td>
+          </tr>
+           <!-- {if $bonus} -->
+           <!--{foreach from=$bonus item=item}-->
+		   <tr>
+            <td align="center" valign="middle" class="td">
+              {$item.bonus_sn|default:N/A}
+            </td>
+            <td align="center" valign="middle" class="td">{$item.type_name}</td>
+            <td align="center" valign="middle" class="td">{$item.type_money}</td>
+            <td align="center" valign="middle" class="td">{$item.min_goods_amount}</td>
+            <td align="center" valign="middle" class="td">{$item.use_enddate}</td>
+            <td align="center" valign="middle" class="td">{$item.status}</td>
+          </tr>
+          <!--{/foreach}-->
+          <!-- {else} -->
+           <tr>
+             <td colspan="6" bgcolor="#FFFFFF">{$lang.user_bonus_empty}</td>
+           </tr>
+          <!-- {/if} -->
+          </tbody>
+        </table>   
+</div>
+{include file="user/library/pages.lbi"}
+</div>
+</div>
+{include file="user/library/baby_page_footer2.lbi"}
+</body>
+</html>

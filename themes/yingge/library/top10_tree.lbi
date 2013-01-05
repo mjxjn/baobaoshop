@@ -1,0 +1,11 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<ul>
+            	<li <!--{if $cat_id eq 0}--> class="on" <!--{/if}-->><a href="top10.php">全部商品热榜</a></li>
+    
+    <!--{foreach from=$categories name=categories item=cat}-->   
+                <li <!--{if $cat_id eq $cat.id}--> class="on" <!--{/if}-->><a href="{$cat.url}">{$cat.name|escape:html}热榜</a></li>
+    <!--{/foreach}-->
+</ul>
+<div class="blank9"></div>
+
+

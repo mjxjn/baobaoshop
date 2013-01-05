@@ -1,0 +1,810 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+
+<link href="themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link href="themes/yingge/head.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<link type="text/css" rel="stylesheet" href="themes/yingge/foot.css">
+<link href="themes/yingge/index.css" rel="stylesheet" rev="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="themes/yingge/ie6.css"/>
+<![endif]--><!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="themes/yingge/ie7.css"/>
+<![endif]--><!--[if IE 8]><LINK rel=stylesheet type=text/css 
+href="themes/yingge/ie8.css"><![endif]-->
+<LINK rel=stylesheet type=text/css href="themes/yingge/ie8.css">
+<style type="text/css" media="screen">
+		.QQPanel { list-style: none; }
+		.QQPanel li { float: left; margin-right: 10px; }
+		.QQPanel a { display: block; height: 34px; width: 34px; background: url('themes/yingge/images/QQStatus.gif') no-repeat; }
+		/* QQ不在线(默认)状态CSS */
+		.QQPanel a.qq2 { background-position: -35px 0; }
+		.QQPanel a.qq3 { background-position: -69px 0; }
+		.QQPanel a.qq4 { background-position: -103px 0; }
+		/* QQ在线状态CSS */
+		.QQPanel .online a.qq1 { background-position: 0 -34px; }
+		.QQPanel .online a.qq2 { background-position: -35px -34px; }
+		.QQPanel .online a.qq3 { background-position: -69px -34px; }
+		.QQPanel .online a.qq4 { background-position: -103px -35px; }
+		/* QQ在线状态鼠标移入时CSS */
+		.QQPanel .online a.qq1:hover { background-position: 0 bottom; }
+		.QQPanel .online a.qq2:hover { background-position: -35px bottom; }
+		.QQPanel .online a.qq3:hover { background-position: -69px bottom; }
+		.QQPanel .online a.qq4:hover { background-position: -103px bottom; }
+</style>
+<SCRIPT type=text/javascript src="themes/yingge/js/jquery.min.js"></SCRIPT>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header_index.lbi" --><!-- #EndLibraryItem -->
+<div id="yg-nav" class="w973">
+	<div class="left nav_jylist" id="nav_jylist">
+    	<p id="jy_vois" class="jy_ti"><span class="fl2">全部商品分类</span></p>
+        <!-- #BeginLibraryItem "/library/index_category_tree.lbi" --><!-- #EndLibraryItem -->
+    </div>
+    <div class="right" id="nav_indx">
+    	<div class="right gz">
+		<!--<a href=""><img src="images/weix.gif" width="16" height="16" border="0" /></a><a href=""><img src="images/weix.gif" border="0" width="16" height="16" /></a><a href=""><img src="images/weix.gif" border="0" width="16" height="16" /></a>-->
+		<ul class="QQPanel" id="QQPanel"><li><a href="#" class="qq1"></a></li><li><a href="#" class="qq2"></a></li><li><a href="#" class="qq3"></a></li><li><a href="#" class="qq4"></a></li></ul>
+	<script type="text/javascript">
+	//<![CDATA[
+		var online = [];
+		function QQPanel(id, data){
+			if((this.id = this.get(id)) == null)return false;
+			this.url = 'http://webpresence.qq.com/getonline?Type=1&';
+			this.header = document.getElementsByTagName('head');
+			this.items = this.id.childNodes;
+			this.lens  = this.items.length;
+			this.index = 0;
+			this.data  = data;
+			this.start();
+		}
+		QQPanel.prototype = {
+			get: function(id){return document.getElementById(id);},
+			start: function(){
+				if(this.index >= this.lens)return this.running=false;
+				this.running = true;
+				var script  = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src  = this.url + this.data[this.index] +':&'+(+new Date());
+				this.header[0].appendChild(script);
+				script.onload = script.onreadystatechange = (function(script){
+					var _this = this;
+					return (function(){
+						if(script.readyState){
+							if(script.readyState.match(/loaded|complete/i)){
+								_this.show(script)
+								_this = script = null;
+							}
+						}else{
+							_this.show()
+							_this = script = null;
+						}
+					});
+				}).call(this, script);
+			},
+			show: function(s){
+				this.items[this.index].className = '';
+				this.items[this.index].title = '我不在线,有事请留言.';
+				if(online[0] == 1){
+					this.items[this.index].className = 'online';
+					this.items[this.index].title = '我在线,有事您招呼.';
+				}
+				this.items[this.index].firstChild.href = 'tencent://message/?uin='+this.data[this.index++]+'&Site=婴格母婴商城&Menu=yes';
+				this.start();
+			},
+			reload: function(){
+				if(this.running)return false;
+				this.index = 0;
+				this.start();
+			}
+		}
+		var QQOnline = new QQPanel('QQPanel', [736409677, 410244935, 2372119635, 125750492]);
+		setInterval(function(){//每隔10秒检测一次在线状态
+			QQOnline.reload();
+		}, 10000);
+	//]]>
+	</script>
+		</div>
+        <div class="right ud_nav_today">
+        	<a id="nav_today_up" class="ud_up" href="#"></a>
+			<a id="nav_today_down" class="ud_down" href="#"></a>
+        </div>
+        <div id="nav_today" class="right nav_gonggao">
+        	{$shop_notice}
+        </div>
+    </div>
+</div>
+<div class="blank9"></div>
+<div id="flash_ad" class="w973">
+	<div id="flash_login">
+    	<div class="login_ad right">
+        <!--{if $login eq 0}-->
+        	<div class="right login_index">
+                <a href="user.php?act=register" class="register"></a>
+                <a href="user.php" class="r_login"></a>
+            </div>
+       <!--{else}-->
+        <div class="login_in right">
+        <a href="user.php">进入我的婴格</a><span>|</span><a href="user.php?act=order_list" class="co2">我的订单管理</a>
+        </div>
+        <!--{/if}-->
+            <div class="blank9"></div>
+            <div class="today_index" id="today_activity">
+            	<div class="today_tuijian"></div>
+                <div class="container" id="idContainer2">
+					<table id="idSlider2" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+									<td><a href="{$today_url1}"><img src="{$today_t1}" width="227" height="192"/></a></td>
+									<td><a href="{$today_url2}"><img src="{$today_t2}" width="227" height="192"/></a></td>
+									<td><a href="{$today_url3}"><img src="{$today_t3}" width="227" height="192"/></a></td>
+							</tr>
+					</table>
+				  </div>
+            </div>
+        </div>
+    	<div class="flash_index right">
+          <script type="text/javascript">
+			  var swf_width=540;
+			  var swf_height=240;
+		  </script>
+		  <script src="data/flashdata/default/cycle_image.js" type="text/javascript"></script>
+        </div>
+    </div>
+    <div class="blank9"></div>
+    <div id="zhinan-box" class="three_ad">
+        <div>
+    	<a id="btn-block1" href="" class="block1" target="_top">
+		<div class="sum">即将推出，敬请期待</div>
+        	<div class="info" style="width: 0px; overflow-x: hidden; overflow-y: hidden; "><p style="display: none; ">填写宝宝档案为您个性化定制，了解宝宝成长每一天。</p></div>
+        </a>
+        <a id="btn-block2" href="" class="block2" target="_top">
+		<div class="sum">即将推出，敬请期待</div>
+        	<div class="info" style="width: 0px; overflow-x: hidden; overflow-y: hidden; "><p style="display: none; ">妈妈工具让您时时检测从备孕到宝宝成长的每时每刻。</p></div>
+        </a>
+        <a id="btn-block3" href="" class="block3" target="_top">
+		<div class="sum">已有<span>123</span>个帖子</div>
+        	<div class="info" style="width: 0px; overflow-x: hidden; overflow-y: hidden; "><p style="display: none; ">交流宝宝成长的经验，分享购物过程中的喜悦。</p></div>
+        </a>
+        <div class="clear"></div>
+    	</div>
+    </div>
+    <div class="blank9"></div>
+    <div class="left time_left">
+    &nbsp;
+    </div>
+    <div id="time" class="time">
+    	<DIV id=yNav class=yNav></DIV>
+    </div>
+</div>
+<div class="blank9"></div>
+<div id="body_index" class="w973">
+	<div class="area_one">
+    	<div class="area_title"><div class="more">{$food_keyword}</div></div>
+        <div class="area_main erea_main_one">
+        	<div class="main_l left">
+            	<a href="{$food_bigpic_url}"><img src="{$food_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            <ul class="pro_img">
+                	<li><a href="{$food_pro_u1}"><img src="{$food_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u2}"><img src="{$food_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u3}"><img src="{$food_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u4}"><img src="{$food_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u5}"><img class="scrollLoading" src="{$food_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u6}"><img class="scrollLoading" src="{$food_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u7}"><img class="scrollLoading" src="{$food_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$food_pro_u8}"><img class="scrollLoading" src="{$food_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$food_arc_u1}"><img class="scrollLoading" src="{$food_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$food_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg" width="24" height="82" /></a>
+                    </div>
+                    <ul>
+						<li class="ppg_top"><a href="{$food_brand_u1}"><img class="scrollLoading" src="{$food_brand_p1}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$food_brand_u2}"><img class="scrollLoading" src="{$food_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$food_brand_u3}"><img class="scrollLoading" src="{$food_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$food_brand_u4}"><img class="scrollLoading" src="{$food_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$food_brand_u5}"><img class="scrollLoading" src="{$food_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$food_brand_u6}"><img class="scrollLoading" src="{$food_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$food_brand_u7}"><img class="scrollLoading" src="{$food_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$food_brand_u8}"><img class="scrollLoading" src="{$food_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="area_two">
+    	<div class="area_title"><div class="more">{$live_keyword}</div></div>
+        <div class="blank9"></div>
+        <div class="area_main">
+        	<div class="main_l left">
+            	<a href="{$live_bigpic_url}"><img class="scrollLoading" src="{$live_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            	<ul class="pro_img">
+                	<li><a href="{$live_pro_u1}"><img class="scrollLoading" src="{$live_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u2}"><img class="scrollLoading" src="{$live_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u3}"><img class="scrollLoading" src="{$live_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u4}"><img class="scrollLoading" src="{$live_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u5}"><img class="scrollLoading" src="{$live_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u6}"><img class="scrollLoading" src="{$live_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u7}"><img class="scrollLoading" src="{$live_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$live_pro_u8}"><img class="scrollLoading" src="{$live_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$live_arc_u1}"><img class="scrollLoading" src="{$live_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$live_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg"  width="24" height="82" /></a>
+                    </div>
+                    <ul>
+                    	<li class="ppg_top"><a href="{$live_brand_u1}"><img class="scrollLoading" src="{$live_brand_p1}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$live_brand_u2}"><img class="scrollLoading" src="{$live_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$live_brand_u3}"><img class="scrollLoading" src="{$live_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$live_brand_u4}"><img class="scrollLoading" src="{$live_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$live_brand_u5}"><img class="scrollLoading" src="{$live_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$live_brand_u6}"><img class="scrollLoading" src="{$live_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$live_brand_u7}"><img class="scrollLoading" src="{$live_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$live_brand_u8}"><img class="scrollLoading" src="{$live_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="area_three">
+    	<div class="area_title"><div class="more">{$ent_keyword}</div></div>
+        <div class="blank9"></div>
+        <div class="area_main">
+        	<div class="main_l left">
+            	<a href="{$Entertainment_bigpic_url}"><img class="scrollLoading" src="{$Entertainment_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            	<ul class="pro_img">
+                	<li><a href="{$ent_pro_u1}"><img class="scrollLoading" src="{$ent_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u2}"><img class="scrollLoading" src="{$ent_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u3}"><img class="scrollLoading" src="{$ent_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u4}"><img class="scrollLoading" src="{$ent_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u5}"><img class="scrollLoading" src="{$ent_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u6}"><img class="scrollLoading" src="{$ent_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u7}"><img class="scrollLoading" src="{$ent_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$ent_pro_u8}"><img class="scrollLoading" src="{$ent_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$ent_arc_u1}"><img class="scrollLoading" src="{$ent_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$ent_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg" width="24" height="82" /></a>
+                    </div>
+                    <ul>
+                    	<li class="ppg_top"><a href="{$ent_brand_u1}"><img class="scrollLoading" src="{$ent_brand_p1}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$ent_brand_u2}"><img class="scrollLoading" src="{$ent_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$ent_brand_u3}"><img class="scrollLoading" src="{$ent_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$ent_brand_u4}"><img class="scrollLoading" src="{$ent_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$ent_brand_u5}"><img class="scrollLoading" src="{$ent_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$ent_brand_u6}"><img class="scrollLoading" src="{$ent_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$ent_brand_u7}"><img class="scrollLoading" src="{$ent_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$ent_brand_u8}"><img class="scrollLoading" src="{$ent_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="area_four">
+    	<div class="area_title"><div class="more">{$clo_keyword}</div></div>
+        <div class="blank9"></div>
+        <div class="area_main">
+        	<div class="main_l left">
+            	<a href="{$clothes_bigpic_url}"><img class="scrollLoading" src="{$clothes_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            	<ul class="pro_img">
+                	<li><a href="{$clo_pro_u1}"><img class="scrollLoading" src="{$clo_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u2}"><img class="scrollLoading" src="{$clo_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u3}"><img class="scrollLoading" src="{$clo_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u4}"><img class="scrollLoading" src="{$clo_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u5}"><img class="scrollLoading" src="{$clo_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u6}"><img class="scrollLoading" src="{$clo_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u7}"><img class="scrollLoading" src="{$clo_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$clo_pro_u8}"><img class="scrollLoading" src="{$clo_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$clo_arc_u1}"><img class="scrollLoading" src="{$clo_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$clo_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg" width="24" height="82" /></a>
+                    </div>
+                    <ul>
+                    	<li class="ppg_top"><a href="{$clo_brand_u1}"><img class="scrollLoading" src="{$clo_brand_p1}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$clo_brand_u2}"><img class="scrollLoading" src="{$clo_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$clo_brand_u3}"><img class="scrollLoading" src="{$clo_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$clo_brand_u4}"><img class="scrollLoading" src="{$clo_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$clo_brand_u5}"><img class="scrollLoading" src="{$clo_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$clo_brand_u6}"><img class="scrollLoading" src="{$clo_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$clo_brand_u7}"><img class="scrollLoading" src="{$clo_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$clo_brand_u8}"><img class="scrollLoading" src="{$clo_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="area_five">
+    	<div class="area_title"><div class="more">{$pic_keyword}</div></div>
+        <div class="blank9"></div>
+        <div class="area_main">
+        	<div class="main_l left">
+            	<a href="{$Picture_bigpic_url}"><img class="scrollLoading" src="{$Picture_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            	<ul class="pro_img">
+                	<li><a href="{$pic_pro_u1}"><img class="scrollLoading" src="{$pic_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u2}"><img class="scrollLoading" src="{$pic_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u3}"><img class="scrollLoading" src="{$pic_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u4}"><img class="scrollLoading" src="{$pic_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u5}"><img class="scrollLoading" src="{$pic_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u6}"><img class="scrollLoading" src="{$pic_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u7}"><img class="scrollLoading" src="{$pic_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$pic_pro_u8}"><img class="scrollLoading" src="{$pic_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$pic_arc_u1}"><img class="scrollLoading" src="{$pic_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$pic_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg" width="24" height="82" /></a>
+                    </div>
+                    <ul>
+                    	<li class="ppg_top"><a href="{$pic_brand_u1}"><img class="scrollLoading" src="{$pic_brand_p1}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$pic_brand_u2}"><img class="scrollLoading" src="{$pic_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$pic_brand_u3}"><img class="scrollLoading" src="{$pic_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$pic_brand_u4}"><img class="scrollLoading" src="{$pic_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$pic_brand_u5}"><img class="scrollLoading" src="{$pic_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$pic_brand_u6}"><img class="scrollLoading" src="{$pic_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$pic_brand_u7}"><img class="scrollLoading" src="{$pic_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$pic_brand_u8}"><img class="scrollLoading" src="{$pic_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="area_six">
+    	<div class="area_title"><div class="more">{$mom_keyword}</div></div>
+        <div class="blank9"></div>
+        <div class="area_main">
+        	<div class="main_l left">
+            	<a href="{$Mom_bigpic_url}"><img class="scrollLoading" src="{$Mom_bigpic}" width="240" height="335" /></a>
+            </div>
+            <div class="main_r right">
+            	<ul class="pro_img">
+                	<li><a href="{$mom_pro_u1}"><img class="scrollLoading" src="{$mom_pro_p1}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u2}"><img class="scrollLoading" src="{$mom_pro_p2}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u3}"><img class="scrollLoading" src="{$mom_pro_p3}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u4}"><img class="scrollLoading" src="{$mom_pro_p4}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u5}"><img class="scrollLoading" src="{$mom_pro_p5}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u6}"><img class="scrollLoading" src="{$mom_pro_p6}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u7}"><img class="scrollLoading" src="{$mom_pro_p7}" height='152' width="182"/></a></li>
+                    <li><a href="{$mom_pro_u8}"><img class="scrollLoading" src="{$mom_pro_p8}" height='152' width="182"/></a></li>
+                </ul>
+                <div class="blank9"></div>
+                <div class="new_index left">
+                	<div class="new_pic_i left">
+                	<a href="{$mom_arc_u1}"><img class="scrollLoading" src="{$mom_arc_p1}" width="81" height="82"/></a>
+                    </div>
+                    <ul>
+                    	{$mom_arc_t}
+                    </ul>
+                </div>
+                 <div class="ppg_index right">
+                	<div class="ppg_pic_i left">
+                	<a href="brand.php"><img class="scrollLoading" src="images/ppg.jpg" width="24" height="82" /></a>
+                    </div>
+                    <ul>
+                    	<li class="ppg_top"><a href="{$mom_brand_u1}"><img class="scrollLoading" src="{$mom_brand_p1}" width="77" height="29" /></a></li>
+                        <li class="ppg_top"><a href="{$mom_brand_u2}"><img class="scrollLoading" src="{$mom_brand_p2}" width="77" height="29"/></a></li>
+                        <li class="ppg_top"><a href="{$mom_brand_u3}"><img class="scrollLoading" src="{$mom_brand_p3}" width="77" height="29"/></a></li>
+                        <li class="ppg_top ppg_last"><a href="{$mom_brand_u4}"><img class="scrollLoading" src="{$mom_brand_p4}" width="77" height="29"/></a></li>
+                        <li><a href="{$mom_brand_u5}"><img class="scrollLoading" src="{$mom_brand_p5}" width="77" height="29"/></a></li>
+                        <li><a href="{$mom_brand_u6}"><img class="scrollLoading" src="{$mom_brand_p6}" width="77" height="29"/></a></li>
+                        <li><a href="{$mom_brand_u7}"><img class="scrollLoading" src="{$mom_brand_p7}" width="77" height="29"/></a></li>
+                        <li class="ppg_last"><a href="{$mom_brand_u8}"><img class="scrollLoading" src="{$mom_brand_p8}" width="77" height="29"/></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript">
+$(document).ready(function(){
+	$('#btn-block1').hover(function(){
+        $('#btn-block1 .info').stop().animate({width:171},250,function(){
+			$('#btn-block1 .info p').show()
+		});
+    },
+    function(){
+        $('#btn-block1 .info p').hide();
+        $('#btn-block1 .info').stop().animate({width:0});
+        });
+    
+    $('#btn-block2').hover(function(){
+        $('#btn-block2 .info').stop().animate({width:171},250,function(){
+			$('#btn-block2 .info p').show()
+		});
+    },
+    function(){
+        $('#btn-block2 .info p').hide();
+        $('#btn-block2 .info').stop().animate({width:0});
+        });
+    
+    $('#btn-block3').hover(function(){
+        $('#btn-block3 .info').stop().animate({width:171},250,function(){
+			$('#btn-block3 .info p').show()
+		});
+    },
+    function(){
+        $('#btn-block3 .info p').hide();
+        $('#btn-block3 .info').stop().animate({width:0});
+        });
+});
+</script>
+<script>
+/*导行滚动，上下，今日，本月*/
+(function(){
+var nav_today=$("#nav_today"),
+nav_today_up=$("#nav_today_up"),
+nav_today_down=$("#nav_today_down"),
+ul=nav_today.find("ul");
+ul_h=nav_today.height();
+nav_today.append(ul.clone());
+var n=0;
+var ul_size=ul.size();
+function start()
+{
+scrollUp();
+if(n==ul_size)
+{
+nav_today.scrollTop(0);
+n=0;
+}
+}
+var timer=window.setInterval(function(){
+start();
+},2000);
+function stop()
+{
+clearInterval(timer);
+}
+function restart()
+{
+timer=window.setInterval(function(){
+start();
+},2000);
+}
+//向上卷动一个ul
+function scrollUp(){
+if(nav_today.is(":animated")){return false;}
+nav_today.animate({scrollTop:nav_today.scrollTop()+ul_h},"normal",function(){
+n++;
+if(n==ul_size){
+nav_today.scrollTop(0);
+n=0;
+}
+}
+);
+}
+//向下卷动一个ul
+function scrollDown(){
+if(nav_today.is(":animated")){return false;}
+nav_today.animate({scrollTop:nav_today.scrollTop()-ul_h},"normal",function(){
+n--;
+if(n==0){
+n=ul_size;
+nav_today.scrollTop(ul_h*ul_size);
+};
+}
+);
+}
+nav_today.mouseover(function(){
+stop();
+}).mouseout(function(){
+restart();
+})
+nav_today_up.click(function(){
+if(n==0){
+n=ul_size;
+nav_today.scrollTop(ul_h*ul_size);
+}
+scrollDown();
+return false;
+});
+nav_today_down.click(function(){
+if(n==ul_size)
+{
+n=0;
+nav_today.scrollTop(0);
+}
+scrollUp();
+return false;
+});
+})(); 
+
+
+/*下拉分类*/
+(function() {
+var jy_v=$("#jy_vois");
+var jy_b=$("#jy_vois b");
+var jy_c=$("#jy_list");
+var jy_li=$("#jy_list li");
+var jy_dl=$("#jy_list li dl");
+jy_c.show();
+jy_b.addClass("ja");
+jy_v.hover(function(){
+jy_v.addClass("jy_ti_hover");
+},function(){
+jy_v.removeClass("jy_ti_hover");
+})
+jy_li.hover(function(){
+var lis=jy_li.index(this);
+jy_li.eq(lis).addClass("select");
+jy_dl.eq(lis).show();
+},function(){
+$(this).removeClass("select");
+jy_dl.hide();
+});
+})();
+
+jQuery(".topdiv ul li.li2").hover(
+	function () {
+    $(this).addClass("li2H");
+	},
+	function () {
+	$(this).removeClass("li2H");
+	}
+);
+
+var $_ = function (id) {
+        return "string" == typeof id ? document.getElementById(id) : id;
+};
+var Extend = function(destination, source) {
+        for (var property in source) {
+                destination[property] = source[property];
+        }
+        return destination;
+}
+var CurrentStyle = function(element){
+        return element.currentStyle || document.defaultView.getComputedStyle(element, null);
+}
+var Bind = function(object, fun) {
+        var args = Array.prototype.slice.call(arguments).slice(2);
+        return function() {
+                return fun.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+        }
+}
+var Tween = {
+        Quart: {
+                easeOut: function(t,b,c,d){
+                        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+                }
+        },
+        Back: {
+                easeOut: function(t,b,c,d,s){
+                        if (s == undefined) s = 1.70158;
+                        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+                }
+        },
+        Bounce: {
+                easeOut: function(t,b,c,d){
+                        if ((t/=d) < (1/2.75)) {
+                                return c*(7.5625*t*t) + b;
+                        } else if (t < (2/2.75)) {
+                                return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+                        } else if (t < (2.5/2.75)) {
+                                return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+                        } else {
+                                return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+                        }
+                }
+        }
+}
+//容器对象,滑动对象,切换数量
+var SlideTrans = function(container, slider, count, options) {
+        this._slider = $_(slider);
+        this._container = $_(container);//容器对象
+        this._timer = null;//定时器
+        this._count = Math.abs(count);//切换数量
+        this._target = 0;//目标值
+        this._t = this._b = this._c = 0;//tween参数
+        
+        this.Index = 0;//当前索引
+        
+        this.SetOptions(options);
+        
+        this.Auto = !!this.options.Auto;
+        this.Duration = Math.abs(this.options.Duration);
+        this.Time = Math.abs(this.options.Time);
+        this.Pause = Math.abs(this.options.Pause);
+        this.Tween = this.options.Tween;
+        this.onStart = this.options.onStart;
+        this.onFinish = this.options.onFinish;
+        
+        var bVertical = !!this.options.Vertical;
+        this._css = bVertical ? "left" : "left";//方向
+        
+        //样式设置
+        var p = CurrentStyle(this._container).position;
+        p == "relative" || p == "absolute" || (this._container.style.position = "relative");
+        //this._container.style.overflow = "hidden";
+        this._slider.style.position = "absolute";
+        
+        this.Change = this.options.Change ? this.options.Change :
+                this._slider[bVertical ? "offsetHeight" : "offsetWidth"] / this._count;
+};
+SlideTrans.prototype = {
+  //设置默认属性
+  SetOptions: function(options) {
+        this.options = {//默认值
+                Vertical:        true,//是否垂直方向（方向不能改）
+                Auto:                true,//是否自动
+                Change:                0,//改变量
+                Duration:        50,//滑动持续时间
+                Time:                10,//滑动延时
+                Pause:                2000,//停顿时间(Auto为true时有效)
+                onStart:        function(){},//开始转换时执行
+                onFinish:        function(){},//完成转换时执行
+                Tween:                Tween.Quart.easeOut//tween算子
+        };
+        Extend(this.options, options || {});
+  },
+  //开始切换
+  Run: function(index) {
+        //修正index
+        index == undefined && (index = this.Index);
+        index < 0 && (index = this._count - 1) || index >= this._count && (index = 0);
+        //设置参数
+        this._target = -Math.abs(this.Change) * (this.Index = index);
+        this._t = 0;
+        this._b = parseInt(CurrentStyle(this._slider)[this.options.Vertical ? "left" : "left"]);
+        this._c = this._target - this._b;
+        
+        this.onStart();
+        this.Move();
+  },
+  //移动
+  Move: function() {
+        clearTimeout(this._timer);
+        //未到达目标继续移动否则进行下一次滑动
+        if (this._c && this._t < this.Duration) {
+                this.MoveTo(Math.round(this.Tween(this._t++, this._b, this._c, this.Duration)));
+                this._timer = setTimeout(Bind(this, this.Move), this.Time);
+        }else{
+                this.MoveTo(this._target);
+                this.Auto && (this._timer = setTimeout(Bind(this, this.Next), this.Pause));
+        }
+  },
+  //移动到
+  MoveTo: function(i) {
+        this._slider.style[this._css] = i + "px";
+  },
+  //下一个
+  Next: function() {
+        this.Run(++this.Index);
+  },
+  //上一个
+  Previous: function() {
+        this.Run(--this.Index);
+  },
+  //停止
+  Stop: function() {
+        clearTimeout(this._timer); this.MoveTo(this._target);
+  }
+};
+
+var forEach = function(array, callback, thisObject){
+        if(array.forEach){
+                array.forEach(callback, thisObject);
+        }else{
+                for (var i = 0, len = array.length; i < len; i++) { callback.call(thisObject, array[i], i, array); }
+        }
+}
+var st = new SlideTrans("idContainer2", "idSlider2", 3, { Vertical: false });
+var nums = [];
+//设置按钮样式
+st.onStart = function(){
+        forEach(nums, function(o, i){ o.className = st.Index == i ? "on" : ""; })
+}
+st.Run();
+
+$(document).ready(function(){
+	//回到顶部按钮操作事件 
+    var show_delay;
+    var scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;    
+    $(".scroll_div").click(function (){
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+    });
+    $(window).resize(function (){
+        scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
+        $(".scroll_div").css("left",scroll_div_left);
+    });
+    reshow(scroll_div_left,show_delay);
+
+});
+/* 回到页面顶部按钮显示 */
+function reshow(marign_l,show_d) {
+$(".scroll_div").css("left",marign_l);
+if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
+    {
+    $(".scroll_div").css("display","block");
+    }   
+    else
+    {
+    $(".scroll_div").css("display","none");  }
+    if(show_d) window.clearTimeout(show_d) ;
+    show_d=setTimeout("reshow()",500);
+}
+</script>
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<SCRIPT type=text/javascript src="themes/yingge/js/agestate.js"></SCRIPT>
+  <script type="text/javascript" src="themes/yingge/js/lazyload.js"></script>
+<script>
+$(document).ready(function(){
+$("#body_index").find("img").lazyload({effect : "fadeIn",placeholder : " /themes/yingge/images/grey.gif"});
+}); 
+</script> 
+</body>
+</html>

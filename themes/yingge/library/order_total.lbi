@@ -1,0 +1,47 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='transport.js,utils.js'}
+<div id="ECS_ORDERTOTAL">
+<div class="fl fp_box">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" id="fp_ok">
+  <tbody>
+  <tr>
+    <td align="left" valign="middle"><strong>{$lang.order_postscript}</strong></td>
+    <td width="80%" align="left" valign="middle"></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="middle"><textarea name="postscript" cols="80" rows="7" id="postscript" style="border:1px solid #ccc;">{$order.postscript|escape}</textarea></td>
+        </tr>
+  <tr>
+    <td align="right" valign="middle"><b style="display:none"> 发票内容：</b></td>
+    <td align="left" valign="middle"><span></span></td>
+  </tr>
+</tbody></table>
+<div id="flow_invoice_table"></div> </div>
+    
+    <ul class="fr cart_sum" style="padding-right:0;" id="now_pay_money">
+     <!-- {if $total.surplus > 0 or $total.integral > 0 or $total.bonus > 0} 使用余额或积分或红包 -->
+     <!-- {if $total.surplus > 0} 使用余额 -->
+     <li><span>- {$lang.use_surplus}:{$total.surplus_formated}</span></li>
+     <!-- {/if} -->
+     <!-- {if $total.integral > 0} 使用积分 -->
+     <li><span>- {$lang.use_integral}:{$total.integral_formated}</span></li>
+     <!-- {/if} -->
+     <!-- {if $total.bonus > 0} 使用红包 -->
+     <li><span>- {$lang.use_bonus}:{$total.bonus_formated}</span></li>
+     <input type="hidden" name="bonus" value="{$total.bonus_id}" />
+     <!-- {/if} -->
+     <!-- {/if} -->
+     <!-- {if $total.discount gt 0} 折扣 -->
+     <li>- 折扣：<b>{$total.discount_formated}</b></li>
+     <!-- {/if} -->
+    <li><span><!--{if ($is_exchange_goods eq 1) or ($e_total.e_goods_price gt 0) }-->花费积分：{$e_total.e_goods_price}<!--{/if}--></span>商品金额：<b>{$total.goods_price_formated}</b></li>
+ 	
+ 
+<li>运费：<!-- {if $total.shipping_fee > 0} 配送费用 --><b>{$total.shipping_fee_formated}</b><!--{else}--><b>￥0.00元</b><!--{/if}--></li>
+<li><font class="sum_num">{$total.amount_formated}</font></li>
+<li> 
+   
+    <p>您将获得<!--{if $is_exchange_goods eq 1 }-->0<!--{else}-->{$total_integral}<!--{/if}-->积分</p>
+
+</li></ul>
+</div>

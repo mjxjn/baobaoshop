@@ -1,0 +1,101 @@
+@CHARSET "utf8";
+#bigpic{
+	background:url(images/bigpic_bg.gif) repeat-x;
+	margin-top: -4px;
+}
+.bigpic_starbaby{
+	background:url(images/bigpic_starbaby.gif) no-repeat;
+	width:990px;
+	height:243px;
+	position: relative;
+}
+.bigpic_btn{
+	background:url(images/bigpic_btn.gif) no-repeat;
+	width:195px;
+	height:27px;
+	top:160px;
+	left:40px;
+	position: absolute;
+	text-align:center;
+}
+.bigpic_btn a, .bigpic_btn a:hover{
+	width:195px;
+	height:27px;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	color:#fff;
+	line-height:27px;
+}
+#starbaby{
+	background:#ffecee;
+	overflow:hidden;
+	border:1px solid #dcdddf;
+}
+.starbaby_nav{
+	background:url(images/nav_bg.gif) 0 15px no-repeat;
+	padding-top:15px;
+	overflow:hidden;
+	clear:both;
+}
+.starbaby_navul{
+	height:33px;
+	padding-left:45px;
+	width:840px;
+	float:left;
+}
+.starbaby_navul li{
+	float:left;
+	padding:0 10px;
+	line-height:33px;
+}
+.starbaby_navul li a{
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+}
+.starbaby_navmore{
+	width:100px;
+	float:right;
+	text-align:center;
+}
+.starbaby_navmore a{
+	color:#fff;
+	line-height:33px;
+}
+.introduction{
+	margin:15px auto;
+	background:#fff;
+	border-top:4px solid #f78499;
+}
+.now_themes{
+	background:url(images/nowthemes_title.gif) 0 20px no-repeat;
+	padding:70px 20px 30px;
+	line-height:24px;
+	color:#333;
+	border-bottom:1px dashed #f9dddf;
+}
+.activity{
+	background:url(images/activity_title.gif) 0 20px no-repeat;
+	padding:61px 20px 30px;
+	line-height:24px;
+	color:#333;
+	border-bottom:1px dashed #f9dddf;
+}
+.activity .activity-title{
+	background:url(images/ico1.gif) 0 5px no-repeat;
+	color:#f78499;
+	font-weight:bold;
+	padding-left:20px;
+}
+.activity .activity-title p{
+	color:#333;
+	font-weight:100;
+}
+.rules{
+	background:url(images/rules_title.gif) 0 20px no-repeat;
+	padding:60px 20px 30px;
+	line-height:24px;
+	color:#333;
+	border-bottom:1px dashed #f9dddf;
+}

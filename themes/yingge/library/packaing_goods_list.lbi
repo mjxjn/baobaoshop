@@ -1,0 +1,84 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="detail1" style="position:relative;">
+        	<!-- {if $related_goods} -->
+			<div class="group" style="display:block;">
+				<div class="suits <!--{if $related_goods_conut gt 3}-->suits_over<!--{/if}-->">
+                <form name="packaging_0">
+					<ul style="width:<!--{$related_goods_ul}-->px">
+                    	<li>
+						<div class="p-img">
+							<img width="80" height="80" src="{$goods.goods_thumb}" alt="{$goods.goods_style_name}" /></a>
+						</div>
+						<div class="p-name">
+							{$goods.goods_style_name}
+						</div>
+                        <div class="p-price">
+                        <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+                        {$goods.promote_price}
+                         <!--{else}-->
+                        {$goods.shop_price_formated}
+                         <!--{/if}-->
+                        </div>
+                        <input type="hidden" value="{$goods.goods_id}" name="main_goods_id">
+                        <input type="hidden" value="<!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->{$goods.promote_price_org}<!--{else}-->{$goods.shop_price}<!--{/if}-->" name="main_goods_price">
+						</li>
+                        <div class="add"></div>
+                	<!-- {foreach from=$related_goods item=releated_goods_data name=related_goods} -->
+						<li>
+						<div class="p-img">
+							<a href="{$releated_goods_data.url}" target="_blank"><img width="80" height="80" src="{$releated_goods_data.goods_thumb}" alt="{$releated_goods_data.goods_name}" /></a>
+						</div>
+						<div class="p-name">
+                        <input name="packaging_goods_id0[]" type="checkbox" value="{$releated_goods_data.goods_id}" checked="checked" onclick="checkGift(0,this);">
+							<a href="{$releated_goods_data.url}" title="{$releated_goods_data.goods_name}" target="_blank">{$releated_goods_data.short_name}</a>
+						</div>
+                        <div class="p-price">
+                        <!-- {if $releated_goods_data.promote_price neq 0} -->
+                        {$releated_goods_data.formated_promote_price}
+                        <!-- {else} -->
+                        {$releated_goods_data.shop_price}
+                        <!-- {/if} -->
+                        </div>
+                        <input name="packaging_goods_price0[]" type="hidden" value="<!-- {if $releated_goods_data.promote_price neq 0} -->{$releated_goods_data.promote_price} <!-- {else} -->{$releated_goods_data.mshop_price} <!-- {/if} -->">
+                        <input name="packaging_current_price0[]" type="hidden" value="{$releated_goods_data.mmarket_price}">
+						</li>
+                        <!--{if $smarty.foreach.related_goods.iteration neq $smarty.foreach.related_goods.last}-->
+						<div class="add"></div>
+                        <!--{/if}-->
+                    <!-- {/foreach} -->
+					</ul>
+                    <input type="hidden" name="packaging_act_id0" value="{$linked_price_all}">
+                    <input type="hidden" name="packaging_act_name0" value="{$linked_goods_name} 组合商品">
+                    <input name="packaging_goods_id0[]" type="hidden" value="0" readonly="">
+                    </form>  
+				</div>
+              
+				<div class="infos" id="equ0">
+					<div class="zjpd">最佳拍档</div>
+					<div class="zuhe_market">市场总价：<del><b>{$linked_mkprice_all_format}</b></del></div>
+					<div class="zuhe_price">婴格总价：<span class=red><b>{$linked_price_all_format}</b></span></div>
+					<div class="btn_zuhe"><a href="javascript:checkPackaginggoods(0,$(this))"><img src="images/btn_zuhe.jpg" /></a></div>
+					<div class="zuhe_ts"><a href="javascript:closezuhe_ts()"></a></div>
+				</div>
+			</div>
+			<!-- {/if} -->
+    <div class="pop_out" id="cat_pop2" style="left:375px;*left:375px !important;*left:360px; top:126px; width:291px;">
+      <div class="pop_in" style="width:281px; top:-1px;*top:-1px !important;*top:-1px;">
+        <div class="pop_top" style="border-bottom:1px solid #fff;">
+          <div class="close" style=" line-height:13px;*line-height:12px !important;*line-height:14px;">关闭</div>
+        </div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+          <tbody><tr>
+            <td style="background-color:#fff;" height="50" colspan="2" align="center" valign="middle"><span class="pop_inf" style="color:#000;font-size:14px;">商品已成功添加到购物车</span></td>
+          </tr>
+          <tr style="background-color:#fff;">
+            <td style="background-color:#fff;" width="70%" height="30" align="right" valign="middle"><a class="pop_btn" href="http://www.quwan.com/flow.php"></a></td>
+            <td style="background-color:#fff;" width="30%" align="left" valign="middle"><a class="info_a" style="cursor:pointer;" onclick="$('.close').click();">继续逛&gt;&gt;</a></td>
+          </tr>
+          <tr>
+            <td style="background-color:#fff;" height="20" colspan="2" align="center" valign="middle"></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+#exchange_body{
+	overflow:hidden;
+}
+#exchange_body .exchange_top{
+	margin:7px 0;
+	overflow:hidden;
+}
+#exchange_body .exchange_title{
+	height: 35px;
+	background: url(images/exchange_title.jpg) no-repeat;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+#exchange_body ul.exchange_list{
+	width:950px;
+	margin: 20px 0px 20px 25px;
+	_margin: 20px 0px 20px 14px;
+	overflow:hidden;
+}
+#exchange_body ul.exchange_list li{
+	float:left;
+	width:190px;
+	padding: 0;
+	height:210px;
+}
+#exchange_body ul.exchange_list li a{
+	display:block;
+}
+#exchange_body ul.exchange_list li img{
+	border: 1px solid white;
+	background-color: white;
+	padding: 4px;
+}
+#exchange_body ul.exchange_list li a:hover img {
+border: 1px solid #FFE2A6;
+background-color: #FFF9EB;
+}
+#exchange_body ul.exchange_list li p{
+	width:178px;
+	text-align: center;
+	line-height: 24px;
+}
+#exchange_body ul.exchange_list li p a:hover{
+	color:#ED771C;
+}
+#exchange_body ul.exchange_list li p font{
+	font-size:12px;
+	color:#92413E;
+}
+#top_bar {
+	position: absolute;
+	padding-left: 100px;
+}
+#top_bar a{
+	font-size: 14px;
+	color:#666;
+}
+#top_bar a:hover{
+	color:#EB6702;
+}
+.top_bar {
+	height: 27px;
+	margin-top: 7px;
+	border: none;
+	padding:0 5px;
+	min-width:67px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 27px;
+	cursor: pointer;
+	float: left;
+}
+.top_baron {
+	border: 1px solid #E2E2E2;
+	border-bottom: 1px solid #fff;
+	background-color: white;
+	color: #DA0A0A;
+	border-top: 2px solid #EB6702;
+	height: 26px;
+	line-height: 26px;
+}
+.page_box {
+    height: 24px;
+    line-height: 23px;
+    padding-bottom: 18px;
+    padding-top: 15px;
+    text-align: right;
+	padding-right:15px;
+	border-top: 1px solid #EEE;
+}
+.page_box a {
+    display: inline-block;
+    height: 23px;
+    padding: 0 9px;
+}
+.page_box span {
+    border: 1px solid #DBDBDB;
+    display: inline-block;
+    height: 23px;
+    margin: 0 3px;
+}
+.page_box font {
+    font-size: 12px;
+    padding: 0 5px;
+}
+.page_box b {
+    color: #CC0809;
+    font-weight: normal;
+}
+#page_on {
+    background-color: #FFF9EB;
+    border: 1px solid #CA0809;
+    color: #CA0809;
+    padding: 0 9px;
+}

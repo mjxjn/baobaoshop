@@ -1,0 +1,175 @@
+#yNav {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #fff; MARGIN: 0px auto;  PADDING-RIGHT: 5px; HEIGHT: 38px; FONT-SIZE: 12px; PADDING-TOP: 17px
+}
+.yNav {
+	POSITION: absolute; TOP: 0px;
+}
+#yNav_zhanwei {
+ HEIGHT: 60px
+}
+#yNav UL {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+#yNav LI {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+#yNav P {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+#yNav DIV.bk {
+	POSITION: relative; FLOAT: left; HEIGHT: 40px; OVERFLOW: visible
+}
+#yNav DIV DIV {
+	BORDER-BOTTOM: #ccc 1px solid; BORDER-LEFT: medium none; PADDING-BOTTOM: 2px; MARGIN-TOP: 2px; PADDING-LEFT: 1px; PADDING-RIGHT: 2px; OVERFLOW: hidden; BORDER-TOP: #ccc 1px solid; BORDER-RIGHT: #ccc 1px solid; PADDING-TOP: 2px
+}
+#yNav DIV.bk0 DIV {
+	BORDER-LEFT: #ccc 1px solid; MARGIN-LEFT: -1px; _margin-left: 0
+}
+#yNav UL {
+	PADDING-RIGHT: 2px; _padding-right: 0
+}
+#yNav .bk0 UL {
+	PADDING-RIGHT: 0px
+}
+#yNav .bk2 UL {
+	PADDING-RIGHT: 0px
+}
+#yNav UL:after {
+	DISPLAY: block; HEIGHT: 0px; CLEAR: both; CONTENT: "."
+}
+#yNav LI {
+	LINE-HEIGHT: 10px; WIDTH: 10px; FLOAT: left; HEIGHT: 10px; MARGIN-LEFT: 1px; FONT-SIZE: 0px; CURSOR: pointer; _display: inline
+}
+#yNav A {
+	FILTER: alpha(opacity=0); BACKGROUND-COLOR: transparent; WIDTH: 100%; DISPLAY: block; HEIGHT: 10px; opacity: 0
+}
+#yNav .hover A:hover {
+	FILTER: alpha(opacity=100); opacity: 1
+}
+#yNav .hover {
+	Z-INDEX: 10; POSITION: relative; BORDER-LEFT: #ccc 1px solid; MARGIN-TOP: 0px; HEIGHT: 14px; MARGIN-LEFT: -1px
+}
+#yNav .hover LI {
+	HEIGHT: 14px
+}
+#yNav .bk0 .hover {
+	LEFT: 0px
+}
+#yNav .bk0 .hover A {
+	FILTER: alpha(opacity=100); opacity: 1
+}
+/*#yNav .bk2 .hover A {
+	FILTER: alpha(opacity=100); opacity: 1
+}*/
+#yNav .hover A {
+	FILTER: alpha(opacity=30); PADDING-BOTTOM: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 2px; opacity: 0.3
+}
+#yNav .bk0 .hover LI {
+	MARGIN-LEFT: 0px
+}
+/*#yNav .bk2 .hover LI {
+	MARGIN-LEFT: 0px
+}*/
+#yNav .bk0 .hover UL {
+	POSITION: relative; LEFT: 1px
+}
+/*#yNav .bk2 .hover UL {
+	POSITION: relative; LEFT: 1px
+}*/
+#yNav .bk0 A {
+	BACKGROUND-COLOR: #fe78ab
+}
+#yNav .bk0 .hover UL LI {
+	BACKGROUND-COLOR: #fe78ab
+}
+#yNav .bk1 A {
+	BACKGROUND-COLOR: #fc8a1a
+}
+#yNav .bk2 A {
+	BACKGROUND-COLOR: #ffd200
+}
+#yNav .bk2 .hover UL LI {
+	BACKGROUND-COLOR: #ffd200
+}
+#yNav .bk3 A {
+	BACKGROUND-COLOR: #16bd0d
+}
+#yNav .bk4 A {
+	BACKGROUND-COLOR: #00a7a8
+}
+#yNav .bk5 A {
+	BACKGROUND-COLOR: #2b8ff1
+}
+#yNav .bk6 A {
+	BACKGROUND-COLOR: #bf34f3
+}
+#yNav .bk6 P {
+	LEFT: -12px
+}
+#yNav P {
+	Z-INDEX: 1; POSITION: absolute; TEXT-ALIGN: center; LINE-HEIGHT: 20px; WIDTH: 100%; BOTTOM: 0px; WHITE-SPACE: nowrap; HEIGHT: 20px; LEFT: 0px
+}
+#yNav .bk0 {
+	COLOR: #e1729d
+}
+#yNav .bk0 LI {
+	BACKGROUND-COLOR: #ffd2e6
+}
+#yNav .bk1 {
+	COLOR: #fe712c
+}
+#yNav .bk1 LI {
+	BACKGROUND-COLOR: #fee4c3
+}
+#yNav .bk2 {
+	COLOR: #ff9000
+}
+#yNav .bk2 LI {
+	BACKGROUND-COLOR: #fef1ba
+}
+#yNav .bk3 {
+	COLOR: #08a002
+}
+#yNav .bk3 LI {
+	BACKGROUND-COLOR: #e1f2ae
+}
+#yNav .bk4 {
+	COLOR: #00b4a8
+}
+#yNav .bk4 LI {
+	BACKGROUND-COLOR: #ccf4eb
+}
+#yNav .bk5 {
+	COLOR: #2faeff
+}
+#yNav .bk5 LI {
+	BACKGROUND-COLOR: #d4eeff
+}
+#yNav .bk6 {
+	COLOR: #ae27db
+}
+#yNav .bk6 LI {
+	BACKGROUND-COLOR: #e7dcfa
+}
+#yNav A PRE {
+	DISPLAY: none
+}
+#title-box {
+color: white;
+font-size: 12px;
+height: 12px;
+line-height: 12px;
+padding: 1px 3px 2px;
+position: absolute;
+text-align: center;
+z-index: 102;
+float:right;
+}
+#title-box span {
+height: 12px;
+left: -6px;
+margin-left: 50%;
+position: absolute;
+top: 8px;
+width: 12px;
+}

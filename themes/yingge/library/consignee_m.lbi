@@ -1,0 +1,85 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="addr_div">
+        <ul>
+          <li class="addr_tdiv">收货人姓名：</li>
+          <li>
+            <input name="consignee" type="text" class="info_input" id="consignee_{$sn}" size="20" maxlength="30" value="{$consignee.consignee|escape}" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">所在城市：</li>
+          <li>
+          <select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[0]}</option>
+        <!-- {foreach from=$country_list item=country} -->
+        <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+        <!-- {/foreach} -->
+      	</select>
+          </li>
+     		<li>
+		  <select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+        <!-- {foreach from=$province_list.$sn item=province} -->
+        <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+      <li>
+		  <select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')" class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+        <!-- {foreach from=$city_list.$sn item=city} -->
+        <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+      <li>
+		   <select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if} class="fl">
+        <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+        <!-- {foreach from=$district_list.$sn item=district} -->
+        <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+        <!-- {/foreach} -->
+      </select>
+	  </li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">详细地址：</li>
+          <li>
+            <input name="address" type="text" class="info_input"  id="address_{$sn}" size="78" maxlength="100" value="{$consignee.address|escape}" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul>
+          <li class="addr_tdiv">手机号码：</li>
+          <li>
+            <input name="mobile" type="text" class="info_input"  id="mobile_{$sn}" size="20" maxlength="11"  value="{$consignee.mobile|escape}" />
+          </li>
+          <li><span style="line-height:27px;">邮编：</span> </li>
+          <li>
+            <input name="zipcode" type="text" class="info_input"  id="zipcode_{$sn}" size="20" maxlength="20" value="{$consignee.tel|escape}" />
+          </li>
+          <li><font>*</font></li>
+          <li></li>
+        </ul>
+        <div class="clear"></div>
+        <ul id="addr_btnul">
+          <li class="addr_tdiv">&nbsp;</li>
+          <!--{if $login <= 0 }-->
+          <li><a  class="cbtn addrpay_sbtn yhq_js_login" id="new_addr_btn"> 确认收货人信息</a>
+          </li>
+          <!--{else}-->
+          <li><input type="submit"  class="cbtn addrpay_sbtn" id="new_addr_btn" value="确认收货人信息" />
+          </li>
+          <!--{/if}-->
+          <li style="padding-top:2px;"></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <input type="hidden" name="step" value="consignee" />
+      <input type="hidden" name="act" value="checkout" />
+      <input name="address_id" type="hidden" value="{$consignee.address_id}" />

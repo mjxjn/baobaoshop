@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<dl>
+
+<dt class="menu_t fb">交易管理</dt>
+<dd><a href="user.php?act=order_list">我提交的订单</a></dd>
+<dd><a href="user.php?act=comment_list">我的评价</a></dd>
+<dd><a href="user.php?act=booking_list">缺货管理</a></dd>
+
+<dt class="menu_t fb">我的应用</dt>
+<dd><a href="user.php?act=collection_list">我的收藏夹</a></dd>
+<dd><a href="user.php?act=address_list">我的地址薄</a></dd>
+<dd><a href="#">注册邀请（新）</a></dd>
+<dd><a href="activity.php" target="_blank">满百赠品</a></dd>
+<dd><a href="onlinetree.php" target="_blank">订阅目录</a></dd>
+
+<dt class="menu_t fb">个人信息</dt>
+<dd><a href="user.php?act=integration">积分帐户</a></dd>
+<dd><a href="user.php?act=bonus">我的优惠券</a></dd>
+<dd><a href="#">宝宝档案库（新）</a></dd>
+<dd><a href="user.php?act=reset_password">修改密码</a></dd>
+
+</dl>
+
+    

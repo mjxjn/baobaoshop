@@ -1,0 +1,53 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $pager.page_count neq 1} -->
+<!--翻页 start-->
+<form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+<div class="page_box">
+    <!-- {if $pager.page_first} -->
+    <span><font><a href="{$pager.page_first}">«首页</a></font></span>
+    <!-- {/if} -->
+    <!-- {if $pager.page_prev} -->
+    <span><font><a class="prev" href="{$pager.page_prev}">­上一页</a></font></span>
+    <!-- {else} -->
+    <span><font>­上一页</font></span>
+    <!-- {/if} -->
+      <!-- {if $pager.page_count neq 1} -->
+        <!--{foreach from=$pager.page_number key=key item=item}-->
+            <!-- {if $pager.page eq $key} -->
+            <span id="page_on">{$key}</span>
+            <!-- {else} -->
+            <span><a href="{$item}">{$key}</a></span>
+            <!-- {/if} -->
+        <!--{/foreach}-->
+      <!-- {/if} -->
+    <!-- {if $pager.page_next} -->
+    <span><a href="{$pager.page_next}">­下一页</a></span>
+    <!-- {else} -->
+    <span><font>­下一页</font></span>
+    <!-- {/if} -->
+    <!-- {if $pager.page_last} -->
+    <span><a href="{$pager.page_last}">­尾页»</a></span>
+    <!-- {/if} -->
+	<span><font>{$pager.page}/共{$pager.page_count}页</font></span>
+</div>
+<!-- {if $pager.page_kbd} -->
+    <!--{foreach from=$pager.search key=key item=item}-->
+      {if $key eq 'keywords'}
+          <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+        {else}
+          <input type="hidden" name="{$key}" value="{$item}" />
+      {/if}
+    <!--{/foreach}-->
+<!-- {/if} -->
+</form>
+<script type="Text/Javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<!-- {/if} -->

@@ -1,0 +1,1 @@
+example部署方法：将example目录下的所有文件拷到上一级目录，并在config.php中填入key和secret
