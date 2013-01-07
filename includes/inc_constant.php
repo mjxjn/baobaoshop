@@ -153,6 +153,7 @@ define('GAT_GROUP_BUY',             1);
 define('GAT_AUCTION',               2);
 define('GAT_POINT_BUY',             3);
 define('GAT_PACKAGE',               4); // 超值礼包
+define('GAT_INTEGRAL',              5); // 多倍积分
 
 /* 帐号变动类型 */
 define('ACT_SAVING',                0);     // 帐户冲值
