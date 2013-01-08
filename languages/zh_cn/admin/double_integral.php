@@ -14,7 +14,7 @@
 */
 
 $_LANG['integral_id'] = '编号';
-$_LANG['integral_name'] = '超值礼包名称';
+$_LANG['integral_name'] = '积分活动描述';
 $_LANG['goodsid'] = '活动关联商品';
 $_LANG['goods_name'] = '关联商品名称';
 $_LANG['start_time'] = '活动开始时间';

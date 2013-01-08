@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:5:{i:0;s:42:"E:/My DBank/yingge/themes/yingge/index.dwt";i:1;s:63:"E:/My DBank/yingge/themes/yingge/library/page_header_index1.lbi";i:2;s:64:"E:/My DBank/yingge/themes/yingge/library/index_category_tree.lbi";i:3;s:62:"E:/My DBank/yingge/themes/yingge/library/index_user_center.lbi";i:4;s:56:"E:/My DBank/yingge/themes/yingge/library/page_footer.lbi";}s:7:"expires";i:1352880930;s:8:"maketime";i:1352877330;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:5:{i:0;s:54:"E:/APMServ5.2.6/www/yinggebaby/themes/yingge/index.dwt";i:1;s:75:"E:/APMServ5.2.6/www/yinggebaby/themes/yingge/library/page_header_index1.lbi";i:2;s:76:"E:/APMServ5.2.6/www/yinggebaby/themes/yingge/library/index_category_tree.lbi";i:3;s:74:"E:/APMServ5.2.6/www/yinggebaby/themes/yingge/library/index_user_center.lbi";i:4;s:68:"E:/APMServ5.2.6/www/yinggebaby/themes/yingge/library/page_footer.lbi";}s:7:"expires";i:1357656345;s:8:"maketime";i:1357652745;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.2" />
@@ -22,6 +22,14 @@
 <![endif]--><!--[if IE 8]><LINK rel=stylesheet type=text/css 
 href="themes/yingge/ie8.css"><![endif]-->
 <LINK rel=stylesheet type=text/css href="themes/yingge/ie8.css">
+	<style type="text/css">
+		body{
+		background:url(data/indexad/1344400284250789879.jpg);
+		background-color: #f00;
+		background-repeat: repeat-x;
+		background-position: center 172px;
+		}
+	</style>
 <SCRIPT type=text/javascript src="themes/yingge/js/jquery.min.js"></SCRIPT>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -71,7 +79,8 @@ var process_request = "正在处理您的请求...";
 	<div id="logo_head" class="w980">
     	<div id="logo" class="left">
     	<a href="index.php"><img src="/themes/yingge/images/LOGO.jpg" width="124" height="60" border="0" title="婴格母婴网" /></a>
-    	    	</div>
+    						<a href="http://www.baidu.com"><img src='data/indexad/1344400112616061640.gif' width="160" height="60" /></a>
+				    	</div>
         <div id="search_head" class="right">
        		<script src="/js/CalendarData.js" type=text/javascript /></script>
             <div class="tel f12"><iframe src="http://m.weather.com.cn/m/pn6/weather.htm?id=101290101T " width="140" height="20" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no"></iframe></div>
@@ -716,7 +725,8 @@ $(function() {
     <div class="blank9"></div>
     <div id="zhinan-box" class="three_ad">
         <div>
-                <div class="clear"></div>
+        					<a href="http://www.baidu.com"><img src='data/indexad/1344399793603324084.gif' width="784" height="74" /></a>
+				        <div class="clear"></div>
     	</div>
     </div>
     <div class="blank9"></div>
@@ -735,14 +745,14 @@ $(function() {
 			<div id="con_one_1" class="show_cur" style="display:block">
 				<dl>
 										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=38"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=38">测试商品2</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
+					</dd>
+										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=44"><img src="images/201208/thumb_img/44_thumb_G_1344234080137.jpg" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=44">sdfsdfasdf</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥50.00</font></p>
-					</dd>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=48"><img src="images/201111/thumb_img/48_thumb_G_1321311901453.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=48">sadfsadfsadfsf</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥46.00</font></p>
 					</dd>
 										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=37"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
@@ -750,9 +760,9 @@ $(function() {
 					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=38"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=38">测试商品2</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=48"><img src="images/201111/thumb_img/48_thumb_G_1321311901453.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=48">sadfsadfsadfsf</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥46.00</font></p>
 					</dd>
 									</dl>
 			</div>
@@ -764,11 +774,6 @@ $(function() {
 					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=37"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=37">测试品牌商品</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
-					</dd>
-										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=43"><img src="images/201111/thumb_img/43_thumb_G_1320882470149.jpg" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=43">撒大法师</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥0.00</font></p>
@@ -778,15 +783,15 @@ $(function() {
 					<p><a href="goods.php?id=36">盛大富翁</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥1500.00</font></p>
 					</dd>
+										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=37"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=37">测试品牌商品</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
+					</dd>
 									</dl>
 			</div>
 			<div id="con_one_3" class="show_cur" style="display:none">
 				<dl>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=35"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=35">法师</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥800.00</font></p>
-					</dd>
 										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=45"><img src="images/201111/thumb_img/45_thumb_G_1321309235852.jpg" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=45">dsfsdfsdf</a></p>
@@ -797,24 +802,24 @@ $(function() {
 			<div id="con_one_4" class="show_cur" style="display:none">
 				<dl>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=36"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=36">盛大富翁</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥1500.00</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=45"><img src="images/201111/thumb_img/45_thumb_G_1321309235852.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=45">dsfsdfsdf</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥345.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=38"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=38">测试商品2</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=17"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=17">测试</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥124.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=48"><img src="images/201111/thumb_img/48_thumb_G_1321311901453.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=48">sadfsadfsadfsf</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥46.00</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=44"><img src="images/201208/thumb_img/44_thumb_G_1344234080137.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=44">sdfsdfasdf</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥50.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=35"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=35">法师</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥179.00</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=40"><img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=40">奶粉~~~~~</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
 					</dd>
 									</dl>
 			</div>
@@ -915,7 +920,7 @@ function updateEndTime()
              
           </li>
           <li><a href="/goods-35.html" title="法师" target="_blank">法师</a></li>
-          <li><span>￥800.00</span></li>
+          <li><span>¥179.00</span></li>
         </ul>
                  <ul class="new_ul">
           <li class="new_img"> <a href="/goods-43.html" title="撒大法师" target="_blank"><img src="images/201111/thumb_img/43_thumb_G_1320882470149.jpg" height="150" width="150" alt="撒大法师"></a> 
@@ -1130,7 +1135,7 @@ function updateEndTime()
                                         <li class="item " onmouseover="setTab('food',3,8);" id="food3" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">3</em>
-                                        <a target="_blank" title="sdfasdfasdfsdf" href="goods.php?id=47" class="fl">sdfasdf...</a>
+                                        <a target="_blank" title="sdfasdfasdfsdf" href="goods.php?id=47" class="fl">sdfasdfasdfsdf</a>
                                     </p>
                                     <div class="sr_con" id="con_food_3">
                                         <a title="sdfasdfasdfsdf" href="goods.php?id=47" class="sr_img" target="_blank">
@@ -1144,9 +1149,23 @@ function updateEndTime()
                                         <li class="item " onmouseover="setTab('food',4,8);" id="food4" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">4</em>
-                                        <a target="_blank" title="测试商品2" href="goods.php?id=39" class="fl">测试商品2</a>
+                                        <a target="_blank" title="撒旦飞洒地方" href="goods.php?id=42" class="fl">撒旦飞洒地方</a>
                                     </p>
                                     <div class="sr_con" id="con_food_4">
+                                        <a title="撒旦飞洒地方" href="goods.php?id=42" class="sr_img" target="_blank">
+                                            <img src="images/201111/thumb_img/42_thumb_G_1320882459162.jpg" width="95" height="95">
+                                        </a>
+                                        <p class="text">婴格价格：￥0.00</p>
+                                        <p><span>市场价格：<del>￥0.00</del></span></p>
+                                        
+                                    </div>
+                                </li>
+                                        <li class="item " onmouseover="setTab('food',5,8);" id="food5" style="">
+                                    <p class="clearfix tit">
+                                        <em class="fl">5</em>
+                                        <a target="_blank" title="测试商品2" href="goods.php?id=39" class="fl">测试商品2</a>
+                                    </p>
+                                    <div class="sr_con" id="con_food_5">
                                         <a title="测试商品2" href="goods.php?id=39" class="sr_img" target="_blank">
                                             <img src="images/201111/thumb_img/39_thumb_G_1320813825661.jpg" width="95" height="95">
                                         </a>
@@ -1161,8 +1180,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href="http://www.yinggebaby.com"><img src='data/indexad/1344391203226837599.jpg' width="973" height="90" /></a></div>
-			<div class="showpro">
+		<div class="showpro">
 		<div class="stitle">
 			<span class="fl">孕婴用品</span><span class="sl"><a href="/category-51-b0.html">纸尿裤</a> | <a href="/category-53-b0.html">尿片</a> | <a href="/category-65-b0.html">餐椅/摇椅</a> | <a href="/category-83-b0.html">奶瓶</a>  | <a href="/category-71-b0.html">洗澡用具</a> | <a href="/category-70-b0.html">毛巾/浴巾</a> </span>
 			<div class="fr tabBut" id="tabBut2"> <a class="prev" href="javascript:"></a> <b class="tabOn"></b> <b class=""></b> <b class=""></b> <a class="next" href="javascript:"></a> </div>
@@ -1356,8 +1374,6 @@ function updateEndTime()
 		<div class="top-pro right floor_con">
 			<div class="pro_ad">
 				<dl>
-										<dd class="bottomline"><a href=""></a></dd>
-										<dd ><a href="http://www.yinggebaby.com">sdfa</a></dd>
 									</dl>
 			</div>
 			
@@ -1371,8 +1387,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href=""><img src='' width="973" height="90" /></a></div>
-			<div class="showpro">
+		<div class="showpro">
 		<div class="stitle">
 			<span class="fl">宝宝娱乐</span><span class="sl"><a href="/category-87-b0.html">床挂玩具</a> | <a href="/category-88-b0.html">游戏垫/爬行垫</a> | <a href="/category-92-b0.html">学习益智</a> | <a href="/category-93-b0.html">毛绒玩具</a>  | <a href="/category-94-b0.html">遥控玩具</a> | <a href="/category-95-b0.html">沙滩/戏水玩具</a></span>
 			<div class="fr tabBut" id="tabBut3"> <a class="prev" href="javascript:"></a> <b class="tabOn"></b> <b class=""></b> <b class=""></b> <a class="next" href="javascript:"></a> </div>
@@ -1566,8 +1581,6 @@ function updateEndTime()
 		<div class="top-pro right floor_con">
 			<div class="pro_ad">
 				<dl>
-										<dd class="bottomline"><a href=""></a></dd>
-										<dd ><a href=""></a></dd>
 									</dl>
 			</div>
 			
@@ -1581,8 +1594,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href=""><img src='' width="973" height="90" /></a></div>
-			<div class="showpro">
+		<div class="showpro">
 		<div class="stitle">
 			<span class="fl">宝宝服装</span><span class="sl"><a href="/category-104-b0.html">童鞋/袜</a> | <a href="/category-105-b0.html">童帽</a> | <a href="/category-24-b0.html">头套及服饰配件</a> | <a href="/category-100-b0.html">婴儿枕</a></span>
 			<div class="fr tabBut" id="tabBut4"> <a class="prev" href="javascript:"></a> <b class="tabOn"></b> <b class=""></b> <b class=""></b> <a class="next" href="javascript:"></a> </div>
@@ -1776,9 +1788,7 @@ function updateEndTime()
 		<div class="top-pro right floor_con">
 			<div class="pro_ad">
 				<dl>
-										<dd class="bottomline"><a href=""></a></dd>
-									<dd ><a href=""></a></dd>
-								</dl>
+									</dl>
 			</div>
 			
 			<div class="fc_sale_rank">
@@ -1791,8 +1801,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href=""><img src='' width="973" height="90" /></a></div>
-			<div class="showpro">
+		<div class="showpro">
 		<div class="stitle">
 			<span class="fl">宝宝学习</span><span class="sl"><a href="/category-115-b0.html">育儿经典</a> | <a href="/category-117-b0.html">认知启蒙</a> | <a href="/category-119-b0.html">亲子故事</a> | <a href="/category-120-b0.html">童话故事</a>  | <a href="/category-132-b0.html">开心游戏</a> | <a href="/category-134-b0.html">DVD/VCD</a></span>
 			<div class="fr tabBut" id="tabBut5"> <a class="prev" href="javascript:"></a> <b class="tabOn"></b> <b class=""></b> <b class=""></b> <a class="next" href="javascript:"></a> </div>
@@ -1986,9 +1995,7 @@ function updateEndTime()
 		<div class="top-pro right floor_con">
 			<div class="pro_ad">
 				<dl>
-										<dd class="bottomline"><a href=""></a></dd>
-									<dd ><a href=""></a></dd>
-								</dl>
+									</dl>
 			</div>
 			
 			<div class="fc_sale_rank">
@@ -2001,8 +2008,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href=""><img src='' width="973" height="90" /></a></div>
-			<div class="showpro">
+		<div class="showpro">
 		<div class="stitle">
 			<span class="fl">孕妈专区</span><span class="sl"><a href="/category-127-b0.html">防辐射服</a> | <a href="/category-126-b0.html">孕产期内衣</a> | <a href="/category-124-b0.html">孕产妇营养品</a> | <a href="/category-129-b0.html">吸乳器</a></span>
 			<div class="fr tabBut" id="tabBut6"> <a class="prev" href="javascript:"></a> <b class="tabOn"></b> <b class=""></b> <b class=""></b> <a class="next" href="javascript:"></a> </div>
@@ -2196,9 +2202,7 @@ function updateEndTime()
 		<div class="top-pro right floor_con">
 			<div class="pro_ad">
 				<dl>
-										<dd class="bottomline"><a href=""></a></dd>
-									<dd ><a href=""></a></dd>
-								</dl>
+									</dl>
 			</div>
 			
 			<div class="fc_sale_rank">
@@ -2211,8 +2215,7 @@ function updateEndTime()
         </div>
 		</div>
 	</div>
-				<div class="showpro"><a href=""><img src='' width="973" height="90" /></a></div>
-			<script language="javascript"  type=text/javascript src="/themes/yingge/js/tab-pic.js"></script>
+		<script language="javascript"  type=text/javascript src="/themes/yingge/js/tab-pic.js"></script>
 	<script language="javascript"  type=text/javascript>
 $(function(){
 	$(document).WIT_SetTab({

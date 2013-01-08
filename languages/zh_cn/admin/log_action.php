@@ -61,6 +61,7 @@ $_LANG['log_action']['agency'] = '办事处';
 $_LANG['log_action']['auction'] = '拍卖活动';
 $_LANG['log_action']['favourable'] = '优惠活动';
 $_LANG['log_action']['wholesale'] = '批发活动';
+$_LANG['log_action']['double_integral']='多倍积分活动';
 
 $_LANG['log_action']['adminlog'] = '操作日志';
 $_LANG['log_action']['admin_message'] = '管理员留言';
