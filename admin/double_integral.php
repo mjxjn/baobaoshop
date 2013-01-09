@@ -36,17 +36,17 @@ if ($_REQUEST['act'] == 'add')
     /* 初始化信息 */
     $start_time = local_date('Y-m-d H:i');
     $end_time   = local_date('Y-m-d H:i', strtotime('+1 month'));
-    $package     = array('package_price'=>'', 'start_time' => $start_time, 'end_time' => $end_time);
+    $package     = array('integral_num'=>'', 'start_time' => $start_time, 'end_time' => $end_time);
 
     $smarty->assign('package',      $package);
-    $smarty->assign('ur_here',      $_LANG['package_add']);
-    $smarty->assign('action_link',  array('text' => $_LANG['14_package_list'], 'href'=>'package.php?act=list'));
+    $smarty->assign('ur_here',      $_LANG['integral_add']);
+    $smarty->assign('action_link',  array('text' => $_LANG['16_double_integral'], 'href'=>'double_integral.php?act=list'));
     $smarty->assign('cat_list',     cat_list());
     $smarty->assign('brand_list',   get_brand_list());
     $smarty->assign('form_action',  'insert');
 
     assign_query_info();
-    $smarty->display('package_info.htm');
+    $smarty->display('double_integral_info.htm');
 }
 
 elseif ($_REQUEST['act'] =='insert')
@@ -56,10 +56,10 @@ elseif ($_REQUEST['act'] =='insert')
 
     $sql = "SELECT COUNT(*) ".
            " FROM " . $ecs->table('goods_activity').
-           " WHERE act_type='" . GAT_PACKAGE . "' AND act_name='" . $_POST['package_name'] . "'" ;
+           " WHERE act_type='" . GAT_INTEGRAL . "' AND act_name='" . $_POST['double_integral_name'] . "'" ;
     if ($db->getOne($sql))
     {
-        sys_msg(sprintf($_LANG['package_exist'],  $_POST['package_name']) , 1);
+        sys_msg(sprintf($_LANG['package_exist'],  $_POST['double_integral_name']) , 1);
     }
 
 
@@ -68,15 +68,15 @@ elseif ($_REQUEST['act'] =='insert')
     $_POST['end_time']   = local_strtotime($_POST['end_time']);
 
     /* 处理提交数据 */
-    if (empty($_POST['package_price']))
+    if (empty($_POST['integral_num']))
     {
-        $_POST['package_price'] = 0;
+        $_POST['integral_num'] = 0;
     }
 
-    $info = array('package_price'=>$_POST['package_price']);
+    $info = array('integral_num'=>$_POST['integral_num']);
 
     /* 插入数据 */
-    $record = array('act_name'=>$_POST['package_name'], 'act_desc'=>$_POST['desc'],
+    $record = array('act_name'=>$_POST['integral_num'], 'act_desc'=>$_POST['desc'],
                     'act_type'=>GAT_PACKAGE, 'start_time'=>$_POST['start_time'],
                     'end_time'=>$_POST['end_time'], 'is_finished'=>0, 'ext_info'=>serialize($info));
 
@@ -87,9 +87,9 @@ elseif ($_REQUEST['act'] =='insert')
 
     handle_packagep_goods($package_id);
 
-    admin_log($_POST['package_name'],'add','package');
-    $link[] = array('text' => $_LANG['back_list'], 'href'=>'package.php?act=list');
-    $link[] = array('text' => $_LANG['continue_add'], 'href'=>'package.php?act=add');
+    admin_log($_POST['integral_num'],'add','double_integral');
+    $link[] = array('text' => $_LANG['back_list'], 'href'=>'double_integral.php?act=list');
+    $link[] = array('text' => $_LANG['continue_add'], 'href'=>'double_integral.php?act=add');
     sys_msg($_LANG['add_succeed'],0,$link);
 }
 
