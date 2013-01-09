@@ -932,7 +932,53 @@ elseif ($_REQUEST['step'] == 'checkout')
         // 能使用红包
         $smarty->assign('allow_use_bonus', 1);
     }
-	$smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+    /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
+	if($max!=1){
+		$smarty->assign('total_integral_name',$double_name);
+	}
     /* 如果使用缺货处理，取得缺货处理列表 */
     if (!isset($_CFG['use_how_oos']) || $_CFG['use_how_oos'] == '1')
     {

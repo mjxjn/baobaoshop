@@ -1636,11 +1636,13 @@ function user_bonus($user_id, $goods_amount = 0 ,$cart_goods='')
 {
     $day    = getdate();
     $today  = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);
-    foreach ($cart_goods as $key => $val){
-    	if($val['is_gift']==0){
-    		$brand_ids[] = $val['brand_id'];
-    		$goods_ids[] = $val['goods_id'];
-    	}
+    if(!empty($cart_goods)){
+	    foreach ($cart_goods as $key => $val){
+	    	if($val['is_gift']==0){
+	    		$brand_ids[] = $val['brand_id'];
+	    		$goods_ids[] = $val['goods_id'];
+	    	}
+	    }
     }
     $sql = "SELECT t.type_id, t.type_name, t.type_money,t.coupon_type,t.coupon_ids, b.bonus_id " .
             "FROM " . $GLOBALS['ecs']->table('bonus_type') . " AS t," .
@@ -2896,17 +2898,57 @@ function compute_discount()
  */
 function get_give_integral()
 {
-        $sql = "SELECT SUM(c.goods_number * IF(g.give_integral > -1, g.give_integral, c.goods_price))" .
-                "FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " .
-                          $GLOBALS['ecs']->table('goods') . " AS g " .
-                "WHERE c.goods_id = g.goods_id " .
-                "AND c.session_id = '" . SESS_ID . "' " .
-                "AND c.goods_id > 0 " .
-                "AND c.parent_id = 0 " .
-                "AND c.rec_type = 0 " .
-                "AND c.is_gift = 0";
+    $sql = "SELECT start_time, end_time, ext_info ".
+        		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+        		" WHERE act_type = " . GAT_INTEGRAL;
+        
+	$row = $GLOBALS ['db']->getAll ( $sql );
+	
+	$nowtiame = local_gettime();
+	$i=0;
+	$max = 0;
+	$temp = 0;
+	foreach ( $row as $key => $val ) {
+		if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+			$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+			$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+			$info = unserialize ( $row [$key] ['ext_info'] );
+			unset ( $row [$key] ['ext_info'] );
+			if ($info) {
+				foreach ( $info as $info_key => $info_val ) {
+					$row [$i] [$info_key] = $info_val;
+				}
+			}
+			$i++;
+		}
+	}
+	foreach ( $row as $key => $val ) {
+		if ($val ['integral_num'] != 0) {
+			$temp = $val ['integral_num'];
+		}
+		if ($max === 0) {
+			$max = $temp;
+		} else {
+			if ($temp > $max) {
+				$max = $temp;
+			}
+		}
+	}
+	if($max === 0){
+		$max = 1;
+	}
+	
+	$sql = "SELECT SUM(c.goods_number * IF(g.give_integral > -1, g.give_integral, c.goods_price))" .
+			"FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " .
+			$GLOBALS['ecs']->table('goods') . " AS g " .
+			"WHERE c.goods_id = g.goods_id " .
+			"AND c.session_id = '" . SESS_ID . "' " .
+			"AND c.goods_id > 0 " .
+			"AND c.parent_id = 0 " .
+			"AND c.rec_type = 0 " .
+			"AND c.is_gift = 0";
 
-        return intval($GLOBALS['db']->getOne($sql));
+	return intval ( $GLOBALS ['db']->getOne ( $sql )*$max );
 }
 
 /**

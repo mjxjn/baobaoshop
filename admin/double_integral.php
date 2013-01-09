@@ -73,19 +73,19 @@ elseif ($_REQUEST['act'] =='insert')
         $_POST['integral_num'] = 0;
     }
 
-    $info = array('integral_num'=>$_POST['integral_num']);
+    $info = array('integral_num'=>$_POST['integral_num'],'goods_id'=>empty($_POST['goods_id'])?0:$_POST['goods_id'],'brand_id'=>empty($_POST['brand_id'])?0:$_POST['brand_id']);
 
     /* 插入数据 */
-    $record = array('act_name'=>$_POST['integral_num'], 'act_desc'=>$_POST['desc'],
-                    'act_type'=>GAT_PACKAGE, 'start_time'=>$_POST['start_time'],
+    $record = array('act_name'=>$_POST['double_integral_name'], 'act_desc'=>$_POST['desc'],
+                    'act_type'=>GAT_INTEGRAL, 'start_time'=>$_POST['start_time'],
                     'end_time'=>$_POST['end_time'], 'is_finished'=>0, 'ext_info'=>serialize($info));
 
     $db->AutoExecute($ecs->table('goods_activity'),$record,'INSERT');
 
     /* 礼包编号 */
-    $package_id = $db->insert_id();
+    //$package_id = $db->insert_id();
 
-    handle_packagep_goods($package_id);
+    //handle_packagep_goods($package_id);
 
     admin_log($_POST['integral_num'],'add','double_integral');
     $link[] = array('text' => $_LANG['back_list'], 'href'=>'double_integral.php?act=list');
@@ -101,19 +101,19 @@ elseif ($_REQUEST['act'] == 'edit')
     /* 权限判断 */
     admin_priv('package_manage');
 
-    $package            = get_package_info($_REQUEST['id']);
-    $package_goods_list = get_package_goods($_REQUEST['id']); // 礼包商品
+    $package            = get_package_info($_REQUEST['id'],1);
+//     $package_goods_list = get_package_goods($_REQUEST['id']); // 礼包商品
 
     $smarty->assign('package',           $package);
-    $smarty->assign('ur_here',           $_LANG['package_edit']);
-    $smarty->assign('action_link',       array('text' => $_LANG['14_package_list'], 'href'=>'package.php?act=list&' . list_link_postfix()));
-    $smarty->assign('cat_list',     cat_list());
-    $smarty->assign('brand_list',   get_brand_list());
+    $smarty->assign('ur_here',           $_LANG['integral_edit']);
+    $smarty->assign('action_link',       array('text' => $_LANG['16_double_integral'], 'href'=>'double_integral.php?act=list&' . list_link_postfix()));
+//     $smarty->assign('cat_list',     cat_list());
+//     $smarty->assign('brand_list',   get_brand_list());
     $smarty->assign('form_action',       'update');
-    $smarty->assign('package_goods_list', $package_goods_list);
+//     $smarty->assign('package_goods_list', $package_goods_list);
 
     assign_query_info();
-    $smarty->display('package_info.htm');
+    $smarty->display('double_integral_info.htm');
 
 }
 elseif ($_REQUEST['act'] =='update')
@@ -134,22 +134,23 @@ elseif ($_REQUEST['act'] =='update')
     /* 检查活动重名 */
     $sql = "SELECT COUNT(*) ".
            " FROM " . $ecs->table('goods_activity').
-           " WHERE act_type='" . GAT_PACKAGE . "' AND act_name='" . $_POST['package_name'] . "' AND act_id <> '" .  $_POST['id'] . "'" ;
+           " WHERE act_type='" . GAT_INTEGRAL . "' AND act_name='" . $_POST['double_integral_name'] . "' AND act_id <> '" .  $_POST['id'] . "'" ;
     if ($db->getOne($sql))
     {
         sys_msg(sprintf($_LANG['package_exist'],  $_POST['package_name']) , 1);
     }
 
 
-    $info = array('package_price'=>$_POST['package_price']);
+    $info = array('integral_num'=>$_POST['integral_num'],'goods_id'=>empty($_POST['goods_id'])?0:$_POST['goods_id'],'brand_id'=>empty($_POST['brand_id'])?0:$_POST['brand_id']);
+    
 
     /* 更新数据 */
-    $record = array('act_name' => $_POST['package_name'], 'start_time' => $_POST['start_time'], 'end_time' => $_POST['end_time'],
+    $record = array('act_name' => $_POST['double_integral_name'], 'start_time' => $_POST['start_time'], 'end_time' => $_POST['end_time'],
                     'act_desc' => $_POST['desc'], 'ext_info'=>serialize($info));
-    $db->autoExecute($ecs->table('goods_activity'), $record, 'UPDATE', "act_id = '" . $_POST['id'] . "' AND act_type = " . GAT_PACKAGE );
+    $db->autoExecute($ecs->table('goods_activity'), $record, 'UPDATE', "act_id = '" . $_POST['id'] . "' AND act_type = " . GAT_INTEGRAL );
 
-    admin_log($_POST['package_name'],'edit','package');
-    $link[] = array('text' => $_LANG['back_list'], 'href'=>'package.php?act=list&' . list_link_postfix());
+    admin_log($_POST['double_integral_name'],'edit','double_integral');
+    $link[] = array('text' => $_LANG['back_list'], 'href'=>'double_integral.php?act=list&' . list_link_postfix());
     sys_msg($_LANG['edit_succeed'],0,$link);
 }
 
@@ -169,7 +170,7 @@ elseif ($_REQUEST['act'] == 'remove')
             " WHERE package_id='$id'";
     $db->query($sql);
 
-    $url = 'package.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
+    $url = 'double_integral.php?act=query&' . str_replace('act=remove', '', $_SERVER['QUERY_STRING']);
 
     ecs_header("Location: $url\n");
     exit;
@@ -206,7 +207,7 @@ elseif ($_REQUEST['act'] == 'query')
 {
     $packages = get_packagelist();
 
-    $smarty->assign('package_list', $packages['packages']);
+    $smarty->assign('integral_list', $packages['integral']);
     $smarty->assign('filter',       $packages['filter']);
     $smarty->assign('record_count', $packages['record_count']);
     $smarty->assign('page_count',   $packages['page_count']);
@@ -214,7 +215,7 @@ elseif ($_REQUEST['act'] == 'query')
     $sort_flag  = sort_flag($packages['filter']);
     $smarty->assign($sort_flag['tag'], $sort_flag['img']);
 
-    make_json_result($smarty->fetch('package_list.htm'), '',
+    make_json_result($smarty->fetch('double_integral_list.htm'), '',
         array('filter' => $packages['filter'], 'page_count' => $packages['page_count']));
 }
 
@@ -222,7 +223,7 @@ elseif ($_REQUEST['act'] == 'query')
 //-- 编辑活动名称
 /*------------------------------------------------------ */
 
-elseif ($_REQUEST['act'] == 'edit_package_name')
+elseif ($_REQUEST['act'] == 'edit_integral_name')
 {
     check_authz_json('package_manage');
 
@@ -232,7 +233,7 @@ elseif ($_REQUEST['act'] == 'edit_package_name')
     /* 检查活动重名 */
     $sql = "SELECT COUNT(*) ".
            " FROM " . $ecs->table('goods_activity').
-           " WHERE act_type='" . GAT_PACKAGE . "' AND act_name='$val' AND act_id <> '$id'" ;
+           " WHERE act_type='" . GAT_INTEGRAL . "' AND act_name='$val' AND act_id <> '$id'" ;
     if ($db->getOne($sql))
     {
         make_json_error(sprintf($_LANG['package_exist'],  $val));
@@ -453,8 +454,8 @@ function get_packagelist()
 
     foreach ($row AS $key => $val)
     {
-        $row[$key]['start_time'] = local_date($GLOBALS['_CFG']['time_format'], $val['start_time']);
-        $row[$key]['end_time']   = local_date($GLOBALS['_CFG']['time_format'], $val['end_time']);
+        $row[$key]['start_time'] = local_date("Y-m-d H:i", $val['start_time']);
+        $row[$key]['end_time']   = local_date("Y-m-d H:i", $val['end_time']);
         $info = unserialize($row[$key]['ext_info']);
         unset($row[$key]['ext_info']);
         if ($info)

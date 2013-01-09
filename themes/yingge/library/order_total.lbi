@@ -41,7 +41,7 @@
 <li><font class="sum_num">{$total.amount_formated}</font></li>
 <li> 
    
-    <p>您将获得<!--{if $is_exchange_goods eq 1 }-->0<!--{else}-->{$total_integral}<!--{/if}-->积分</p>
+    <p>您将获得<!--{if $is_exchange_goods eq 1 }-->0<!--{else}-->{$total_integral}<!--{/if}-->积分<!--{if $total_integral_name neq '' }--><em style="color:#CA0809">({$total_integral_name})</em><!--{/if}--></p>
 
 </li></ul>
 </div>

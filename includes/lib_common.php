@@ -2616,18 +2616,20 @@ function is_spec($goods_attr_id_array, $sort = 'asc')
  *
  * @access  public
  * @param   int         $id         package_id
+ * @param   string      $type       type
  *
  * @return array       array(package_id, package_name, goods_id,start_time, end_time, min_price, integral)
  */
-function get_package_info($id)
+function get_package_info($id,$type=0)
 {
     global $ecs, $db,$_CFG;
     $id = is_numeric($id)?intval($id):0;
+    $type = ($type==0)?GAT_PACKAGE:GAT_INTEGRAL;
     $now = gmtime();
 
     $sql = "SELECT act_id AS id,  act_name AS package_name, goods_id , goods_name, start_time, end_time, act_desc, ext_info".
            " FROM " . $GLOBALS['ecs']->table('goods_activity') .
-           " WHERE act_id='$id' AND act_type = " . GAT_PACKAGE;
+           " WHERE act_id='$id' AND act_type = " . $type;
 
     $package = $db->GetRow($sql);
 
