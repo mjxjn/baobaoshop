@@ -1049,7 +1049,50 @@ elseif ($_REQUEST['step'] == 'select_shipping')
         $smarty->assign('total', $total);
 
         /* 取得可以得到的积分和红包 */
-        $smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+        /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
         /* 团购标志 */
@@ -1205,7 +1248,50 @@ elseif ($_REQUEST['step'] == 'select_insure')
         $smarty->assign('total', $total);
 
         /* 取得可以得到的积分和红包 */
-        $smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+        /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
         /* 团购标志 */
@@ -1270,7 +1356,50 @@ elseif ($_REQUEST['step'] == 'select_payment')
         $smarty->assign('total', $total);
 
         /* 取得可以得到的积分和红包 */
-        $smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+        /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
         /* 团购标志 */
@@ -1326,7 +1455,50 @@ elseif ($_REQUEST['step'] == 'select_pack')
         $smarty->assign('total', $total);
 
         /* 取得可以得到的积分和红包 */
-        $smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+        /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
         /* 团购标志 */
@@ -1382,7 +1554,50 @@ elseif ($_REQUEST['step'] == 'select_card')
         $smarty->assign('total', $total);
 
         /* 取得可以得到的积分和红包 */
-        $smarty->assign('total_integral', cart_amount(false, $flow_type) - $order['bonus'] - $total['integral_money']);
+        /*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
         $smarty->assign('total_bonus',    price_format(get_total_bonus(), false));
 
         /* 团购标志 */
@@ -1998,6 +2213,51 @@ elseif ($_REQUEST['step'] == 'done')
     }
     $order['parent_id'] = $parent_id;
 
+    /*多倍积分活动*/
+    $sql = "SELECT act_id, act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$act_id = $val['act_id'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$order['act_id'] = $val['act_id'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$order['act_id'] = $val['act_id'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    	$order['act_id'] = 0;
+    }
+    $order['integral_num'] = intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max;
     /* 插入订单表 */
     $error_no = 0;
     do
@@ -2018,11 +2278,12 @@ elseif ($_REQUEST['step'] == 'done')
     $order['order_id'] = $new_order_id;
 
     /* 插入订单商品 */
+    
     $sql = "INSERT INTO " . $ecs->table('order_goods') . "( " .
                 "order_id, goods_id, goods_name, goods_sn, product_id, goods_number, market_price, ".
                 "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id) ".
             " SELECT '$new_order_id', goods_id, goods_name, goods_sn, product_id, goods_number, market_price, ".
-                "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id".
+                "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, goods_attr_id ".
             " FROM " .$ecs->table('cart') .
             " WHERE session_id = '".SESS_ID."'";
     $db->query($sql);
@@ -2082,7 +2343,50 @@ elseif ($_REQUEST['step'] == 'done')
             $_LANG['order_placed_sms'] : $_LANG['order_placed_sms'] . '[' . $_LANG['sms_paid'] . ']';
         $sms->send($_CFG['sms_shop_mobile'], sprintf($msg, $order['consignee'], $order['tel']), 0);*/
     }
- 	$smarty->assign('total_integral', cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money']);
+ 	/*多倍积分活动*/
+    $sql = "SELECT act_name, start_time, end_time, ext_info ".
+    		" FROM " . $GLOBALS['ecs']->table('goods_activity') .
+    		" WHERE act_type = " . GAT_INTEGRAL;
+    
+    $row = $GLOBALS ['db']->getAll ( $sql );
+    
+    $nowtiame = local_gettime();
+    $i=0;
+    $max = 0;
+    $temp = 0;
+    foreach ( $row as $key => $val ) {
+    	if ($nowtiame > $val ['start_time'] && $nowtiame < $val ['end_time']) {
+    		$row [$i] ['start_time'] = local_date ( "Y-m-d H:i", $val ['start_time'] );
+    		$row [$i] ['end_time'] = local_date ( "Y-m-d H:i", $val ['end_time'] );
+    		$info = unserialize ( $row [$key] ['ext_info'] );
+    		unset ( $row [$key] ['ext_info'] );
+    		if ($info) {
+    			foreach ( $info as $info_key => $info_val ) {
+    				$row [$i] [$info_key] = $info_val;
+    			}
+    		}
+    		$i++;
+    	}
+    }
+    foreach ( $row as $key => $val ) {
+    	if ($val ['integral_num'] != 0) {
+    		$temp = $val ['integral_num'];
+    		$double_name = $val['act_name'];
+    	}
+    	if ($max === 0) {
+    		$max = $temp;
+    		$double_name = $val['act_name'];
+    	} else {
+    		if ($temp > $max) {
+    			$max = $temp;
+    			$double_name = $val['act_name'];
+    		}
+    	}
+    }
+    if($max === 0){
+    	$max = 1;
+    }
+	$smarty->assign('total_integral', intval(cart_amount(false, $flow_type) - $total['bonus'] - $total['integral_money'])*$max);
     /* 如果订单金额为0 处理虚拟卡 */
     if ($order['order_amount'] <= 0)
     {

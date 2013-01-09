@@ -3436,7 +3436,14 @@ elseif ($_REQUEST['act'] == 'operate_post')
             //$order['shipping_status'] = SS_RECEIVED;
 			
 		/* 计算并发放积分 */
-        $integral = integral_to_give($order);
+        if($order['act_id']==0)
+		{
+			$integral = integral_to_give ( $order );
+		}else
+		{
+			$integral['rank_points'] = $order['goods_amount'];
+			$integral['custom_points'] =$order['integral_num'];
+		}
 		log_account_change($order['user_id'], 0, 0, intval($integral['rank_points']), intval($integral['custom_points']), sprintf($_LANG['order_gift_integral'], $order['order_sn']));
         
 		update_order($order_id, $arr);
