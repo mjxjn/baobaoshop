@@ -1833,7 +1833,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
             case 'integral_goods':
             	if ($rewrite)
             	{
-            		$uri = 'exchange-' . $cid;
+            		$uri = 'integral_goods-' . $cid;
             		if (isset($price_min))
             		{
             			$uri .= '-min'.$price_min;
@@ -1885,7 +1885,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
             	case 'integral_bonus':
             		if ($rewrite)
             		{
-            			$uri = 'exchange-' . $cid;
+            			$uri = 'integral_bonus-' . $cid;
             			if (isset($price_min))
             			{
             				$uri .= '-min'.$price_min;

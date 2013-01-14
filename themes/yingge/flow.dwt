@@ -80,14 +80,20 @@
         <td class="cb_r11 zp_td"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name|escape:html}" width="55" height="55" /></a></td> 
         <td class="cb_r12 zp_td"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape:html}</a><br/><span class="zp_intro">赠品说明</span></td> 
         <td align="center" class="cb_r13 zp_td"><span class="give_p" title="赠品">赠品</span></td> 
-        <td align="center" class="cb_r2 zp_td"> 免费 </td> 
+        <td align="center" class="cb_r2 zp_td">{$goods.gift_price} </td> 
         <td align="center" class="cb_r3 zp_td">0</td> 
         <td align="center" class="cb_r4 zp_td"><p class="num_line">{$goods.goods_number}</p></td> 
-        <td align="center" class="cb_r5 zp_td"><span><b>免费</b></span></td> 
+        <td align="center" class="cb_r5 zp_td">
+        <!-- {if $goods.gprice gt 0} -->
+        {$goods.gift_price}
+        <!-- {else} -->
+        <span><b>免费</b></span>
+         <!-- {/if} -->
+        </td> 
         <td align="center" class="cb_r6 zp_td"><span class="del_opt" gift="" rec_key="27321_0_2183_0"><a href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_goods&amp;id={$goods.rec_id}'; " class="f6">删除</a></span></td> 
         </tr> 
         <tr class="zptip_td"> 
-        <td colspan="8"><div class="zp_tip zp_tip1">赠品说明：{$goods.favourable_name} 满{$goods.formated_min_amount}（不包括赠品的金额）赠{$goods.gift_name}<span class="tip_hide"></span></div></td>
+        <td colspan="8"><div class="zp_tip zp_tip1">赠品说明：{$goods.favourable_name} 满{$goods.formated_min_amount}<!--{if $goods.gprice gt 0}-->加{$goods.gift_price}元<!-- {/if} -->（不包括赠品的金额）赠{$goods.gift_name}<span class="tip_hide"></span></div></td>
         </tr> 
         </table> 
         <!--{/if}-->
@@ -147,7 +153,7 @@
                 <input id="totalbonus" type="hidden" value="0.00">
                 <input id="totaldiscount" type="hidden" value="0.00">
                 <input id="totalticket" type="hidden" value="0.00">
-                <input id="totalamount" type="hidden" value="47.00">
+                <input id="totalamount" type="hidden" value="0.00">
             </ul>	
             <div class="clear"></div>
         </dd>
@@ -252,7 +258,11 @@
               </td>
             </tr>
             <tr>
+            <!--{if $gift.price gt 0}-->
+            <td colspan="6"><div class="zp_tip">赠品说明：{$favourable.act_name} 满{$favourable.formated_min_amount}加{$gift.price}元赠{$gift.name}</div></td>
+            <!--{else}-->
               <td colspan="6"><div class="zp_tip">赠品说明：{$favourable.act_name} 满{$favourable.formated_min_amount}赠{$gift.name}</div></td>
+              <!--{/if}-->
             </tr>
        		</tbody></table>
 			<!-- {/if} -->
@@ -513,12 +523,16 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" id="goods_{$goods.rec_id}_0" > 
         <tr> 
         <td class="cb_r11 zp_td"><a href="goods.php?id={$goods.goods_id}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name|escape:html}" width="55" height="55" /></a></td> 
-        <td class="cb_r12 zp_td"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape:html}</a><br/><span class="zp_intro">赠品说明</span></td> 
+        <td class="cb_r12 zp_td"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name|escape:html}</a></td> 
         <td align="center" class="cb_r13 zp_td"><span class="give_p" title="赠品">赠品</span></td> 
-        <td align="center" class="cb_r2 zp_td"> 免费 </td> 
+        <td align="center" class="cb_r2 zp_td"> {$goods.gift_price}</td> 
         <td align="center" class="cb_r3 zp_td">0</td> 
         <td align="center" class="cb_r4 zp_td"><p class="num_line">{$goods.goods_number}</p></td> 
-        <td align="center" class="cb_r5 zp_td"><span><b>免费</b></span></td> 
+        <td align="center" class="cb_r5 zp_td"><!-- {if $goods.gprice gt 0} -->
+        {$goods.gift_price}
+        <!-- {else} -->
+        <span><b>免费</b></span>
+         <!-- {/if} --> </td> 
         </tr> 
         </table> 
         <!--{/if}-->

@@ -1660,17 +1660,21 @@ function user_bonus($user_id, $goods_amount = 0 ,$cart_goods='')
     		$ok_bonus[$key] =$val;
     	}
     	if($val['coupon_type']==2){
+    		if(!empty($brand_ids)){
     		foreach ($brand_ids as $k => $v){
     			if(in_array($v, explode(",", $val['coupon_ids']))){
     				$ok_bonus[$key] =$val;
     			}
     		}
+    		}
     	}
     	if($val['coupon_type']==3){
+    		if(!empty($goods_ids)){
     		foreach ($goods_ids as $k => $v){
     			if(in_array($v, explode(",", $val['coupon_ids']))){
     				$ok_bonus[$key] =$val;
     			}
+    		}
     		}
     	}
     	if($val['coupon_type']==4){
@@ -1961,7 +1965,10 @@ function get_cart_goods()
 						if($value['id']==$row['goods_id'])
 						{
 							$row['gift_name']=$value['name'];
+							$row['gprice']=$value['price'];
+							$row['gift_price']=price_format($value['price'], false);
 						}
+						$gprice+=$row['gprice'];
 				}
 				$row['favourable_name']=$favourable['act_name'];
 				$row['formated_min_amount']=price_format($favourable['min_amount'], false);
@@ -1970,6 +1977,7 @@ function get_cart_goods()
 		$total['favourable_amount']+=($favourable['min_amount'] * $row['goods_number'])+($row['is_promote_price'] * $row['goods_number']);
         $goods_list[] = $row;
     }
+    $total['goods_price'] = $total['goods_price']+$gprice;
 	$total['favourable_amount']=$total['goods_price']-$total['favourable_amount'];
     $total['goods_amount'] = $total['goods_price'];
     $total['saving']       = price_format($total['market_price'] - $total['goods_price'], false);

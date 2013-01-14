@@ -48,6 +48,12 @@
       <input name="pay_points" type="text" id="pay_points" value="{$bonus_arr.pay_points}" size="20" />
      </td>
   </tr>
+  <tr id="i" style="display:none">
+    <td class="label">使用范围</td>
+    <td>
+      <input name="coupon_info" type="text" id="coupon_info" value="{$bonus_arr.coupon_info}" size="30" />
+     </td>
+  </tr>
   <tr>
     <td class="label">优惠券类型</td>
     <td>
@@ -168,6 +174,7 @@ function showunit(get_value)
 {
   gObj("1").style.display =  (get_value == 2) ? "" : "none";
   gObj("p").style.display =  (get_value == 4) ? "" : "none";
+  gObj("i").style.display =  (get_value == 4) ? "" : "none";
   document.forms['theForm'].elements['selbtn1'].disabled  = (get_value != 1 && get_value != 2);
   document.forms['theForm'].elements['selbtn2'].disabled  = (get_value != 1 && get_value != 2);
 

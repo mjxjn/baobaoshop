@@ -534,7 +534,8 @@ function exchange_get_bonus($min, $max,$ext, $size, $page, $sort, $order){
 		$arr[$row['type_id']]['use_end_date']    = local_date("Y-m-d",$row['use_end_date']);
 		$arr[$row['type_id']]['pay_points']    =  $row['pay_points'];
 		$arr[$row['type_id']]['img']    =  $row['img'];
-		switch ($row['coupon_type']){
+		$arr[$row['type_id']]['coupon_type'] = $row['coupon_info'];
+		/* switch ($row['coupon_type']){
 			case 1:
 				$arr[$row['type_id']]['coupon_type']="婴格母婴商城-全场商品立减优惠券";
 				break;
@@ -559,7 +560,7 @@ function exchange_get_bonus($min, $max,$ext, $size, $page, $sort, $order){
 			case 4:
 				$arr[$row['type_id']]['coupon_type']="婴格母婴商城-全场免运费优惠券";
 				break;
-		}
+		} */
 	}
 	return $arr;
 }

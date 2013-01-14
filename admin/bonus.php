@@ -211,6 +211,7 @@ if ($_REQUEST['act'] == 'insert')
     
     $coupon_type  = !empty($_POST['coupon_type']) ? intval($_POST['coupon_type']) : 1;
     $coupon_ids  = !empty($_POST['coupon_ids']) ? trim($_POST['coupon_ids']) : "";
+    $coupon_info  = !empty($_POST['coupon_info']) ? trim($_POST['coupon_info']) : "";
 
     /* 检查类型是否有重复 */
     $sql = "SELECT COUNT(*) FROM " .$ecs->table('bonus_type'). " WHERE type_name='$type_name'";
@@ -245,7 +246,7 @@ if ($_REQUEST['act'] == 'insert')
     }
 
     /* 插入数据库。 */
-    $sql = "INSERT INTO ".$ecs->table('bonus_type')." (type_name, type_money,send_start_date,send_end_date,use_start_date,use_end_date,send_type,min_amount,min_goods_amount,pay_points,img,coupon_type,coupon_ids)
+    $sql = "INSERT INTO ".$ecs->table('bonus_type')." (type_name, type_money,send_start_date,send_end_date,use_start_date,use_end_date,send_type,min_amount,min_goods_amount,pay_points,img,coupon_type,coupon_ids,coupon_info)
     VALUES ('$type_name',
             '$_POST[type_money]',
             '$send_startdate',
@@ -253,7 +254,7 @@ if ($_REQUEST['act'] == 'insert')
             '$use_startdate',
             '$use_enddate',
             '$_POST[send_type]',
-            '$min_amount','" . floatval($_POST['min_goods_amount']) . "','$pay_points','$img_name',$coupon_type,'$coupon_ids')";
+            '$min_amount','" . floatval($_POST['min_goods_amount']) . "','$pay_points','$img_name',$coupon_type,'$coupon_ids','$coupon_info')";
 
     $db->query($sql);
     /* 记录管理员操作 */
@@ -318,6 +319,7 @@ if ($_REQUEST['act'] == 'update')
     
     $coupon_type  = !empty($_POST['coupon_type']) ? intval($_POST['coupon_type']) : 1;
     $coupon_ids  = !empty($_POST['coupon_ids']) ? trim($_POST['coupon_ids']) : "";
+    $coupon_info  = !empty($_POST['coupon_info']) ? trim($_POST['coupon_info']) : "";
 
     $sql = "UPDATE " .$ecs->table('bonus_type'). " SET ".
            "type_name       = '$type_name', ".
@@ -331,7 +333,8 @@ if ($_REQUEST['act'] == 'update')
            "min_goods_amount = '" . floatval($_POST['min_goods_amount']) . "', ".
            "pay_points = '$pay_points', ".
            "coupon_type = '$coupon_type', ".
-           "coupon_ids = '$coupon_ids' ".
+           "coupon_ids = '$coupon_ids', ".
+           "coupon_info = '$coupon_info' ".
            "WHERE type_id   = '$type_id'";
 
    $db->query($sql);
