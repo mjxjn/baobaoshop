@@ -1883,9 +1883,9 @@ function get_user_bonus($user_id = 0)
     }
 
     $sql = "SELECT SUM(bt.type_money) AS bonus_value, COUNT(*) AS bonus_count ".
-            "FROM " .$GLOBALS['ecs']->table('user_bonus'). " AS ub, ".
-                $GLOBALS['ecs']->table('bonus_type') . " AS bt ".
-            "WHERE ub.user_id = '$user_id' AND ub.bonus_type_id = bt.type_id AND ub.order_id = 0";
+            "FROM " .$GLOBALS['ecs']->table('user_bonus'). " AS ub LEFT JOIN ".
+                $GLOBALS['ecs']->table('bonus_type') . " AS bt on ub.bonus_type_id=bt.type_id ".
+            "WHERE ub.user_id = '$user_id' AND ub.bonus_type_id = bt.type_id AND ub.order_id = 0 and bt.use_end_date>".gmtime();
     $row = $GLOBALS['db']->getRow($sql);
 
     return $row;

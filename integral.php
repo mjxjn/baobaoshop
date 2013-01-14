@@ -71,7 +71,7 @@ if(!empty($weekaccount)){
 	$fweekcount = 0;
 }
 $smarty->assign("weekcount",$weekcount);
-$smarty->assign("fweekcount",$fweekcount);
+$smarty->assign("fweekcount",abs($fweekcount));
 //积分领取
 $timestamp=gmtime();
 $year=local_date("Y",$timestamp);
