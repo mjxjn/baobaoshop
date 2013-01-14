@@ -61,7 +61,7 @@
 .item_name {display: block;white-space: nowrap;height: 22px;overflow: hidden;text-overflow: ellipsis;}
 .c_red {color: #F56200;font-weight: bold;}
 .youhuiquan_pn{position: relative;height: auto;clear: both;}
-.youhuiquan_pn .bd {width: 770px;height: auto;overflow: hidden;padding: 0 0 140px;}
+.youhuiquan_pn .bd {width: 770px;height: auto;overflow: hidden;padding: 0 0 108px;}
 .youhuiquan_pn .ka_list {height: auto;width: 800px;}
 .youhuiquan_pn .ka_list li {float: left;width: 255px;height: auto;margin-right: 3px;}
 .youhuiquan_pn .ka_list li .pic {display: block;overflow: hidden;width: 255px;height: 140px;}
