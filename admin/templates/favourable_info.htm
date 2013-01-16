@@ -52,6 +52,11 @@
     {$lang.notice_max_amount}</td>
   </tr>
   <tr>
+    <td class="label">最小商品数量</td>
+    <td><input name="order_num" type="text" id="order_num" value="{$favourable.order_num}">
+    优惠数量限制</td>
+  </tr>
+  <tr>
     <td class="label"><a href="javascript:showNotice('NoticeActType');" title="{$lang.form_notice}">
         <img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.label_act_type}</td>
     <td><select name="act_type" id="act_type" onchange="changeType(this.value)">

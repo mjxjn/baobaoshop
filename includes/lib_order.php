@@ -2807,7 +2807,7 @@ function compute_discount()
     }
 
     /* 查询购物车商品 */
-    $sql = "SELECT c.goods_id, c.goods_price * c.goods_number AS subtotal, g.cat_id, g.brand_id " .
+    $sql = "SELECT c.goods_id, c.goods_price * c.goods_number AS subtotal, g.cat_id, g.brand_id,c.goods_number " .
             "FROM " . $GLOBALS['ecs']->table('cart') . " AS c, " . $GLOBALS['ecs']->table('goods') . " AS g " .
             "WHERE c.goods_id = g.goods_id " .
             "AND c.session_id = '" . SESS_ID . "' " .
@@ -2871,6 +2871,9 @@ function compute_discount()
                 if (strpos(',' . $favourable['act_range_ext'] . ',', ',' . $goods['goods_id'] . ',') !== false)
                 {
                     $total_amount += $goods['subtotal'];
+                    if($goods['goods_number']>=$favourable['order_num'] && $favourable['order_num']>0 ){
+                    	$goods_num += $goods['goods_number'];
+                    }
                 }
             }
         }
@@ -2880,8 +2883,8 @@ function compute_discount()
         }
 
         /* 如果金额满足条件，累计折扣 */
-        if ($total_amount > 0 && $total_amount >= $favourable['min_amount'] && ($total_amount <= $favourable['max_amount'] || $favourable['max_amount'] == 0))
-        {
+        if ($total_amount > 0 && (($total_amount >= $favourable['min_amount'] && $favourable['min_amount']>0 ) || ($goods_num > 0 && $favourable['min_amount']==0 && $favourable['order_num']>0)) && ($total_amount <= $favourable['max_amount'] || $favourable['max_amount'] == 0))
+        {123
             if ($favourable['act_type'] == FAT_DISCOUNT)
             {
                 $discount += $total_amount * (1 - $favourable['act_type_ext'] / 100);

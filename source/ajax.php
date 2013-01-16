@@ -126,10 +126,10 @@ if ($_REQUEST['step'] == 'validate_bonus')
         }
 		
 		$result['content']="<ul id=\"total_area\" class=\"fr cart_sum\">
+				<li id=\"total_discount\" style=\"display:none;\">折扣：<b>-¥0.00</b></li>
                 <li id=\"total_price\">应付商品金额：<font>".$total['goods_price_formated']."</font></li>
                 <li id=\"total_discount\" style=\"display:none;\">兑换券折扣：<b>-¥0.00</b></li>
                 <li id=\"total_bonus\">优惠券折扣：<b>-".$total['bonus_formated']."</b></li>
-                <li id=\"total_discount\" style=\"display:none;\">折扣：<b>-¥0.00</b></li>
                 <li id=\"total_amount\" style=\"padding-top: 10px; border-top: 1px solid rgb(234, 234, 234); margin-top: 6px;\">实付商品金额：<font>".$total['amount_formated']."</font></li>
                 
                 <input id=\"totalprice\" type=\"hidden\" value=\"".$total['goods_price']."\">

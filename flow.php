@@ -2857,7 +2857,8 @@ else
     $cart_goods = get_cart_goods();
     $smarty->assign('goods_list', $cart_goods['goods_list']);
     $smarty->assign('total', $cart_goods['total']);
-
+	$total_price = $cart_goods['total']['goods_amount'];
+	
 	/* 取得购物类型 */
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 	$cart_goods = cart_goods($flow_type); // 取得商品列表，计算合计
@@ -2962,8 +2963,11 @@ else
     /* 计算折扣 */
     $discount = compute_discount();
     $smarty->assign('discount', $discount['discount']);
+    $smarty->assign('discount_format', price_format($discount['discount']));
     $favour_name = empty($discount['name']) ? '' : join(',', $discount['name']);
     $smarty->assign('your_discount', sprintf($_LANG['your_discount'], $favour_name, price_format($discount['discount'])));
+    
+    $smarty->assign('price_total', price_format($total_price-$discount['discount']));
 
     /* 增加是否在购物车里显示商品图 */
     $smarty->assign('show_goods_thumb', $GLOBALS['_CFG']['show_goods_in_cart']);
