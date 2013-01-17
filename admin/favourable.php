@@ -294,12 +294,10 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     {
         sys_msg($_LANG['amount_error']);
     }
-    
-    $order_num = isset ( $_POST ['order_num'] ) ? $_POST ['order_num'] : 0;
 
     /* 取得赠品 */
     $gift = array();
-    if (intval($_POST['act_type']) == FAT_GOODS && isset($_POST['gift_id']))
+    if ((intval($_POST['act_type']) == FAT_GOODS|| intval($_POST['act_type'])==FAT_GOODSNUM) && isset($_POST['gift_id']))
     {
         foreach ($_POST['gift_id'] as $key => $id)
         {
@@ -320,8 +318,7 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         'max_amount'    => floatval($_POST['max_amount']),
         'act_type'      => intval($_POST['act_type']),
         'act_type_ext'  => floatval($_POST['act_type_ext']),
-        'gift'          => serialize($gift),
-    	'order_num' => intval($order_num)
+        'gift'          => serialize($gift)
     );
     if ($favourable['act_type'] == FAT_GOODS)
     {

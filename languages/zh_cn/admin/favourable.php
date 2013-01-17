@@ -64,8 +64,8 @@ $_LANG['js_languages']['pls_search'] = '请先搜索';
 $_LANG['search_result_empty'] = '没有找到相应记录，请重新搜索';
 $_LANG['label_search_and_add_gift'] = '搜索并加入赠品（特惠品）';
 $_LANG['js_languages']['price_need_not_search'] = '优惠方式是享受价格折扣，不需要此操作';
-$_LANG['js_languages']['gift'] = '赠品（特惠品）';
-$_LANG['js_languages']['price'] = '价格';
+$_LANG['js_languages']['gift'] = '商品（特惠品）';
+$_LANG['js_languages']['price'] = '价格/数量';
 
 $_LANG['js_languages']['act_name_not_null'] = '请输入优惠活动名称';
 $_LANG['js_languages']['min_amount_not_number'] = '金额下限格式不正确（数字）';

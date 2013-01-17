@@ -2799,7 +2799,7 @@ function compute_discount()
             " WHERE start_time <= '$now'" .
             " AND end_time >= '$now'" .
             " AND CONCAT(',', user_rank, ',') LIKE '%" . $user_rank . "%'" .
-            " AND act_type " . db_create_in(array(FAT_DISCOUNT, FAT_PRICE));
+            " AND act_type " . db_create_in(array(FAT_DISCOUNT, FAT_PRICE,FAT_GOODSNUM));
     $favourable_list = $GLOBALS['db']->getAll($sql);
     if (!$favourable_list)
     {
@@ -2866,14 +2866,11 @@ function compute_discount()
         }
         elseif ($favourable['act_range'] == FAR_GOODS)
         {
-            foreach ($goods_list as $goods)
+       		 foreach ($goods_list as $goods)
             {
                 if (strpos(',' . $favourable['act_range_ext'] . ',', ',' . $goods['goods_id'] . ',') !== false)
                 {
                     $total_amount += $goods['subtotal'];
-                    if($goods['goods_number']>=$favourable['order_num'] && $favourable['order_num']>0 ){
-                    	$goods_num += $goods['goods_number'];
-                    }
                 }
             }
         }
@@ -2883,8 +2880,8 @@ function compute_discount()
         }
 
         /* 如果金额满足条件，累计折扣 */
-        if ($total_amount > 0 && (($total_amount >= $favourable['min_amount'] && $favourable['min_amount']>0 ) || ($goods_num > 0 && $favourable['min_amount']==0 && $favourable['order_num']>0)) && ($total_amount <= $favourable['max_amount'] || $favourable['max_amount'] == 0))
-        {123
+   		if ($total_amount > 0 && $total_amount >= $favourable['min_amount'] && ($total_amount <= $favourable['max_amount'] || $favourable['max_amount'] == 0))
+        {
             if ($favourable['act_type'] == FAT_DISCOUNT)
             {
                 $discount += $total_amount * (1 - $favourable['act_type_ext'] / 100);
@@ -2896,6 +2893,20 @@ function compute_discount()
                 $discount += $favourable['act_type_ext'];
 
                 $favourable_name[] = $favourable['act_name'];
+            }
+            elseif($favourable['act_type'] == FAT_GOODSNUM)
+            {
+            	$favourable['gift']       = unserialize($favourable['gift']);
+            	foreach ($goods_list as $goods)
+            	{
+	            	foreach($favourable['gift'] as $value){
+	            		if($value['id']==$goods['goods_id']){
+	            			if($goods['goods_number']>=$value['price']){
+	            				$discount += $favourable['act_type_ext'];
+	            			}
+	            		}
+	            	}
+            	}
             }
         }
     }

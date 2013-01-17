@@ -1585,7 +1585,7 @@ function favourable_info($act_id)
 			$row['act_type_ext'] = floor($favourable_total/$row['min_amount']);
 		}else
 		{
-			$row['act_type_ext'] = -1;
+			//$row['act_type_ext'] = -1;
 		}
     }
 
