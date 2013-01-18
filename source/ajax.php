@@ -615,8 +615,23 @@ function favourable_available($favourable)
 
     /* 优惠范围内的商品总额 */
     $amount = cart_favourable_amount($favourable);
+    $cart_goods = cart_goods($flow_type);
+    foreach ($cart_goods AS $val)
+    {
+    	/* 统计实体商品的个数 */
+    	if ($val['is_real'])
+    	{
+    		$total['real_goods_count']++;
+    	}
+
+    	if($val['is_promote_price'] > 0 && $val['is_gift'] == 0)
+    	{
+    		$promote_price += $val['is_promote_price'] * $val['goods_number'] ;
+    	}
+    	$favourable_subtotal += $val['min_amount'] * $val['goods_number'];
+    }
     $favourable_discount = compute_discount();
-    $amount = $amount-$favourable_discount['subtotal'];
+    $amount = $amount-$promote_price-$favourable_subtotal-$favourable_discount['subtotal'];
 
     /* 金额上限为0表示没有上限 */
     return $amount >= $favourable['min_amount'] &&

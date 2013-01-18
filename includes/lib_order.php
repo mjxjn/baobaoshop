@@ -2852,6 +2852,7 @@ function compute_discount()
                 if (strpos(',' . $ids . ',', ',' . $goods['cat_id'] . ',') !== false)
                 {
                     $total_amount += $goods['subtotal'];
+                
                 }
             }
         }
@@ -2862,6 +2863,7 @@ function compute_discount()
                 if (strpos(',' . $favourable['act_range_ext'] . ',', ',' . $goods['brand_id'] . ',') !== false)
                 {
                     $total_amount += $goods['subtotal'];
+
                 }
             }
         }
@@ -2872,6 +2874,7 @@ function compute_discount()
                 if (strpos(',' . $favourable['act_range_ext'] . ',', ',' . $goods['goods_id'] . ',') !== false)
                 {
                     $total_amount += $goods['subtotal'];
+
                 }
             }
         }
@@ -2892,6 +2895,8 @@ function compute_discount()
             elseif ($favourable['act_type'] == FAT_PRICE)
             {
                 $discount += $favourable['act_type_ext'];
+                
+                $subtotal += $goods['subtotal'];
 
                 $favourable_name[] = $favourable['act_name'];
             }
