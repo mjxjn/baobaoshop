@@ -76,7 +76,7 @@
       </table>
     </div></td>
   </tr>
-  <tr id="type_search"{if $favourable.act_type neq 0} style="display:none"{/if}>
+  <tr id="type_search"{if $favourable.act_type eq 1 or $favourable.act_type eq 2} style="display:none"{/if}>
     <td align="right">{$lang.label_search_and_add_gift}</td>
     <td><input name="keyword1" type="text" id="keyword1" />
       <input name="search1" type="button" id="search1" value="{$lang.button_search}" class="button" onclick="searchItem1()" />

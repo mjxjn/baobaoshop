@@ -767,7 +767,8 @@ function order_fee($order, $goods, $consignee)
 		}
 		$favourable_subtotal += $val['min_amount'] * $val['goods_number'];
 	}
-	$total['favourable_amount']=$total['goods_price'] - $promote_price - $favourable_subtotal;
+	$favourable_discount = compute_discount();
+	$total['favourable_amount']=$total['goods_price'] - $promote_price - $favourable_subtotal - $favourable_discount['subtotal'];
 
     $total['saving']    = $total['market_price'] - $total['goods_price'];
     $total['save_rate'] = $total['market_price'] ? round($total['saving'] * 100 / $total['market_price']) . '%' : 0;
@@ -2903,6 +2904,7 @@ function compute_discount()
 	            		if($value['id']==$goods['goods_id']){
 	            			if($goods['goods_number']>=$value['price']){
 	            				$discount += $favourable['act_type_ext'];
+	            				$subtotal += $goods['subtotal'];
 	            			}
 	            		}
 	            	}
@@ -2911,7 +2913,7 @@ function compute_discount()
         }
     }
 
-    return array('discount' => $discount, 'name' => $favourable_name);
+    return array('discount' => $discount, 'name' => $favourable_name, 'subtotal' => $subtotal);
 }
 
 /**

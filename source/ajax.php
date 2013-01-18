@@ -331,11 +331,16 @@ if ($_REQUEST['step'] == 'update_cart')
 		
 		/* 取得商品列表，计算合计 */
 		$cart_goods = get_cart_goods();
+		$favourable_discount = compute_discount();
 		$total=$cart_goods['total'];
-		$result['content']['total_area'] = "<li id=\"total_price\">应付商品金额：<font>".$total['goods_price']."</font></li>
+		if($favourable_discount['discount']>0){
+			$result['content']['total_area'] ="<li id=\"total_discount\" >折扣：<b>-".price_format($favourable_discount['discount'])."</b></li>";
+		}else{
+			$result['content']['total_area'] ="<li id=\"total_discount\" style=\"display:none;\">折扣：<b>-¥0.00</b></li>";
+		}
+		$result['content']['total_area'] .= "<li id=\"total_price\">应付商品金额：<font>".$total['goods_price']."</font></li>
                 <li id=\"total_discount\" style=\"display:none;\">兑换券折扣：<b>-¥0.00</b></li>
                 <li id=\"total_bonus\" style=\"display:none;\">优惠券折扣：<b>-¥0.00</b></li>
-                <li id=\"total_discount\" style=\"display:none;\">折扣：<b>-¥0.00</b></li>
                 <li id=\"total_amount\" style=\"padding-top: 10px; border-top: 1px solid rgb(234, 234, 234); margin-top: 6px;display:none;\">应付商品金额：<font>".$total['goods_price']."</font></li>
                 
                 <input id=\"totalprice\" type=\"hidden\" value=\"".$total['goods_amount']."\">
@@ -610,6 +615,8 @@ function favourable_available($favourable)
 
     /* 优惠范围内的商品总额 */
     $amount = cart_favourable_amount($favourable);
+    $favourable_discount = compute_discount();
+    $amount = $amount-$favourable_discount['subtotal'];
 
     /* 金额上限为0表示没有上限 */
     return $amount >= $favourable['min_amount'] &&
