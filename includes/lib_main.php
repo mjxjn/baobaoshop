@@ -128,7 +128,7 @@ function get_user_info($id=0)
         $id = $_SESSION['user_id'];
     }
     $time = date('Y-m-d');
-    $sql  = 'SELECT u.user_id, u.email, u.user_name, u.user_money, u.pay_points,u.sex '.
+    $sql  = 'SELECT u.user_id, u.email, u.user_name, u.user_money, u.pay_points,u.sex,u.mobile_phone '.
             ' FROM ' .$GLOBALS['ecs']->table('users'). ' AS u ' .
             " WHERE u.user_id = '$id'";
     $user = $GLOBALS['db']->getRow($sql);
@@ -143,7 +143,12 @@ function get_user_info($id=0)
 	}elseif($user['sex']==2){
 		$user['sex']='gril.jpg';
 	}
-    return $user;
+	$user_bonus = get_user_bonus();
+	$user['bonus']     = sprintf($GLOBALS['_LANG']['user_bonus_info'], $user_bonus['bonus_count'], price_format($user_bonus['bonus_value'], false));
+	$sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('order_info').
+	" WHERE user_id = '" .$user_id. "' AND add_time > '" .local_strtotime('-1 months'). "'";
+	$user['order_count'] = $GLOBALS['db']->getOne($sql);
+	return $user;
 }
 /**
  * 取得当前位置和页面标题

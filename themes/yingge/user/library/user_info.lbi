@@ -1,19 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<div class="user_info">
-	<div class='userone left'>
-		<div class="left"><img src="<!--{if $info.sex eq '1'}-->/themes/yingge/user/images/boy.jpg<!--{/if}--><!--{if $info.sex eq '2'}-->/themes/yingge/user/images/gril.jpg<!--{/if}--><!--{if $info.sex eq '0'}-->/themes/yingge/user/images/tavatar.gif<!--{/if}-->" class='userface' width='70' height='70' /></div>
-		<div class="userinfo left">
-			<p class="username">欢迎您：{$info.username}</p>
-			<p class='usermobile'>手机：{$info.mobile_phone}&nbsp;&nbsp;<a href="user.php?act=profile">修改</a></p>
-			<p>{$lang.last_month_order}{$info.order_count}{$lang.order_unit}</p>
-		</div>
-	</div>
-	<div class="usertwo left">
-		<p class="fb">您的积分</p>
-		<p class="fb"><a href="user.php?act=integration"><font size="6">{$info.user_integral}</font>&nbsp;<span class="f16">分</span></a>&nbsp;&nbsp;<a href="exchange.php" target="_blank"><img src="/themes/yingge/user/images/jifenbtn.jpg" width="118" height="31" /></a></p>
-		<p>可用优惠卷：<a href="user.php?act=bonus" style="color:#006bd0;">{$info.bonus}</a>&nbsp;</p>
-	</div>
-	<div class="userthree left">
+
+    	{insert name='usercenter_member_info'}
+<div class="userthree left">
 		<h3>我的购物车</h3>
 		<p>我的购物车有{insert name='cart_info'}件商品</p>
 		<p><a href="flow.php" target="_blank">查看购物车</a></p>

@@ -391,6 +391,41 @@ function insert_baby_member_info()
  * @access  public
  * @return  string
  */
+function insert_usercenter_member_info()
+{
+	$need_cache = $GLOBALS['smarty']->caching;
+	$GLOBALS['smarty']->caching = false;
+
+	if ($_SESSION['user_id'] > 0)
+	{
+		$GLOBALS['smarty']->assign('user_info', get_user_info());
+	}
+	else
+	{
+		if (!empty($_COOKIE['ECS']['username']))
+		{
+			$GLOBALS['smarty']->assign('ecs_username', stripslashes($_COOKIE['ECS']['username']));
+		}
+		$captcha = intval($GLOBALS['_CFG']['captcha']);
+		if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2)) && gd_version() > 0)
+		{
+			$GLOBALS['smarty']->assign('enabled_captcha', 1);
+			$GLOBALS['smarty']->assign('rand', mt_rand());
+		}
+	}
+	$output = $GLOBALS['smarty']->fetch('user/library/usercenter_member_info.lbi');
+
+	$GLOBALS['smarty']->caching = $need_cache;
+
+	return $output;
+}
+
+/**
+ * 调用会员信息
+ *
+ * @access  public
+ * @return  string
+ */
 function insert_index_user_info()
 {
     $need_cache = $GLOBALS['smarty']->caching;

@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if $user_info}
+<div class="user_info">
+	<div class='userone left'>
+		<div class="left"><img src="/themes/yingge/user/images/{$user_info.sex}" class='userface' width='70' height='70' /></div>
+		<div class="userinfo left">
+			<p class="username">欢迎您：{$user_info.username}</p>
+			<p class='usermobile'>手机：{$user_info.mobile_phone}&nbsp;&nbsp;<a href="user.php?act=profile">修改</a></p>
+			<p>{$lang.last_month_order}{$user_info.order_count}{$lang.order_unit}</p>
+		</div>
+	</div>
+	<div class="usertwo left">
+		<p class="fb">您的积分</p>
+		<p class="fb"><a href="user.php?act=integration"><font size="6">{$user_info.pay_points}</font>&nbsp;<span class="f16">分</span></a>&nbsp;&nbsp;<a href="exchange.php" target="_blank"><img src="/themes/yingge/user/images/jifenbtn.jpg" width="118" height="31" /></a></p>
+		<p>可用优惠卷：<a href="user.php?act=bonus" style="color:#006bd0;">{$user_info.bonus}</a>&nbsp;</p>
+	</div>
+	
+{/if}
