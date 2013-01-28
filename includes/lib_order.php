@@ -1968,8 +1968,8 @@ function get_cart_goods()
 							$row['gift_name']=$value['name'];
 							$row['gprice']=$value['price'];
 							$row['gift_price']=price_format($value['price'], false);
+							$gprice+=$row['gprice'];
 						}
-						$gprice+=$row['gprice'];
 				}
 				$row['favourable_name']=$favourable['act_name'];
 				$row['formated_min_amount']=price_format($favourable['min_amount'], false);
