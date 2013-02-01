@@ -912,26 +912,46 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 
 		$array =array();		
 		$data->sheets[0]['numCols']=5;
+		
+		// 计数器
+		$cnt = 0;
+		// 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+		$limit = 500;
+		
 		for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
-
+			if($data->sheets[0]['cells'][$i][1]==""){
+				break;
+			}
 			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
 				if($data->sheets[0]['cells'][$i][$j]=="")
 				{
 					$data->sheets[0]['cells'][$i][$j]=0;
 				}
 				$array[$i][$j] = $data->sheets[0]['cells'][$i][$j];
-
+				
+				$cnt ++;
+				if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+					ob_flush();
+					flush();
+					$cnt = 0;
+				}
 			}
 
 		}
 
 		//print_r($array);
+		
 		//sava_data($array);
 		    $count =0;    
 	
 	$counts=0;
 	
     $total =0;
+    
+    // 计数器
+    $cnt = 0;
+    // 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+    $limit = 500;
 
     foreach( $array as $tmp){    
 
@@ -950,14 +970,26 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 			 }
 
         }
+        
+        $cnt ++;
+        if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+        	ob_flush();
+        	flush();
+        	$cnt = 0;
+        }
 
         $total++;
 
     }
-	
+    
 	$xls_sql="select goods_num,goods_sn,goods_number,shop_price from ecs_xls order by sid desc";
 	
 	$res = $db->query($xls_sql);
+	
+	// 计数器
+	$cnt = 0;
+	// 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+	$limit = 500;
 	
     while ($row = $db->fetchRow($res))
     {
@@ -974,6 +1006,13 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 
 			 }
 			
+		}
+		
+		$cnt ++;
+		if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+			ob_flush();
+			flush();
+			$cnt = 0;
 		}
 		
     }
