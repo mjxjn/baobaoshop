@@ -911,7 +911,7 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 		$data->read($Import_TmpFile);
 
 		$array =array();		
-		$data->sheets[0]['numCols']=4;
+		$data->sheets[0]['numCols']=5;
 		for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
 
 			for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
@@ -935,11 +935,11 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 
     foreach( $array as $tmp){    
 
-         $Isql = "Select id from ecs_xls where goods_sn='".$tmp[2]."'";
+         $Isql = "Select sid from ecs_xls where goods_num='".$tmp[2]."'";
 
-         $sql = "Insert into ecs_xls (sid,goods_sn,goods_number,shop_price) value(";
+         $sql = "Insert into ecs_xls (sid,goods_num,goods_sn,goods_number,shop_price) value(";
 
-         $sql.=$tmp[1].",'".$tmp[2]."',".intval($tmp[3]).",".$tmp[4].")";
+         $sql.=$tmp[1].",'".$tmp[2]."','".$tmp[3]."',".intval($tmp[4]).",".$tmp[5].")";
 
         if(!$db->fetchRow($db->query($Isql))){
 
@@ -955,16 +955,16 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 
     }
 	
-	$xls_sql="select goods_sn,goods_number,shop_price from ecs_xls order by id desc";
+	$xls_sql="select goods_num,goods_sn,goods_number,shop_price from ecs_xls order by sid desc";
 	
 	$res = $db->query($xls_sql);
 	
     while ($row = $db->fetchRow($res))
     {
 	
-		$old_sql="select goods_sn from ecs_goods where goods_sn='".$row['goods_sn']."'";
-		
-		$new_sql="update ecs_goods set goods_number=".$row['goods_number'].",shop_price=".$row['shop_price']." where goods_sn='".$row['goods_sn']."'";
+		$old_sql="select goods_num from ecs_goods where goods_num='".$row['goods_num']."'";
+
+		$new_sql="update ecs_goods set goods_sn=".$row['goods_sn'].", goods_number=".$row['goods_number'].",shop_price=".$row['shop_price']." where goods_num='".$row['goods_num']."'";
 		
 		if($db->fetchRow($db->query($old_sql))){
 			

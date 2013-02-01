@@ -879,7 +879,7 @@ function goods_list($is_delete, $real_goods=1, $conditions = '')
         /* 关键字 */
         if (!empty($filter['keyword']))
         {
-            $where .= " AND (goods_sn LIKE '%" . mysql_like_quote($filter['keyword']) . "%' OR goods_name LIKE '%" . mysql_like_quote($filter['keyword']) . "%')";
+            $where .= " AND (goods_num LIKE '%" . mysql_like_quote($filter['keyword']) . "%' OR goods_sn LIKE '%" . mysql_like_quote($filter['keyword']) . "%' OR goods_name LIKE '%" . mysql_like_quote($filter['keyword']) . "%')";
         }
 
         if ($real_goods > -1)
