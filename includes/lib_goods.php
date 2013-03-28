@@ -206,12 +206,19 @@ function get_top10($cats = '',$num = '',$acats = '')
         default:
             $top10_time = '';
     }
-
+    if(!empty($num)){
+    $sql = 'SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number ' .
+           'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g, ' .
+                $GLOBALS['ecs']->table('order_info') . ' AS o, ' .
+                $GLOBALS['ecs']->table('order_goods') . ' AS og ' .
+           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where $top10_time " ;
+    }else{
     $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.promote_price, g.promote_start_date, g.promote_end_date, g.shop_price, g.goods_thumb, SUM(og.goods_number) as goods_number, SUM(co.status) AS co_number, SUM(co.comment_rank) AS co_rank ' .
            'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g left join '.$GLOBALS['ecs']->table('comment').' AS co ON g.goods_id = co.id_value, ' .
                 $GLOBALS['ecs']->table('order_info') . ' AS o, ' .
                 $GLOBALS['ecs']->table('order_goods') . ' AS og ' .
            "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where $top10_time " ;
+    }
     //判断是否启用库存，库存数量是否大于0
     if ($GLOBALS['_CFG']['use_storage'] == 1)
     {
@@ -232,7 +239,17 @@ function get_top10($cats = '',$num = '',$acats = '')
     }
            
     $arr = $GLOBALS['db']->getAll($sql);
-
+    
+    if(!empty($num)){
+        for ($i = 0, $count = count($arr); $i < $count; $i++)
+    {
+        $arr[$i]['short_name'] = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
+                                    sub_str($arr[$i]['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $arr[$i]['goods_name'];
+        $arr[$i]['url']        = build_uri('goods', array('gid' => $arr[$i]['goods_id']), $arr[$i]['goods_name']);
+        $arr[$i]['thumb'] = get_image_path($arr[$i]['goods_id'], $arr[$i]['goods_thumb'],true);
+        $arr[$i]['price'] = price_format($arr[$i]['shop_price']);
+    }
+    }else{
     for ($i = 0, $count = count($arr); $i < $count; $i++)
     {
         //$arr[$i]['short_name'] = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
@@ -262,6 +279,7 @@ function get_top10($cats = '',$num = '',$acats = '')
 		}
 		$arr[$i]['jiesheng'] = ($promote_price > 0) ? $arr[$i]['market_price']-$promote_price : $item['market_price']-$item['shop_price'];
 		$arr[$i]['co_number'] = ($arr[$i]['co_number'] == '') ? 0 : $arr[$i]['co_number'] ; 
+    }
     }
 
     return $arr;

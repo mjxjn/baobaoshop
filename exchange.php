@@ -52,7 +52,7 @@ if ($_REQUEST['act'] == 'list')
     $default_sort_order_type   = $_CFG['sort_order_type'] == '0' ? 'goods_id' : ($_CFG['sort_order_type'] == '1' ? 'exchange_integral' : 'last_update');
 
     $sort    = (isset($_REQUEST['sort'])  && in_array(trim(strtolower($_REQUEST['sort'])), array('goods_id', 'exchange_integral', 'last_update'))) ? trim($_REQUEST['sort'])  : $default_sort_order_type;
-    $order   = (isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC'))) ? trim($_REQUEST['order']) : $default_sort_order_method;
+    $order   = (isset($_REQUEST['order']) && in_array(trim(strtoupper($_REQUEST['order'])), array('ASC', 'DESC')))                              ? trim($_REQUEST['order']) : $default_sort_order_method;
     $display = (isset($_REQUEST['display']) && in_array(trim(strtolower($_REQUEST['display'])), array('list', 'grid', 'text'))) ? trim($_REQUEST['display'])  : (isset($_COOKIE['ECS']['display']) ? $_COOKIE['ECS']['display'] : $default_display_type);
     $display  = in_array($display, array('list', 'grid', 'text')) ? $display : 'text';
     setcookie('ECS[display]', $display, gmtime() + 86400 * 7);
@@ -83,7 +83,7 @@ if ($_REQUEST['act'] == 'list')
 
         $smarty->assign('goods_type',       get_goods_type());        // 分类树
         $smarty->assign('helps',            get_shop_help());              // 网店帮助
-        $smarty->assign('top_goods',        get_top10());                  // 销售排行
+        //$smarty->assign('top_goods',        get_top10());                  // 销售排行
         $smarty->assign('promotion_info',   get_promotion_info());         // 促销活动信息
 
 		$smarty->assign('categories',     get_categories_tree());        // 分类树
