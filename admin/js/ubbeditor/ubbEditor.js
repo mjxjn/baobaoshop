@@ -132,6 +132,8 @@ function ubbEditor(_id)
       tstrers = tstrers.replace(/>/igm, '&gt;');
       tstrers = tstrers.replace(/\"/igm, '&quot;');
       tstrers = tstrers.replace(/ /igm, '&nbsp;');
+      tstrers = tstrers.replace(/&amp;#91;/igm, '&#91;');
+      tstrers = tstrers.replace(/&amp;#93;/igm, '&#93;');
     };
     return tstrers;
   };
@@ -164,6 +166,8 @@ function ubbEditor(_id)
     var tstrers = _strers;
     if (tstrers)
     {
+      tstrers = tstrers.replace(/\[/igm, '&#91;');
+      tstrers = tstrers.replace(/\]/igm, '&#93;');
 	    tstrers = tstrers.replace(/<br.*?>/ig, '<br />');
 	    tstrers = tstrers.replace(/(<hr\s+[^>]*[^\/])(>)/ig, '$1 />');
 	    tstrers = tstrers.replace(/(<img\s+[^>]*[^\/])(>)/ig, '$1 />');
@@ -444,7 +448,7 @@ function ubbEditor(_id)
   };
   this.tGetIEVersion = function()
   {
-    var tIEVersion = -1;
+    var tIEVersion = 100;
     var tAgt = navigator.userAgent.toLowerCase();
     var tIsIE = tAgt.indexOf('msie')!= -1 && document.all;
     if (tIsIE)
@@ -815,7 +819,7 @@ function ubbEditor(_id)
       tDiv1.appendChild(tIframe1);
       var tObj3 = this.tFW(this.tid + '-iframe');
       if (this.tEditUBBMode == 1) this.tValue = this.tUBB2XHTML(this.tValue);
-      var tObj3HTML = '<!DOCTYPE html><html><head xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"><link href="' + this.tbaseURL + 'common/theme/' + this.tTheme + '/css/iframe.css" rel="stylesheet" type="text/css" /></head><body contentEditable="true" dir="ltr"><p></p></body></html>';
+      var tObj3HTML = '<!DOCTYPE html><html><head xmlns="http://www.w3.org/1999/xhtml"><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"><link href="' + this.tbaseURL + 'common/theme/' + this.tTheme + '/css/iframe.css" rel="stylesheet" type="text/css" /></head><body contentEditable="true" dir="ltr"></body></html>';
       if (this.tGetIEVersion() <= 7) tObj3.document.designMode = 'on';
       tObj3.document.open();
       tObj3.document.writeln(tObj3HTML);
