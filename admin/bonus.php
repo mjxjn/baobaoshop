@@ -320,8 +320,43 @@ if ($_REQUEST['act'] == 'update')
     $coupon_type  = !empty($_POST['coupon_type']) ? intval($_POST['coupon_type']) : 1;
     $coupon_ids  = !empty($_POST['coupon_ids']) ? trim($_POST['coupon_ids']) : "";
     $coupon_info  = !empty($_POST['coupon_info']) ? trim($_POST['coupon_info']) : "";
-
+    
+    /* 处理图片 */
+    if (!empty($_FILES['img']["size"]))
+    {
+    	$upload_img = $image->upload_image($_FILES['img'],"bonus", '');
+    	//$upload_img = $image->make_thumb($_FILES['img'],255,140);
+    	if ($upload_img == false)
+    	{
+    		sys_msg($image->error_msg);
+    	}
+    	$img_name = basename($upload_img);
+    	//$img_name = $upload_img;
+    }
+//    else
+//    {
+//    	$upload_img =  trim($_POST['img']);
+//    	$img_name = '';
+//    }
+    if(!empty($_FILES['img']["size"])){
     $sql = "UPDATE " .$ecs->table('bonus_type'). " SET ".
+           "type_name       = '$type_name', ".
+           "type_money      = '$_POST[type_money]', ".
+           "send_start_date = '$send_startdate', ".
+           "send_end_date   = '$send_enddate', ".
+           "use_start_date  = '$use_startdate', ".
+           "use_end_date    = '$use_enddate', ".
+           "send_type       = '$_POST[send_type]', ".
+           "min_amount      = '$min_amount', " .
+           "min_goods_amount = '" . floatval($_POST['min_goods_amount']) . "', ".
+           "pay_points = '$pay_points', ".
+           "img = '$img_name', ".
+           "coupon_type = '$coupon_type', ".
+           "coupon_ids = '$coupon_ids', ".
+           "coupon_info = '$coupon_info' ".
+           "WHERE type_id   = '$type_id'";
+    }else{
+        $sql = "UPDATE " .$ecs->table('bonus_type'). " SET ".
            "type_name       = '$type_name', ".
            "type_money      = '$_POST[type_money]', ".
            "send_start_date = '$send_startdate', ".
@@ -336,6 +371,7 @@ if ($_REQUEST['act'] == 'update')
            "coupon_ids = '$coupon_ids', ".
            "coupon_info = '$coupon_info' ".
            "WHERE type_id   = '$type_id'";
+    }
 
    $db->query($sql);
    /* 记录管理员操作 */
