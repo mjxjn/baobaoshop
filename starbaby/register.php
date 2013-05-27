@@ -7,12 +7,19 @@ if ((DEBUG_MODE & 2) != 2)
 {
     $smarty->caching = true;
 }
+$now=gmtime();
+$endtime=local_mktime(23, 59, 59, 5, 30, 2013);
+if($now>$endtime){
+	show_starbaby_message('第二届宝宝明星秀活动报名结束，感谢您的积极参与！', '', '', 'warning');
+	exit;
+}
 if ($_SESSION['user_id'] == 0)
 {
    /* 用户没有登录，转向到登录页面 */
    ecs_header("Location: /user.php\n");
    exit;
 }
+
 if($_POST['act']=="insert"){
 	$pic=$_POST['pic'];
 	$babyname=str_check($_POST['babyname']);
@@ -75,27 +82,31 @@ if($_POST['act']=="insert"){
 	if($u > 0){
 		show_starbaby_message('您已经参与了本期明星宝宝秀活动', '', '', 'warning');
 		exit;
-	
-	$sql = "select baby_id from ".$GLOBALS['ecs']->table('baby_baby')." where ia_id=".$ia_id." order by baby_id desc limit 0,1";
-	$baby_id = $db->getOne($sql);
-	if(empty($baby_id)) $baby_id=0;
-	$baby_id+=1;
-	$sql = "INSERT INTO " .$GLOBALS['ecs']->table('baby_baby'). " (baby_id, baby_pic, baby_name, baby_sex, baby_birthday, baby_tel, baby_content, baby_xing, baby_xiao, user_id, user_name, baby_time, ia_id)" .
+	}
+        $sql = "select baby_id from ".$GLOBALS['ecs']->table('baby_baby'). " where ia_id=".$ia_id." order by baby_id desc limit 0,1";
+        $baby_id = $db->getOne($sql);
+        if(empty($baby_id)){
+            $sql = "INSERT INTO " .$GLOBALS['ecs']->table('baby_baby'). " (baby_id,baby_pic, baby_name, baby_sex, baby_birthday, baby_tel, baby_content, baby_xing, baby_xiao, user_id, user_name, baby_time, ia_id)" .
+           "VALUES ('1','$baby_pic', '$baby_name', '$baby_sex' , '$baby_birthday' , '$baby_tel', '$baby_content', '$baby_xing', '$baby_xiao', '$user_id', '$user_name' , '$baby_time', '$ia_id')";
+        }else{
+            $baby_id = $baby_id+1;
+            $sql = "INSERT INTO " .$GLOBALS['ecs']->table('baby_baby'). " (baby_id,baby_pic, baby_name, baby_sex, baby_birthday, baby_tel, baby_content, baby_xing, baby_xiao, user_id, user_name, baby_time, ia_id)" .
            "VALUES ('$baby_id','$baby_pic', '$baby_name', '$baby_sex' , '$baby_birthday' , '$baby_tel', '$baby_content', '$baby_xing', '$baby_xiao', '$user_id', '$user_name' , '$baby_time', '$ia_id')";
+        }
 	$db->query($sql);
 	$sql = "select pay_points from ".$GLOBALS['ecs']->table('users'). " where user_id=".$user_id;
 	$pay_points = $db->getOne($sql);
 	$pay_points += 200;
 	$sql="update ".$GLOBALS['ecs']->table('users'). " set pay_points=".$pay_points."  where user_id=".$user_id;
 	$db->query($sql);
-	$sql="select bonus_id from ".$GLOBALS['ecs']->table('user_bonus')." where user_id=0 and bonus_type_id=6 order by bonus_id asc limit 0,1";
+	$sql="select bonus_id from ".$GLOBALS['ecs']->table('user_bonus')." where user_id=0 and bonus_type_id=20 order by bonus_id asc limit 0,1";
 	$bonus_id = $db->getOne($sql);
 	$nowdate=time();
 	$sql="INSERT INTO " .$GLOBALS['ecs']->table('account_log')." (user_id,pay_points,change_time,change_desc,change_type)".
 	"VALUES ('$user_id', '200', '$nowdate','参加明星宝宝秀活动','88')";
 	$db->query($sql);
 	if($bonus_id){
-		$sql="update ".$GLOBALS['ecs']->table('user_bonus')." set user_id=".$user_id." where bonus_type_id=6 and bonus_id=".$bonus_id;
+		$sql="update ".$GLOBALS['ecs']->table('user_bonus')." set user_id=".$user_id." where bonus_type_id=20 and bonus_id=".$bonus_id;
 		$db->query($sql);
 		show_starbaby_message('恭喜您，您已报名成功，告诉您的朋友给您投上支持的一票吧<br />系统自动赠送您200积分，并赠送您婴格母婴商城5元代金券一张', '返回明星宝宝秀首页', 'starbaby.php', 'info', false);
 		exit;

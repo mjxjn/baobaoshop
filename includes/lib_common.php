@@ -1975,6 +1975,36 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
                 }
             }
         	break;
+          case 'starbaby_old':
+        	if (empty($ia_id))
+            {
+                return false;
+            }
+            else
+            {
+            	$uri ="starbaby_old.php?ia_id=".$ia_id;
+            	if (!empty($page))
+                {
+                    $uri .= '&page=' . $page;
+                }
+            	if (!empty($sort))
+                {
+                    $uri .= '&sort1=' . $sort;
+                }
+            	if (!empty($baby_sex))
+                {
+                    $uri .= '&sort2=' . $baby_sex;
+                }
+            	if (!empty($xz))
+                {
+                    $uri .= '&xz=' . $xz;
+                }
+            	if (!empty($sx))
+                {
+                    $uri .= '&sx=' . $sx;
+                }
+            }
+        	break;
         default:
             return false;
             break;
@@ -3039,7 +3069,7 @@ function authcode($string,$operation='DECODE',$key='',$expiry=0){
 返 回 值：返回检测结果，ture or false 
 */ 
 function inject_check($sql_str) { 
-return eregi('iframe|script|select|insert|and|or|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile', $sql_str); // 进行过滤 
+return preg_match('/^iframe|script|select|insert|and|or|update|delete|\'|\/\*|\*|\.\.\/|\.\/|union|into|load_file|outfile$/i', $sql_str); // 进行过滤 
 } 
 
 /* 

@@ -10,10 +10,10 @@ if ($_REQUEST['act'] == 'list')
     admin_priv('users_manage');
 	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
 	$ia_id = $db->getOne($sql);
-	$ia = isset($_GET['ia']) ?  (int)$_GET['ia'] : $ia_id;
+	$ia = isset($_REQUEST['ia']) ?  (int)$_REQUEST['ia'] : $ia_id;
     
 	$baby_list = baby_list($ia);
-	
+	$smarty->assign('getia',    $ia);
 	$smarty->assign('ia',    $ia_id);
 	$smarty->assign('baby_list',    $baby_list['baby_list']);
     $smarty->assign('filter',       $baby_list['filter']);
@@ -120,9 +120,11 @@ elseif ($_REQUEST['act'] == 'insert')
 /*------------------------------------------------------ */
 elseif ($_REQUEST['act'] == 'query')
 {
-	
-    $baby_list = baby_list();
-
+	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
+	$ia_id = $db->getOne($sql);
+	$ia = isset($_POST['ia']) ?  (int)$_POST['ia'] : $ia_id;
+    $baby_list = baby_list($ia);
+$smarty->assign('getia',    $ia);
     $smarty->assign('baby_list',    $baby_list['baby_list']);
     $smarty->assign('filter',       $baby_list['filter']);
     $smarty->assign('record_count', $baby_list['record_count']);
@@ -142,7 +144,7 @@ elseif ($_REQUEST['act'] == 'edit')
 	/* 检查权限 */
     admin_priv('users_manage');
     $sql = "SELECT baby_id,baby_pic,baby_name,baby_sex,baby_birthday,baby_tel,baby_time,baby_content,baby_number,baby_xing,baby_xiao,user_id,user_name,baby_yin".
-        " FROM " .$ecs->table('baby_baby'). " WHERE baby_id='$_GET[id]'";
+        " FROM " .$ecs->table('baby_baby'). " WHERE baby_id='$_GET[id]' and ia_id='$_GET[ia]'";
 
     $row = $db->GetRow($sql);
 
@@ -277,13 +279,13 @@ elseif ($_REQUEST['act'] == 'remove')
     /* 检查权限 */
     admin_priv('users_drop');
 
-    $sql = "SELECT baby_name FROM " . $ecs->table('baby_baby') . " WHERE baby_id = '" . $_GET['id'] . "'";
+    $sql = "SELECT baby_name FROM " . $ecs->table('baby_baby') . " WHERE baby_id = '" . $_GET['id'] . "' and ia_id='".$_GET['ia']."'";
     $username = $db->getOne($sql);
     
-    $sql = "SELECT user_id FROM " . $ecs->table('baby_baby') . " WHERE baby_id = '" . $_GET['id'] . "'";
+    $sql = "SELECT user_id FROM " . $ecs->table('baby_baby') . " WHERE baby_id = '" . $_GET['id'] . "' and ia_id='".$_GET['ia']."'";
     $user_id = $db->getOne($sql);
     
-	$sql="DELETE from ". $ecs->table('baby_baby') ." WHERE baby_id = '" . $_GET['id'] . "'";
+	$sql="DELETE from ". $ecs->table('baby_baby') ." WHERE baby_id = '" . $_GET['id'] . "' and ia_id='".$_GET['ia']."'";
 	$db->query($sql);
 	
 	$sql = "select pay_points from ".$GLOBALS['ecs']->table('users'). " where user_id=".$user_id;
@@ -314,20 +316,20 @@ elseif ($_REQUEST['act'] == 'batch_remove')
 {
     /* 检查权限 */
     admin_priv('users_drop');
-
+    
     if (isset($_POST['checkboxes']))
     {
-        $sql = "SELECT baby_name FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']);
+        $sql = "SELECT baby_name FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']) ." and ia_id=".$_POST['ia'];
         $col = $db->getCol($sql);
         $usernames = implode(',',addslashes_deep($col));
         $count = count($col);
         
-        $sql = "SELECT user_id FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']);
+        $sql = "SELECT user_id FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']) ." and ia_id=".$_POST['ia'];
     	$user_col = $db->getCol($sql);
     	$user_id = implode(',',addslashes_deep($user_col));
     	$user_count = count($user_col);
         
-		$sql= "DELETE FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']);
+		$sql= "DELETE FROM " . $ecs->table('baby_baby') . " WHERE baby_id " . db_create_in($_POST['checkboxes']) ." and ia_id=".$_POST['ia'];
 		$db->query($sql);
 		
 		if($user_count!=0){

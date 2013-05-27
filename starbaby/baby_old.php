@@ -152,13 +152,13 @@ if(empty($_SESSION['md5key'])){
 	$_SESSION['md5key']=rand(1000, 9999);
 }
 $now=gmtime();
-$endtime=local_mktime(0, 0, 0, 6, 4, 2013);
+$endtime=local_mktime(0, 0, 0, 6, 4, 2012);
 if($enabled=$now>$endtime){
 	$smarty->assign('enabled',       $enabled); //比赛结束
 }
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $smarty->assign('helps',            get_shop_help());       // 网店帮助
-$smarty->display('starbaby/baby.htm');
+$smarty->display('starbaby/baby_old.htm');
 
 ?>

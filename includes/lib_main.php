@@ -577,6 +577,9 @@ function assign_pager($app, $cat, $record_count, $size, $sort, $order, $page = 1
         case 'starbaby':
         	$uri_args = array('ia_id' => $cat, 'baby_sex'=>$brand, 'xz'=>$price_min, 'sx'=>$price_max, 'sort' => $sort, 'order' => $order);
         	break;
+        case 'starbaby_old':
+        	$uri_args = array('ia_id' => $cat, 'baby_sex'=>$brand, 'xz'=>$price_min, 'sx'=>$price_max, 'sort' => $sort, 'order' => $order);
+        	break;
     }
     /* 分页样式 */
     $pager['styleid'] = isset($GLOBALS['_CFG']['page_style'])? intval($GLOBALS['_CFG']['page_style']) : 0;

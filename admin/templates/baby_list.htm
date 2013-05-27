@@ -3,7 +3,7 @@
 {include file="pageheader.htm"}
 {insert_scripts files="../js/utils.js,listtable.js"}
 
-<div class="form-div" style="overflow:hidden;">
+<div class="form-div" style="overflow:hidden; height: 37px; clear: both;">
 <div style="float:left;">
   <form action="javascript:searchBaby()" name="searchForm">
     <img src="images/icon_search.gif" width="26" height="22" border="0" alt="SEARCH" />
@@ -35,7 +35,9 @@
     <th>上传时间</th>
     <th><a href="javascript:listTable.sort('baby_number'); ">投票数</a>{$sort_baby_number}</th>
     <th><a href="javascript:listTable.sort('ia_id'); ">宝宝秀期数</a>{$sort_ia_id}</th>
+    <!-- {if $getia neq 0} -->
     <th>操作</th>
+    <!-- {/if} -->
   <tr>
   {foreach from=$baby_list item=baby}
   <tr>
@@ -48,17 +50,20 @@
     <td align="center">{$baby.baby_time}</td>
     <td align="center">{$baby.baby_number}</td>
     <td align="center">{$baby.ia_id}</td>
+    <!-- {if $getia neq 0} -->
     <td align="center">
-    	<a href="baby_vote.php?act=vote&id={$baby.baby_id}" title="{$lang.view}投票详情"><img src="images/icon_view.gif" border="0" height="16" width="16" /></a>
-    	<a href="baby.php?act=edit&id={$baby.baby_id}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
-    	<a href="javascript:confirm_redirect('{$lang.remove_confirm}', 'baby.php?act=remove&id={$baby.baby_id}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
+    	<a href="baby_vote.php?act=vote&id={$baby.baby_id}&ia={$ia}" title="{$lang.view}投票详情"><img src="images/icon_view.gif" border="0" height="16" width="16" /></a>
+    	<a href="baby.php?act=edit&id={$baby.baby_id}&ia={$ia}" title="{$lang.edit}"><img src="images/icon_edit.gif" border="0" height="16" width="16" /></a>
+    	<a href="javascript:confirm_redirect('{$lang.remove_confirm}', 'baby.php?act=remove&id={$baby.baby_id}&ia={$ia}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16" /></a>
     </td>
+    <!-- {/if} -->
   {foreachelse}
   <tr><td class="no-records" colspan="10">暂时没有宝宝参加宝宝秀</td></tr>
   {/foreach}
   <tr>
       <td colspan="2">
       <input type="hidden" name="act" value="batch_remove" />
+      <input type="hidden" name="ia" value="{$ia}" />
       <input type="submit" id="btnSubmit" value="{$lang.button_remove}" disabled="true" class="button" /></td>
       <td align="right" nowrap="true" colspan="8">
       {include file="page.htm"}

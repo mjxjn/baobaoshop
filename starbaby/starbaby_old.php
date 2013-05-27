@@ -92,7 +92,7 @@ $order="desc";
 $brand=$sort2;
 $price_min=$xz;
 $price_max=$sx;
-assign_pager('starbaby',  $ia_id, $sum, $size, $sort, $order, $page, $key, $brand, $price_min, $price_max, $display, $filter_attr_str); // 分页
+assign_pager('starbaby_old',  $ia_id, $sum, $size, $sort, $order, $page, $key, $brand, $price_min, $price_max, $display, $filter_attr_str); // 分页
 
 $smarty->assign('helps',            get_shop_help());       // 网店帮助
 $smarty->display('starbaby/starbaby_old.htm');

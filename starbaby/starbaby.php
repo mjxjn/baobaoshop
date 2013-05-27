@@ -1,6 +1,6 @@
 <?php
 define('IN_ECS', true);
-define('discuz_auth_key', '3330777.com');
+define('discuz_auth_key', 'yinggebaby.com');
 require('../includes/init.php');
 
 if ((DEBUG_MODE & 2) != 2)
@@ -31,7 +31,13 @@ if(!empty($act)&&$act=='vote'){
 	$md5key=isset($_REQUEST['md5key']) ? $_REQUEST['md5key'] : '';
 	$mobile=isset($_REQUEST['mobile']) ? $_REQUEST['mobile'] : '';
 	$baby_id=verify_id($baby_id);
-	if(empty($baby_number)&&empty($baby_id)&&empty($md5key)&&empty($mobile)){
+        /* 手机验证的*/
+	/*if(empty($baby_number)&&empty($baby_id)&&empty($md5key)&&empty($mobile)){
+	   echo "-2";
+	   exit;
+	}*/
+        /* 验证码验证*/
+        if(empty($baby_number)&&empty($baby_id)&&empty($md5key)){
 	   echo "-2";
 	   exit;
 	}
@@ -42,32 +48,32 @@ if(!empty($act)&&$act=='vote'){
             echo "-3";
 			exit;
         }
-		if($_SESSION['mobile']!=$mobile){
+		/*if($_SESSION['mobile']!=$mobile){
 			echo "-4";
 			exit;
-		}
+		}*/
         /* 检查验证码 */
-        /*include_once('../includes/cls_captcha.php');
+        include_once('../includes/cls_captcha.php');
 
         $validator = new captcha();
         if (!$validator->check_word($captcha))
         {
             echo "-3";
 			exit;
-        }*/
-		if($captcha!=$_SESSION['rand_code']){
+        }
+		/*if($captcha!=$_SESSION['rand_code']){
 			echo "-3";
 			exit;
-		}
+		}*/
 		$year=local_date("Y",gmtime());
 		$month=local_date("m",gmtime());
 		$day=local_date("d",gmtime());
 	$startime=local_mktime(0,0,0,$month,$day,$year);
 	$endtime=local_mktime(23,59,59,$month,$day,$year);
-	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime;
-	
+	//$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; //按登录会员投票统计
+	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
 	$svote=$GLOBALS['db']->getOne($sql);
-	if($svote != 0)
+	if($svote > 2) //会员的按1次  ip的按一天3次
 	{
 	   /* 此会员id投票 */
 	   echo "-1";
@@ -92,7 +98,7 @@ if(!empty($act)&&$act=='vote'){
 	$baby_number=$GLOBALS['db']->getOne($sql);
 	$baby_number+=1;
 	
-	$sql="insert into".$GLOBALS['ecs']->table('baby_vote'). "(baby_id,user_id, user_name,ip,vote_time,fvote_time) VALUES ('$baby_id', '".$_SESSION['mobile']."','".$_SESSION['user_name']."','".real_ip()."','".gmtime()."','".local_date("Y-m-d H:i:s",gmtime())."')";
+	$sql="insert into".$GLOBALS['ecs']->table('baby_vote'). "(baby_id,user_id, user_name,ip,vote_time,fvote_time,ia_id) VALUES ('$baby_id', '".$_SESSION['mobile']."','".$_SESSION['user_name']."','".real_ip()."','".gmtime()."','".local_date("Y-m-d H:i:s",gmtime())."',$ia_id)";
 	$GLOBALS['db']->query($sql);
 	$sql="update ".$GLOBALS['ecs']->table('baby_baby')." SET baby_number = '".$baby_number."' WHERE baby_id = '".$baby_id."' and ia_id=".$ia_id;
 	$GLOBALS['db']->query($sql);
@@ -283,7 +289,7 @@ $_SESSION['md5key']=rand(1000, 9999);
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $now=gmtime();
-$endtime=local_mktime(20, 0, 0, 6, 15, 2012);
+$endtime=local_mktime(0, 0, 0, 6, 4, 2013);
 if($enabled=$now>$endtime){
 	$smarty->assign('enabled',       $enabled); //比赛结束
 }

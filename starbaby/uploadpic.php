@@ -18,9 +18,9 @@ if($_POST['act']=='cutimg'){
 
 	header('Content-type: image/jpeg');
 	imagejpeg($dst_r,$newfile,$jpeg_quality);
-	/*if(file_exists($src)){
+	if(file_exists($src)){
 		unlink($src);
-	}*/
+	}
 	/*echo '<script type="text/javascript">
 		<!--
 		  $(document).ready(function(){';

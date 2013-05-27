@@ -22,10 +22,10 @@
     foreach ($_from AS $this->_var['help_cat']):
 ?>
 <div class="fArt"><div class="TreeList"> <div class="cat1 catfirst"><?php echo $this->_var['help_cat']['cat_name']; ?></div> 
-<?php $_from = $this->_var['help_cat']['article']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item_0_27050200_1358487525');if (count($_from)):
-    foreach ($_from AS $this->_var['item_0_27050200_1358487525']):
+<?php $_from = $this->_var['help_cat']['article']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'item');if (count($_from)):
+    foreach ($_from AS $this->_var['item']):
 ?>
- <div class="cat2">&middot;<a href="<?php echo $this->_var['item_0_27050200_1358487525']['url']; ?>"><?php echo $this->_var['item_0_27050200_1358487525']['short_title']; ?></a></div> 
+ <div class="cat2">&middot;<a href="<?php echo $this->_var['item']['url']; ?>"><?php echo $this->_var['item']['short_title']; ?></a></div> 
  <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
  </div></div> 
 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>

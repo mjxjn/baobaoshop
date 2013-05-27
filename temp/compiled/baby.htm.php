@@ -2,7 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>{$page_title}</title>
+<title><?php echo $this->_var['page_title']; ?></title>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
 <link href="/themes/yingge/style.css" rel="stylesheet" rev="stylesheet" type="text/css" />
@@ -78,7 +78,7 @@ function setCopy(content){
 }  
 
 function show_miaoshu(){
-	if({$smarty.session.user_id}==0)
+	if(<?php echo $_SESSION['user_id']; ?>==0)
 	{
 		alert("请登录后再投票。");
 	}else{
@@ -119,61 +119,73 @@ function close_miaoshu(){
 </script>
 </head>
 <body>
-{include file="starbaby/library/baby_page_header.lbi"}
+<?php echo $this->fetch('starbaby/library/baby_page_header.lbi'); ?>
 <div id="baby" class="w990">
-	<div class="nav_title"><span>婴格母婴商城[2013年第二届明星宝宝秀] - {$baby_id}号参赛宝宝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="starbaby.php" class="goback">返回宝宝达人秀首页</a></span></div>
+	<div class="nav_title"><span>婴格母婴商城[2013年第二届明星宝宝秀] - <?php echo $this->_var['baby_id']; ?>号参赛宝宝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="starbaby.php" class="goback">返回宝宝达人秀首页</a></span></div>
 	<div class="left baby_pic" id="wrapper">
-	<!-- {if $onepic } -->
-		<a href="{$one_bigpic}" rel="example_group" title="{$baby.baby_name}"><img class="last" src="{$one_pic}" width="382" height="382" border="0" /></a>
-	<!-- {else} -->
+	<?php if ($this->_var['onepic']): ?>
+		<a href="<?php echo $this->_var['one_bigpic']; ?>" rel="example_group" title="<?php echo $this->_var['baby']['baby_name']; ?>"><img class="last" src="<?php echo $this->_var['one_pic']; ?>" width="382" height="382" border="0" /></a>
+	<?php else: ?>
 
 		<div id="J_Photos" class="photos slide">
             <ul class="photo-list">
-            <!--{foreach from=$pic item=pic name=pic}-->
-            	<li class="photo" <!-- {if $smarty.foreach.pic.index eq 0 } -->style="display: block; position: absolute; opacity: 1; z-index: 9; "<!-- {else} -->style="display: block; position: absolute; opacity: 0; z-index: 1; "<!-- {/if} -->>
-            	<a href="{$pic.small}" rel="example_group" title="{$baby.baby_name}">
-            	<img src="{$pic.small}" height="380" width="380">
+            <?php $_from = $this->_var['pic']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pic_0_48830600_1369191306');$this->_foreach['pic'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['pic']['total'] > 0):
+    foreach ($_from AS $this->_var['pic_0_48830600_1369191306']):
+        $this->_foreach['pic']['iteration']++;
+?>
+            	<li class="photo" <?php if (($this->_foreach['pic']['iteration'] - 1) == 0): ?>style="display: block; position: absolute; opacity: 1; z-index: 9; "<?php else: ?>style="display: block; position: absolute; opacity: 0; z-index: 1; "<?php endif; ?>>
+            	<a href="<?php echo $this->_var['pic_0_48830600_1369191306']['small']; ?>" rel="example_group" title="<?php echo $this->_var['baby']['baby_name']; ?>">
+            	<img src="<?php echo $this->_var['pic_0_48830600_1369191306']['small']; ?>" height="380" width="380">
             	</a>
             	</li>
-			<!-- {/foreach} -->
+			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 				
 			</ul>
 	          <ul class="circle-nav-list">
-	          <!--{foreach from=$pic item=pics name=pics}-->
-	          	<li class="<!-- {if $smarty.foreach.pics.index eq 0 } -->ks-active <!-- {/if} -->">{$smarty.foreach.pics.iteration}</li>
-	          	<!-- {/foreach} -->
+	          <?php $_from = $this->_var['pic']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pics');$this->_foreach['pics'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['pics']['total'] > 0):
+    foreach ($_from AS $this->_var['pics']):
+        $this->_foreach['pics']['iteration']++;
+?>
+	          	<li class="<?php if (($this->_foreach['pics']['iteration'] - 1) == 0): ?>ks-active <?php endif; ?>"><?php echo $this->_foreach['pics']['iteration']; ?></li>
+	          	<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 	         
 	          </ul>
         </div>
-	<!-- {/if} -->
+	<?php endif; ?>
 	</div>
 	<div class="right baby_info">
 		<div class="baby_name left">
 			<ul>
-				<li>昵称：{$baby.baby_name}</li>
-				<li>性别：{$baby.baby_sex}</li>
-				<li>宝宝生日：{$baby.baby_birthday}</li>
+				<li>昵称：<?php echo $this->_var['baby']['baby_name']; ?></li>
+				<li>性别：<?php echo $this->_var['baby']['baby_sex']; ?></li>
+				<li>宝宝生日：<?php echo $this->_var['baby']['baby_birthday']; ?></li>
 				<li>所在地区：云南昆明</li>
-				<li>上传者：{$baby.user_name}</li>
-				<li>上传时间：{$baby.baby_time}</li>
-				<li>宝宝人气：<script src="baby.php?act=click&id={$baby_id}" type='text/javascript' language="javascript"></script></li>
+				<li>上传者：<?php echo $this->_var['baby']['user_name']; ?></li>
+				<li>上传时间：<?php echo $this->_var['baby']['baby_time']; ?></li>
+				<li>宝宝人气：<script src="baby.php?act=click&id=<?php echo $this->_var['baby_id']; ?>" type='text/javascript' language="javascript"></script></li>
 			</ul>
                     
-			<div class="copy_url"><a href="http://www.yinggebaby.com/starbaby/baby.php?id={$baby_id}&ia={$ia_id2}" onclick="setCopy(this.href);return false;">复制链接转发好友帮我拉票</a></div>
-                    <!-- {if $enabled eq true} -->
-			<div class="baby_number"><span id="bb_number">{$baby.baby_number}</span><a href="javascript:void();" onclick="show_Votes({$baby.baby_number},{$baby.baby_id})" class="baby_btn">&nbsp;</a></div>
-                    <!-- {else} -->  
-                    <div style="background: url(/themes/yingge/starbaby/images/unopen.png) no-repeat;width: 200px;height: 45px;line-height: 45px;margin-top: 10px;padding-left: 25px;clear: both;display: inline-block;"><span id="bb_number">{$baby.baby_number}</span>&nbsp;</div>
-                    <!-- {/if} -->  
+			<div class="copy_url"><a href="http://www.yinggebaby.com/starbaby/baby.php?id=<?php echo $this->_var['baby_id']; ?>&ia=<?php echo $this->_var['ia_id2']; ?>" onclick="setCopy(this.href);return false;">复制链接转发好友帮我拉票</a></div>
+                    <?php if ($this->_var['enabled'] == true): ?>
+			<div class="baby_number"><span id="bb_number"><?php echo $this->_var['baby']['baby_number']; ?></span><a href="javascript:void();" onclick="show_Votes(<?php echo $this->_var['baby']['baby_number']; ?>,<?php echo $this->_var['baby']['baby_id']; ?>)" class="baby_btn">&nbsp;</a></div>
+                    <?php else: ?>  
+                    <div style="background: url(/themes/yingge/starbaby/images/unopen.png) no-repeat;width: 200px;height: 45px;line-height: 45px;margin-top: 10px;padding-left: 25px;clear: both;display: inline-block;"><span id="bb_number"><?php echo $this->_var['baby']['baby_number']; ?></span>&nbsp;</div>
+                    <?php endif; ?>  
 		</div>
 <!--		<div class="baby_yinxiang right">
 			<p class="yinxiang_title">大家对我的印象</p>
 			<p class="yinxiang" id="yinxiang">
-			 {if $yins } 
-			{foreach from=$yin item=yin name=yin}
-			<span>{$yin}</span>
-			 {/foreach} 
-			 {/if} 
+			 <?php if ($this->_var['yins']): ?> 
+			<?php $_from = $this->_var['yin']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'yin_0_48957100_1369191306');$this->_foreach['yin'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['yin']['total'] > 0):
+    foreach ($_from AS $this->_var['yin_0_48957100_1369191306']):
+        $this->_foreach['yin']['iteration']++;
+?>
+			<span><?php echo $this->_var['yin_0_48957100_1369191306']; ?></span>
+			 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
+			 <?php endif; ?> 
 			</p>
 			<p class="yinxiang_sub"><a href="javascript:void();" onclick="show_miaoshu();">我要对他进行描述</a></p>
 		</div> -->
@@ -184,7 +196,7 @@ function close_miaoshu(){
 
 		<div class="blank"></div>
 		<div class="share">
-			<!-- Baidu Button BEGIN -->
+			
 		    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 		        <a class="bds_qzone"></a>
 		        <a class="bds_tsina"></a>
@@ -205,11 +217,11 @@ function close_miaoshu(){
 			<script type="text/javascript">
 				document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
 			</script>
-			<!-- Baidu Button END -->
+			
 		</div>
 		<div class="blank"></div>
 		<div class="xuanyan">
-			<strong>参赛宣言：</strong>{$baby.baby_content}
+			<strong>参赛宣言：</strong><?php echo $this->_var['baby']['baby_content']; ?>
 		</div>
 	</div>
 	<div class="blank"></div>
@@ -217,7 +229,7 @@ function close_miaoshu(){
 		<div class="baby_talktitle"></div>
 	
 		<div class="talk_content left">
-			{include file="starbaby/library/baby_comments.lbi"}
+			<?php echo $this->fetch('starbaby/library/baby_comments.lbi'); ?>
 		</div>
 		<div class="qqweibo">
 			<iframe frameborder="0" scrolling="no" src="http://show.v.t.qq.com/index.php?c=show&a=index&n=helloyinggebaby&w=302&h=552&fl=1&l=4&o=23&co=4&cs=000066_FBC1CD_003363_F88499" width="302" height="552"></iframe>
@@ -225,12 +237,12 @@ function close_miaoshu(){
 	</div>
 <div class="miaoshu" id="miaoshu">
 <p><a class="close_miaoshu" href="javascript:void();" onclick="close_miaoshu()"></a></p>
-<p><strong>宝宝昵称：{$baby.baby_name}</strong></p>
+<p><strong>宝宝昵称：<?php echo $this->_var['baby']['baby_name']; ?></strong></p>
 <p>用一个词对宝宝进行描述，例如：可爱、聪慧……</p>
 <form name="miaoshu_form" id="miaoshu_form">
 <textarea class="miaoshu_text" id="miaoshu_text" rows="" cols=""></textarea>
 <input type="hidden" name="act" id="act" value="miaoshu" />
-<input type="hidden" name="baby_id" id="baby_id" value="{$baby.baby_id}" />
+<input type="hidden" name="baby_id" id="baby_id" value="<?php echo $this->_var['baby']['baby_id']; ?>" />
 <input type="button" value="提交" onclick="submit_miaoshu();" class="miaoshu_btn">
 </form>
 </div>
@@ -289,7 +301,7 @@ function Votes(){
 	$.ajax({
 		   type:"POST",
 		   url: "starbaby.php",
-		   data: "act=vote&baby_id="+baby_id+"&number="+number+"&captcha="+captcha+"&md5key={$md5key}",
+		   data: "act=vote&baby_id="+baby_id+"&number="+number+"&captcha="+captcha+"&md5key=<?php echo $this->_var['md5key']; ?>",
 		   success: function(html){
 		   	  if(html=='-1'){
 					//alert("您已经投票,不能够重复投票");
@@ -315,6 +327,6 @@ function Votes(){
 	});
 }
 </script>
-{include file="starbaby/library/baby_page_footer2.lbi"}
+<?php echo $this->fetch('starbaby/library/baby_page_footer2.lbi'); ?>
 </body>
 </html>

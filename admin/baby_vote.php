@@ -24,7 +24,8 @@ elseif ($_REQUEST['act'] == 'vote')
 {
 /* 检查权限 */
     admin_priv('users_manage');
-    $vote=vote_list($_GET[id]);
+    
+    $vote=vote_list($_GET['id'],$_GET['ia']);
     
 	assign_query_info();
 	
@@ -38,16 +39,16 @@ elseif ($_REQUEST['act'] == 'vote')
 	$smarty->display('baby_vote_info.htm');
 }
 
-function vote_list($baby_id){
+function vote_list($baby_id,$ia){
 	$result = get_filter();
 	if ($result === false)
     {
 		$filter['baby_id']=$baby_id;
-		
+		$filter['ia_id']=$ia;
 		$ex_where = ' WHERE 1 ';
 	    if($filter['baby_id'])
 	    {
-	        $ex_where .= " AND baby_id = '$filter[baby_id]' ";
+	        $ex_where .= " AND baby_id = '$filter[baby_id]' and ia_id=$ia";
 	    }
 	    $filter['record_count'] = $GLOBALS['db']->getOne("SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('baby_vote') . $ex_where);
     	/* 分页大小 */

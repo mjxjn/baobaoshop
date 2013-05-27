@@ -30,6 +30,21 @@ define('AUTH_KEY', 'this is a key');
 
 define('OLD_AUTH_KEY', '');
 
-define('API_TIME', '2013-02-01 14:00:57');
+define('API_TIME', '2013-05-16 10:54:43');
+
+define('UC_CONNECT', 'mysql');
+define('UC_DBHOST', 'localhost');
+define('UC_DBUSER', 'root');
+define('UC_DBPW', 'dh880406');
+define('UC_DBNAME', 'yingge_user');
+define('UC_DBCHARSET', 'utf8');
+define('UC_DBTABLEPRE', '`yingge_user`.uc_');
+define('UC_DBCONNECT', '0');
+define('UC_KEY', 'o34flep0p3geGdg9UdHfC267U7VaN080A9Xavac1U2X0pbV1j43dk503b8caN8Cc');
+define('UC_API', 'http://user.yinggebaby.com');
+define('UC_CHARSET', 'utf-8');
+define('UC_IP', '');
+define('UC_APPID', '1');
+define('UC_PPP', '20');
 
 ?>
