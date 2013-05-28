@@ -122,9 +122,10 @@ elseif ($_REQUEST['act'] == 'query')
 {
 	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
 	$ia_id = $db->getOne($sql);
-	$ia = isset($_POST['ia']) ?  (int)$_POST['ia'] : $ia_id;
+	$ia = isset($_REQUEST['ia']) ?  (int)$_REQUEST['ia'] : $ia_id;
     $baby_list = baby_list($ia);
 $smarty->assign('getia',    $ia);
+$smarty->assign('ia',    $ia_id);
     $smarty->assign('baby_list',    $baby_list['baby_list']);
     $smarty->assign('filter',       $baby_list['filter']);
     $smarty->assign('record_count', $baby_list['record_count']);

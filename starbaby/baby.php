@@ -11,11 +11,12 @@ if ((DEBUG_MODE & 2) != 2)
 
 assign_template();
 if($_REQUEST['act']=='click'){
-	            $baby_id=$_REQUEST['id']; 	
-				$sql="select click from ".$GLOBALS['ecs']->table('baby_baby')." where baby_id='".$baby_id."'";
+	            $baby_id=$_REQUEST['id']; 
+                    $ia=$_REQUEST['ia'];
+				$sql="select click from ".$GLOBALS['ecs']->table('baby_baby')." where baby_id='".$baby_id."' and ia_id=".$ia;
 				$click=$GLOBALS['db']->getOne($sql);
 				$click+=1;
-				$sql="update ".$GLOBALS['ecs']->table('baby_baby')." set click='".$click."' where baby_id='".$baby_id."'";
+				$sql="update ".$GLOBALS['ecs']->table('baby_baby')." set click='".$click."' where baby_id='".$baby_id."' and ia_id=".$ia;
 				$GLOBALS['db']->query($sql);
 				echo "document.write('".$click."');";
 			exit;
