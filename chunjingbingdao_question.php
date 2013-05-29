@@ -26,11 +26,16 @@ if($nowtime<$starttime || $nowtime>$endtime)
 	show_message($_LANG['niuruizi_start'],'','','warning');
 	exit;
 }
-$daystart = local_mktime('14','0','0',date("m"),date("d"),date("Y"));
-if($nowtime<$daystart)
+$daystart = local_mktime('8','0','0',date("m"),date("d"),date("Y"));
+/*if($nowtime<$daystart)
 {
 	show_message($_LANG['niuruizi_daystart'],'','','warning');
 	exit;
+}*/
+$sql ="select count(id) from ".$GLOBALS['ecs']->table('choujiang')." where date>".$daystart." and lv>1";
+$choujiang_count=$GLOBALS['db']->getOne($sql);
+if($choujiang_count>50&&empty($_GET['g'])){
+    show_message("今天的50份抽奖资格已经结束",'继续答题','/chunjingbingdao_question.php?g=g','info');
 }
 $sql="SELECT order_id FROM ".$GLOBALS['ecs']->table('order_info') ." where user_id=".$user_id." and order_status=5";
 $res = $GLOBALS['db']->getAll($sql);
@@ -53,8 +58,8 @@ if($act=='answer'){
 		}
 		$i++;
 	}
-	if($j==5){
-		$sql = "SELECT * FROM ". $GLOBALS['ecs']->table('user_bonus') ." WHERE bonus_type_id=9 and user_id=".$user_id." order by bonus_id asc";
+	if($j==20){
+		/*$sql = "SELECT * FROM ". $GLOBALS['ecs']->table('user_bonus') ." WHERE bonus_type_id=9 and user_id=".$user_id." order by bonus_id asc";
 		$res = $GLOBALS['db']->getAll($sql);
 		if (!empty($res))
 		{
@@ -144,20 +149,22 @@ if($act=='answer'){
 				exit;
 
 			}
-		}
+		}*/
+                                                
 	}else{
 		show_message($_LANG['niuruizi_error'],'','','warning');
 		exit;
 	}
 }
-$sql="SELECT * from ".$ecs->table('niuruizi') ." order by RAND() limit 0,5 ";
+
+$sql="SELECT * from ".$ecs->table('chunjingbingdao') ." order by RAND() limit 0,20 ";
 $res = $GLOBALS['db']->getAll($sql);
 
 $smarty->assign('list',       $res);
 $smarty->assign('categories',       get_categories_tree()); 
 $smarty->assign('helps',            get_shop_help()); 
 $smarty->assign('lang',             $_LANG);
-$smarty->display('/zt/niuruizi_question.dwt');
+$smarty->display('/zt/chunjingbingdao_question.dwt');
 
 function send_sms($mobiles,$content)
 {

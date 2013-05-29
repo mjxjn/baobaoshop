@@ -11,7 +11,9 @@ require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/user.php');
 
 assign_template();
 
-$sql = "SELECT ". $GLOBALS['ecs']->table('user_bonus') .".user_id,". $GLOBALS['ecs']->table('users') .".user_name FROM ". $GLOBALS['ecs']->table('user_bonus') ."  left join ". $GLOBALS['ecs']->table('users')." on ". $GLOBALS['ecs']->table('user_bonus') .".user_id = ". $GLOBALS['ecs']->table('users').".user_id WHERE bonus_type_id=9 and ". $GLOBALS['ecs']->table('user_bonus') .".user_id<>0 order by ". $GLOBALS['ecs']->table('user_bonus') .".bonus_id desc limit 0,20";
+/*$sql = "SELECT ". $GLOBALS['ecs']->table('user_bonus') .".user_id,". $GLOBALS['ecs']->table('users') .".user_name FROM ". $GLOBALS['ecs']->table('user_bonus') ."  left join ". $GLOBALS['ecs']->table('users')." on ". $GLOBALS['ecs']->table('user_bonus') .".user_id = ". $GLOBALS['ecs']->table('users').".user_id WHERE bonus_type_id=9 and ". $GLOBALS['ecs']->table('user_bonus') .".user_id<>0 order by ". $GLOBALS['ecs']->table('user_bonus') .".bonus_id desc limit 0,20";*/
+
+$sql="SELECT c.*,u.user_name FROM ".$GLOBALS['ecs']->table('choujiang'). " c left join ".$GLOBALS['ecs']->table('users')." u on c.user_id = u.user_id where c.lv>1 order by c.id desc";
 $res = $GLOBALS['db']->getAll($sql);
 if (!empty($res))
 {
