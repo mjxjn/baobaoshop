@@ -44,6 +44,13 @@ if (empty($res))
 	show_message($_LANG['niuruizi_msg'],'','','warning');
 	exit;
 }
+$sql="select id from ".$GLOBALS['ecs']->table('choujiang')." where user_id=".$user_id;
+$res = $GLOBALS['db']->getAll($sql);
+if (empty($res))
+{
+	show_message("您已经抽过奖，不能够重复抽奖！",'','','warning');
+	exit;
+}
 $act = trim($_GET['act']);
 if($act=='answer'){
 	$question = $_POST['question'];
@@ -150,7 +157,9 @@ if($act=='answer'){
 
 			}
 		}*/
-                                                
+                $sql = "INSERT INTO ". $ecs->table('choujiang') ." (user_id,date)  VALUES (".$user_id.",".$nowtime.")";
+       		$su=$db->query($sql);
+                $smarty->display('/zt/chunjingbingdao_choujiang.dwt');                               
 	}else{
 		show_message($_LANG['niuruizi_error'],'','','warning');
 		exit;
