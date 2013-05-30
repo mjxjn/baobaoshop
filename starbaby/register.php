@@ -8,7 +8,7 @@ if ((DEBUG_MODE & 2) != 2)
     $smarty->caching = true;
 }
 $now=gmtime();
-$endtime=local_mktime(23, 59, 59, 5, 30, 2013);
+$endtime=local_mktime(23, 59, 59, 6, 1, 2013);
 if($now>$endtime){
 	show_starbaby_message('第二届宝宝明星秀活动报名结束，感谢您的积极参与！', '', '', 'warning');
 	exit;

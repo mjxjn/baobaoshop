@@ -289,7 +289,7 @@ $_SESSION['md5key']=rand(1000, 9999);
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $now=gmtime();
-$endtime=local_mktime(0, 0, 0, 6, 4, 2013);
+$endtime=local_mktime(0, 0, 0, 6, 3, 2013);
 if($enabled=$now>$endtime){
 	$smarty->assign('enabled',       $enabled); //比赛结束
 }

@@ -153,7 +153,7 @@ if(empty($_SESSION['md5key'])){
 	$_SESSION['md5key']=rand(1000, 9999);
 }
 $now=gmtime();
-$endtime=local_mktime(0, 0, 0, 6, 4, 2013);
+$endtime=local_mktime(0, 0, 0, 6, 3, 2013);
 if($enabled=$now>$endtime){
 	$smarty->assign('enabled',       $enabled); //比赛结束
 }

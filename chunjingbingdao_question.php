@@ -44,9 +44,9 @@ if (empty($res))
 	show_message($_LANG['niuruizi_msg'],'','','warning');
 	exit;
 }
-$sql="select id from ".$GLOBALS['ecs']->table('choujiang')." where user_id=".$user_id;
+$sql="select id,lv from ".$GLOBALS['ecs']->table('choujiang')." where user_id=".$user_id;
 $res = $GLOBALS['db']->getAll($sql);
-if (empty($res))
+if (!empty($res)&&!empty($res[0]['lv']))
 {
 	show_message("您已经抽过奖，不能够重复抽奖！",'','','warning');
 	exit;
@@ -56,8 +56,8 @@ if($act=='answer'){
 	$question = $_POST['question'];
 	$i=1;
 	$j=0;
-	foreach ($question as $res){
-		$sql="SELECT answer FROM ".$ecs->table('chunjingbingdao') ." where id=".$res;
+	foreach ($question as $resid){
+		$sql="SELECT answer FROM ".$ecs->table('chunjingbingdao') ." where id=".$resid;
 		$qa=$db->getOne($sql);
 		$qus =  (int)$_POST['question'.$i];
 		if($qa==$qus){
@@ -65,7 +65,7 @@ if($act=='answer'){
 		}
 		$i++;
 	}
-	if($j==20){
+	if($j=20){
 		/*$sql = "SELECT * FROM ". $GLOBALS['ecs']->table('user_bonus') ." WHERE bonus_type_id=9 and user_id=".$user_id." order by bonus_id asc";
 		$res = $GLOBALS['db']->getAll($sql);
 		if (!empty($res))
@@ -157,9 +157,14 @@ if($act=='answer'){
 
 			}
 		}*/
-                $sql = "INSERT INTO ". $ecs->table('choujiang') ." (user_id,date)  VALUES (".$user_id.",".$nowtime.")";
-       		$su=$db->query($sql);
-                $smarty->display('/zt/chunjingbingdao_choujiang.dwt');                               
+                                                if(empty($res)){
+                                                    $sql = "INSERT INTO ". $ecs->table('choujiang') ." (user_id,date)  VALUES (".$user_id.",".$nowtime.")";
+                    $db->query($sql);
+                                                }
+                                               /* $lv = rand(0,5);*/
+                                                $smarty->assign("uid",$user_id);
+                                                $smarty->display('/zt/chunjingbingdao_choujiang.dwt'); 
+                                                exit;
 	}else{
 		show_message($_LANG['niuruizi_error'],'','','warning');
 		exit;

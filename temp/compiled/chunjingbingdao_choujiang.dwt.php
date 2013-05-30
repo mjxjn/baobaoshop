@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="Generator" content="ECSHOP v2.7.2" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=7" />
 <title>纯净冰岛活动答题</title>
@@ -12,7 +13,7 @@
 <script>
 function turnPlate() {
   $.post("turn_plate.php",
-	      {act: "turnPlate",uid:{$uid}},
+	      {act: "turnPlate",uid:<?php echo $this->_var['uid']; ?>},
 	      function( data ) {
                             $('#flash').html(data);
                         return false;
@@ -21,7 +22,7 @@ function turnPlate() {
 </script>
 </head>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<?php echo $this->fetch('library/page_header.lbi'); ?>
 <div style=" margin:0 auto;">
 <div class="flash" id="flash">
 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="497" height="497" id="turnplate">
@@ -35,7 +36,7 @@ function turnPlate() {
 </object>
 </div>
 </div>
-<!-- #BeginLibraryItem "/library/page_footer2.lbi" --><!-- #EndLibraryItem -->
+<?php echo $this->fetch('library/page_footer2.lbi'); ?>
 
 <map name="Map" id="Map">
   <area shape="rect" coords="400,79,622,114" href="http://weibo.com/signup/signup.php?url=http%3A%2F%2Fweibo.com%2F2480698510&c=&type=&inviteCode=2480698510&code=&spe=&lang=&entry=" />
