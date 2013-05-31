@@ -32,11 +32,11 @@ $daystart = local_mktime('8','0','0',date("m"),date("d"),date("Y"));
 	show_message($_LANG['niuruizi_daystart'],'','','warning');
 	exit;
 }*/
-$sql ="select count(id) from ".$GLOBALS['ecs']->table('choujiang')." where date>".$daystart." and lv>1";
+/*$sql ="select count(id) from ".$GLOBALS['ecs']->table('choujiang')." where date>".$daystart." and lv>1";
 $choujiang_count=$GLOBALS['db']->getOne($sql);
 if($choujiang_count>50&&empty($_GET['g'])){
     show_message("今天的50份抽奖资格已经结束",'继续答题','/chunjingbingdao_question.php?g=g','info');
-}
+}*/
 $sql="SELECT order_id FROM ".$GLOBALS['ecs']->table('order_info') ." where user_id=".$user_id." and order_status=5";
 $res = $GLOBALS['db']->getAll($sql);
 if (empty($res))
@@ -44,16 +44,20 @@ if (empty($res))
 	show_message($_LANG['niuruizi_msg'],'','','warning');
 	exit;
 }
-$sql="select id,lv from ".$GLOBALS['ecs']->table('choujiang')." where user_id=".$user_id;
+/*$sql="select id,lv from ".$GLOBALS['ecs']->table('choujiang')." where user_id=".$user_id;
 $res = $GLOBALS['db']->getAll($sql);
 if (!empty($res)&&!empty($res[0]['lv']))
 {
 	show_message("您已经抽过奖，不能够重复抽奖！",'','','warning');
 	exit;
-}
+}*/
 $act = trim($_GET['act']);
 if($act=='answer'){
 	$question = $_POST['question'];
+        if(empty($question)){
+            show_message('请先回答问题后再抽奖！','','','warning');
+            exit;
+        }
 	$i=1;
 	$j=0;
 	foreach ($question as $resid){
@@ -65,7 +69,7 @@ if($act=='answer'){
 		}
 		$i++;
 	}
-	if($j=20){
+	if($j==20){
 		/*$sql = "SELECT * FROM ". $GLOBALS['ecs']->table('user_bonus') ." WHERE bonus_type_id=9 and user_id=".$user_id." order by bonus_id asc";
 		$res = $GLOBALS['db']->getAll($sql);
 		if (!empty($res))
@@ -157,10 +161,10 @@ if($act=='answer'){
 
 			}
 		}*/
-                                                if(empty($res)){
-                                                    $sql = "INSERT INTO ". $ecs->table('choujiang') ." (user_id,date)  VALUES (".$user_id.",".$nowtime.")";
+                                                
+                                                $sql = "INSERT INTO ". $ecs->table('choujiang') ." (user_id,date)  VALUES (".$user_id.",".$nowtime.")";
                     $db->query($sql);
-                                                }
+                                                
                                                /* $lv = rand(0,5);*/
                                                 $smarty->assign("uid",$user_id);
                                                 $smarty->display('/zt/chunjingbingdao_choujiang.dwt'); 
