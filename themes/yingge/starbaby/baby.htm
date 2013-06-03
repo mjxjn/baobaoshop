@@ -293,7 +293,7 @@ function Votes(){
 		   success: function(html){
 		   	  if(html=='-1'){
 					//alert("您已经投票,不能够重复投票");
-                                        alert("您今天的投票数到达最大数,不能够再投票了");
+                                        alert("您今天已经投票给这个宝宝了,不能够再投票了");
 			  }else if(html=='-2'){
 					alert("投票出现问题，请刷新后在次投票");
 			  }else if(html=='-3'){
@@ -305,6 +305,8 @@ function Votes(){
 					{//如果是true ，那么就把页面转向http://www.3330777.com/user.php?act=profile
 						 location.href="http://www.yinggebaby.com/user.php?act=profile";
 					}
+                                                                          }else if(html=='-6'){
+                                                                              alert("您的投票频率太快了。请等等再投");
 			  }else{
 				  alert("谢谢您给我投出支持的一票");
 			      $("#bb_number").empty();

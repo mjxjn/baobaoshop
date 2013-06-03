@@ -238,7 +238,8 @@ function get_top10($cats = '',$num = '',$acats = '')
     			'GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT ' . $num;
     }
            
-    $arr = $GLOBALS['db']->getAll($sql);
+    //$arr = $GLOBALS['db']->getAll($sql);
+    $arr = array();
     
     if(!empty($num)){
         for ($i = 0, $count = count($arr); $i < $count; $i++)

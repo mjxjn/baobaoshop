@@ -71,9 +71,9 @@ if(!empty($act)&&$act=='vote'){
 	$startime=local_mktime(0,0,0,$month,$day,$year);
 	$endtime=local_mktime(23,59,59,$month,$day,$year);
 	//$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; //按登录会员投票统计
-	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
+	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and baby_id=".$baby_id." and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
 	$svote=$GLOBALS['db']->getOne($sql);
-	if($svote > 2) //会员的按1次  ip的按一天3次
+	if($svote >= 1) //会员的按1次  ip的按一天3次
 	{
 	   /* 此会员id投票 */
 	   echo "-1";
@@ -91,8 +91,13 @@ if(!empty($act)&&$act=='vote'){
 	}else{
 		setcookie("vote_name", $baby_id);
 	}*/
-	
-	
+	$sql="select vote_time from ".$GLOBALS['ecs']->table('baby_vote')." where baby_id='".$baby_id."' and ia_id=".$ia_id." order by vote_time desc limit 0,1";
+	$vote_time = $GLOBALS['db']->getOne($sql);
+                        $now=gmtime();
+                        if($now-$vote_time<60){
+                            echo "-6";
+                            exit();
+                        }
 	$sql="select baby_number from ".$GLOBALS['ecs']->table('baby_baby')." where baby_id='".$baby_id."' and ia_id=".$ia_id;
 	
 	$baby_number=$GLOBALS['db']->getOne($sql);

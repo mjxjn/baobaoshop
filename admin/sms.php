@@ -130,15 +130,14 @@ switch ($action)
 		$smarty->display('sms_send_ui.htm');
 		break;
 	case 'send_sms' :
-		$link[] = array('text'  =>  $_LANG['back'],
-                        'href'  =>  'sms.php?act=display_send_ui');
+		$link[] = array('text'  =>  $_LANG['back'],   'href'  =>  'sms.php?act=display_send_ui');
 		$send_num = isset($_POST['send_num']) ? $_POST['send_num']   : '';
 		$sendTime = isset($_POST['sendTime']) ? $_POST['sendTime']    : '';
 		$msg = isset($_POST['msg']) ? $_POST['msg']    : '';
 		$msg=iconv("UTF-8","GBK", $msg);
 		$send_num=explode(",",$send_num);
-		
-		login();
+		//var_dump($send_num);
+		//login();
 			$result=send_sms($send_num,$msg,$sendTime);
 
 			if($result!=null && $result=="0")
