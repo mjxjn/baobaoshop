@@ -23,20 +23,20 @@
 	<div class="w1030" style="background:url('/themes/yingge/zt/images/bingdao_08.gif') repeat-y;height: auto;margin-bottom: 30px;">
                    <div style=""><img src="/themes/yingge/zt/images/bingdao_09.gif" border="0" width="1030" height="72" /></div>
 	<div style="position: relative;left: 44px;top: 26px; font-size:16px; font-weight:bold;font-family:'微软雅黑';width:944px;">
-	<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list_0_47840500_1369813928');$this->_foreach['ad'] = array('total' => count($_from), 'iteration' => 0);
+	<?php $_from = $this->_var['list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'list_0_59146600_1370310028');$this->_foreach['ad'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['ad']['total'] > 0):
-    foreach ($_from AS $this->_var['list_0_47840500_1369813928']):
+    foreach ($_from AS $this->_var['list_0_59146600_1370310028']):
         $this->_foreach['ad']['iteration']++;
 ?>
-		<p><?php echo $this->_foreach['ad']['iteration']; ?>.<?php echo $this->_var['list_0_47840500_1369813928']['question']; ?></p>
-		<p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="1" />&nbsp;<?php echo $this->_var['list_0_47840500_1369813928']['answer_a']; ?></label></p>
-		<p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="2" />&nbsp;<?php echo $this->_var['list_0_47840500_1369813928']['answer_b']; ?></label></p>
-                                    <?php if ($this->_var['list_0_47840500_1369813928']['answer_c'] != ""): ?><p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="3" />&nbsp;<?php echo $this->_var['list_0_47840500_1369813928']['answer_c']; ?></label></p><?php endif; ?>
-                                    <?php if ($this->_var['list_0_47840500_1369813928']['answer_d'] != ""): ?><p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="4" />&nbsp;<?php echo $this->_var['list_0_47840500_1369813928']['answer_d']; ?></label></p><?php endif; ?>
-		<input type="hidden" name="question[]" value="<?php echo $this->_var['list_0_47840500_1369813928']['id']; ?>">
+		<p><?php echo $this->_foreach['ad']['iteration']; ?>.<?php echo $this->_var['list_0_59146600_1370310028']['question']; ?></p>
+		<p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="1" />&nbsp;<?php echo $this->_var['list_0_59146600_1370310028']['answer_a']; ?></label></p>
+		<p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="2" />&nbsp;<?php echo $this->_var['list_0_59146600_1370310028']['answer_b']; ?></label></p>
+                                    <?php if ($this->_var['list_0_59146600_1370310028']['answer_c'] != ""): ?><p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="3" />&nbsp;<?php echo $this->_var['list_0_59146600_1370310028']['answer_c']; ?></label></p><?php endif; ?>
+                                    <?php if ($this->_var['list_0_59146600_1370310028']['answer_d'] != ""): ?><p>&nbsp;&nbsp;<label><input type="radio" name="question<?php echo $this->_foreach['ad']['iteration']; ?>" value="4" />&nbsp;<?php echo $this->_var['list_0_59146600_1370310028']['answer_d']; ?></label></p><?php endif; ?>
+		<input type="hidden" name="question[]" value="<?php echo $this->_var['list_0_59146600_1370310028']['id']; ?>">
 	<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 	</div>
-	<div style="position: relative;left: 255px; top: 108px; float:left;"><input type="submit" style="background:url('/themes/yingge/zt/images/niuruizi_06.gif') no-repeat; border:0; width:130px; height:41px; cursor:pointer" value="" /></div>
+	<div style="position: relative;left: 255px; top: 108px; float:left;"><input type="submit" style="background:url('/themes/yingge/zt/images/niuruizi_06.gif') no-repeat; border:0; width:130px; height:41px; cursor:pointer" value="" /><input type="hidden" name="mk" value="<?php echo $this->_var['mk']; ?>" /></div>
 	<div style="position: relative;left: 485px; top: 108px; width:400px;"><a href="/chunjingbingdao.php"><img src="/themes/yingge/zt/images/niuruizi_07.gif" width=152 height=41 border="0"/></a></div>
                   <div ><img src="/themes/yingge/zt/images/bingdao_10.gif" border="0"  width="1030" height="252" /></div>
 	</div>

@@ -31,7 +31,7 @@
 		<input type="hidden" name="question[]" value="{$list.id}">
 	<!--{/foreach}-->
 	</div>
-	<div style="position: relative;left: 255px; top: 108px; float:left;"><input type="submit" style="background:url('/themes/yingge/zt/images/niuruizi_06.gif') no-repeat; border:0; width:130px; height:41px; cursor:pointer" value="" /></div>
+	<div style="position: relative;left: 255px; top: 108px; float:left;"><input type="submit" style="background:url('/themes/yingge/zt/images/niuruizi_06.gif') no-repeat; border:0; width:130px; height:41px; cursor:pointer" value="" /><input type="hidden" name="mk" value="{$mk}" /></div>
 	<div style="position: relative;left: 485px; top: 108px; width:400px;"><a href="/chunjingbingdao.php"><img src="/themes/yingge/zt/images/niuruizi_07.gif" width=152 height=41 border="0"/></a></div>
                   <div ><img src="/themes/yingge/zt/images/bingdao_10.gif" border="0"  width="1030" height="252" /></div>
 	</div>

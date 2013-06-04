@@ -53,9 +53,15 @@ if (!empty($res)&&!empty($res[0]['lv']))
 }*/
 $act = trim($_GET['act']);
 if($act=='answer'){
-	$question = $_POST['question'];
+            $question = $_POST['question'];
+            $mk = $_POST['mk'];
+            if($mk != $_SESSION['mk']){
+                show_message($_SESSION['mk'].'不能重复抽奖，请先回答问题后再抽奖！','','/chunjingbingdao_question.php','warning');
+                 exit;
+            }
+            unset($_SESSION['mk']);
         if(empty($question)){
-            show_message('请先回答问题后再抽奖！','','','warning');
+            show_message('请先回答问题后再抽奖！','','/chunjingbingdao_question.php','warning');
             exit;
         }
 	$i=1;
@@ -177,7 +183,8 @@ if($act=='answer'){
 
 $sql="SELECT * from ".$ecs->table('chunjingbingdao') ." order by RAND() limit 0,20 ";
 $res = $GLOBALS['db']->getAll($sql);
-
+$_SESSION['mk'] =  rand(1000, 9999);
+$smarty->assign('mk',$_SESSION['mk']);
 $smarty->assign('list',       $res);
 $smarty->assign('categories',       get_categories_tree()); 
 $smarty->assign('helps',            get_shop_help()); 

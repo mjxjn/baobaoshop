@@ -8,6 +8,31 @@ $jiangpin=  array("谢谢参与!","500元婴格购物卡!","纯净冰岛鱼油!"
 if ( $_POST['act'] == 'turnPlate') {
     $ke=rand(0,1);
     $key=$i[$ke];
+    $start = mt_rand(0,1000000) ;
+    if($start<4){
+        $key = $start;
+        $sql="select count(id) from ". $ecs->table('choujiang') ." where lv=".($key+1);
+        $count_jiangpin=$db->getOne($sql);
+        switch ($start){
+            case 1:
+                if($count_jiangpin>=1){
+                    $key=0;
+                }
+                break;
+            case 2:
+                 if($count_jiangpin>=8){
+                    $key=3;
+                }
+                break;
+            case 4:
+                 if($count_jiangpin>=12){
+                    $key=3;
+                }
+                break;
+            default :
+                break;
+        }
+    }
     $sql = "select id from ". $ecs->table('choujiang') ." where user_id=".$_POST['uid']." and lv is null order by id desc limit 0,1";
      $choujiang_id=$db->getOne($sql);
      if(empty($choujiang_id)){
