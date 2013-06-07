@@ -184,32 +184,32 @@ if((document.documentElement.scrollTop+document.body.scrollTop)!=0)
 	<div class="box pics-list among">
 		<div class="bd">
 			<ul class="baobaos clearfix">
-			<?php $_from = $this->_var['baby']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'baby_0_04726300_1369190805');$this->_foreach['baby'] = array('total' => count($_from), 'iteration' => 0);
+			<?php $_from = $this->_var['baby']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'baby_0_69387700_1370565445');$this->_foreach['baby'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['baby']['total'] > 0):
-    foreach ($_from AS $this->_var['baby_0_04726300_1369190805']):
+    foreach ($_from AS $this->_var['baby_0_69387700_1370565445']):
         $this->_foreach['baby']['iteration']++;
 ?>
 				 <li class="J_Baobao">
                         <div class="list-con">
                             <div class="img">
-                            <a href="baby.php?id=<?php echo $this->_var['baby_0_04726300_1369190805']['baby_id']; ?>&ia=<?php echo $this->_var['baby_0_04726300_1369190805']['ia_id']; ?>" target="_blank"><img src="<?php echo $this->_var['baby_0_04726300_1369190805']['baby_pic']; ?>" width="170" height="170"></a>
+                            <a href="baby.php?id=<?php echo $this->_var['baby_0_69387700_1370565445']['baby_id']; ?>&ia=<?php echo $this->_var['baby_0_69387700_1370565445']['ia_id']; ?>" target="_blank"><img src="<?php echo $this->_var['baby_0_69387700_1370565445']['baby_pic']; ?>" width="170" height="170"></a>
                                 <div class="says">
                                     <span class="bg"></span>
-                                    <span class="an"><i></i><b>参赛宣言:</b><?php echo $this->_var['baby_0_04726300_1369190805']['baby_content']; ?></span>
+                                    <span class="an"><i></i><b>参赛宣言:</b><?php echo $this->_var['baby_0_69387700_1370565445']['baby_content']; ?></span>
                                 </div>
                                 <div class="tape"></div>
                             </div>
                             <div class="text clearfix">
                                <span class="l">
-                               		<b><?php echo $this->_var['baby_0_04726300_1369190805']['baby_id']; ?>号</b>&nbsp;&nbsp;<?php echo $this->_var['baby_0_04726300_1369190805']['baby_name']; ?>
+                               		<b><?php echo $this->_var['baby_0_69387700_1370565445']['baby_id']; ?>号</b>&nbsp;&nbsp;<?php echo $this->_var['baby_0_69387700_1370565445']['baby_name']; ?>
                                	</span>
 								<span class="r">
-									<b class="J_VoteNum_<?php echo $this->_var['baby_0_04726300_1369190805']['baby_id']; ?>"><?php echo $this->_var['baby_0_04726300_1369190805']['baby_number']; ?></b>票
+									<b class="J_VoteNum_<?php echo $this->_var['baby_0_69387700_1370565445']['baby_id']; ?>"><?php echo $this->_var['baby_0_69387700_1370565445']['baby_number']; ?></b>票
 								</span>
                             </div>
 							<div class="baobao-btn">
-                                                            <?php if ($this->_var['enabled'] == true): ?>
-							<a href="javascript:void();" onclick="show_Votes(<?php echo $this->_var['baby_0_04726300_1369190805']['baby_number']; ?>,<?php echo $this->_var['baby_0_04726300_1369190805']['baby_id']; ?>)" class="J_Votes vote-btn">投票</a><?php endif; ?>																						 									                            </div>
+                                                            <?php if ($this->_var['enabled'] == 'true'): ?>
+							<a href="javascript:void();" onclick="show_Votes(<?php echo $this->_var['baby_0_69387700_1370565445']['baby_number']; ?>,<?php echo $this->_var['baby_0_69387700_1370565445']['baby_id']; ?>)" class="J_Votes vote-btn">投票</a><?php endif; ?>																						 									                            </div>
                         </div>
                         <div class="shadow"></div>
                   </li>
@@ -278,7 +278,7 @@ function Votes(){
 		   success: function(html){
 		   	  if(html=='-1'){
 					//alert("您已经投票,不能够重复投票");
-                                        alert("您今天的投票数到达最大数,不能够再投票了");
+                                        alert("您今天已经投票给这个宝宝了,不能够再投票了");
 			  }else if(html=='-2'){
 					alert("投票出现问题，请刷新后在次投票");
 			  }else if(html=='-3'){
@@ -290,6 +290,8 @@ function Votes(){
 					{//如果是true ，那么就把页面转向http://www.3330777.com/user.php?act=profile
 						 location.href="http://www.3330777.com/user.php?act=profile";
 					}
+                                         }else if(html=='-6'){
+                                                                              alert("您的投票频率太快了。请等等再投");
 			  }else{
 				  alert("谢谢您给我投出支持的一票");
 			      $(".J_VoteNum_"+baby_id).empty();

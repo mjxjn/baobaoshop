@@ -12,6 +12,11 @@ assign_template();
 
 $act= isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 if(!empty($act)&&$act=='vote'){
+                        $now=gmtime();
+                        $endtime=local_mktime(18, 0, 0, 6, 12, 2013);
+                        if($now>$endtime){
+                               exit();
+                        }
 	
 	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
 	$ia_id = $GLOBALS['db']->getOne($sql);
@@ -294,10 +299,15 @@ $_SESSION['md5key']=rand(1000, 9999);
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $now=gmtime();
-$endtime=local_mktime(0, 0, 0, 6, 3, 2013);
-if($enabled=$now>$endtime){
-	$smarty->assign('enabled',       $enabled); //比赛结束
+$starttime=local_mktime(0, 0, 0, 6, 3, 2013);
+if($now>$starttime){
+	$smarty->assign('enabled',      'true'); //比赛结束
 }
+$endtime=local_mktime(18, 0, 0, 6, 12, 2013);
+if($now>$endtime){
+	$smarty->assign('enabled',       'false'); //比赛结束
+}
+
 $order="desc";
 $brand=$sort2;
 $price_min=$xz;

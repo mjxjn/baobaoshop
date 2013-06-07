@@ -15,17 +15,17 @@ if ( $_POST['act'] == 'turnPlate') {
         $count_jiangpin=$db->getOne($sql);
         switch ($start){
             case 1:
-                if($count_jiangpin>=1){
+                if($count_jiangpin>1){
                     $key=0;
                 }
                 break;
             case 2:
-                 if($count_jiangpin>=8){
+                 if($count_jiangpin>8){
                     $key=3;
                 }
                 break;
             case 4:
-                 if($count_jiangpin>=12){
+                 if($count_jiangpin>12){
                     $key=3;
                 }
                 break;

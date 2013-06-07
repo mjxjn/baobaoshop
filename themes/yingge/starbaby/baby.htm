@@ -160,9 +160,9 @@ function close_miaoshu(){
 			</ul>
                     
 			<div class="copy_url"><a href="http://www.yinggebaby.com/starbaby/baby.php?id={$baby_id}&ia={$ia_id2}" onclick="setCopy(this.href);return false;">复制链接转发好友帮我拉票</a></div>
-                    <!-- {if $enabled eq true} -->
+                    <!-- {if $enabled eq 'true'} -->
 			<div class="baby_number"><span id="bb_number">{$baby.baby_number}</span><a href="javascript:void();" onclick="show_Votes({$baby.baby_number},{$baby.baby_id})" class="baby_btn">&nbsp;</a></div>
-                    <!-- {else} -->  
+                    <!-- {else} -->
                     <div style="background: url(/themes/yingge/starbaby/images/unopen.png) no-repeat;width: 200px;height: 45px;line-height: 45px;margin-top: 10px;padding-left: 25px;clear: both;display: inline-block;"><span id="bb_number">{$baby.baby_number}</span>&nbsp;</div>
                     <!-- {/if} -->  
 		</div>

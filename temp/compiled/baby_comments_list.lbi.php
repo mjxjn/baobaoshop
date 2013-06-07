@@ -58,13 +58,13 @@
 		<div class="page_box" id="page_box_pl">
 		<form name="selectPageForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
 		 <span><font><a href="<?php echo $this->_var['pager']['page_first']; ?>">«首页</a></font></span><span><font><a href="<?php echo $this->_var['pager']['page_prev']; ?>">­上一页</a></font></span>
-		 <?php $_from = $this->_var['pager']['page_number']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item_0_86532000_1369191331');if (count($_from)):
-    foreach ($_from AS $this->_var['key'] => $this->_var['item_0_86532000_1369191331']):
+		 <?php $_from = $this->_var['pager']['page_number']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item_0_16793300_1370565703');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['item_0_16793300_1370565703']):
 ?>
 		  <?php if ($this->_var['pager']['page'] == $this->_var['key']): ?>
 		 <span id="page_on"><?php echo $this->_var['key']; ?></span>
 		 <?php else: ?>
-		 <span><font><a href="<?php echo $this->_var['item_0_86532000_1369191331']; ?>"><?php echo $this->_var['key']; ?></a></font></span>
+		 <span><font><a href="<?php echo $this->_var['item_0_16793300_1370565703']; ?>"><?php echo $this->_var['key']; ?></a></font></span>
 		 <?php endif; ?>
 		<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 		 <span><font><a href="<?php echo $this->_var['pager']['page_next']; ?>">­下一页</a></font></span><span><font><a href="<?php echo $this->_var['pager']['page_last']; ?>">­尾页»</a></font></span><span><font><?php echo $this->_var['pager']['page']; ?>/共<?php echo $this->_var['pager']['page_count']; ?>页</font></span> 
@@ -76,10 +76,10 @@
 
 <script type="text/javascript">
 //<![CDATA[
-<?php $_from = $this->_var['lang']['cmt_lang']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item_0_86586400_1369191331');if (count($_from)):
-    foreach ($_from AS $this->_var['key'] => $this->_var['item_0_86586400_1369191331']):
+<?php $_from = $this->_var['lang']['cmt_lang']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('key', 'item_0_16851700_1370565703');if (count($_from)):
+    foreach ($_from AS $this->_var['key'] => $this->_var['item_0_16851700_1370565703']):
 ?>
-var <?php echo $this->_var['key']; ?> = "<?php echo $this->_var['item_0_86586400_1369191331']; ?>";
+var <?php echo $this->_var['key']; ?> = "<?php echo $this->_var['item_0_16851700_1370565703']; ?>";
 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 
 /**
