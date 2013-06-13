@@ -75,7 +75,7 @@ if($act=='answer'){
 		}
 		$i++;
 	}
-	if($j==20){
+	if($j==5){
 		/*$sql = "SELECT * FROM ". $GLOBALS['ecs']->table('user_bonus') ." WHERE bonus_type_id=9 and user_id=".$user_id." order by bonus_id asc";
 		$res = $GLOBALS['db']->getAll($sql);
 		if (!empty($res))
@@ -176,12 +176,13 @@ if($act=='answer'){
                                                 $smarty->display('/zt/chunjingbingdao_choujiang.dwt'); 
                                                 exit;
 	}else{
-		show_message($_LANG['niuruizi_error'],'','','warning');
+		show_message($_LANG['niuruizi_error'],'','/chunjingbingdao_question.php','warning');
 		exit;
 	}
 }
 
-$sql="SELECT * from ".$ecs->table('chunjingbingdao') ." order by RAND() limit 0,20 ";
+$sql="SELECT * from ".$ecs->table('chunjingbingdao') ." order by RAND() limit 0,5
+ ";
 $res = $GLOBALS['db']->getAll($sql);
 $_SESSION['mk'] =  rand(1000, 9999);
 $smarty->assign('mk',$_SESSION['mk']);
