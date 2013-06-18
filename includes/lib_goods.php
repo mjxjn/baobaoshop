@@ -173,9 +173,9 @@ function get_child_tree($tree_id = 0)
 function get_click8($cats = '',$num = ''){
     $cats = get_children($cats);
     $where = !empty($cats) ? "AND ($cats OR " . get_extension_goods($cats) . ") " : '';
-    $sql = 'SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb ' .
+    $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.promote_price, g.promote_start_date, g.promote_end_date, g.shop_price, g.goods_thumb ' .
            'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
-           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where AND g.goods_number > 0 ORDER BY g.goods_number DESC, g.goods_id DESC LIMIT " . $num;
+           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where AND g.goods_number > 0 ORDER BY g.click_count DESC, g.goods_id DESC LIMIT " . $num;
     $arr = $GLOBALS['db']->getAll($sql);
     
     for ($i = 0, $count = count($arr); $i < $count; $i++)
@@ -185,6 +185,16 @@ function get_click8($cats = '',$num = ''){
         $arr[$i]['url']        = build_uri('goods', array('gid' => $arr[$i]['goods_id']), $arr[$i]['goods_name']);
         $arr[$i]['thumb'] = get_image_path($arr[$i]['goods_id'], $arr[$i]['goods_thumb'],true);
         $arr[$i]['price'] = price_format($arr[$i]['shop_price']);
+        $arr[$i]['market_price']=price_format($arr[$i]['market_price']);
+        if ($arr[$i]['promote_price'] > 0)
+        {
+            $promote_price = bargain_price($arr[$i]['promote_price'], $arr[$i]['promote_start_date'], $arr[$i]['promote_end_date']);
+        }
+        else
+        {
+            $promote_price = 0;
+        }
+        $arr[$i]['promote_price'] = ($promote_price > 0) ? price_format($promote_price) : '';
     }
 
     return $arr;
