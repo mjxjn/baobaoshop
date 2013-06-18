@@ -167,7 +167,28 @@ function get_child_tree($tree_id = 0)
     }
     return $three_arr;
 }
+/**
+    首页推荐商品
+**/
+function get_click8($cats = '',$num = ''){
+    $cats = get_children($cats);
+    $where = !empty($cats) ? "AND ($cats OR " . get_extension_goods($cats) . ") " : '';
+    $sql = 'SELECT g.goods_id, g.goods_name, g.shop_price, g.goods_thumb ' .
+           'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
+           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where AND g.goods_number > 0 ORDER BY g.goods_number DESC, g.goods_id DESC LIMIT " . $num;
+    $arr = $GLOBALS['db']->getAll($sql);
+    
+    for ($i = 0, $count = count($arr); $i < $count; $i++)
+    {
+        $arr[$i]['short_name'] = $GLOBALS['_CFG']['goods_name_length'] > 0 ?
+                                    sub_str($arr[$i]['goods_name'], $GLOBALS['_CFG']['goods_name_length']) : $arr[$i]['goods_name'];
+        $arr[$i]['url']        = build_uri('goods', array('gid' => $arr[$i]['goods_id']), $arr[$i]['goods_name']);
+        $arr[$i]['thumb'] = get_image_path($arr[$i]['goods_id'], $arr[$i]['goods_thumb'],true);
+        $arr[$i]['price'] = price_format($arr[$i]['shop_price']);
+    }
 
+    return $arr;
+}
 /**
  * 调用当前分类的销售排行榜
  *
@@ -238,8 +259,7 @@ function get_top10($cats = '',$num = '',$acats = '')
     			'GROUP BY g.goods_id ORDER BY goods_number DESC, g.goods_id DESC LIMIT ' . $num;
     }
            
-    //$arr = $GLOBALS['db']->getAll($sql);
-    $arr = array();
+    $arr = $GLOBALS['db']->getAll($sql);
     
     if(!empty($num)){
         for ($i = 0, $count = count($arr); $i < $count; $i++)
@@ -249,6 +269,16 @@ function get_top10($cats = '',$num = '',$acats = '')
         $arr[$i]['url']        = build_uri('goods', array('gid' => $arr[$i]['goods_id']), $arr[$i]['goods_name']);
         $arr[$i]['thumb'] = get_image_path($arr[$i]['goods_id'], $arr[$i]['goods_thumb'],true);
         $arr[$i]['price'] = price_format($arr[$i]['shop_price']);
+        $arr[$i]['market_price']=price_format($arr[$i]['market_price']);
+        if ($arr[$i]['promote_price'] > 0)
+        {
+            $promote_price = bargain_price($arr[$i]['promote_price'], $arr[$i]['promote_start_date'], $arr[$i]['promote_end_date']);
+        }
+        else
+        {
+            $promote_price = 0;
+        }
+        $arr[$i]['promote_price'] = ($promote_price > 0) ? price_format($promote_price) : '';
     }
     }else{
     for ($i = 0, $count = count($arr); $i < $count; $i++)

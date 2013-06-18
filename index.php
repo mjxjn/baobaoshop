@@ -173,7 +173,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('food2',     $food2);//孕婴食品
     $smarty->assign('food3',     $food3);//孕婴食品
 
-    $smarty->assign('top_food',       get_top10('16','8',''));           // 销售排行
+    $smarty->assign('top_food',       get_click8('16','8'));           // 销售排行
     
     
     $supplies=get_index('supplies');
@@ -191,7 +191,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('supplies2',    $supplies2);//孕婴食品
     $smarty->assign('supplies3',    $supplies3);//孕婴食品
     
-    $smarty->assign('top_supplies',       get_top10('19','8',''));           // 销售排行
+    $smarty->assign('top_supplies',       get_click8('19','8'));           // 销售排行
     
     
     $entertainment=get_index('entertainment');
@@ -209,7 +209,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('entertainment2',    $entertainment2);//孕婴食品
     $smarty->assign('entertainment3',    $entertainment3);//孕婴食品
     
-    $smarty->assign('top_entertainment',       get_top10('23','8',''));           // 销售排行
+    $smarty->assign('top_entertainment',       get_click8('23','8'));           // 销售排行
 
     
     $clothing=get_index('clothing');
@@ -227,7 +227,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('clothing2',    $clothing2);//孕婴食品
     $smarty->assign('clothing3',    $clothing3);//孕婴食品
     
-    $smarty->assign('top_clothing',       get_top10('24','8',''));           // 销售排行
+    $smarty->assign('top_clothing',       get_click8('24','8'));           // 销售排行
 
     
     $learning=get_index('learning');
@@ -245,9 +245,8 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('learning2',    $learning2);//孕婴食品
     $smarty->assign('learning3',    $learning3);//孕婴食品
     
-    $smarty->assign('top_learning',       get_top10('26','8',''));           // 销售排行
+    $smarty->assign('top_learning',       get_click8('26','8'));           // 销售排行
 
-    
     $mother=get_index('mother');
     
     for($i=0;$i<8;$i++){
@@ -263,7 +262,7 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
     $smarty->assign('mother2',    $mother2);//孕婴食品
     $smarty->assign('mother3',    $mother3);//孕婴食品
     
-    $smarty->assign('top_mother',       get_top10('27','8',''));           // 销售排行
+    $smarty->assign('top_mother',       get_click8('27','8'));           // 销售排行
 
 
     /* 首页主广告设置 */

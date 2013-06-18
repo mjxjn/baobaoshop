@@ -360,6 +360,37 @@ elseif ($_REQUEST['act'] == 'batch_remove')
         sys_msg($_LANG['no_select_user'], 0, $lnk);
     }
 }
+elseif ($_REQUEST['act'] == 'mx'){
+    /* 检查权限 */
+    admin_priv('users_drop');
+
+    $sql="select baby_id,baby_number from ". $GLOBALS['ecs']->table('baby_baby') ." where ia_id=4 order by baby_number desc limit 70,30";
+    $baby_list = $GLOBALS['db']->getAll($sql);
+    foreach ($baby_list as $key => $value) {
+        do{
+            $randnum = mt_rand(1,20);
+            $baby_number = $value['baby_number']+$randnum;
+        }while($baby_number<1830);
+        $baby_id = $value['baby_id'];
+        $sql="update ".$ecs->table('baby_baby')." set baby_number='".$baby_number."' where baby_id=".$baby_id;
+    
+        $db->query($sql);
+        echo $baby_number."--".$randnum."<br />";
+    }
+    /*$sql="select baby_id,baby_number from ". $GLOBALS['ecs']->table('baby_baby') ." where ia_id=4 order by baby_number desc limit 101,200";
+    $baby_list = $GLOBALS['db']->getAll($sql);
+    foreach ($baby_list as $key => $value) {
+        
+            $randnum = mt_rand(1,120);
+            $baby_number = $value['baby_number']-$randnum;
+       
+        $baby_id = $value['baby_id'];
+        $sql="update ".$ecs->table('baby_baby')." set baby_number='".$baby_number."' where baby_id=".$baby_id;
+    
+        $db->query($sql);
+        echo $baby_number."--".$randnum."<br />";
+    }*/
+}
 
 function baby_list($ia){
 	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
