@@ -175,7 +175,7 @@ function get_click8($cats = '',$num = ''){
     $where = !empty($cats) ? "AND ($cats OR " . get_extension_goods($cats) . ") " : '';
     $sql = 'SELECT g.goods_id, g.goods_name, g.market_price, g.promote_price, g.promote_start_date, g.promote_end_date, g.shop_price, g.goods_thumb ' .
            'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
-           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where AND g.goods_number > 0 ORDER BY g.click_count DESC, g.goods_id DESC LIMIT " . $num;
+           "WHERE g.is_on_sale = 1 AND g.is_alone_sale = 1 AND g.is_delete = 0 $where AND g.goods_number > 0 ORDER BY g.click_count DESC LIMIT " . $num;
     $arr = $GLOBALS['db']->getAll($sql);
     
     for ($i = 0, $count = count($arr); $i < $count; $i++)

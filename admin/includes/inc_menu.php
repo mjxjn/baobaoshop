@@ -30,6 +30,7 @@ $modules['02_cat_and_goods']['13_batch_add']        = 'goods_batch.php?act=add';
 $modules['02_cat_and_goods']['14_goods_export']     = 'goods_export.php?act=goods_export';
 $modules['02_cat_and_goods']['15_batch_edit']       = 'goods_batch.php?act=select'; // 商品批量修改
 $modules['02_cat_and_goods']['18_batch_excel']        = 'goods_batch.php?act=excel';    // 商品批量更新
+$modules['02_cat_and_goods']['18_batch_upgoods']        = 'goods_batch.php?act=upgoods_excel';    // 商品批量上传
 $modules['02_cat_and_goods']['16_goods_script']     = 'gen_goods_script.php?act=setup';
 $modules['02_cat_and_goods']['17_tag_manage']       = 'tag_manage.php?act=list';
 $modules['02_cat_and_goods']['50_virtual_card_list']   = 'goods.php?act=list&extension_code=virtual_card';

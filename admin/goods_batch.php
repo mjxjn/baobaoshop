@@ -862,7 +862,7 @@ elseif ($_REQUEST['act'] == 'download')
 
 elseif ($_REQUEST['act'] == 'get_goods')
 {
-    $filter = &new stdclass;
+    $filter = new stdclass;
 
     $filter->cat_id = intval($_GET['cat_id']);
     $filter->brand_id = intval($_GET['brand_id']);
@@ -1021,6 +1021,145 @@ elseif ($_REQUEST['act'] == 'excel_upload')
 
 	}
 	
+}elseif( $_REQUEST['act'] == 'upgoods_excel'){
+    /* 检查权限 */
+    admin_priv('goods_batch');
+    
+    /* 显示模板 */
+    assign_query_info();
+    $smarty->display('goods_batch_upgoods.htm');
+
+}elseif ($_REQUEST['act'] == 'upgoods_upload')
+{
+    /* 检查权限 */
+    admin_priv('goods_batch');
+    
+    if($_POST){
+    
+        $sql="truncate table ecs_xls2";
+        $db->query($sql);
+
+        $Import_TmpFile = $_FILES['file']['tmp_name'];    
+
+        require_once 'Excel/reader.php';
+
+        $data = new Spreadsheet_Excel_Reader();
+
+        $data->setOutputEncoding('UTF-8');
+
+        $data->read($Import_TmpFile);
+
+        $array =array();        
+        $data->sheets[0]['numCols']=7;
+        
+        // 计数器
+        $cnt = 0;
+        // 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+        $limit = 500;
+        
+        for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) {
+            if($data->sheets[0]['cells'][$i][1]==""){
+                break;
+            }
+            for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
+                if($data->sheets[0]['cells'][$i][$j]=="")
+                {
+                    $data->sheets[0]['cells'][$i][$j]=0;
+                }
+                $array[$i][$j] = $data->sheets[0]['cells'][$i][$j];
+                
+                $cnt ++;
+                if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+                    ob_flush();
+                    flush();
+                    $cnt = 0;
+                }
+            }
+
+        }
+
+       //print_r($array);
+        //sava_data($array);
+            $count =0;    
+    
+    $counts=0;
+    
+    $total =0;
+    
+    // 计数器
+    $cnt = 0;
+    // 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+    $limit = 500;
+
+    foreach( $array as $tmp){    
+
+         $Isql = "Select sid from ecs_xls2 where goods_num='".$tmp[3]."'";
+
+         $sql = "Insert into ecs_xls2 (sid,goods_num,goods_sn,goods_number,shop_price,market_price,goods_name,warn_number) value(";
+
+         $sql.=$tmp[1].",'".$tmp[3]."','".$tmp[2]."',".intval($tmp[7]).",".$tmp[5].",".$tmp[6].",'".$tmp[4]."',2)";
+
+        if(!$db->fetchRow($db->query($Isql))){
+
+             if( $db->query($sql) ){
+
+                $count++;
+
+             }
+
+        }
+        
+        $cnt ++;
+        if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+            ob_flush();
+            flush();
+            $cnt = 0;
+        }
+
+        $total++;
+
+    }
+
+    $xls_sql="select goods_num,goods_sn,goods_number,shop_price,goods_name,market_price,warn_number from ecs_xls2 order by sid desc";
+    
+    $res = $db->query($xls_sql);
+    
+    // 计数器
+    $cnt = 0;
+    // 每隔$limit行，刷新一下输出buffer，不要太大，也不要太小
+    $limit = 500;
+    
+    while ($row = $db->fetchRow($res))
+    {
+    
+        $old_sql="select goods_num from ecs_goods where goods_num='".$row['goods_num']."'";
+
+        //$new_sql="update ecs_goods set goods_sn=".$row['goods_sn'].", goods_number=".$row['goods_number'].",shop_price=".$row['shop_price']." where goods_num='".$row['goods_num']."'";
+        $new_sql = "Insert into ecs_goods (goods_sn,goods_number,goods_name,goods_num,shop_price,market_price,warn_number,is_on_sale,add_time) value(";
+        $new_sql .= "'".$row['goods_sn']."',".$row['goods_number'].",'".$row['goods_name']."','".$row['goods_num']."',".$row['shop_price'].",".$row['market_price'].",".$row['warn_number'].",0,".gmtime().")";
+        if(!$db->fetchRow($db->query($old_sql))){
+            
+            if( $db->query($new_sql) ){
+
+                $counts++;
+
+             }
+            
+        }
+        
+        $cnt ++;
+        if ($limit == $cnt) { //刷新一下输出buffer，防止由于数据过多造成问题
+            ob_flush();
+            flush();
+            $cnt = 0;
+        }
+        
+    }
+
+    echo "<script>alert('共有".$total."条数据，添加其中".$counts."条数据成功'); location='goods_batch.php?act=upgoods_excel'</script>";
+
+    }
+    
 }
 
 

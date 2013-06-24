@@ -30,7 +30,7 @@ define('AUTH_KEY', 'this is a key');
 
 define('OLD_AUTH_KEY', '');
 
-define('API_TIME', '2013-05-16 10:54:43');
+define('API_TIME', '2013-06-24 15:56:17');
 
 define('UC_CONNECT', 'mysql');
 define('UC_DBHOST', 'localhost');
