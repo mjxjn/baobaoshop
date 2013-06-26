@@ -152,16 +152,17 @@ $smarty->assign('yins',             $yins);
 if(empty($_SESSION['md5key'])){
 	$_SESSION['md5key']=rand(1000, 9999);
 }
+$showflag = 'false';
 $now=gmtime();
-$starttime=local_mktime(0, 0, 0, 6, 3, 2013);
+$starttime=local_mktime(0, 0, 0, 7, 1, 2013);
 if($now>$starttime){
-	$smarty->assign('enabled',      'true'); //比赛结束
+	$showflag = 'true';
 }
-$endtime=local_mktime(18, 0, 0, 6, 12, 2013);
+$endtime=local_mktime(23, 59, 59, 7, 5, 2013);
 if($now>$endtime){
-	$smarty->assign('enabled',       'false'); //比赛结束
+	$showflag = 'false';
 }
-
+$smarty->assign('enabled',       $showflag); //比赛结束
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $smarty->assign('helps',            get_shop_help());       // 网店帮助

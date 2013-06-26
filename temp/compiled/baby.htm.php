@@ -129,14 +129,14 @@ function close_miaoshu(){
 
 		<div id="J_Photos" class="photos slide">
             <ul class="photo-list">
-            <?php $_from = $this->_var['pic']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pic_0_00028200_1370565703');$this->_foreach['pic'] = array('total' => count($_from), 'iteration' => 0);
+            <?php $_from = $this->_var['pic']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'pic_0_91319000_1372238075');$this->_foreach['pic'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['pic']['total'] > 0):
-    foreach ($_from AS $this->_var['pic_0_00028200_1370565703']):
+    foreach ($_from AS $this->_var['pic_0_91319000_1372238075']):
         $this->_foreach['pic']['iteration']++;
 ?>
             	<li class="photo" <?php if (($this->_foreach['pic']['iteration'] - 1) == 0): ?>style="display: block; position: absolute; opacity: 1; z-index: 9; "<?php else: ?>style="display: block; position: absolute; opacity: 0; z-index: 1; "<?php endif; ?>>
-            	<a href="<?php echo $this->_var['pic_0_00028200_1370565703']['small']; ?>" rel="example_group" title="<?php echo $this->_var['baby']['baby_name']; ?>">
-            	<img src="<?php echo $this->_var['pic_0_00028200_1370565703']['small']; ?>" height="380" width="380">
+            	<a href="<?php echo $this->_var['pic_0_91319000_1372238075']['small']; ?>" rel="example_group" title="<?php echo $this->_var['baby']['baby_name']; ?>">
+            	<img src="<?php echo $this->_var['pic_0_91319000_1372238075']['small']; ?>" height="380" width="380">
             	</a>
             	</li>
 			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
@@ -164,7 +164,7 @@ if ($this->_foreach['pics']['total'] > 0):
 				<li>所在地区：云南昆明</li>
 				<li>上传者：<?php echo $this->_var['baby']['user_name']; ?></li>
 				<li>上传时间：<?php echo $this->_var['baby']['baby_time']; ?></li>
-				<li>宝宝人气：<script src="baby.php?act=click&id=<?php echo $this->_var['baby_id']; ?>&ia=<?php echo $this->_var['ia_id2']; ?>" type='text/javascript' language="javascript"></script></li>
+				<li>宝宝人气：<script src="baby.php?act=click&id=<?php echo $this->_var['baby_id']; ?>" type='text/javascript' language="javascript"></script></li>
 			</ul>
                     
 			<div class="copy_url"><a href="http://www.yinggebaby.com/starbaby/baby.php?id=<?php echo $this->_var['baby_id']; ?>&ia=<?php echo $this->_var['ia_id2']; ?>" onclick="setCopy(this.href);return false;">复制链接转发好友帮我拉票</a></div>
@@ -178,12 +178,12 @@ if ($this->_foreach['pics']['total'] > 0):
 			<p class="yinxiang_title">大家对我的印象</p>
 			<p class="yinxiang" id="yinxiang">
 			 <?php if ($this->_var['yins']): ?> 
-			<?php $_from = $this->_var['yin']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'yin_0_00151000_1370565703');$this->_foreach['yin'] = array('total' => count($_from), 'iteration' => 0);
+			<?php $_from = $this->_var['yin']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'yin_0_91448100_1372238075');$this->_foreach['yin'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['yin']['total'] > 0):
-    foreach ($_from AS $this->_var['yin_0_00151000_1370565703']):
+    foreach ($_from AS $this->_var['yin_0_91448100_1372238075']):
         $this->_foreach['yin']['iteration']++;
 ?>
-			<span><?php echo $this->_var['yin_0_00151000_1370565703']; ?></span>
+			<span><?php echo $this->_var['yin_0_91448100_1372238075']; ?></span>
 			 <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
 			 <?php endif; ?> 
 			</p>
@@ -258,11 +258,13 @@ if ($this->_foreach['yin']['total'] > 0):
 <div class="bd">
 <div class="J_BP_Infos infos clearfix">
 <div class="text">
-<img src="" width="100" height="21" id="captcha_img" alt="CAPTCHA" border="1" onclick= this.src="captcha.php?"+Math.random() style="cursor: pointer;margin:0 0 10px 0;vertical-align:middle;" />&nbsp;&nbsp;<a href="javascript:void();" style=" color:#333;" onclick="changer_captcha_img()">更换验证码</a><br />
+<form action='' method='post' name="formUser2">
+手机号：<input type="text" name="mobile" id="mobile" value="" style="border:1px solid #999; height:25px; line-height:25px;"/>&nbsp;&nbsp;<input type="button" style="width: 131px;height: 22px;background: url(/themes/yingge/images/sms.png) no-repeat;border: none;padding:0 0 0 20px; color:#fff;cursor: pointer;" name="Submit" onclick="send_sms()" id="send_smsbtn" value="发送手机验证码" /><br />
 验证码：
-<input type="text" name="captcha" id="captcha" value="" style="border:1px solid #999; height:25px; line-height:25px;"/>
+<input type="text" name="captcha" id="captcha" value="" style="border:1px solid #999; height:25px; line-height:25px;"/>&nbsp;&nbsp;请输入手机收到的验证码
 <input type="hidden" name="number" id="number" value="">
 <input type="hidden" name="baby_id" id="baby_id" value="">
+</form>
 </div>
 </div>
 <div class="vote-buttons clearfix">
@@ -276,8 +278,32 @@ if ($this->_foreach['yin']['total'] > 0):
 </a>
 </div>
 <script type="text/javascript">
-function changer_captcha_img(){
-	$("#captcha_img").attr("src", "captcha.php?"+Math.random());
+var wait = 90; //停留时间*/
+function updateinfo(){
+	  if(wait == 0){
+		document.formUser2.Submit.value = "发送手机验证码";
+		document.formUser2.Submit.disabled = false;
+		wait = 90;
+	  }
+	  else{
+		document.formUser2.Submit.value = "发送中..."+wait;
+		wait--;
+		window.setTimeout("updateinfo()",1000);
+	  }
+}
+function send_sms(){
+	document.formUser2.Submit.disabled = true;
+	mobile=$('#mobile').val();
+	baby_id=$('#baby_id').val();
+	$.ajax({
+	   type: "POST",
+	   url: "starbaby.php",
+	   data: "mobile="+mobile+"&baby_id="+baby_id+"&act=act_send_sms",
+	   success: function(msg){
+		 /*alert( "Data Saved: " + msg );*/
+	   }
+	});
+	updateinfo();
 }
 function close_Votes(){
 	$("#markup-vote").hide();
@@ -287,7 +313,7 @@ function show_Votes(number,baby_id){
 	//alert('网络投票活动暂时取消，修改为线下投票');
 
 		$("#markup-vote").show("fast",function(){
-				     $("#captcha_img").attr("src", "captcha.php?"+Math.random());
+				   
 				   $("#number").val(number);
 				   $("#baby_id").val(baby_id);
 		 });
@@ -301,24 +327,21 @@ function Votes(){
 	$.ajax({
 		   type:"POST",
 		   url: "starbaby.php",
-		   data: "act=vote&baby_id="+baby_id+"&number="+number+"&captcha="+captcha+"&md5key=<?php echo $this->_var['md5key']; ?>",
+		   data: "act=vote&baby_id="+baby_id+"&number="+number+"&captcha="+captcha+"&md5key=<?php echo $this->_var['md5key']; ?>&mobile="+mobile,
 		   success: function(html){
 		   	  if(html=='-1'){
-					//alert("您已经投票,不能够重复投票");
-                                        alert("您今天已经投票给这个宝宝了,不能够再投票了");
+					alert("您已经投票,不能够重复投票");
 			  }else if(html=='-2'){
 					alert("投票出现问题，请刷新后在次投票");
 			  }else if(html=='-3'){
-					alert("验证码错误，请重新投票");
+					alert("手机验证码错误，请重输入验证码");
 			  }else if(html=='-4'){
-					alert("请登录后再投票。");
+					alert("手机号码与短信号码不服");
 			  }else if(html=='-5'){
 					if(confirm("您还没有验证邮箱，点击确定去进行验证"))
 					{//如果是true ，那么就把页面转向http://www.3330777.com/user.php?act=profile
 						 location.href="http://www.yinggebaby.com/user.php?act=profile";
 					}
-                                                                          }else if(html=='-6'){
-                                                                              alert("您的投票频率太快了。请等等再投");
 			  }else{
 				  alert("谢谢您给我投出支持的一票");
 			      $("#bb_number").empty();

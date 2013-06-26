@@ -13,7 +13,11 @@ assign_template();
 $act= isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 if(!empty($act)&&$act=='vote'){
                         $now=gmtime();
-                        $endtime=local_mktime(18, 0, 0, 6, 12, 2013);
+                        $starttime=local_mktime(0, 0, 0, 7, 1, 2013);
+						if($now<$starttime){
+							exit();
+						}
+                        $endtime=local_mktime(23, 59, 59, 7, 5, 2013);
                         if($now>$endtime){
                                exit();
                         }
@@ -37,48 +41,51 @@ if(!empty($act)&&$act=='vote'){
 	$mobile=isset($_REQUEST['mobile']) ? $_REQUEST['mobile'] : '';
 	$baby_id=verify_id($baby_id);
         /* 手机验证的*/
-	/*if(empty($baby_number)&&empty($baby_id)&&empty($md5key)&&empty($mobile)){
-	   echo "-2";
-	   exit;
-	}*/
-        /* 验证码验证*/
-        if(empty($baby_number)&&empty($baby_id)&&empty($md5key)){
+	if(empty($baby_number)&&empty($baby_id)&&empty($md5key)&&empty($mobile)){
 	   echo "-2";
 	   exit;
 	}
+        /* 验证码验证*/
+    /*if(empty($baby_number)&&empty($baby_id)&&empty($md5key)){
+	   echo "-2";
+	   exit;
+	}*/
 	/* 验证码检查 */
     
-        if (empty($captcha))
+        /*if (empty($captcha))
         {
             echo "-3";
 			exit;
-        }
-		/*if($_SESSION['mobile']!=$mobile){
+        }*/
+		if($_SESSION['mobile']!=$mobile){
 			echo "-4";
 			exit;
-		}*/
+		}
         /* 检查验证码 */
-        include_once('../includes/cls_captcha.php');
+        /*include_once('../includes/cls_captcha.php');
 
         $validator = new captcha();
         if (!$validator->check_word($captcha))
         {
             echo "-3";
 			exit;
-        }
-		/*if($captcha!=$_SESSION['rand_code']){
+        }*/
+		if($captcha!=$_SESSION['rand_code']){
 			echo "-3";
 			exit;
-		}*/
+		}
 		$year=local_date("Y",gmtime());
 		$month=local_date("m",gmtime());
 		$day=local_date("d",gmtime());
 	$startime=local_mktime(0,0,0,$month,$day,$year);
 	$endtime=local_mktime(23,59,59,$month,$day,$year);
-	//$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; //按登录会员投票统计
-	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and baby_id=".$baby_id." and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
+	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; 
+	//按登录会员投票统计
+	//$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and baby_id=".$baby_id." and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
 	$svote=$GLOBALS['db']->getOne($sql);
-	if($svote >= 1) //会员的按1次  ip的按一天3次
+	$sql="select COUNT(*) AS smvote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and vote_time >= ".$startime." and vote_time <= ".$endtime;
+	$smvote=$GLOBALS['db']->getOne($sql);
+	if($svote >= 1 || $smvote >=5) //会员的按1次  ip的按一天3次
 	{
 	   /* 此会员id投票 */
 	   echo "-1";
@@ -96,13 +103,16 @@ if(!empty($act)&&$act=='vote'){
 	}else{
 		setcookie("vote_name", $baby_id);
 	}*/
-	$sql="select vote_time from ".$GLOBALS['ecs']->table('baby_vote')." where baby_id='".$baby_id."' and ia_id=".$ia_id." order by vote_time desc limit 0,1";
+	/**
+	++++控制投票时间
+	**/
+	/*$sql="select vote_time from ".$GLOBALS['ecs']->table('baby_vote')." where baby_id='".$baby_id."' and ia_id=".$ia_id." order by vote_time desc limit 0,1";
 	$vote_time = $GLOBALS['db']->getOne($sql);
                         $now=gmtime();
                         if($now-$vote_time<60){
                             echo "-6";
                             exit();
-                        }
+                        }*/
 	$sql="select baby_number from ".$GLOBALS['ecs']->table('baby_baby')." where baby_id='".$baby_id."' and ia_id=".$ia_id;
 	
 	$baby_number=$GLOBALS['db']->getOne($sql);
@@ -133,10 +143,16 @@ if(!empty($act)&&$act=='vote'){
 	if($svote != 0)
 	{
 	   /* 此会员id投票 */
-	   show_starbaby_message('此手机号今天已经投票！', '', '', 'warning');
+	   show_starbaby_message('此手机号今天已经对这个宝宝投票了！', '', '', 'warning');
 	   exit;
 	}
+	$sql="select COUNT(*) AS smvote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$mobile_phone."'  and vote_time >= ".$startime." and vote_time <= ".$endtime;
 	
+	$smvote=$GLOBALS['db']->getOne($sql);
+	if($smvote >= 5){
+		show_starbaby_message('此手机号今天的投票数量已满，明天再投吧！', '', '', 'warning');
+	    exit;
+	}
 	$sql = 'SELECT `serialNumber`, `password`, `smsnum`, `sessionKey`, `order_charge`
             FROM ' . $ecs->table('sms_config') . "
             WHERE id=1";
@@ -299,15 +315,16 @@ $_SESSION['md5key']=rand(1000, 9999);
 $smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $now=gmtime();
-$starttime=local_mktime(0, 0, 0, 6, 3, 2013);
+$showflag = 'false';
+$starttime=local_mktime(0, 0, 0, 7, 1, 2013);
 if($now>$starttime){
-	$smarty->assign('enabled',      'true'); //比赛结束
+	$showflag = 'true';
 }
-$endtime=local_mktime(18, 0, 0, 6, 12, 2013);
+$endtime=local_mktime(23, 59, 59, 7, 5, 2013);
 if($now>$endtime){
-	$smarty->assign('enabled',       'false'); //比赛结束
+	$showflag = 'false';
 }
-
+$smarty->assign('enabled',       $showflag); //比赛结束
 $order="desc";
 $brand=$sort2;
 $price_min=$xz;
