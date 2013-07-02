@@ -154,7 +154,7 @@ if(empty($_SESSION['md5key'])){
 }
 $showflag = 'false';
 $now=gmtime();
-$starttime=local_mktime(0, 0, 0, 7, 1, 2013);
+$starttime=local_mktime(18, 0, 0, 7, 1, 2013);
 if($now>$starttime){
 	$showflag = 'true';
 }

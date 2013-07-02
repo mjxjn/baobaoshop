@@ -13,8 +13,10 @@ assign_template();
 $act= isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 if(!empty($act)&&$act=='vote'){
                         $now=gmtime();
-                        $starttime=local_mktime(0, 0, 0, 7, 1, 2013);
+                        $starttime=local_mktime(18, 0, 0, 7, 1, 2013);
 						if($now<$starttime){
+							echo "-10";
+							//show_starbaby_message('比赛将于7月1日18:00开始！', '', '', 'warning');
 							exit();
 						}
                         $endtime=local_mktime(23, 59, 59, 7, 5, 2013);
@@ -74,16 +76,19 @@ if(!empty($act)&&$act=='vote'){
 			echo "-3";
 			exit;
 		}
+		$rand_code = $_SESSION['rand_code'];
+		unset($_SESSION['rand_code']);
+		unset($_SESSION['mobile']);
 		$year=local_date("Y",gmtime());
 		$month=local_date("m",gmtime());
 		$day=local_date("d",gmtime());
 	$startime=local_mktime(0,0,0,$month,$day,$year);
 	$endtime=local_mktime(23,59,59,$month,$day,$year);
-	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; 
+	$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$mobile."' and baby_id='".$baby_id."' and vote_time >= ".$startime." and vote_time <= ".$endtime; 
 	//按登录会员投票统计
 	//$sql="select COUNT(*) AS svote from ".$GLOBALS['ecs']->table('baby_vote')." where ip='".real_ip()."' and baby_id=".$baby_id." and vote_time >= ".$startime." and vote_time <= ".$endtime; //按IP统计
 	$svote=$GLOBALS['db']->getOne($sql);
-	$sql="select COUNT(*) AS smvote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$_SESSION['mobile']."' and vote_time >= ".$startime." and vote_time <= ".$endtime;
+	$sql="select COUNT(*) AS smvote from ".$GLOBALS['ecs']->table('baby_vote')." where user_id='".$mobile."' and vote_time >= ".$startime." and vote_time <= ".$endtime;
 	$smvote=$GLOBALS['db']->getOne($sql);
 	if($svote >= 1 || $smvote >=5) //会员的按1次  ip的按一天3次
 	{
@@ -118,13 +123,12 @@ if(!empty($act)&&$act=='vote'){
 	$baby_number=$GLOBALS['db']->getOne($sql);
 	$baby_number+=1;
 	
-	$sql="insert into".$GLOBALS['ecs']->table('baby_vote'). "(baby_id,user_id, user_name,ip,vote_time,fvote_time,ia_id) VALUES ('$baby_id', '".$_SESSION['mobile']."','".$_SESSION['user_name']."','".real_ip()."','".gmtime()."','".local_date("Y-m-d H:i:s",gmtime())."',$ia_id)";
+	$sql="insert into".$GLOBALS['ecs']->table('baby_vote'). "(baby_id,user_id, user_name,ip,vote_time,fvote_time,ia_id) VALUES ('$baby_id', '".$mobile."','".$_SESSION['user_name']."-".$rand_code."','".real_ip()."','".gmtime()."','".local_date("Y-m-d H:i:s",gmtime())."',$ia_id)";
 	$GLOBALS['db']->query($sql);
 	$sql="update ".$GLOBALS['ecs']->table('baby_baby')." SET baby_number = '".$baby_number."' WHERE baby_id = '".$baby_id."' and ia_id=".$ia_id;
 	$GLOBALS['db']->query($sql);
 	echo $baby_number;
-	$_SESSION['rand_code'] = "";
-	$_SESSION['mobile'] = "";
+	
 	exit;
 
 }elseif(!empty($act)&&$act=='act_send_sms'){
@@ -215,6 +219,7 @@ if(!empty($act)&&$act=='vote'){
 
 	$client = new Client($gwUrl,$serialNumber,$password,$sessionKey,$proxyhost,$proxyport,$proxyusername,$proxypassword,$connectTimeOut,$readTimeOut); 
 	$rand_code = rand(100000,999999);//生成手机验证码
+	$bian = rand(1,10000);
 	$_SESSION['rand_code'] = $rand_code;
 	$_SESSION['mobile'] = $mobile_phone;
 	$msg="婴格母婴商城提醒您，明星宝宝秀投票验证码为：".$rand_code."。[婴格]";
@@ -312,11 +317,11 @@ $smarty->assign('sx',                 $sx);
 $smarty->assign('ia_id',              $ia_id); 
 $smarty->assign('baby',              $babybaby); 
 $_SESSION['md5key']=rand(1000, 9999);
-$smarty->assign('md5key',            authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
+$smarty->assign('md5key',authcode($GLOBALS['discuz_auth_key'].$_SESSION['md5key'], 'ENCODE', $_SESSION['md5key']));
 
 $now=gmtime();
 $showflag = 'false';
-$starttime=local_mktime(0, 0, 0, 7, 1, 2013);
+$starttime=local_mktime(18, 0, 0, 7, 1, 2013);
 if($now>$starttime){
 	$showflag = 'true';
 }
