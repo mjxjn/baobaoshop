@@ -20,7 +20,7 @@ $smarty->display('starbaby/index.htm');
 function top_baby(){
 	$sql = "select ia_id from ".$GLOBALS['ecs']->table('baby_ia')." order by ia_id desc limit 0,1";
 	$ia_id = $GLOBALS['db']->getOne($sql);
-	$sql = "SELECT * FROM " .$GLOBALS['ecs']->table('baby_baby')." where ia_id=".$ia_id." order by baby_number desc limit 0,10";
+	$sql = "SELECT * FROM " .$GLOBALS['ecs']->table('baby_baby')." where ia_id=".$ia_id." and baby_id NOT IN (25,73,57,46,39,96) order by baby_number desc limit 0,10";
 	$res = $GLOBALS['db']->query($sql);
 	$i=1;
 	while ($topbaby = $GLOBALS['db']->fetchRow($res))

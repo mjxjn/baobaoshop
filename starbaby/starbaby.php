@@ -47,6 +47,10 @@ if(!empty($act)&&$act=='vote'){
 	   echo "-2";
 	   exit;
 	}
+	$stop_array = array(25,73,57,46,39,96);
+	if(in_array($baby_id, $stop_array)){
+		exit();
+	}
         /* 验证码验证*/
     /*if(empty($baby_number)&&empty($baby_id)&&empty($md5key)){
 	   echo "-2";
