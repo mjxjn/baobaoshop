@@ -19,7 +19,7 @@ if(!empty($act)&&$act=='vote'){
 							//show_starbaby_message('比赛将于7月1日18:00开始！', '', '', 'warning');
 							exit();
 						}
-                        $endtime=local_mktime(23, 59, 59, 7, 5, 2013);
+                        $endtime=local_mktime(17, 59, 59, 7, 5, 2013);
                         if($now>$endtime){
                                exit();
                         }
@@ -47,7 +47,7 @@ if(!empty($act)&&$act=='vote'){
 	   echo "-2";
 	   exit;
 	}
-	$stop_array = array(25,73,57,46,39,96);
+	$stop_array = array();
 	if(in_array($baby_id, $stop_array)){
 		exit();
 	}
@@ -329,7 +329,7 @@ $starttime=local_mktime(18, 0, 0, 7, 1, 2013);
 if($now>$starttime){
 	$showflag = 'true';
 }
-$endtime=local_mktime(23, 59, 59, 7, 5, 2013);
+$endtime=local_mktime(17, 59, 59, 7, 5, 2013);
 if($now>$endtime){
 	$showflag = 'false';
 }

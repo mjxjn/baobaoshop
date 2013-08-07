@@ -158,7 +158,7 @@ $starttime=local_mktime(18, 0, 0, 7, 1, 2013);
 if($now>$starttime){
 	$showflag = 'true';
 }
-$endtime=local_mktime(23, 59, 59, 7, 5, 2013);
+$endtime=local_mktime(17, 59, 59, 7, 5, 2013);
 if($now>$endtime){
 	$showflag = 'false';
 }
