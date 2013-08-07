@@ -161,13 +161,11 @@ function close_miaoshu(){
                     
 			<div class="copy_url"><a href="http://www.yinggebaby.com/starbaby/baby.php?id={$baby_id}&ia={$ia_id2}" onclick="setCopy(this.href);return false;">复制链接转发好友帮我拉票</a></div>
                     <!-- {if $enabled eq 'true'} -->
-                    <!-- {if $baby_id eq 25 or $baby_id eq 73 or $baby_id eq 57 or $baby_id eq 46 or $baby_id eq 39 or $baby_id eq 96} -->
-                    <div class="baby_number"><span id="bb_number" style="color: #999">{$baby.baby_number}</span><a href="javascript:void();" class="baby_btn">&nbsp;</a></div>
-                    <!-- {else} -->
+                    
 			<div class="baby_number"><span id="bb_number">{$baby.baby_number}</span><a href="javascript:void();" onclick="show_Votes({$baby.baby_number},{$baby.baby_id})" class="baby_btn">&nbsp;</a></div>
-					<!-- {/if} -->
+					
                     <!-- {else} -->  
-                    <div style="background: url(/themes/yingge/starbaby/images/unopen.png) no-repeat;width: 200px;height: 45px;line-height: 45px;margin-top: 10px;padding-left: 25px;clear: both;display: inline-block;"><span id="bb_number">{$baby.baby_number}</span><a href="javascript:void();" onclick="javascript:alert('比赛将于7月1日18:00开始！')" class="baby_btn">&nbsp;</a></div>
+                    <div style="background: url(/themes/yingge/starbaby/images/unopen.png) no-repeat;width: 200px;height: 45px;line-height: 45px;margin-top: 10px;padding-left: 25px;clear: both;display: inline-block;"><span id="bb_number">{$baby.baby_number}</span><a href="javascript:void();" onclick="javascript:alert('工作人员将在未来两天进行清理票数，详情留意公告')" class="baby_btn">&nbsp;</a></div>
                     <!-- {/if} -->  
 		</div>
 <!--		<div class="baby_yinxiang right">
