@@ -11,7 +11,7 @@
 	</div>
 	<div class="usertwo left">
 		<p class="fb">您的积分</p>
-		<p class="fb"><a href="user.php?act=integration"><font size="6">{$user_info.pay_points}</font>&nbsp;<span class="f16">分</span></a>&nbsp;&nbsp;<a href="exchange.php" target="_blank"><img src="/themes/yingge/user/images/jifenbtn.jpg" width="118" height="31" /></a></p>
+		<p class="fb"><a href="user.php?act=integration"><font size="6">{$user_info.pay_points}</font>&nbsp;<span class="f16">分</span></a>&nbsp;&nbsp;<a href="integral.php" target="_blank"><img src="/themes/yingge/user/images/jifenbtn.jpg" width="118" height="31" /></a></p>
 		<p>可用优惠卷：<a href="user.php?act=bonus" style="color:#006bd0;">{$user_info.bonus}</a>&nbsp;</p>
 	</div>
 	
