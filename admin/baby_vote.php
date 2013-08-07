@@ -38,6 +38,22 @@ elseif ($_REQUEST['act'] == 'vote')
     
 	$smarty->display('baby_vote_info.htm');
 }
+/*elseif($_REQUEST['act'] == 'test'){
+    for($i=1;$i<97;$i++){
+        $sql="select count(*) as tc from ecs_baby_vote where ia_id=5 and baby_id=".$i." group by vote_time,ip";
+        $vote_list = $GLOBALS['db']->getAll($sql);
+        
+        
+            $data[$i] = count($vote_list);;
+        
+    }
+    
+    asort($data);
+    foreach ($data as $key => $value) {
+        # code...
+        echo $key."-----".$value.'<br />';
+    }
+}*/
 
 function vote_list($baby_id,$ia){
 	$result = get_filter();
