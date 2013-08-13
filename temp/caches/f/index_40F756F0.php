@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:5:{i:0;s:42:"E:/wamp/www/yingge/themes/yingge/index.dwt";i:1;s:63:"E:/wamp/www/yingge/themes/yingge/library/page_header_index1.lbi";i:2;s:64:"E:/wamp/www/yingge/themes/yingge/library/index_category_tree.lbi";i:3;s:62:"E:/wamp/www/yingge/themes/yingge/library/index_user_center.lbi";i:4;s:56:"E:/wamp/www/yingge/themes/yingge/library/page_footer.lbi";}s:7:"expires";i:1369187408;s:8:"maketime";i:1369183808;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:5:{i:0;s:57:"E:/APMServ5.2.6/www/htdocs/yingge/themes/yingge/index.dwt";i:1;s:78:"E:/APMServ5.2.6/www/htdocs/yingge/themes/yingge/library/page_header_index1.lbi";i:2;s:79:"E:/APMServ5.2.6/www/htdocs/yingge/themes/yingge/library/index_category_tree.lbi";i:3;s:77:"E:/APMServ5.2.6/www/htdocs/yingge/themes/yingge/library/index_user_center.lbi";i:4;s:71:"E:/APMServ5.2.6/www/htdocs/yingge/themes/yingge/library/page_footer.lbi";}s:7:"expires";i:1376359392;s:8:"maketime";i:1376355792;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.2" />
@@ -735,29 +735,39 @@ $(function() {
 			<div id="con_one_1" class="show_cur" style="display:block">
 				<dl>
 										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=37"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=37">测试品牌商品</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
+					</dd>
+										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=35"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=35">法师</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥179.00</font></p>
+					</dd>
+										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=48"><img src="images/201111/thumb_img/48_thumb_G_1321311901453.jpg" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=48">sadfsadfsadfsf</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥62.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=17"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=17">测试</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥124.00</font></p>
-					</dd>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=38"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=38">测试商品2</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
-					</dd>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=45"><img src="images/201111/thumb_img/45_thumb_G_1321309235852.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=45">dsfsdfsdf</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥345.00</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=40"><img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=40">奶粉~~~~~</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
 					</dd>
 									</dl>
 			</div>
 			<div id="con_one_2" class="show_cur" style="display:none">
 				<dl>
+										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=40"><img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=40">奶粉~~~~~</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
+					</dd>
+										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=42"><img src="images/201111/thumb_img/42_thumb_G_1320882459162.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=42">撒旦飞洒地方</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥0.00</font></p>
+					</dd>
 										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=35"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=35">法师</a></p>
@@ -768,16 +778,6 @@ $(function() {
 					<p><a href="goods.php?id=36">盛大富翁</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥1500.00</font></p>
 					</dd>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=38"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=38">测试商品2</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥0.01</font></p>
-					</dd>
-										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=40"><img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=40">奶粉~~~~~</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
-					</dd>
 									</dl>
 			</div>
 			<div id="con_one_3" class="show_cur" style="display:none">
@@ -787,24 +787,24 @@ $(function() {
 			<div id="con_one_4" class="show_cur" style="display:none">
 				<dl>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=43"><img src="images/201111/thumb_img/43_thumb_G_1320882470149.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=43">撒大法师</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥0.00</font></p>
-					</dd>
-										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=37"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=37">测试品牌商品</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
 					</dd>
 										<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=40"><img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="145" height="145" border="0" /></a></p>
-					<p><a href="goods.php?id=40">奶粉~~~~~</a></p>
-					<p>婴格价：<font style="color:#e71f19;">￥10.00</font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=43"><img src="images/201111/thumb_img/43_thumb_G_1320882470149.jpg" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=43">撒大法师</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥0.00</font></p>
 					</dd>
 										<dd>
 					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=42"><img src="images/201111/thumb_img/42_thumb_G_1320882459162.jpg" width="145" height="145" border="0" /></a></p>
 					<p><a href="goods.php?id=42">撒旦飞洒地方</a></p>
 					<p>婴格价：<font style="color:#e71f19;">￥0.00</font></p>
+					</dd>
+										<dd>
+					<p style="display:block; padding-bottom:10px;"><a href="goods.php?id=36"><img src="images/no_picture.gif" width="145" height="145" border="0" /></a></p>
+					<p><a href="goods.php?id=36">盛大富翁</a></p>
+					<p>婴格价：<font style="color:#e71f19;">￥1500.00</font></p>
 					</dd>
 									</dl>
 			</div>
@@ -1092,70 +1092,112 @@ function updateEndTime()
                                       <li class="item hover" onmouseover="setTab('food',1,8);" id="food1" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">1</em>
-                                        <a target="_blank" title="测试商品2" href="goods.php?id=38" class="fl">测试商品2</a>
+                                        <a target="_blank" title="盛大富翁" href="goods.php?id=36" class="fl">盛大富翁</a>
                                     </p>
                                     <div class="sr_con" id="con_food_1">
-                                        <a title="测试商品2" href="goods.php?id=38" class="sr_img" target="_blank">
+                                        <a title="盛大富翁" href="goods.php?id=36" class="sr_img" target="_blank">
                                             <img src="images/no_picture.gif" width="95" height="95">
                                         </a>
-                                        <p class="text">婴格价格：￥0.01</p>
-                                        <p><span>市场价格：<del></del></span></p>
+                                        <p class="text">婴格价格：￥1500.00</p>
+                                        <p><span>市场价格：<del>￥1800.00</del></span></p>
                                         
                                     </div>
                                 </li>
                                         <li class="item " onmouseover="setTab('food',2,8);" id="food2" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">2</em>
-                                        <a target="_blank" title="奶粉~~~~~" href="goods.php?id=40" class="fl">奶粉~~~~~</a>
+                                        <a target="_blank" title="法师" href="goods.php?id=35" class="fl">法师</a>
                                     </p>
                                     <div class="sr_con" id="con_food_2">
-                                        <a title="奶粉~~~~~" href="goods.php?id=40" class="sr_img" target="_blank">
-                                            <img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="95" height="95">
+                                        <a title="法师" href="goods.php?id=35" class="sr_img" target="_blank">
+                                            <img src="images/no_picture.gif" width="95" height="95">
                                         </a>
-                                        <p class="text">婴格价格：￥10.00</p>
-                                        <p><span>市场价格：<del></del></span></p>
+                                        <p class="text">婴格价格：￥179.00</p>
+                                        <p><span>市场价格：<del>￥1320.00</del></span></p>
                                         
                                     </div>
                                 </li>
                                         <li class="item " onmouseover="setTab('food',3,8);" id="food3" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">3</em>
-                                        <a target="_blank" title="sdfasdfasdfsdf" href="goods.php?id=47" class="fl">sdfasdf...</a>
+                                        <a target="_blank" title="dsfsdfsdf" href="goods.php?id=45" class="fl">dsfsdfs...</a>
                                     </p>
                                     <div class="sr_con" id="con_food_3">
-                                        <a title="sdfasdfasdfsdf" href="goods.php?id=47" class="sr_img" target="_blank">
-                                            <img src="images/201111/thumb_img/47_thumb_G_1321311619715.jpg" width="95" height="95">
+                                        <a title="dsfsdfsdf" href="goods.php?id=45" class="sr_img" target="_blank">
+                                            <img src="images/201111/thumb_img/45_thumb_G_1321309235852.jpg" width="95" height="95">
                                         </a>
-                                        <p class="text">婴格价格：￥19.00</p>
-                                        <p><span>市场价格：<del></del></span></p>
+                                        <p class="text">婴格价格：￥345.00</p>
+                                        <p><span>市场价格：<del>￥414.00</del></span></p>
                                         
                                     </div>
                                 </li>
                                         <li class="item " onmouseover="setTab('food',4,8);" id="food4" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">4</em>
-                                        <a target="_blank" title="sdfsdfasdf" href="goods.php?id=44" class="fl">sdfsdfa...</a>
+                                        <a target="_blank" title="测试商品2" href="goods.php?id=38" class="fl">测试商品2</a>
                                     </p>
                                     <div class="sr_con" id="con_food_4">
-                                        <a title="sdfsdfasdf" href="goods.php?id=44" class="sr_img" target="_blank">
-                                            <img src="images/201208/thumb_img/44_thumb_G_1344234080137.jpg" width="95" height="95">
+                                        <a title="测试商品2" href="goods.php?id=38" class="sr_img" target="_blank">
+                                            <img src="images/no_picture.gif" width="95" height="95">
                                         </a>
-                                        <p class="text">婴格价格：￥50.00</p>
-                                        <p><span>市场价格：<del></del></span></p>
+                                        <p class="text">婴格价格：￥0.01</p>
+                                        <p><span>市场价格：<del>￥0.01</del></span></p>
                                         
                                     </div>
                                 </li>
                                         <li class="item " onmouseover="setTab('food',5,8);" id="food5" style="">
                                     <p class="clearfix tit">
                                         <em class="fl">5</em>
-                                        <a target="_blank" title="测试商品2" href="goods.php?id=39" class="fl">测试商品2</a>
+                                        <a target="_blank" title="奶粉~~~~~" href="goods.php?id=40" class="fl">奶粉~~~~~</a>
                                     </p>
                                     <div class="sr_con" id="con_food_5">
+                                        <a title="奶粉~~~~~" href="goods.php?id=40" class="sr_img" target="_blank">
+                                            <img src="images/201111/thumb_img/40_thumb_G_1320882430608.jpg" width="95" height="95">
+                                        </a>
+                                        <p class="text">婴格价格：￥10.00</p>
+                                        <p><span>市场价格：<del>￥12.00</del></span></p>
+                                        
+                                    </div>
+                                </li>
+                                        <li class="item " onmouseover="setTab('food',6,8);" id="food6" style="">
+                                    <p class="clearfix tit">
+                                        <em class="fl">6</em>
+                                        <a target="_blank" title="测试商品2" href="goods.php?id=39" class="fl">测试商品2</a>
+                                    </p>
+                                    <div class="sr_con" id="con_food_6">
                                         <a title="测试商品2" href="goods.php?id=39" class="sr_img" target="_blank">
                                             <img src="images/201111/thumb_img/39_thumb_G_1320813825661.jpg" width="95" height="95">
                                         </a>
                                         <p class="text">婴格价格：￥20.00</p>
-                                        <p><span>市场价格：<del></del></span></p>
+                                        <p><span>市场价格：<del>￥24.00</del></span></p>
+                                        
+                                    </div>
+                                </li>
+                                        <li class="item " onmouseover="setTab('food',7,8);" id="food7" style="">
+                                    <p class="clearfix tit">
+                                        <em class="fl">7</em>
+                                        <a target="_blank" title="sadfsadfsadfsf" href="goods.php?id=48" class="fl">sadfsad...</a>
+                                    </p>
+                                    <div class="sr_con" id="con_food_7">
+                                        <a title="sadfsadfsadfsf" href="goods.php?id=48" class="sr_img" target="_blank">
+                                            <img src="images/201111/thumb_img/48_thumb_G_1321311901453.jpg" width="95" height="95">
+                                        </a>
+                                        <p class="text">婴格价格：￥62.00</p>
+                                        <p><span>市场价格：<del>￥55.19</del></span></p>
+                                        
+                                    </div>
+                                </li>
+                                        <li class="item " onmouseover="setTab('food',8,8);" id="food8" style="border:0;">
+                                    <p class="clearfix tit">
+                                        <em class="fl">8</em>
+                                        <a target="_blank" title="sdfasdfasdfsdf" href="goods.php?id=47" class="fl">sdfasdf...</a>
+                                    </p>
+                                    <div class="sr_con" id="con_food_8">
+                                        <a title="sdfasdfasdfsdf" href="goods.php?id=47" class="sr_img" target="_blank">
+                                            <img src="images/201111/thumb_img/47_thumb_G_1321311619715.jpg" width="95" height="95">
+                                        </a>
+                                        <p class="text">婴格价格：￥19.00</p>
+                                        <p><span>市场价格：<del>￥52.80</del></span></p>
                                         
                                     </div>
                                 </li>
@@ -2587,6 +2629,7 @@ if((document.documentElement.scrollTop+document.body.scrollTop)!=0)
 </style>
 <div style="height:1px; clear:both;background-color:#eee; width:100%; margin:10px 0 20px;"></div>
 <div id="fd_Foot" >
+<div class="J_QrCode"><img src="themes/yingge/images/QrCode.jpg" width="106" height="165"/></div>
 <div class="scroll_qq"><img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800005826&eid=2188z8p8p8p8p8R8z8K8x&o=www.yingge.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="themes/yingge/images/scrollqq.png"></div>
 <div class="scroll_div"></div> <div class="footArticle"> <div class="fArt fArt_f"><div class="AdvBanner">  <a target="_blank" href=""> <img style="" src="themes/yingge/images/foot_logo.gif"> </a>  </div> </div> 
 <div class="fArt"><div class="TreeList"> <div class="cat1 catfirst">新手上路 </div> 
@@ -2632,12 +2675,22 @@ if((document.documentElement.scrollTop+document.body.scrollTop)!=0)
 <p>&nbsp;</p>
 </td>
 <td style="TEXT-ALIGN: right">
-<p>&copy;&nbsp; 2011-2012 昆明婴格经贸有限公司   滇ICP备10004984号 
+<p>&copy;&nbsp; 2011-2012 昆明婴格经贸有限公司   滇ICP备10004984号 <a id="jsl_speed_stat" href="http://www.jiasule.com/#zid=5084ef3675db5c4e45000000" target="_blank">加速乐统计</a><script src="http://www.jiasule.com/static/js/stat/word_stat.js" charset="utf-8" type="text/javascript"></script>
+ 
 <script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=0&kfuin=800005826&key=%0Ek%032Rg%063%09%3DR1TlT%3F%05cViTnU2%000%06%60V0%04c%08m%074%030"></script>
 <script src="http://s13.cnzz.com/stat.php?id=3791333&web_id=3791333" language="JavaScript"></script> <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4e968208cd80c8cfb147e487bfb59c46' type='text/javascript'%3E%3C/script%3E"));
-</script> <script type="text/javascript" src="http://tajs.qq.com/stats?sId=12792461" charset="UTF-8"></script>
+</script> <script type="text/javascript" src="http://tajs.qq.com/stats?sId=12792461" charset="UTF-8"></script> 
+<script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=0&kfuin=800005826&key=Z%3FVg%036Qd%051%05f%02%3AU%3E%05cQnRh%00g%077S5%02d%0Bl%0Bn%030%021"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-42655871-1', 'yinggebaby.com');
+  ga('send', 'pageview');
+</script>
 <script type="text/javascript"> 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-27441941-1']);
@@ -2664,6 +2717,7 @@ $(document).ready(function(){
         scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
         $(".scroll_div").css("left",scroll_div_left);
         $(".scroll_qq").css("left",scroll_div_left);
+        $(".J_QrCode").css("left",scroll_div_left);
     });
     reshow(scroll_div_left,show_delay);
 })    
@@ -2671,6 +2725,7 @@ $(document).ready(function(){
 function reshow(marign_l,show_d) {
 	$(".scroll_div").css("left",marign_l);
 	$(".scroll_qq").css("left",marign_l);
+  $(".J_QrCode").css("left",marign_l);
 	if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
 	{
 	    $(".scroll_div").css("display","block");

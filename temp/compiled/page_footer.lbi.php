@@ -13,6 +13,7 @@
 <div style="height:1px; clear:both;background-color:#eee; width:100%; margin:10px 0 20px;"></div>
 
 <div id="fd_Foot" >
+<div class="J_QrCode"><img src="themes/yingge/images/QrCode.jpg" width="106" height="165"/></div>
 <div class="scroll_qq"><img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800005826&eid=2188z8p8p8p8p8R8z8K8x&o=www.yingge.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="themes/yingge/images/scrollqq.png"></div>
 <div class="scroll_div"></div> <div class="footArticle"> <div class="fArt fArt_f"><div class="AdvBanner">  <a target="_blank" href=""> <img style="" src="themes/yingge/images/foot_logo.gif"> </a>  </div> </div> 
 
@@ -62,12 +63,25 @@
 </td>
 <td style="TEXT-ALIGN: right">
 <p>&copy;&nbsp; 2011-2012 昆明婴格经贸有限公司 <?php if ($this->_var['icp_number']): ?>
-  <?php echo $this->_var['icp_number']; ?> 
+  <?php echo $this->_var['icp_number']; ?> <a id="jsl_speed_stat" href="http://www.jiasule.com/#zid=5084ef3675db5c4e45000000" target="_blank">加速乐统计</a><script src="http://www.jiasule.com/static/js/stat/word_stat.js" charset="utf-8" type="text/javascript"></script>
+ 
 <script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=0&kfuin=800005826&key=%0Ek%032Rg%063%09%3DR1TlT%3F%05cViTnU2%000%06%60V0%04c%08m%074%030"></script>
 <script src="http://s13.cnzz.com/stat.php?id=3791333&web_id=3791333" language="JavaScript"></script> <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4e968208cd80c8cfb147e487bfb59c46' type='text/javascript'%3E%3C/script%3E"));
-</script> <script type="text/javascript" src="http://tajs.qq.com/stats?sId=12792461" charset="UTF-8"></script>
+</script> <script type="text/javascript" src="http://tajs.qq.com/stats?sId=12792461" charset="UTF-8"></script> 
+<script type="text/javascript" src="http://static.b.qq.com/account/bizqq/js/wpa.js?wty=0&kfuin=800005826&key=Z%3FVg%036Qd%051%05f%02%3AU%3E%05cQnRh%00g%077S5%02d%0Bl%0Bn%030%021"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42655871-1', 'yinggebaby.com');
+  ga('send', 'pageview');
+
+</script>
 <script type="text/javascript"> 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-27441941-1']);
@@ -98,6 +112,7 @@ $(document).ready(function(){
         scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
         $(".scroll_div").css("left",scroll_div_left);
         $(".scroll_qq").css("left",scroll_div_left);
+        $(".J_QrCode").css("left",scroll_div_left);
     });
     reshow(scroll_div_left,show_delay);
 })    
@@ -105,6 +120,7 @@ $(document).ready(function(){
 function reshow(marign_l,show_d) {
 	$(".scroll_div").css("left",marign_l);
 	$(".scroll_qq").css("left",marign_l);
+  $(".J_QrCode").css("left",marign_l);
 	if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
 	{
 	    $(".scroll_div").css("display","block");

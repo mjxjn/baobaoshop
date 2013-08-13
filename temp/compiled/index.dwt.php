@@ -197,60 +197,60 @@ if ($this->_foreach['ad']['total'] > 0):
 			</ul>
 			<div id="con_one_1" class="show_cur" style="display:block">
 				<dl>
-					<?php $_from = $this->_var['best_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'best_goods_0_41277300_1368867339');$this->_foreach['best_goods'] = array('total' => count($_from), 'iteration' => 0);
+					<?php $_from = $this->_var['best_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'best_goods_0_25729000_1376354965');$this->_foreach['best_goods'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['best_goods']['total'] > 0):
-    foreach ($_from AS $this->_var['best_goods_0_41277300_1368867339']):
+    foreach ($_from AS $this->_var['best_goods_0_25729000_1376354965']):
         $this->_foreach['best_goods']['iteration']++;
 ?>
 					<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['best_goods_0_41277300_1368867339']['url']; ?>"><img src="<?php echo $this->_var['best_goods_0_41277300_1368867339']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
-					<p><a href="<?php echo $this->_var['best_goods_0_41277300_1368867339']['url']; ?>"><?php echo $this->_var['best_goods_0_41277300_1368867339']['name']; ?></a></p>
-					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['best_goods_0_41277300_1368867339']['shop_price']; ?></font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['best_goods_0_25729000_1376354965']['url']; ?>"><img src="<?php echo $this->_var['best_goods_0_25729000_1376354965']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
+					<p><a href="<?php echo $this->_var['best_goods_0_25729000_1376354965']['url']; ?>"><?php echo $this->_var['best_goods_0_25729000_1376354965']['name']; ?></a></p>
+					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['best_goods_0_25729000_1376354965']['shop_price']; ?></font></p>
 					</dd>
 					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 				</dl>
 			</div>
 			<div id="con_one_2" class="show_cur" style="display:none">
 				<dl>
-					<?php $_from = $this->_var['hot_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'hot_goods_0_41313100_1368867339');$this->_foreach['hot_goods'] = array('total' => count($_from), 'iteration' => 0);
+					<?php $_from = $this->_var['hot_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'hot_goods_0_25749700_1376354965');$this->_foreach['hot_goods'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['hot_goods']['total'] > 0):
-    foreach ($_from AS $this->_var['hot_goods_0_41313100_1368867339']):
+    foreach ($_from AS $this->_var['hot_goods_0_25749700_1376354965']):
         $this->_foreach['hot_goods']['iteration']++;
 ?>
 					<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['hot_goods_0_41313100_1368867339']['url']; ?>"><img src="<?php echo $this->_var['hot_goods_0_41313100_1368867339']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
-					<p><a href="<?php echo $this->_var['hot_goods_0_41313100_1368867339']['url']; ?>"><?php echo $this->_var['hot_goods_0_41313100_1368867339']['name']; ?></a></p>
-					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['hot_goods_0_41313100_1368867339']['shop_price']; ?></font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['hot_goods_0_25749700_1376354965']['url']; ?>"><img src="<?php echo $this->_var['hot_goods_0_25749700_1376354965']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
+					<p><a href="<?php echo $this->_var['hot_goods_0_25749700_1376354965']['url']; ?>"><?php echo $this->_var['hot_goods_0_25749700_1376354965']['name']; ?></a></p>
+					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['hot_goods_0_25749700_1376354965']['shop_price']; ?></font></p>
 					</dd>
 					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 				</dl>
 			</div>
 			<div id="con_one_3" class="show_cur" style="display:none">
 				<dl>
-					<?php $_from = $this->_var['promotion_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'promotion_goods_0_41349000_1368867339');$this->_foreach['promotion_goods'] = array('total' => count($_from), 'iteration' => 0);
+					<?php $_from = $this->_var['promotion_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'promotion_goods_0_25769300_1376354965');$this->_foreach['promotion_goods'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['promotion_goods']['total'] > 0):
-    foreach ($_from AS $this->_var['promotion_goods_0_41349000_1368867339']):
+    foreach ($_from AS $this->_var['promotion_goods_0_25769300_1376354965']):
         $this->_foreach['promotion_goods']['iteration']++;
 ?>
 					<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['promotion_goods_0_41349000_1368867339']['url']; ?>"><img src="<?php echo $this->_var['promotion_goods_0_41349000_1368867339']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
-					<p><a href="<?php echo $this->_var['promotion_goods_0_41349000_1368867339']['url']; ?>"><?php echo $this->_var['promotion_goods_0_41349000_1368867339']['name']; ?></a></p>
-					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['promotion_goods_0_41349000_1368867339']['promote_price']; ?></font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['promotion_goods_0_25769300_1376354965']['url']; ?>"><img src="<?php echo $this->_var['promotion_goods_0_25769300_1376354965']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
+					<p><a href="<?php echo $this->_var['promotion_goods_0_25769300_1376354965']['url']; ?>"><?php echo $this->_var['promotion_goods_0_25769300_1376354965']['name']; ?></a></p>
+					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['promotion_goods_0_25769300_1376354965']['promote_price']; ?></font></p>
 					</dd>
 					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 				</dl>
 			</div>
 			<div id="con_one_4" class="show_cur" style="display:none">
 				<dl>
-					<?php $_from = $this->_var['rand_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'rand_goods_0_41380700_1368867339');$this->_foreach['rand_goods'] = array('total' => count($_from), 'iteration' => 0);
+					<?php $_from = $this->_var['rand_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'rand_goods_0_25790700_1376354965');$this->_foreach['rand_goods'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['rand_goods']['total'] > 0):
-    foreach ($_from AS $this->_var['rand_goods_0_41380700_1368867339']):
+    foreach ($_from AS $this->_var['rand_goods_0_25790700_1376354965']):
         $this->_foreach['rand_goods']['iteration']++;
 ?>
 					<dd>
-					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['rand_goods_0_41380700_1368867339']['url']; ?>"><img src="<?php echo $this->_var['rand_goods_0_41380700_1368867339']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
-					<p><a href="<?php echo $this->_var['rand_goods_0_41380700_1368867339']['url']; ?>"><?php echo $this->_var['rand_goods_0_41380700_1368867339']['name']; ?></a></p>
-					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['rand_goods_0_41380700_1368867339']['shop_price']; ?></font></p>
+					<p style="display:block; padding-bottom:10px;"><a href="<?php echo $this->_var['rand_goods_0_25790700_1376354965']['url']; ?>"><img src="<?php echo $this->_var['rand_goods_0_25790700_1376354965']['thumb']; ?>" width="145" height="145" border="0" /></a></p>
+					<p><a href="<?php echo $this->_var['rand_goods_0_25790700_1376354965']['url']; ?>"><?php echo $this->_var['rand_goods_0_25790700_1376354965']['name']; ?></a></p>
+					<p>婴格价：<font style="color:#e71f19;"><?php echo $this->_var['rand_goods_0_25790700_1376354965']['shop_price']; ?></font></p>
 					</dd>
 					<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
 				</dl>

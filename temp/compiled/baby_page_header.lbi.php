@@ -106,8 +106,9 @@ echo $this->_echash . $k['name'] . '|' . serialize($k) . $this->_echash;
                         <table cellspacing="0" cellpadding="0">
                         <tbody>
                             <tr>
-                                <td class="search_label"><label id="mq" style="visibility: visible; color: #ccc; ">输入您要的商品名称/关键词/货号</label>
-								<input class="inputstyle keywords" size="10" name="keywords" id="keywords" type="text" action="sug.php" columns="1" capture="1"> </td>
+                                <td class="search_label">
+								<label id="mq" style="visibility: visible; color: #ccc; ">输入您要的商品名称/关键词/货号</label>
+								<input class="inputstyle keywords" size="10" name="keywords" id="keywords" type="text" action="sug.php" columns="1" capture="1">  </td>
                                 <td><input type="hidden" name="category" value="0"><input type="submit" class="btn_search" value="搜索"> </td>
                                 <td></td>
                             </tr>
