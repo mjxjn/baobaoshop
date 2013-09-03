@@ -13,7 +13,7 @@
 <div style="height:1px; clear:both;background-color:#eee; width:100%; margin:10px 0 20px;"></div>
 
 <div id="fd_Foot" >
-<div class="J_QrCode"><img src="images/QrCode.jpg" width="106" height="165"/></div>
+<div class="qrcode" ><img src="images/QrCode.jpg" width="106" height="165"/></div>
 <div class="scroll_qq"><img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800005826&eid=2188z8p8p8p8p8R8z8K8x&o=www.yingge.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="images/scrollqq.png"></div>
 <div class="scroll_div"></div> <div class="footArticle"> <div class="fArt fArt_f"><div class="AdvBanner">  <a target="_blank" href=""> <img style="" src="images/foot_logo.gif"> </a>  </div> </div> 
 
@@ -106,7 +106,7 @@ $(document).ready(function(){
         scroll_div_left=parseInt((document.body.offsetWidth-990)/2)+990;
         $(".scroll_div").css("left",scroll_div_left);
         $(".scroll_qq").css("left",scroll_div_left);
-        $(".J_QrCode").css("left",scroll_div_left);
+        $(".qrcode").css("left",scroll_div_left);
     });
     reshow(scroll_div_left,show_delay);
 })    
@@ -114,7 +114,7 @@ $(document).ready(function(){
 function reshow(marign_l,show_d) {
 	$(".scroll_div").css("left",marign_l);
 	$(".scroll_qq").css("left",marign_l);
-  $(".J_QrCode").css("left",marign_l);
+  $(".qrcode").css("left",marign_l);
 	if((document.documentElement.scrollTop+document.body.scrollTop)!=0) 
 	{
 	    $(".scroll_div").css("display","block");

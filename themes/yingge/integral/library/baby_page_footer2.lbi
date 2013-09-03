@@ -15,7 +15,7 @@
 </style>
 <div style="height: 1px; background-color: #eee; width: 100%; margin: 0px 0 20px;"></div>
 <div id="fd_Foot" >
-<div class="J_QrCode"><img src="images/QrCode.jpg" width="106" height="165"/></div>
+<div class="qrcode"><img src="images/QrCode.jpg" width="106" height="165"/></div>
 <div class="scroll_qq"><img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800005826&eid=2188z8p8p8p8p8R8z8K8x&o=www.yingge.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="images/scrollqq.png"></div>
 <div class="scroll_div"></div>
 <div class="footArticle">

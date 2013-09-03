@@ -12,7 +12,7 @@
 </style>
 <div style="height:1px; background-color:#eee; width:100%; margin:0px 0 20px;"></div>
 <div id="fd_Foot">
-<div class="J_QrCode"><img src="images/QrCode.jpg" width="106" height="165"/></div>
+<div class="qrcode" style="top:230px; position: fixed; left:1213px; z-index:1;_position: absolute; _bottom: auto; _top: expression( eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop + (documentElement.clientHeight - this.clientHeight) - 1 : document.body.scrollTop + (document.body.clientHeight - this.clientHeight) - 1); height:165px; width:106px; display:block; "><img src="images/QrCode.jpg" width="106" height="165"/></div>
 <div class="scroll_qq"><img  style="CURSOR: pointer" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800005826&eid=2188z8p8p8p8p8R8z8K8x&o=www.yingge.com&q=7&ref='+document.location, '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');"  border="0" SRC="images/scrollqq.png"></div>
 <div class="scroll_div"></div>
 <div class="footArticle"> <div class="fArt fArt_f"><div class="AdvBanner">  <a target="_blank" href=""> <img style="" src="images/foot_logo.gif"> </a>  </div> </div> 
